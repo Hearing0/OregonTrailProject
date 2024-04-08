@@ -1,5 +1,7 @@
 package wagonLoadPackage;
 
+import java.util.ArrayList;
+
 /**
  * Travel.java 
  * Created on 3/25/2024
@@ -18,16 +20,43 @@ public class Travel {
 	int consumeSelect = 1;
 	int foodConsumeMod = consumeSelect * 4;		// (1 to 3) * 4 people on wagon
 	double milesTillEnd = 2200;
+		
+		
+	ArrayList<Location> map; 	// map of Oregon Trail
+	int wagonLocation = 0;			// coordinates for map
 	
 	
 	
-	// TODO: Implement Event & Location Classes
-	/*
-	String[][] map; 	// map of Oregan Trail
-	int[] location;		// x,y coords for map
-	*/
-
 	
+	public Travel() {
+		addLocation("Independence", 
+				"The fort town of Independence. It serves as a bustling hub of activity and a vital "
+				+ "waypoint for pioneers heading westward. It boasts a "
+				+ "diverse array of services and amenities, including trading posts, blacksmiths, "
+				+ "general stores, and inns, catering to the needs of weary travelers. The town bustles "
+				+ "with the comings and goings of wagons, settlers, and traders, with a lively "
+				+ "atmosphere filled with anticipation and adventure. Independence is a crucial "
+				+ "starting point for thousands embarking on the arduous journey to the Pacific "
+				+ "Northwest, marking the beginning of their quest for a better life on the frontier.", 
+				"Select Option", 
+				200, 
+				true);
+		addLocation("Fort Kearney", 
+				"Fort Kearney was established in the 1840s to protect pioneers, traders, "
+				+ "and emigrants as they journeyed through the frontier. "
+				+ "While not as heavily fortified as some military forts, "
+				+ "Fort Kearney provided essential services and amenities to travelers. "
+				+ "Its strategic location along the Platte River made it a natural "
+				+ "resting place for travelers, offering a sense of safety and security "
+				+ "amidst the challenges of the trail. "
+				+ "Fort Kearney buzzed with activity during its heyday, bustling "
+				+ "with wagons, settlers, soldiers, and traders, all flowing "
+				+ "through this point on their journey westward.", 
+				"Select Option", 
+				75, 
+				true);
+	}
+		
 	
 	/**
 	 * Sets the pace of the wagon
@@ -196,6 +225,7 @@ public class Travel {
 		return this.travelSpeed;
 	}
 	
+	
 	/**
 	 * Checks if there is enough food for the trip. Determines
 	 * the number of days till the final destination and days of food
@@ -224,4 +254,40 @@ public class Travel {
 		
 		return result;
 	}
+	
+	
+	
+	public boolean travelMap( int amtFood ) {
+		boolean result = false;
+		
+		
+		// if isEnoughFoodToTravel...
+		if (this.isEnoughFoodToTravel(amtFood) == true) {
+
+			// Travel by calculated distance
+			// If location is fully traversed...
+			if (map.get(wagonLocation).travel(travelSpeed) == true) {
+				// Shift wagonLocation
+				
+				result = true;
+
+				// Check for events...
+				// evtCheck(currentLocation);
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Adds Location to map.
+	 * @param name
+	 * @param desc
+	 * @param prompt
+	 * @param disTillNext
+	 * @param hasActs
+	 */
+    public void addLocation(String name, String desc, String prompt, int disTillNext, boolean hasActs) {
+    	Location loc = new Location(name, desc, prompt, disTillNext, hasActs);
+        map.add(loc);
+    }
 }
