@@ -11,20 +11,17 @@ import javax.swing.SwingConstants;
 public class MenuUI {
 
 	// Initialize variables 
-	private JFrame frame;	
-	String title= "";
-	String desc = "";
-	String prompt = "";
+	private JFrame frame;
 	private JTextField promptField;
+	Location location;
+	private JLabel lblNewLabel;
 	
 	
 	/**
 	 * Create the application.
 	 */
-	public MenuUI( String title, String desc, String prompt) {
-		this.title = title;
-		this.desc = desc;
-		this.prompt = prompt;
+	public MenuUI(Location location) {
+		this.location = location;
 		initialize();
 	}
 
@@ -37,21 +34,29 @@ public class MenuUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(10, 11, 418, 212);
 		frame.getContentPane().add(tabbedPane);
 		
-		JLabel lblNewLabel = new JLabel("New label nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnjioh jijij");
-		tabbedPane.addTab("New tab", null, lblNewLabel, null);
+		// Description Label
+		lblNewLabel = new JLabel(location.getDesc());
+		tabbedPane.addTab("Description", null, lblNewLabel, null);
 		
+		// Prompt Field
 		promptField = new JTextField();
 		promptField.setBounds(213, 234, 215, 20);
 		frame.getContentPane().add(promptField);
 		promptField.setColumns(10);
 		
-		JLabel promptLabel = new JLabel("Prompt:");
+		// Prompt Label
+		JLabel promptLabel = new JLabel(location.getPrompt());
 		promptLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		promptLabel.setBounds(10, 234, 193, 14);
 		frame.getContentPane().add(promptLabel);
 	}
+	
+	public void setVisible(boolean visible) {
+        frame.setVisible(visible);
+    }
 }

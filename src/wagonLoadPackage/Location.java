@@ -34,16 +34,26 @@ public class Location {
 		this.hasActivities = hasActs;
 	}
 		
-	
-	
+	/**
+	 * Get the location name
+	 * @return - String of Location name
+	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * Get the location description
+	 * @return - String of Location description
+	 */
 	public String getDesc() {
 		return desc;
 	}
 	
+	/**
+	 * Get the location prompt
+	 * @return - String of Location prompt
+	 */
 	public String getPrompt() {
 		return prompt;
 	}
@@ -68,7 +78,6 @@ public class Location {
 			
 			// Change coordinates to next location
 		}
-		
 		
 		return result;
 	}

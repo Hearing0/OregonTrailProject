@@ -56,6 +56,7 @@ public class WagonLoad {
 	private JCheckBox chckbxItem1_8;
 	private JCheckBox chckbxItem1_1_3_1;
 	private JLabel lblTotalWeight_1;
+	//private JTextField testField;
 
 	/**
 	 * Launch the application.
@@ -112,6 +113,53 @@ public class WagonLoad {
 		frmPackYourWagon.setBounds(100, 100, 839, 382);
 		frmPackYourWagon.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmPackYourWagon.getContentPane().setLayout(null);
+        
+        // Debug: testable textField
+        /*testField = new JTextField();
+        testField.setColumns(10);
+        testField.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		// Retrieve Text
+        		String textValue = textField.getText();
+        		
+        		// Try storing text as a value
+        		try {
+	        		int value = Integer.valueOf(textValue);
+	        		
+	        		// Try to set Food Consumption ... 
+	        		if ( wagon.travel.setFoodConsumption(value, wagon.wagonPeople) != true) {
+	        			// If Out of Bounds, prompt user
+	        			JOptionPane.showMessageDialog(null, "Value entered is Out of Bounds.\n Should be an integer from 1-3." + "\nhuh...wuh?");
+	        		} 
+	        		// Success: Update Food Flavor Text
+	        		else {
+	        			lblFoodFlavorTxt.setText("Set to: " + wagon.travel.getFlavorTxtFood());
+	        		}
+        		} 
+        		// Fail: Character entered
+        		catch (Exception evt) {
+        			JOptionPane.showMessageDialog(null, "Please enter an integer from 1-3" + "\nhuh...wuh?");
+        		}
+        	}
+        });
+        testField.setBounds(110, 316, 115, 20);
+        frmPackYourWagon.getContentPane().add(testField);
+        */
+        
+        
+        // Debug: Testable Button
+        
+        JButton btnNewButton_1 = new JButton("MenuUI");
+        btnNewButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		MenuUI menu = new MenuUI(wagon.travel.getCurLocation());
+        		menu.setVisible(true);
+        	}
+        });
+        btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        btnNewButton_1.setBounds(226, 313, 89, 23);
+        frmPackYourWagon.getContentPane().add(btnNewButton_1);
+        
         
         
         // Art Label & Border
@@ -640,6 +688,8 @@ public class WagonLoad {
         lblWeightWarning.setFont(new Font("Tahoma", Font.PLAIN, 10));
         lblWeightWarning.setBounds(336, 250, 125, 14);
         frmPackYourWagon.getContentPane().add(lblWeightWarning);
+        
+        
         
         frmPackYourWagon.setVisible(true); // Exhibit the frame
 	}	

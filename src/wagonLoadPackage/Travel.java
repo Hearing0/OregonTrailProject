@@ -27,7 +27,6 @@ public class Travel {
 	
 	
 	
-	
 	public Travel() {
 		addLocation("Independence", 
 				"The fort town of Independence. It serves as a bustling hub of activity and a vital "
@@ -164,7 +163,6 @@ public class Travel {
 	public boolean setTravelSpeed(int value) {
 		boolean result = false;
 		
-		
 		// Check: 12 <= value <= 20
 		if ( value <= 20 && value >= 12 ) {
 			// Set travelSpeed
@@ -277,6 +275,11 @@ public class Travel {
 		}
 		return result;
 	}
+	
+	public Location getCurLocation() {
+		return map.get(wagonLocation);
+	}
+	
 	
 	/**
 	 * Adds Location to map.
