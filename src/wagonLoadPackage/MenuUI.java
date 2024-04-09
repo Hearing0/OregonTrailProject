@@ -18,6 +18,16 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 
+/**
+ * MenuUI.java 
+ * Created on 4/8/2024
+ * By David Flores
+ * 
+ * Creates a new UI Frame for a location/rest. 
+ * Allows user to read a description of 
+ * the current location, talk to passerbys,
+ * and view the map.
+ */
 public class MenuUI {
 
 	// Initialize variables 
@@ -89,7 +99,9 @@ public class MenuUI {
         localsTalkTextPanel.add(talkButton, BorderLayout.SOUTH);
         tabbedPane.addTab("Talk to Passerbys", localsTalkTextPanel);
 		
-     // Map Tab
+        // Map Tab
+        // TODO: Fix png not showing on load
+        // png is being sourced from bin (but is located in src??? check if is issue)
         JPanel mapPanel = new JPanel(new BorderLayout());
         JLabel artLabel = new JLabel();
         URL imageUrl = WagonLoad.class.getResource("/images/OreganTrailMap.png");
@@ -117,6 +129,11 @@ public class MenuUI {
 		frmLocationName.getContentPane().add(promptLabel);
 	}
 	
+	/**
+	 * Sets the frame to visible.
+	 * @param visible - Boolean that when true 
+	 * allows the frame to be visible.
+	 */
 	public void setVisible(boolean visible) {
         frmLocationName.setVisible(visible);
     }

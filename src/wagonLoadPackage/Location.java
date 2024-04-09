@@ -2,7 +2,17 @@ package wagonLoadPackage;
 
 
 
-
+/**
+ * Location.java 
+ * Created on 4/8/2024
+ * By David Flores
+ * 
+ * Creates a location with a name,
+ * description, prompt, distance till next 
+ * landmark, and whether it has activities.
+ * Has get methods for all strings. 
+ * Has travel method to decrement distanceTillNext.
+ */
 public class Location {
 
 	// Initialize Variables
@@ -82,7 +92,8 @@ public class Location {
 		return result;
 	}
 	
-	
+	/*
+	 * Not currently implemented nor planned to use (keeping in case tho)
 	//TODO: move to travelMenu or other menu, and implement locMenu w/ activities
 	public String chooseOption(int n) {
 		String result = "";
@@ -112,5 +123,5 @@ public class Location {
 				
 		return result;
 	}	
-
+	*/
 }

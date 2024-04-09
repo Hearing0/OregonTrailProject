@@ -148,7 +148,7 @@ public class WagonLoad {
         
         
         // Debug: Testable Button
-        JButton btnNewButton_1 = new JButton("MenuUI");
+        /*JButton btnNewButton_1 = new JButton("MenuUI");
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		MenuUI menu = new MenuUI(wagon.travel.getCurLocation());
@@ -158,6 +158,19 @@ public class WagonLoad {
         btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
         btnNewButton_1.setBounds(226, 313, 89, 23);
         frmPackYourWagon.getContentPane().add(btnNewButton_1);
+        */
+        
+        // Travel Menu Button
+        JButton locationButton = new JButton("MenuUI");
+        locationButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		MenuUI menu = new MenuUI(wagon.travel.getCurLocation());
+        		menu.setVisible(true);
+        	}
+        });
+        locationButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        locationButton.setBounds(226, 313, 89, 23);
+        frmPackYourWagon.getContentPane().add(locationButton);
         
         
         
