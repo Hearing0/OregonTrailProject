@@ -29,7 +29,7 @@ public class Travel {
 	
 	public Travel() {
 		addLocation("Independence", 
-				"The fort town of Independence. It serves as a bustling hub of activity and a vital "
+				"Welcome to the fort town of Independence! It serves as a bustling hub of activity and a vital "
 				+ "waypoint for pioneers heading westward. It boasts a "
 				+ "diverse array of services and amenities, including trading posts, blacksmiths, "
 				+ "general stores, and inns, catering to the needs of weary travelers. The town bustles "
@@ -276,7 +276,12 @@ public class Travel {
 		return result;
 	}
 	
+	
+	
 	public Location getCurLocation() {
+		
+		System.out.println("current location: " + map.get(wagonLocation).name);
+		
 		return map.get(wagonLocation);
 	}
 	

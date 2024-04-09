@@ -148,7 +148,6 @@ public class WagonLoad {
         
         
         // Debug: Testable Button
-        
         JButton btnNewButton_1 = new JButton("MenuUI");
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
