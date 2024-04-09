@@ -68,6 +68,9 @@ public class Location {
 		return prompt;
 	}
 	
+	public int getDistance() {
+		return distanceTillNext;
+	}
 	
 	/**
 	 * Travels towards the location by a distance.
