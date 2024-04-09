@@ -56,8 +56,16 @@ public class Travel {
 				"Select Option", 
 				75, 
 				true);
+		addLocation("The end!", 
+				"You made it!", 
+				"Select Option", 
+				10000, 
+				true);
 	}
 		
+	public ArrayList<Location> getMap() {
+		return map;
+	}
 	
 	/**
 	 * Sets the pace of the wagon
@@ -329,6 +337,8 @@ public class Travel {
 			if (map.get(wagonLocation).travel(travelSpeed) == true) {
 				// Shift wagonLocation to new spot
 				this.wagonLocation++;
+				
+				
 				
 				result = true;
 
