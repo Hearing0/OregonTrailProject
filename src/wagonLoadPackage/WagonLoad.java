@@ -12,6 +12,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -57,6 +58,14 @@ public class WagonLoad {
 	private JCheckBox chckbxItem1_1_3_1;
 	private JLabel lblTotalWeight_1;
 	//private JTextField testField;
+	
+	ArrayList<Location> map = wagon.travel.getMap();
+	int consumptionValue = 0;
+	int travelValue = 0;
+	int totalDist = 0;
+	int days = 0;
+
+
 
 	/**
 	 * Launch the application.
@@ -79,6 +88,7 @@ public class WagonLoad {
 	 */
 	public WagonLoad() {
 		initialize();
+		getTotalDistance();
 		
 		// Debug: Readout itemList
 		/*
@@ -102,6 +112,20 @@ public class WagonLoad {
 		//Update lbl text
 		lblTotalWeight_1.setText(totalWeight + " lbs");
 	}
+	
+	/**
+	 * Calculates the total distance of the trip by adding the distance between each landmark together
+	 */
+	public void getTotalDistance() {
+		totalDist = 0;
+		
+		for (int i = 0; i < map.size(); i++)
+		{
+			Location current = map.get(i);
+			totalDist = totalDist + current.getDistance();
+		}
+	}
+
 	
 	
 	/**
@@ -707,6 +731,10 @@ public class WagonLoad {
         lblTotalWeight_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
         lblTotalWeight_1.setBounds(222, 39, 75, 14);
         panel.add(lblTotalWeight_1);
+        
+        JLabel distanceLbl = new JLabel("");
+        distanceLbl.setBounds(407, 279, 60, 23);
+        frmPackYourWagon.getContentPane().add(distanceLbl);
    
         // Travel Button
         JButton btnNewButton = new JButton("\"Travel\"");
@@ -718,6 +746,21 @@ public class WagonLoad {
         		int totalWeight = wagon.getTotalWeight();
         		
         		lblTotalWeight_1.setText(totalWeight + " lbs");
+        		
+        		if (wagon.travel.isEnoughFoodToTravel(foodWeight))
+        		{
+        			days++;
+        			int distance = wagon.travel.getCurLocation().getDistance();
+        			distanceLbl.setText(distance + "");
+        			if (wagon.travel.travelMap(foodWeight))
+        			{
+        				MenuUI menu = new MenuUI(wagon.travel.getCurLocation());
+                		menu.setVisible(true);
+        			}
+        			
+        			
+        			
+        		}
         		
         		
         		//Breanna Sproul
@@ -768,6 +811,12 @@ public class WagonLoad {
         lblWeightWarning.setFont(new Font("Tahoma", Font.PLAIN, 10));
         lblWeightWarning.setBounds(336, 250, 125, 14);
         frmPackYourWagon.getContentPane().add(lblWeightWarning);
+    
+        
+        JLabel distanceTestLabel = new JLabel("Distance Until Next Location:");
+        distanceTestLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        distanceTestLabel.setBounds(248, 288, 149, 14);
+        frmPackYourWagon.getContentPane().add(distanceTestLabel);
         
         updateTotalWeight();
         
