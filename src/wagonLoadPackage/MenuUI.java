@@ -54,7 +54,7 @@ public class MenuUI {
 		frmLocationName = new JFrame();
 		frmLocationName.setTitle(location.getName());
 		frmLocationName.setBounds(100, 100, 450, 300);
-		frmLocationName.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmLocationName.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmLocationName.getContentPane().setLayout(null);
 		
 		

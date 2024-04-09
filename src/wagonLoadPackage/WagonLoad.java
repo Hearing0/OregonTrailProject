@@ -114,6 +114,7 @@ public class WagonLoad {
 		frmPackYourWagon.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmPackYourWagon.getContentPane().setLayout(null);
         
+        
         // Debug: testable textField
         /*testField = new JTextField();
         testField.setColumns(10);
@@ -197,6 +198,8 @@ public class WagonLoad {
         
         chckbxItem1 = new JCheckBox( wagon.itemList.get(26).name + ": " + wagon.itemList.get(26).getWeight() );
         chckbxItem1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1.setSelected(true); //preloaded tent and gear
+        wagon.packWagonItem(26, chckbxItem1.isSelected());
         chckbxItem1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		wagon.packWagonItem(26, chckbxItem1.isSelected());
@@ -208,6 +211,8 @@ public class WagonLoad {
         
         chckbxItem1_1 = new JCheckBox( wagon.itemList.get(13).name + ": " + wagon.itemList.get(13).getWeight() );
         chckbxItem1_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1_1.setSelected(true); //preloaded bedroll
+        wagon.packWagonItem(13, chckbxItem1_1.isSelected());
         chckbxItem1_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		wagon.packWagonItem(13, chckbxItem1_1.isSelected());
@@ -217,6 +222,7 @@ public class WagonLoad {
         chckbxItem1_1.setBounds(6, 42, 110, 23);
         itemPanel.add(chckbxItem1_1);
         
+        //smithing tools
         chckbxItem1_1_1 = new JCheckBox( wagon.itemList.get(14).name + ": " + wagon.itemList.get(14).getWeight() );
         chckbxItem1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_1_1.addActionListener(new ActionListener() {
@@ -228,6 +234,7 @@ public class WagonLoad {
         chckbxItem1_1_1.setBounds(6, 94, 124, 23);
         itemPanel.add(chckbxItem1_1_1);
         
+        //books
         chckbxItem1_2 = new JCheckBox( wagon.itemList.get(15).name + ": " + wagon.itemList.get(15).getWeight() );
         chckbxItem1_2.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_2.addActionListener(new ActionListener() {
@@ -241,6 +248,8 @@ public class WagonLoad {
         
         chckbxItem1_1_2 = new JCheckBox( wagon.itemList.get(27).name + ": " + wagon.itemList.get(27).getWeight() );
         chckbxItem1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1_1_2.setSelected(true); //preloaded tools
+        wagon.packWagonItem(27, chckbxItem1_1_2.isSelected());
         chckbxItem1_1_2.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		wagon.packWagonItem(27, chckbxItem1_1_2.isSelected());
@@ -250,6 +259,7 @@ public class WagonLoad {
         chckbxItem1_1_2.setBounds(6, 146, 110, 23);
         itemPanel.add(chckbxItem1_1_2);
         
+        //medicine
         chckbxItem1_3 = new JCheckBox( wagon.itemList.get(16).name + ": " + wagon.itemList.get(16).getWeight() );
         chckbxItem1_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_3.addActionListener(new ActionListener() {
@@ -261,6 +271,7 @@ public class WagonLoad {
         chckbxItem1_3.setBounds(6, 120, 110, 23);
         itemPanel.add(chckbxItem1_3);
         
+        //caststove
         chckbxItem1_1_3 = new JCheckBox( wagon.itemList.get(17).name + ": " + wagon.itemList.get(17).getWeight() );
         chckbxItem1_1_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_1_3.addActionListener(new ActionListener() {
@@ -272,6 +283,7 @@ public class WagonLoad {
         chckbxItem1_1_3.setBounds(6, 198, 110, 23);
         itemPanel.add(chckbxItem1_1_3);
         
+        //chair
         chckbxItem1_4 = new JCheckBox( wagon.itemList.get(18).name + ": " + wagon.itemList.get(18).getWeight() );
         chckbxItem1_4.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_4.addActionListener(new ActionListener() {
@@ -285,6 +297,8 @@ public class WagonLoad {
         
         chckbxItem1_1_4 = new JCheckBox( wagon.itemList.get(19).name + ": " + wagon.itemList.get(19).getWeight() );
         chckbxItem1_1_4.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1_1_4.setSelected(true); //preloaded cookware and utensils
+        wagon.packWagonItem(19, chckbxItem1_1_4.isSelected());
         chckbxItem1_1_4.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		wagon.packWagonItem(19, chckbxItem1_1_4.isSelected());
@@ -294,6 +308,7 @@ public class WagonLoad {
         chckbxItem1_1_4.setBounds(125, 42, 135, 23);
         itemPanel.add(chckbxItem1_1_4);
         
+        //granny clock
         chckbxItem1_5 = new JCheckBox( wagon.itemList.get(20).name + ": " + wagon.itemList.get(20).getWeight() );
         chckbxItem1_5.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_5.addActionListener(new ActionListener() {
@@ -305,6 +320,7 @@ public class WagonLoad {
         chckbxItem1_5.setBounds(125, 16, 125, 23);
         itemPanel.add(chckbxItem1_5);
         
+        //guntools
         chckbxItem1_1_5 = new JCheckBox( wagon.itemList.get(21).name + ": " + wagon.itemList.get(21).getWeight() );
         chckbxItem1_1_5.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_1_5.addActionListener(new ActionListener() {
@@ -316,6 +332,7 @@ public class WagonLoad {
         chckbxItem1_1_5.setBounds(126, 94, 125, 23);
         itemPanel.add(chckbxItem1_1_5);
         
+        //keepsakes
         chckbxItem1_6 = new JCheckBox( wagon.itemList.get(22).name + ": " + wagon.itemList.get(22).getWeight() );
         chckbxItem1_6.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_6.addActionListener(new ActionListener() {
@@ -329,6 +346,8 @@ public class WagonLoad {
         
         chckbxItem1_1_6 = new JCheckBox( wagon.itemList.get(23).name + ": " + wagon.itemList.get(23).getWeight() );
         chckbxItem1_1_6.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1_1_6.setSelected(true); //preloaded leadshot
+        wagon.packWagonItem(23, chckbxItem1_1_6.isSelected());
         chckbxItem1_1_6.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		wagon.packWagonItem(23, chckbxItem1_1_6.isSelected());
@@ -338,6 +357,7 @@ public class WagonLoad {
         chckbxItem1_1_6.setBounds(125, 146, 111, 23);
         itemPanel.add(chckbxItem1_1_6);
         
+        //mirror
         chckbxItem1_7 = new JCheckBox( wagon.itemList.get(24).name + ": " + wagon.itemList.get(24).getWeight() );
         chckbxItem1_7.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_7.addActionListener(new ActionListener() {
@@ -351,6 +371,8 @@ public class WagonLoad {
         
         chckbxItem1_1_7 = new JCheckBox( wagon.itemList.get(25).name + ": " + wagon.itemList.get(25).getWeight() );
         chckbxItem1_1_7.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1_1_7.setSelected(true); //preloaded gunpowder
+        wagon.packWagonItem(25, chckbxItem1_1_7.isSelected());
         chckbxItem1_1_7.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		wagon.packWagonItem(25, chckbxItem1_1_7.isSelected());
@@ -360,6 +382,7 @@ public class WagonLoad {
         chckbxItem1_1_7.setBounds(125, 198, 111, 23);
         itemPanel.add(chckbxItem1_1_7);
         
+        //tent and gear 2??
         chckbxItem1_8 = new JCheckBox( wagon.itemList.get(26).name + ": " + wagon.itemList.get(26).getWeight() );
         chckbxItem1_8.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_8.addActionListener(new ActionListener() {
@@ -371,6 +394,7 @@ public class WagonLoad {
         chckbxItem1_8.setBounds(125, 172, 125, 23);
         itemPanel.add(chckbxItem1_8);
         
+        //toys
         chckbxItem1_1_3_1 = new JCheckBox( wagon.itemList.get(28).name + ": " + wagon.itemList.get(28).getWeight() );
         chckbxItem1_1_3_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -404,6 +428,8 @@ public class WagonLoad {
         
         JCheckBox chckbxItem1_9 = new JCheckBox( wagon.itemList.get(1).name + ": " + wagon.itemList.get(1).getWeight() );
         chckbxItem1_9.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1_9.setSelected(true); //preloaded bacon
+        wagon.packWagonItem(1, chckbxItem1_9.isSelected());
         chckbxItem1_9.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		wagon.packWagonItem(1, chckbxItem1_9.isSelected());
@@ -415,6 +441,8 @@ public class WagonLoad {
         
         JCheckBox chckbxItem1_1_9 = new JCheckBox( wagon.itemList.get(2).name + ": " + wagon.itemList.get(2).getWeight() );
         chckbxItem1_1_9.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1_1_9.setSelected(true); //preloaded beans
+        wagon.packWagonItem(2, chckbxItem1_1_9.isSelected());
         chckbxItem1_1_9.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		wagon.packWagonItem(2, chckbxItem1_1_9.isSelected());
@@ -424,6 +452,7 @@ public class WagonLoad {
         chckbxItem1_1_9.setBounds(125, 98, 99, 23);
         foodPanel.add(chckbxItem1_1_9);
         
+        //coffee
         JCheckBox chckbxItem1_10 = new JCheckBox( wagon.itemList.get(3).name + ": " + wagon.itemList.get(3).getWeight() );
         chckbxItem1_10.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_10.addActionListener(new ActionListener() {
@@ -437,6 +466,8 @@ public class WagonLoad {
         
         JCheckBox chckbxItem1_1_10 = new JCheckBox( wagon.itemList.get(4).name + ": " + wagon.itemList.get(4).getWeight() );
         chckbxItem1_1_10.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1_1_10.setSelected(true); //preloaded dry apple
+        wagon.packWagonItem(4, chckbxItem1_1_10.isSelected());
         chckbxItem1_1_10.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		wagon.packWagonItem(4, chckbxItem1_1_10.isSelected());
@@ -446,6 +477,7 @@ public class WagonLoad {
         chckbxItem1_1_10.setBounds(125, 150, 110, 23);
         foodPanel.add(chckbxItem1_1_10);
         
+        //flour
         JCheckBox chckbxItem1_11 = new JCheckBox( wagon.itemList.get(5).name + ": " + wagon.itemList.get(5).getWeight() );
         chckbxItem1_11.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_11.addActionListener(new ActionListener() {
@@ -459,6 +491,8 @@ public class WagonLoad {
         
         JCheckBox chckbxItem1_1_11 = new JCheckBox( wagon.itemList.get(6).name + ": " + wagon.itemList.get(6).getWeight() );
         chckbxItem1_1_11.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1_1_11.setSelected(true); //preloaded hardtack
+        wagon.packWagonItem(6, chckbxItem1_1_11.isSelected());
         chckbxItem1_1_11.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		wagon.packWagonItem(6, chckbxItem1_1_11.isSelected());
@@ -470,6 +504,8 @@ public class WagonLoad {
         
         JCheckBox chckbxItem1_12 = new JCheckBox( wagon.itemList.get(7).name + ": " + wagon.itemList.get(7).getWeight() );
         chckbxItem1_12.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1_12.setSelected(true); //preloaded lard
+        wagon.packWagonItem(7, chckbxItem1_12.isSelected());
         chckbxItem1_12.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		wagon.packWagonItem(7, chckbxItem1_12.isSelected());
@@ -479,6 +515,7 @@ public class WagonLoad {
         chckbxItem1_12.setBounds(6, 20, 99, 23);
         foodPanel.add(chckbxItem1_12);
         
+        //salt
         JCheckBox chckbxItem1_10_1 = new JCheckBox( wagon.itemList.get(8).name + ": " + wagon.itemList.get(8).getWeight() );
         chckbxItem1_10_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_10_1.addActionListener(new ActionListener() {
@@ -490,6 +527,7 @@ public class WagonLoad {
         chckbxItem1_10_1.setBounds(6, 68, 99, 23);
         foodPanel.add(chckbxItem1_10_1);
         
+        //sugar
         JCheckBox chckbxItem1_1_9_1 = new JCheckBox( wagon.itemList.get(9).name + ": " + wagon.itemList.get(9).getWeight() );
         chckbxItem1_1_9_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
         chckbxItem1_1_9_1.addActionListener(new ActionListener() {
@@ -503,6 +541,9 @@ public class WagonLoad {
         
         JCheckBox chckbxItem1_11_1 = new JCheckBox( wagon.itemList.get(10).name + ": " + wagon.itemList.get(10).getWeight() );
         chckbxItem1_11_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1_11_1.setSelected(true); //preloaded rice
+        wagon.packWagonItem(10, chckbxItem1_11_1.isSelected());
+        wagon.packWagonItem(10, chckbxItem1_11_1.isSelected());
         chckbxItem1_11_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		wagon.packWagonItem(10, chckbxItem1_11_1.isSelected());
@@ -514,6 +555,8 @@ public class WagonLoad {
         
         JCheckBox chckbxItem1_1_10_1 = new JCheckBox( wagon.itemList.get(11).name + ": " + wagon.itemList.get(11).getWeight() );
         chckbxItem1_1_10_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1_1_10_1.setSelected(true); //preloaded water
+        wagon.packWagonItem(11, chckbxItem1_1_10_1.isSelected());
         chckbxItem1_1_10_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		wagon.packWagonItem(11, chckbxItem1_1_10_1.isSelected());
@@ -525,6 +568,14 @@ public class WagonLoad {
         
         JCheckBox chckbxItem1_1_10_1_1 = new JCheckBox( wagon.itemList.get(12).name + ": " + wagon.itemList.get(12).getWeight() );
         chckbxItem1_1_10_1_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        chckbxItem1_1_10_1_1.setSelected(true); //preloaded whiskey
+        wagon.packWagonItem(12, chckbxItem1_1_10_1_1.isSelected());
+        chckbxItem1_1_10_1_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		wagon.packWagonItem(12, chckbxItem1_1_10_1_1.isSelected());
+        		updateTotalWeight();
+        	}
+        });
         chckbxItem1_1_10_1_1.setBounds(6, 172, 99, 23);
         foodPanel.add(chckbxItem1_1_10_1_1);
         
@@ -718,7 +769,7 @@ public class WagonLoad {
         lblWeightWarning.setBounds(336, 250, 125, 14);
         frmPackYourWagon.getContentPane().add(lblWeightWarning);
         
-        
+        updateTotalWeight();
         
         frmPackYourWagon.setVisible(true); // Exhibit the frame
 	}	
