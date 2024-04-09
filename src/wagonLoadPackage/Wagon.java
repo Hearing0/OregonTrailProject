@@ -39,7 +39,7 @@ public class Wagon {
         addFoodItem("Salt", 50, true, false);
         addFoodItem("Sugar", 40, true, false);
         addFoodItem("Rice", 200, true, true);
-        addFoodItem("Water", 100, true, false);
+        addFoodItem("Water", 100, true, true);
         addFoodItem("Whiskey", 80, true, true);
 
         addItem("Bedroll", 15);

@@ -131,6 +131,11 @@ public class Travel {
 	//MOVED CONSUMPTION FROM FoodItem.java TO HERE DO TO MORE USEFUL VARIABLES PRESENT
 	//checks if the weight is greater than weight of food needed to consume
 	//just realized that .isEdible means nothing right now, so removed that and required foodWeight instead
+	/**
+	 * eatFood - boolean to check if there is enough foodWeight to be consumed
+	 * @param int foodWeight - amount of food available in wagon
+	 * @return result - true if there is enough food in wagon to be consumed. False if there is not enough food
+	*/
     public boolean eatFood(int foodWeight) {
 		boolean result = false;
 
@@ -150,12 +155,17 @@ public class Travel {
     //uses previous method to check if its possible to eat
     //if true, then remove the foodWeight and return the new weight
     //if false, then return -1 to signal that no food is left
+	/**
+	 * dailyConsume - if eatFood() is true, the food consumed if removed from the foodWeight
+	 * @param int foodWeight - amount of food available in wagon
+	 * @return foodWeight - returns the amount of food in wagon after food is consumed. If there is no food, then foodWeight=-1 to signal no food is available
+	*/
     public int dailyConsume(int foodWeight) {
     	if(eatFood(foodWeight) == true) {
     		foodWeight = foodWeight - foodConsumeMod;
     		
     	}
-    	else if(eatFood(foodWeight) == true) {
+    	else if(eatFood(foodWeight) == false) {
     		foodWeight = -1;
     		//put with a "you died" text pop-up?
     		
