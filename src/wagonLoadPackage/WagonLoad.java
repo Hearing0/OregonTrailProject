@@ -609,6 +609,21 @@ public class WagonLoad {
         		lblTotalWeight_1.setText(totalWeight + " lbs");
         		
         		
+        		//Breanna Sproul
+        		//FOR CONSUMPTION
+        		//wagon.travel.isEnoughFoodToTravel(foodWeight);
+        		String textValue = textField.getText();
+        		int value = Integer.valueOf(textValue);
+        		wagon.travel.setFoodConsumption(value, wagon.wagonPeople);
+        		System.out.println("Check for correct subtraction: " + wagon.travel.dailyConsume(foodWeight));
+        		
+        		//maybe way for when days are available?
+        		//for(int i = 0; i < days; i++){
+        		//	wagon.travel.setFoodConsumption(value, wagon.wagonPeople);
+        		//}
+        		//end of consumption
+
+        		
         		System.out.println(foodWeight);
         		
         		
@@ -631,6 +646,8 @@ public class WagonLoad {
         		else {
         			JOptionPane.showMessageDialog(null, "Wagon is overweight!");
         		}
+        		
+        		
         	}
         });
         btnNewButton.setBounds(10, 35, 89, 23);

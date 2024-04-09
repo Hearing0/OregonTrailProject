@@ -5,6 +5,7 @@ package wagonLoadPackage;
 
 public class Location {
 
+	
 	// Initialize Variables
 	int distanceTillNext = 0;
 	//var imageBackgnd;
@@ -104,4 +105,8 @@ public class Location {
 		return result;
 	}	
 
+	
+
 }
+
+

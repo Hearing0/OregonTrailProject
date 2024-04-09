@@ -74,13 +74,15 @@ public class FoodItem extends Item {
      * Can return false if FoodItem is not edible.
      */
     /*
-    public boolean eatFood( int weightConsumed ) {
+    public boolean eatFood( int weightConsumed) {
 		boolean result = false;
 		
 		// Check edible and edible amount
 		if ( this.isEdible() == true && this.weight >= weightConsumed ) {
 			// Consume weight w/ nutrient scaling factor
-			this.weight =- weightConsumed / this.nutrientPerLbs;						
+			//this.weight =- weightConsumed / this.nutrientPerLbs; //wasnt sure about nutrientsPerLbs?
+			//this.weight =- weightConsumed / consumeSelect;
+			result = true;
 		} 
 		
 		// Fail: Not possible to Eat (not edible or amount is too much)
@@ -90,5 +92,21 @@ public class FoodItem extends Item {
 		    	
     	return result;
     }
+    
+    //uses previous method to check if its possible to eat
+    //if true, then remove the foodWeight and return the new weight
+    //if false, then return -1 to signal that no food is left
+    public int dailyConsume(int weightConsumed, int consumeSelect, int people) {
+    	if(eatFood(weightConsumed) == true) {
+    		this.weight = weightConsumed - (consumeSelect * people);
+    	}
+    	else {
+    		this.weight = -1;
+    		//put with a "you died" text pop-up?
+    	}
+    	return this.weight;
+    }
     */
+    
+    
 }

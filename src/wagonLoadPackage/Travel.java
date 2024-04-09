@@ -20,6 +20,8 @@ public class Travel {
 	int consumeSelect = 1;
 	int foodConsumeMod = consumeSelect * 4;		// (1 to 3) * 4 people on wagon
 	double milesTillEnd = 2200;
+	
+
 		
 		
 	ArrayList<Location> map = new ArrayList<Location>(); 	// map of Oregon Trail
@@ -124,6 +126,48 @@ public class Travel {
 		
 		return result;
 	}
+	
+	
+	//Breanna Sproul
+	//MOVED CONSUMPTION FROM FoodItem.java TO HERE DO TO MORE USEFUL VARIABLES PRESENT
+	//checks if the weight is greater than weight of food needed to consume
+	//just realized that .isEdible means nothing right now, so removed that and required foodWeight instead
+    public boolean eatFood(int foodWeight) {
+		boolean result = false;
+
+		// Check foodweight against amount to consume
+		if (foodWeight >= foodConsumeMod ) {
+			result = true;
+		} 
+		
+		// Fail: Not possible to Eat (not edible or amount is too much)
+		else {
+			result = false;
+		}
+		    	
+    	return result;
+    }
+    
+    //uses previous method to check if its possible to eat
+    //if true, then remove the foodWeight and return the new weight
+    //if false, then return -1 to signal that no food is left
+    public int dailyConsume(int foodWeight) {
+    	if(eatFood(foodWeight) == true) {
+    		foodWeight = foodWeight - foodConsumeMod;
+    		
+    	}
+    	else if(eatFood(foodWeight) == true) {
+    		foodWeight = -1;
+    		//put with a "you died" text pop-up?
+    		
+    	}
+    	return foodWeight;
+    }
+	
+	
+	
+	
+	
 	
 	/**
 	 * Gets the flavor text for the food consumption option
@@ -238,8 +282,8 @@ public class Travel {
 	public boolean isEnoughFoodToTravel( int amtFood) {
 		boolean result = false;
 				
-		// Calculate daysToTravel and daysOfFood
-		double daysToTravel = this.milesTillEnd / this.travelSpeed;
+		
+		double daysToTravel = this.milesTillEnd / this.travelSpeed; 
 		double daysOfFood = amtFood / this.foodConsumeMod;
 		
 		System.out.println("TravelDays: " + daysToTravel);	
