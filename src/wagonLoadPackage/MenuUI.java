@@ -71,33 +71,36 @@ public class MenuUI {
         descriptionPanel.add(new JScrollPane(descriptionTextArea), BorderLayout.CENTER);
         tabbedPane.addTab("Description", descriptionPanel);
 		
-        // Talk to Locals Tab
-        JPanel localsTalkTextPanel = new JPanel(new BorderLayout());
-        JTextArea localsTalkTextArea = new JTextArea("...");
-        localsTalkTextArea.setLineWrap(true);
-        localsTalkTextArea.setWrapStyleWord(true);
-        JButton talkButton = new JButton("Talk to Passerbys");
-        talkButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Select a random chat
-                String[] chats = 
-                	{"Sometimes it feels like every step forward is "
-                			+ "met with two steps back, but we press on, "
-                			+ "determined to reach our destination.",
-                	"It's a constant struggle balancing the needs of my family "
-                	+ "with the challenges of the unforgiving terrain, but its worth it.", 
-                	"From sickness to dwindling supplies... it can miserable at times.", 
-                	"You try to yield some people, but they ignore you and pass by.", 
-                	"You look around and off into the distance, but no one is nearby to talk to."};
-                Random random = new Random();
-                int choice = random.nextInt(chats.length);
-                localsTalkTextArea.setText(chats[choice]);
-            }
-        });
-        localsTalkTextPanel.add(localsTalkTextArea, BorderLayout.CENTER);
-        localsTalkTextPanel.add(talkButton, BorderLayout.SOUTH);
-        tabbedPane.addTab("Talk to Passerbys", localsTalkTextPanel);
+        // If current location has activites, give option to talk w/ locals
+        if(this.location.getHasActivites()) {
+	        // Talk to Locals Tab
+	        JPanel localsTalkTextPanel = new JPanel(new BorderLayout());
+	        JTextArea localsTalkTextArea = new JTextArea("...");
+	        localsTalkTextArea.setLineWrap(true);
+	        localsTalkTextArea.setWrapStyleWord(true);
+	        JButton talkButton = new JButton("Talk to Passerbys");
+	        talkButton.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	                // Select a random chat
+	                String[] chats = 
+	                	{"Sometimes it feels like every step forward is "
+	                			+ "met with two steps back, but we press on, "
+	                			+ "determined to reach our destination.",
+	                	"It's a constant struggle balancing the needs of my family "
+	                	+ "with the challenges of the unforgiving terrain, but its worth it.", 
+	                	"From sickness to dwindling supplies... it can miserable at times.", 
+	                	"You try to yield some people, but they ignore you and pass by.", 
+	                	"You look around and off into the distance, but no one is nearby to talk to."};
+	                Random random = new Random();
+	                int choice = random.nextInt(chats.length);
+	                localsTalkTextArea.setText(chats[choice]);
+	            }
+	        });
+	        localsTalkTextPanel.add(localsTalkTextArea, BorderLayout.CENTER);
+	        localsTalkTextPanel.add(talkButton, BorderLayout.SOUTH);
+	        tabbedPane.addTab("Talk to Passerbys", localsTalkTextPanel);
+        }
 		
         // Map Tab
         // TODO: Fix png not showing on load

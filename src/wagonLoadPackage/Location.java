@@ -68,8 +68,20 @@ public class Location {
 		return prompt;
 	}
 	
+	/**
+	 * Gets the current distance till the next location.
+	 * @return - Integer of distance till the next location.
+	 */
 	public int getDistance() {
 		return distanceTillNext;
+	}
+	
+	/**
+	 * Gets whether or not the current location has activities.
+	 * @return - Boolean. If location has activities then returns true.
+	 */
+	public boolean getHasActivites() {
+		return hasActivities;
 	}
 	
 	/**

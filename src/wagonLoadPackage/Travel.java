@@ -340,7 +340,11 @@ public class Travel {
 	}
 	
 	
-	
+	/**
+	 * Retrieves the most recently traversed Location instance. 
+	 * @return - Returns the Location instance that the wagon 
+	 * is has most recently arrived at.
+	 */
 	public Location getCurLocation() {
 		
 		System.out.println("current location: " + map.get(wagonLocation).name);
@@ -351,11 +355,11 @@ public class Travel {
 	
 	/**
 	 * Adds Location to map.
-	 * @param name
-	 * @param desc
-	 * @param prompt
-	 * @param disTillNext
-	 * @param hasActs
+	 * @param name - Name of location
+	 * @param desc - Description of location
+	 * @param prompt - Prompt for the location
+	 * @param disTillNext - distance till the next location
+	 * @param hasActs - Whether or not the location has any activites
 	 */
     public void addLocation(String name, String desc, String prompt, int disTillNext, boolean hasActs) {
     	Location loc = new Location(name, desc, prompt, disTillNext, hasActs);
