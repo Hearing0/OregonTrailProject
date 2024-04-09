@@ -21,14 +21,14 @@ public class Travel {
 	int foodConsumeMod = consumeSelect * 4;		// (1 to 3) * 4 people on wagon
 	double milesTillEnd = 2200;
 	
-
-		
-		
+	// Map Variables
 	ArrayList<Location> map = new ArrayList<Location>(); 	// map of Oregon Trail
 	int wagonLocation = 0;			// coordinates for map
 	
 	
-	
+	/**
+	 * Initialize Travel w/ a filled map
+	 */
 	public Travel() {
 		addLocation("Independence", 
 				"Welcome to the fort town of Independence! It serves as a bustling hub of activity and a vital "
@@ -298,7 +298,15 @@ public class Travel {
 	}
 	
 	
-	
+	/**
+	 * If isEnoughFoodToTravel, travel a distance of travelSpeed.
+	 * If the wagon has reached a special Location, return true 
+	 * and shift wagonLocation to next spot on map. 
+	 * Can be used to pop open location menu.
+	 * @param amtFood - Amount of Food in lbs 
+	 * (used to check if enough food)
+	 * @return - Returns true if wagon has made it to a new location.
+	 */
 	public boolean travelMap( int amtFood ) {
 		boolean result = false;
 		
@@ -309,7 +317,8 @@ public class Travel {
 			// Travel by calculated distance
 			// If location is fully traversed...
 			if (map.get(wagonLocation).travel(travelSpeed) == true) {
-				// Shift wagonLocation
+				// Shift wagonLocation to new spot
+				this.wagonLocation++;
 				
 				result = true;
 
