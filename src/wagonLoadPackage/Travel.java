@@ -34,8 +34,6 @@ public class Travel {
 	 * @param paceSelect - From 1-3, sets
 	 * the pace of the wagon to 0.5x, 1x, or 2x
 	 * respectively. 
-	 * 
-	 * TODO: Use in future
 	 */
 	public void setPace( int paceSelect ) {
 		switch( paceSelect ) {
