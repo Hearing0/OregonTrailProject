@@ -54,7 +54,7 @@ public class Travel {
 	 * Sets the foodConsumptionMod of the wagon
 	 * @param consumeSelect - Selects from 'Filling', 'Meager',
 	 * and 'Bare Bones', each multiplying food eaten per person by
-	 * 3, 2, and 1 respectively. 
+	 * 3, 2, and 1 respectively
 	 * @param people - Number of people alive that will be eating 
 	 * food.
 	 * 
