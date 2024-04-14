@@ -17,13 +17,16 @@ public class Store extends Wagon {
 	private JTextField bulletBuyTextBox;
 	//private int totalMoney = 1000;
 	
-	
 	/**
 	 * Create the application.
 	 */
 	public Store() {
 		initialize();
 	}
+	
+
+
+	
 	
 	/**
 	 * Initialize the contents of the frame.
@@ -91,14 +94,32 @@ public class Store extends Wagon {
 				int buyBullet = Integer.parseInt(bulletString);
 				
 				int totalCost = (buyFood * 50) + (buyWheel * 100) + (buyBullet * 10);
+				getTotalMoney();
 				
 				if(totalCost == 0) {
 					talkLabel.setText("Uh, you gonna buy anything?");
 				}
 				else if( totalMoney >= totalCost) {
-					totalMoney -= totalCost;
+					//totalMoney -= totalCost;
+					setTotalMoney(totalCost);
+					getTotalMoney();
 					talkLabel.setText("Thanks for the sale!");
 					totalMoneyText.setText("" + totalMoney);
+					if(buyFood > 0) {
+						for(int i = 0; i <= buyFood; i++) {
+							addFoodItem("Food", 100, true, true);
+						}
+					}
+					if(buyWheel > 0) {
+						for(int i = 0; i <= buyWheel; i++) {
+							addItem("Wheel", 100);
+						}
+					}
+					if(buyBullet > 0) {
+						for(int i = 0; i <= buyBullet; i++) {
+							addItem("Bullets", 100);
+						}
+					}
 				}
 				else {
 					talkLabel.setText("Hey you don't have enough for that!");
