@@ -9,13 +9,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class Store {
+public class Store extends Wagon {
 	
 	private JFrame Storeframe;
 	private JTextField foodBuyTextBox;
 	private JTextField wheelBuyTextBox;
 	private JTextField bulletBuyTextBox;
-	private int totalMoney = 1000;
+	//private int totalMoney = 1000;
 	
 	
 	/**

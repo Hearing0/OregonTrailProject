@@ -59,6 +59,7 @@ public class WagonLoad {
 	private JLabel lblTotalWeight_1;
 	//private JTextField testField;
 	
+	
 	ArrayList<Location> map = wagon.travel.getMap();
 	int consumptionValue = 0;
 	int travelValue = 0;

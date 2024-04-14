@@ -18,6 +18,10 @@ public class Wagon {
 	int wagonPeople = 4;
 	Travel travel = new Travel();
 	
+	//money for store
+	//currently having problems keeping it consistent across frames
+	public int totalMoney = 1000;
+	
 	
 	
 	/**
