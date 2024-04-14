@@ -41,6 +41,8 @@ public class Wagon {
         addFoodItem("Rice", 200, true, true);
         addFoodItem("Water", 100, true, true);
         addFoodItem("Whiskey", 80, true, true);
+        //new food item for store since I dont think all the food items above are needed
+        addFoodItem("Food", 100, true, true);
 
         addItem("Bedroll", 15);
         addItem("Smithing Tools", 200);
@@ -58,6 +60,9 @@ public class Wagon {
         addItem("Tent & Gear", 150);
         addItem("Tools", 50);
         addItem("Toys", 15);
+        //new items for store since I dont think all the items above are needed
+        addItem("Wheel", 100);
+        addItem("Bullets", 20);
     }
     
     /**

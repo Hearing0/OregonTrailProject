@@ -37,6 +37,7 @@ public class MenuUI {
 	private JTabbedPane descPane;
 	private JTabbedPane tabbedPane_2;
 	private JTabbedPane mapPane;
+	//private JTabbedPane storePane;
 	
 	
 	/**
@@ -130,8 +131,31 @@ public class MenuUI {
 		promptLabel.setBounds(10, 234, 193, 14);
 		promptLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		frmLocationName.getContentPane().add(promptLabel);
+		
+		
+		
+		//Breanna Sproul - attempt to put a store button in tab panel
+	    // If current location has activites, give option to enter store
+	    if(this.location.getHasActivites()) {
+	        JPanel storeTextPanel = new JPanel(new BorderLayout());
+	        JButton storeButton = new JButton("Enter the store");
+	        storeButton.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	            	Store store = new Store();
+	        		store.setVisible(true);
+	            }
+	        });
+	        storeTextPanel.add(storeButton, BorderLayout.SOUTH);
+	        tabbedPane.addTab("Enter the store", storeTextPanel);
+	    }
+	    
+	    
+	    
 	}
 	
+
+	
+    
 	/**
 	 * Sets the frame to visible.
 	 * @param visible - Boolean that when true 

@@ -197,6 +197,19 @@ public class WagonLoad {
         locationButton.setBounds(226, 313, 89, 23);
         frmPackYourWagon.getContentPane().add(locationButton);
         
+        //Breanna Sproul - button for store
+        JButton storeButton = new JButton("Store");
+        storeButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Store store = new Store();
+        		store.setVisible(true);
+        	}
+        });
+        storeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        storeButton.setBounds(126, 313, 89, 23);
+        frmPackYourWagon.getContentPane().add(storeButton);
+        
+        
         
         
         // Art Label & Border
@@ -622,7 +635,7 @@ public class WagonLoad {
         
         
         // Food Consumption Text Field
-        textField = new JTextField();
+        textField = new JTextField("1");
         textField.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		// Retrieve Text
@@ -667,7 +680,7 @@ public class WagonLoad {
         panel_1.add(lblTravelSpeed);
         
         // Travel Speed Text Field
-        textField_1 = new JTextField();
+        textField_1 = new JTextField("12");
         textField_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		// Retrieve Text 
