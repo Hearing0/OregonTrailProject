@@ -59,7 +59,8 @@ public class WagonLoad {
 	private JLabel lblTotalWeight_1;
 	//private JTextField testField;
 	
-	ArrayList<Location> map = wagon.travel.getMap();
+	// gets ArrayList from Travel Class for ease of use
+	ArrayList<Location> map = Wagon.travel.getMap();
 	int consumptionValue = 0;
 	int travelValue = 0;
 	int totalDist = 0;
@@ -114,6 +115,7 @@ public class WagonLoad {
 	}
 	
 	/**
+	 * Cody Dusek
 	 * Calculates the total distance of the trip by adding the distance between each landmark together
 	 */
 	public void getTotalDistance() {
@@ -745,14 +747,18 @@ public class WagonLoad {
         		int foodWeight = wagon.getFoodWeight();
         		int totalWeight = wagon.getTotalWeight();
         		
+        		
         		lblTotalWeight_1.setText(totalWeight + " lbs");
         		
+        		// Cody Dusek
+        		// checks if there is enough food to travel for the day
         		if (wagon.travel.isEnoughFoodToTravel(foodWeight))
         		{
-        			days++;
+        			days++; // increments days
+        			System.out.println("Days: " + days);
         			int distance = wagon.travel.getCurLocation().getDistance();
-        			distanceLbl.setText(distance + "");
-        			if (wagon.travel.travelMap(foodWeight))
+        			distanceLbl.setText(distance + ""); // updates distance label
+        			if (wagon.travel.travelMap(foodWeight)) // opens the MenuUI if the player has made it to a named location
         			{
         				MenuUI menu = new MenuUI(wagon.travel.getCurLocation());
                 		menu.setVisible(true);

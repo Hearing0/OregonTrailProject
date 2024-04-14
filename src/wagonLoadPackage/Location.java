@@ -35,15 +35,20 @@ public class Location {
 	 * @param prompt
 	 * @param disTillNext
 	 * @param hasActs
+	 * @param isRiver
 	 */
+	
+		
+
 	public Location(String name, String desc, String prompt, int disTillNext, boolean hasActs) {
 		this.name = name;
 		this.desc = desc;
 		this.prompt = prompt;
 		this.distanceTillNext = disTillNext;
 		this.hasActivities = hasActs;
+		// TODO Auto-generated constructor stub
 	}
-		
+
 	/**
 	 * Get the location name
 	 * @return - String of Location name
@@ -67,7 +72,10 @@ public class Location {
 	public String getPrompt() {
 		return prompt;
 	}
-	
+	/**
+	 * Get the distance until the next location
+	 * @return - integer of Location distance until next location
+	 */
 	public int getDistance() {
 		return distanceTillNext;
 	}
