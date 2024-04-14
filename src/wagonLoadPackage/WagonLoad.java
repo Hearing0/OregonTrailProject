@@ -9,6 +9,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+
+import wagonLoadPackage.Travel.Location;
+import wagonLoadPackage.Travel.MenuUI;
+
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -139,6 +143,7 @@ public class WagonLoad {
         frmPackYourWagon.getContentPane().setLayout(null);
         
         
+        
         // Debug: testable textField
         /*testField = new JTextField();
         testField.setColumns(10);
@@ -189,7 +194,7 @@ public class WagonLoad {
         JButton locationButton = new JButton("MenuUI");
         locationButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		MenuUI menu = new MenuUI(wagon.travel.getCurLocation());
+        		MenuUI menu = new MenuUI(wagon.travel.getCurLocation(), wagon);
         		menu.setVisible(true);
         	}
         });
@@ -685,7 +690,7 @@ public class WagonLoad {
 	        		} 
 	        		// Success: Update Travel Speed Flavor Text
 	        		else {
-	        			lblTravelFlavorText.setText("Set to: " + wagon.travel.travelSpeed + " miles/day");
+	        			lblTravelFlavorText.setText("Set to: " + wagon.travel.getTravelSpeed() + " miles/day");
 	        		}
         		} 
         		// Fail: Character entered
@@ -747,25 +752,30 @@ public class WagonLoad {
         		
         		lblTotalWeight_1.setText(totalWeight + " lbs");
         		
+        		// If enough food, ...
+        		// TODO: Move to after isEnoughFoodToTravel check
         		if (wagon.travel.isEnoughFoodToTravel(foodWeight))
         		{
+        			// Keep track of date
         			days++;
+        			
+        			// Update Distance till location
         			int distance = wagon.travel.getCurLocation().getDistance();
         			distanceLbl.setText(distance + "");
+        			
+        			// Travel to next location on map
+        			// If wagon makes it to next location, pop-up location menu
         			if (wagon.travel.travelMap(foodWeight))
         			{
-        				MenuUI menu = new MenuUI(wagon.travel.getCurLocation());
+        				MenuUI menu = new MenuUI(wagon.travel.getCurLocation(), wagon);
                 		menu.setVisible(true);
         			}
-        			
-        			
-        			
         		}
         		
         		
         		//Breanna Sproul
         		//FOR CONSUMPTION
-        		//wagon.travel.isEnoughFoodToTravel(foodWeight);
+        		// TODO: Move to after isEnoughFoodToTravel check
         		String textValue = textField.getText();
         		int value = Integer.valueOf(textValue);
         		wagon.travel.setFoodConsumption(value, wagon.wagonPeople);

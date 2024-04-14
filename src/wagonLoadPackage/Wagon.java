@@ -2,6 +2,8 @@ package wagonLoadPackage;
 
 import java.util.ArrayList;
 
+import wagonLoadPackage.Travel.Travel;
+
 /**
  * Wagon.java 
  * Created on 3/23/2024
@@ -27,7 +29,8 @@ public class Wagon {
 	 */
     public Wagon() {
         itemList = new ArrayList<Item>();
-                
+        
+        // Add all 31 items
         addFoodItem("ApleVingr", 25, false, false);
         addFoodItem("Bacon", 400, true, true);
         addFoodItem("Beans", 200, true, true);
@@ -58,6 +61,10 @@ public class Wagon {
         addItem("Tent & Gear", 150);
         addItem("Tools", 50);
         addItem("Toys", 15);
+        addItem("Wagon Wheel",10);
+        addItem("Wagon Axle",10);
+        addItem("Wagon Tongue",10);
+        
     }
     
     /**
@@ -135,17 +142,47 @@ public class Wagon {
     }
 
     /**
-     * DEPRECIATED
      * Searches itemList to find the item w/ matching name. Can be 
      * used to check if item is in list. 
      * @param name - Name of the item instance to find
      * @return - Return Item instance w/ matching name. Returns null if non-existant
      */
-    /*
     public Item getItem(String name) {
-        return itemList.get(name);
+    	Item result = null;
+    	
+    	// Search list for item w/ matching name
+    	for (Item item : itemList) {
+    		
+    		// If match found, return item
+    		if (item.getName() == name) {
+    			result = item;
+    			break;
+    		}
+    	}
+    	
+        return result;
     }
-    */
+    
+    /**
+     * Gets the Item at index x of the itemList.
+     * @param x - Integer index. Used to search for an 
+     * item within itemList. Must be between 0 
+     * and itemList.size().
+     * @return - Item given by the index x. If x is 
+     * not in itemList bounds, will return null.
+     */
+    public Item getItem(int x) {
+    	Item result = null;
+    	
+    	// If x is w/in bounds of itemList, retrieve item
+    	if (x >= 0 && x < itemList.size()) {
+    		result = itemList.get(x);
+    	}
+    	
+        return result;
+    }
+    
+    
     
     /**
      * Searches wagon for item matching name, then sets
@@ -161,6 +198,14 @@ public class Wagon {
     	System.out.println("\n----------------------------\n");
     	System.out.println(itemList.get(i).name + " flaged: " + loadFlag);
     	System.out.println("\n----------------------------\n\n");
+    }
+    
+    /**
+     * Gets the number of items currently in the game.
+     * @return - Integer of the total number of items in the game.
+     */
+    public int getItemListSize() {
+    	return itemList.size();
     }
     
     /**

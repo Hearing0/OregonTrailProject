@@ -1,4 +1,4 @@
-package wagonLoadPackage;
+package wagonLoadPackage.Travel;
 
 import java.util.ArrayList;
 
@@ -375,4 +375,17 @@ public class Travel {
     	Location loc = new Location(name, desc, prompt, disTillNext, hasActs);
         map.add(loc);
     }
+    
+    /// Getter/Setters
+    
+    
+    /**
+     * Gets the travelSpeed of the wagon.
+     * @return - Integer of the wagon's travelSpeed 
+     */
+    public int getTravelSpeed() {
+    	return this.travelSpeed;
+    }
+    
+    
 }
