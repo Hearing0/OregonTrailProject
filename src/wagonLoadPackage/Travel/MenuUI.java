@@ -41,10 +41,6 @@ public class MenuUI {
 	private Location location;
 	private JTabbedPane mapPane;
 	private Wagon wagon;
-	
-	// Generate number of available traders in locale
-	Random random = new Random();
-	int tradersRemaining = 1 + random.nextInt(3);
 
 	private Trader trader;
 	private ArrayList<String> offer;
@@ -59,6 +55,7 @@ public class MenuUI {
 		this.trader = new Trader(0, wagon);
 		initialize();
 	}
+	
 	
 	/**
 	 * Creates a JPanel for chatting with random passerbys. 
@@ -106,26 +103,37 @@ public class MenuUI {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Updates a text area to display the current trade offer.
+	 * Additionally, can display another line of text below the trade offer. 
+	 * @param area - The JTextArea that is updated with text.
+	 * @param displayText - Additional line displayed below the trade offer.
 	 */
-	public JPanel tradingPanel() {
-		
-		
-		
-		JPanel tradingPanel = new JPanel(new BorderLayout());
-		JTextArea tradingTextArea = new JTextArea("...");
-		// Display current trade offer 
-		offer = trader.getTradeOffer();
-		tradingTextArea.setText(
+	private void updateTradingTextArea(JTextArea area, String displayText) {
+		area.setText(
 				"Offering	: " + offer.get(0) + " for " + offer.get(1) + " lbs" +
 				"\nWants	: "	+ offer.get(2) + " for " + offer.get(3) + " lbs" +
 				"\nTrades Remaining	: " + trader.tradesRemaining +
 				"\nOffers Remaining	: " + trader.offersRemaining + 
-				"\nTraders Remaining: " + tradersRemaining
+				"\nTraders Remaining: " + location.getTradersRemaining() + 
+				"\n" + displayText
 			);
+	}
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public JPanel tradingPanel() {	
+		
+		JPanel tradingPanel = new JPanel(new BorderLayout());
+		JTextArea tradingTextArea = new JTextArea("...");
 		tradingTextArea.setLineWrap(true);
 		tradingTextArea.setWrapStyleWord(true);
+		
+		// Display current trade offer 
+		offer = trader.getTradeOffer();
+		this.updateTradingTextArea(tradingTextArea, "");
 		
 		// Ask to Trade Button
     	JButton askTradeButton = new JButton("Ask around to Trade");
@@ -134,9 +142,9 @@ public class MenuUI {
         	
             @Override
             public void actionPerformed(ActionEvent e) {
-                if ( 0 < tradersRemaining) {
+                if ( location.hasTraders() ) {
                 	// Decrease num of local traders
-					tradersRemaining--;
+					location.decrementTradersRemaining();
                 	
 					// Create random Trader (random, native, trapper, or traveler)
 					// TODO: Configure different trader types
@@ -144,13 +152,7 @@ public class MenuUI {
 					
 					// Display current trade offer 
 					offer = trader.getTradeOffer();
-					tradingTextArea.setText(
-							"Offering	: " + offer.get(0) + " for " + offer.get(1) + " lbs" +
-							"\nWants	: "	+ offer.get(2) + " for " + offer.get(3) + " lbs" +
-							"\nTrades Remaining	: " + trader.tradesRemaining +
-							"\nOffers Remaining	: " + trader.offersRemaining + 
-							"\nTraders Remaining: " + tradersRemaining
-						);
+					updateTradingTextArea(tradingTextArea, "");
 				}
                 
                 // Fail: No more traders in local
@@ -174,14 +176,7 @@ public class MenuUI {
             	if ( trader.conductTrade()) {
             		// Display Success Prompt
             		offer = trader.getTradeOffer();
-					tradingTextArea.setText(
-							"Offering	: " + offer.get(0) + " for " + offer.get(1) + " lbs" +
-							"\nWants	: "	+ offer.get(2) + " for " + offer.get(3) + " lbs" +
-							"\nTrades Remaining	: " + trader.tradesRemaining +
-							"\nOffers Remaining	: " + trader.offersRemaining + 
-							"\nTraders Remaining: " + tradersRemaining +
-							"\n\n\"Thanks for the trade!\"" 
-						);
+            		updateTradingTextArea(tradingTextArea, "\"Thanks for the trade!\"");
 				}
             	
             	// Fail: Player does not have Resources
@@ -190,14 +185,7 @@ public class MenuUI {
             	else if () {
             		// Display Not able to trade Prompt
             		offer = trader.getTradeOffer();
-					tradingTextArea.setText(
-							"Offering	: " + offer.get(0) + " for " + offer.get(1) + " lbs" +
-							"\nWants	: "	+ offer.get(2) + " for " + offer.get(3) + " lbs" +
-							"\nTrades Remaining	: " + trader.tradesRemaining +
-							"\nOffers Remaining	: " + trader.offersRemaining + 
-							"\nTraders Remaining: " + tradersRemaining +
-							"\n\n\"Thanks for the trade!\"" 
-						);
+					updateTradingTextArea(tradingTextArea, "\"It doesn't look like you have enough to trade\"");
             	}
             	*/
             	
@@ -214,7 +202,7 @@ public class MenuUI {
         
         // New Offer Button
         JButton newOfferButton = new JButton("Ask for another Offer");
-        tradeButton.addActionListener(new ActionListener() {
+        newOfferButton.addActionListener(new ActionListener() {
         	
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -222,20 +210,13 @@ public class MenuUI {
             	if ( trader.generateTradeOffer() ) {
             		// Display Success Prompt
             		offer = trader.getTradeOffer();
-					tradingTextArea.setText(
-							"Offering	: " + offer.get(0) + " for " + offer.get(1) + " lbs" +
-							"\nWants	: "	+ offer.get(2) + " for " + offer.get(3) + " lbs" +
-							"\nTrades Remaining	: " + trader.tradesRemaining +
-							"\nOffers Remaining	: " + trader.offersRemaining + 
-							"\nTraders Remaining: " + tradersRemaining +
-							"\n\n\"Hmmm... here's what I'll offer.\"" 
-						);
+            		updateTradingTextArea(tradingTextArea, "\n\n\"Hmmm... here's what I'll offer.\"" );
 				}
                 
                 // Fail: No more offers left
                 else {
                 	// Display No more Trades Prompt
-                	tradingTextArea.setText("\"Thanks, but I'm good.\nI'll trade with someone else.\"");
+                	tradingTextArea.setText("\"Thanks, but I'm good. I'll trade with someone else.\"");
                 	
                 	// Clear Trade 
                 	trader.clearTrade();

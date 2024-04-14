@@ -1,6 +1,6 @@
 package wagonLoadPackage.Travel;
 
-
+import java.util.Random;
 
 /**
  * Location.java 
@@ -21,6 +21,11 @@ public class Location {
 	//var imageForegnd;
 		
 	boolean hasActivities = false;
+	// Generate number of available traders in locale
+	Random random = new Random();
+	int tradersRemaining;
+	Trader trader;
+	
 	int conditions[];
 	
 	String name = "";
@@ -42,6 +47,11 @@ public class Location {
 		this.prompt = prompt;
 		this.distanceTillNext = disTillNext;
 		this.hasActivities = hasActs;
+		
+		// If hasActivites, initialize tradersRemaining
+		if(this.hasActivities) {
+			tradersRemaining = 1 + random.nextInt(3);
+		}
 	}
 		
 	/**
@@ -82,6 +92,35 @@ public class Location {
 	 */
 	public boolean getHasActivites() {
 		return hasActivities;
+	}
+	
+	/**
+	 * checks if the location has any traders remaining.
+	 * @return - True if tradersRemaining is above zero.
+	 */
+	public boolean hasTraders() {
+		boolean result = false;
+		
+		if (this.tradersRemaining > 0) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 
+	 */
+	public void decrementTradersRemaining() {
+		tradersRemaining--;
+	}
+	
+	/**
+	 * Gets the number of traders remaining
+	 * @return
+	 */
+	public int getTradersRemaining() {
+		return tradersRemaining;
 	}
 	
 	/**
