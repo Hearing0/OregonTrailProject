@@ -173,10 +173,14 @@ public class Trader {
 					//Generate random trade
 					itemRequest = this.randomItem();
 					itemRequestNum = rand.nextInt(itemRequest.getWeight());
-					System.out.println("Wagon Loses weight" + itemRequest.getWeight());
+					System.out.println("Wagon Loses weight " + itemRequestNum);
+					System.out.println("LostItem total weight " + itemRequest.getWeight());
+					
 					itemOffer = this.randomUniqueItem(itemRequest);
-					itemRequestNum = rand.nextInt(itemRequest.getWeight());
-					System.out.println("Wagon Gains weight" + itemOffer.getWeight());
+					itemOfferNum = rand.nextInt(itemOffer.getWeight());
+					System.out.println("Wagon Gains weight " + itemOfferNum);
+					System.out.println("GainedItem total weight " + itemOffer.getWeight());
+					
 
 			}
 		}
@@ -234,7 +238,7 @@ public class Trader {
 			
 			// Give wagonGainsNum weight to player
 			curItemWeight = itemOffer.getWeight();
-			System.out.println("Wagon gains " + itemOffer.getWeight() + " - " + itemOfferNum + " of " +  itemOffer.getName() );
+			System.out.println("Wagon gains " + itemOffer.getWeight() + " + " + itemOfferNum + " of " +  itemOffer.getName() );
 			itemOffer.setWeight(curItemWeight + this.itemOfferNum);
 			System.out.println("Wagon has " + itemOffer.getWeight() );
 			
