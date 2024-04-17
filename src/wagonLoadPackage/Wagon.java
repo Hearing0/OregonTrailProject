@@ -17,16 +17,16 @@ public class Wagon {
 	int maxWeight = 2400;
 	int wagonPeople = 4;
 	Travel travel = new Travel();
-	public int totalMoney = 1000;
+	//private int totalMoney = 0;
 	
 	
-	public int getTotalMoney() {
-		return totalMoney;
-	}
-	
-	public void setTotalMoney(int costChange) {
-		totalMoney -= costChange;
-	}
+	//attempt to get totalMoney to update after buying from store
+	//public int getTotalMoney() {
+	//	return totalMoney;
+	//}
+	//public void setTotalMoney(int costChange) {
+	//	totalMoney -= costChange;
+	//}
 	
 	
 	
@@ -37,7 +37,8 @@ public class Wagon {
 	 */
     public Wagon() {
         itemList = new ArrayList<Item>();
-                
+    	//System.out.println("X");
+        //totalMoney = 1000;
         addFoodItem("ApleVingr", 25, false, false);
         addFoodItem("Bacon", 400, true, true);
         addFoodItem("Beans", 200, true, true);

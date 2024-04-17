@@ -9,19 +9,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class Store extends Wagon {
+public class Store extends Wagon{
 	
 	private JFrame Storeframe;
 	private JTextField foodBuyTextBox;
 	private JTextField wheelBuyTextBox;
 	private JTextField bulletBuyTextBox;
-	//private int totalMoney = 1000;
+	private int totalMoney = 1000;
 	
 	/**
 	 * Create the application.
 	 */
 	public Store() {
 		initialize();
+		totalMoney = 1000;
 	}
 	
 
@@ -44,7 +45,7 @@ public class Store extends Wagon {
 		storeLabel.setBounds(10, 11, 65, 31);
 		Storeframe.getContentPane().add(storeLabel);
 		
-		JLabel foodLabel = new JLabel("Food $50 for 100Lbs");
+		JLabel foodLabel = new JLabel("Food $50 for 100 lbs");
 		foodLabel.setBounds(31, 53, 133, 22);
 		Storeframe.getContentPane().add(foodLabel);
 		
@@ -56,12 +57,12 @@ public class Store extends Wagon {
 		bulletLabel.setBounds(31, 137, 123, 31);
 		Storeframe.getContentPane().add(bulletLabel);
 		
-		JLabel totalMLabel = new JLabel("Total Money: $");
-		totalMLabel.setBounds(31, 199, 90, 22);
+		JLabel totalMLabel = new JLabel("Total Money Left: $");
+		totalMLabel.setBounds(31, 199, 115, 22);
 		Storeframe.getContentPane().add(totalMLabel);
 		
 		JLabel totalMoneyText = new JLabel("" + totalMoney);
-		totalMoneyText.setBounds(120, 203, 49, 14);
+		totalMoneyText.setBounds(150, 203, 49, 14);
 		Storeframe.getContentPane().add(totalMoneyText);
 		
 		foodBuyTextBox = new JTextField("0");
@@ -86,6 +87,7 @@ public class Store extends Wagon {
 		JButton buyButton = new JButton("Buy");
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//get the nuumbers from the text boxes and convert to int
 				String foodString = foodBuyTextBox.getText();
 				int buyFood = Integer.parseInt(foodString);
 				String wheelString = wheelBuyTextBox.getText();
@@ -93,16 +95,19 @@ public class Store extends Wagon {
 				String bulletString = bulletBuyTextBox.getText();
 				int buyBullet = Integer.parseInt(bulletString);
 				
+				//determine the cost for the amount of items chosen to buy 
 				int totalCost = (buyFood * 50) + (buyWheel * 100) + (buyBullet * 10);
-				getTotalMoney();
 				
+				//System.out.println(totalMoney);
+				//checks if an item is >0 and if the player has enough money to buy items
+				//if the player buys an item, then the cost is subtracted and item is added to wagon
 				if(totalCost == 0) {
 					talkLabel.setText("Uh, you gonna buy anything?");
 				}
 				else if( totalMoney >= totalCost) {
-					//totalMoney -= totalCost;
-					setTotalMoney(totalCost);
-					getTotalMoney();
+					totalMoney -= totalCost;
+					//setTotalMoney(totalCost);
+
 					talkLabel.setText("Thanks for the sale!");
 					totalMoneyText.setText("" + totalMoney);
 					if(buyFood > 0) {

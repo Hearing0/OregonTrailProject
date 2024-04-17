@@ -40,6 +40,7 @@ public class WagonLoad {
 	
 	// Initialize Wagon
 	private Wagon wagon = new Wagon();
+
 	private JCheckBox chckbxItem1_1;
 	private JCheckBox chckbxItem1_1_1;
 	private JCheckBox chckbxItem1_2;
@@ -88,6 +89,7 @@ public class WagonLoad {
 	 * Create the application.
 	 */
 	public WagonLoad() {
+		//System.out.println("Y");
 		initialize();
 		getTotalDistance();
 		
@@ -198,7 +200,7 @@ public class WagonLoad {
         locationButton.setBounds(226, 313, 89, 23);
         frmPackYourWagon.getContentPane().add(locationButton);
         
-        //Breanna Sproul - button for store
+        //Breanna Sproul - Store button for easy testing
         JButton storeButton = new JButton("Store");
         storeButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {

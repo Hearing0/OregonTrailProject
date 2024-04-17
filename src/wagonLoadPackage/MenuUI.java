@@ -134,8 +134,9 @@ public class MenuUI {
 		
 		
 		
-		//Breanna Sproul - attempt to put a store button in tab panel
-	    // If current location has activites, give option to enter store
+		//Breanna Sproul - Store button in tab menu
+	    //If current location has activites, give option to enter store
+		//plans for later - add a picture of a store so store tab isnt empty
 	    if(this.location.getHasActivites()) {
 	        JPanel storeTextPanel = new JPanel(new BorderLayout());
 	        JButton storeButton = new JButton("Enter the store");
@@ -143,6 +144,7 @@ public class MenuUI {
 	            public void actionPerformed(ActionEvent e) {
 	            	Store store = new Store();
 	        		store.setVisible(true);
+	        		
 	            }
 	        });
 	        storeTextPanel.add(storeButton, BorderLayout.SOUTH);
