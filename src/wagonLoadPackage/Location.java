@@ -21,6 +21,7 @@ public class Location {
 	//var imageForegnd;
 		
 	boolean hasActivities = false;
+	boolean isRiver = false;
 	int conditions[];
 	
 	String name = "";
@@ -40,13 +41,20 @@ public class Location {
 	
 		
 
-	public Location(String name, String desc, String prompt, int disTillNext, boolean hasActs) {
+	public Location(String name, String desc, String prompt, int disTillNext, boolean hasActs, boolean isRiver) {
 		this.name = name;
 		this.desc = desc;
 		this.prompt = prompt;
 		this.distanceTillNext = disTillNext;
 		this.hasActivities = hasActs;
+		this.isRiver = isRiver;
 		// TODO Auto-generated constructor stub
+	}
+	
+	public River toRiver()
+	{
+		River newRiver = new River(name, desc, prompt, distanceTillNext, hasActivities, isRiver);
+		return newRiver;
 	}
 
 	/**
@@ -78,6 +86,14 @@ public class Location {
 	 */
 	public int getDistance() {
 		return distanceTillNext;
+	}
+	
+	public boolean getActs() {
+		return hasActivities;
+	}
+	
+	public boolean getIsRiver() {
+		return isRiver;
 	}
 	
 	/**
