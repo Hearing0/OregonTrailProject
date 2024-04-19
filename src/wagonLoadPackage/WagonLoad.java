@@ -44,6 +44,7 @@ public class WagonLoad {
 	
 	// Initialize Wagon
 	private Wagon wagon = new Wagon();
+
 	private JCheckBox chckbxItem1_1;
 	private JCheckBox chckbxItem1_1_1;
 	private JCheckBox chckbxItem1_2;
@@ -62,6 +63,7 @@ public class WagonLoad {
 	private JCheckBox chckbxItem1_1_3_1;
 	private JLabel lblTotalWeight_1;
 	//private JTextField testField;
+	
 	
 	ArrayList<Location> map = wagon.travel.getMap();
 	int consumptionValue = 0;
@@ -91,6 +93,7 @@ public class WagonLoad {
 	 * Create the application.
 	 */
 	public WagonLoad() {
+		//System.out.println("Y");
 		initialize();
 		getTotalDistance();
 		
@@ -201,6 +204,19 @@ public class WagonLoad {
         locationButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
         locationButton.setBounds(226, 313, 89, 23);
         frmPackYourWagon.getContentPane().add(locationButton);
+        
+        //Breanna Sproul - Store button for easy testing
+        JButton storeButton = new JButton("Store");
+        storeButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Store store = new Store();
+        		store.setVisible(true);
+        	}
+        });
+        storeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        storeButton.setBounds(126, 313, 89, 23);
+        frmPackYourWagon.getContentPane().add(storeButton);
+        
         
         
         
@@ -627,7 +643,7 @@ public class WagonLoad {
         
         
         // Food Consumption Text Field
-        textField = new JTextField();
+        textField = new JTextField("1");
         textField.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		// Retrieve Text
@@ -672,7 +688,7 @@ public class WagonLoad {
         panel_1.add(lblTravelSpeed);
         
         // Travel Speed Text Field
-        textField_1 = new JTextField();
+        textField_1 = new JTextField("12");
         textField_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		// Retrieve Text 
