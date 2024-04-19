@@ -128,6 +128,12 @@ public class MenuUI {
         
         riverPanel.add(riverText);
         
+        if (Wagon.travel.getCurLocation().getIsRiver() == false)
+        {
+        	riverPanel.setVisible(false);
+        	tabbedPane.removeTabAt(3);
+        }
+        
         JButton btnNewButton = new JButton("See options");
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
