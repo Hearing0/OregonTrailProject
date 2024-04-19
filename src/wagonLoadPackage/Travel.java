@@ -23,6 +23,7 @@ public class Travel {
 	
 	// Map Variables
 	ArrayList<Location> map = new ArrayList<Location>(); 	// map of Oregon Trail
+
 	int wagonLocation = 0;			// coordinates for map
 	
 	
@@ -41,7 +42,8 @@ public class Travel {
 				+ "Northwest, marking the beginning of their quest for a better life on the frontier.", 
 				"Select Option", 
 				200, 
-				true);
+				true, false);
+		addRiver("Kansas River", "River description here", "Select Option", 50, true, true);
 		addLocation("Fort Kearney", 
 				"Fort Kearney was established in the 1840s to protect pioneers, traders, "
 				+ "and emigrants as they journeyed through the frontier. "
@@ -55,12 +57,15 @@ public class Travel {
 				+ "through this point on their journey westward.", 
 				"Select Option", 
 				75, 
-				true);
+				true, false);
+		addRiver("Big Blue River", "River description here", "Select Option", 30, true, true);
+		addRiver("Green River", "River description here", "Select Option", 20, true, true);
+		addRiver("Snake River", "River description here", "Select Option", 50, true, true);
 		addLocation("The end!", 
 				"You made it!", 
 				"Select Option", 
 				10000, 
-				true);
+				true, false);
 	}
 		
 	public ArrayList<Location> getMap() {
@@ -362,7 +367,6 @@ public class Travel {
 		return map.get(wagonLocation);
 	}
 	
-	
 	/**
 	 * Adds Location to map.
 	 * @param name - Name of location
@@ -371,10 +375,16 @@ public class Travel {
 	 * @param disTillNext - distance till the next location
 	 * @param hasActs - Whether or not the location has any activites
 	 */
-    public void addLocation(String name, String desc, String prompt, int disTillNext, boolean hasActs) {
-    	Location loc = new Location(name, desc, prompt, disTillNext, hasActs);
+    public void addLocation(String name, String desc, String prompt, int disTillNext, boolean hasActs, boolean isRiver) {
+    	Location loc = new Location(name, desc, prompt, disTillNext, hasActs, isRiver);
         map.add(loc);
     }
+
+    public void addRiver(String name, String desc, String prompt, int disTillNExt, boolean hasActs, boolean isRiver) {
+    	River river = new River(name, desc, prompt, disTillNExt, hasActs, isRiver);
+    	map.add(river);
+    }
+    
     
     /// Getter/Setters
     

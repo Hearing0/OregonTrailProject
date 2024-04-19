@@ -21,6 +21,8 @@ public class Location {
 	//var imageForegnd;
 		
 	boolean hasActivities = false;
+	boolean isRiver = false;
+
 	// Generate number of available traders in locale
 	Random random = new Random();
 	int tradersRemaining;
@@ -41,18 +43,29 @@ public class Location {
 	 * @param disTillNext
 	 * @param hasActs
 	 */
-	public Location(String name, String desc, String prompt, int disTillNext, boolean hasActs) {
+	
+		
+
+	public Location(String name, String desc, String prompt, int disTillNext, boolean hasActs, boolean isRiver) {
 		this.name = name;
 		this.desc = desc;
 		this.prompt = prompt;
 		this.distanceTillNext = disTillNext;
 		this.hasActivities = hasActs;
+		this.isRiver = isRiver;
 		
 		// If hasActivites, initialize tradersRemaining
 		if(this.hasActivities) {
 			tradersRemaining = 1 + random.nextInt(3);
 		}
 	}
+	
+	public River toRiver()
+	{
+		River newRiver = new River(name, desc, prompt, distanceTillNext, hasActivities, isRiver);
+		return newRiver;
+	}
+
 		
 	/**
 	 * Get the location name
@@ -121,6 +134,14 @@ public class Location {
 	 */
 	public int getTradersRemaining() {
 		return tradersRemaining;
+	}
+	
+	public boolean getActs() {
+		return hasActivities;
+	}
+	
+	public boolean getIsRiver() {
+		return isRiver;
 	}
 	
 	/**
