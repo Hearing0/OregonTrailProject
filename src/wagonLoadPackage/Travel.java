@@ -1,4 +1,4 @@
-package wagonLoadPackage.Travel;
+package wagonLoadPackage;
 
 import java.util.ArrayList;
 

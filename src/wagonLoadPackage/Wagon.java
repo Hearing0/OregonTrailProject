@@ -2,7 +2,7 @@ package wagonLoadPackage;
 
 import java.util.ArrayList;
 
-import wagonLoadPackage.Travel.Travel;
+import wagonLoadPackage.Travel;
 
 /**
  * Wagon.java 

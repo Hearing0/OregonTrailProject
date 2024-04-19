@@ -10,8 +10,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
-import wagonLoadPackage.Travel.Location;
-import wagonLoadPackage.Travel.MenuUI;
+import wagonLoadPackage.Location;
+import wagonLoadPackage.MenuUI;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
