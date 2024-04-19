@@ -18,7 +18,7 @@ public class Wagon {
 	ArrayList<Item> itemList;
 	int maxWeight = 2400;
 	int wagonPeople = 4;
-	static Travel travel = new Travel();
+	Travel travel = new Travel();
 	
 	
 	

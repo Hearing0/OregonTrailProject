@@ -62,10 +62,7 @@ public class Travel {
 				10000, 
 				true);
 	}
-	/**
-	 * returns the ArrayList of Locations associated with the map
-	 * @return ArrayList of Location that contains every location
-	 */
+		
 	public ArrayList<Location> getMap() {
 		return map;
 	}
