@@ -265,7 +265,7 @@ public class MenuUI {
         descriptionPanel.add(new JScrollPane(descriptionTextArea), BorderLayout.CENTER);
         tabbedPane.addTab("Description", descriptionPanel);
 		
-        // If current location has activites, create activities
+        // If current location has activites, create activities tabs
         if(this.location.getHasActivites()) {
         	// Debug
         	System.out.println("Location has Activities");
@@ -295,7 +295,7 @@ public class MenuUI {
 	        tabbedPane.addTab("Enter the store", storeTextPanel);
         }
 		
-        // Map Tab
+        // Map Tab - David Flores
         // TODO: Fix png not showing on load
         // png is being sourced from bin (but is located in src??? check if is issue)
         JPanel mapPanel = new JPanel(new BorderLayout());
