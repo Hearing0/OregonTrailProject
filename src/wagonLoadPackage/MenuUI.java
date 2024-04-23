@@ -23,6 +23,7 @@ import wagonLoadPackage.WagonLoad;
 
 import javax.swing.JTextArea;
 
+
 /**
  * MenuUI.java 
  * Created on 4/8/2024
@@ -42,7 +43,8 @@ public class MenuUI {
 	private JTabbedPane mapPane;
 	private Wagon wagon;
 	private Travel travelspeed;
-
+	
+	// Trader Variables
 	private Trader trader;
 	private ArrayList<String> offer;
 	
@@ -123,8 +125,9 @@ public class MenuUI {
 	
 	
 	/**
-	 * 
-	 * @return
+	 * Creates and populates the Trading Panel 
+	 * with its various functionality.
+	 * @return - Returns the Trading Panel
 	 */
 	public JPanel tradingPanel() {	
 		
@@ -133,15 +136,15 @@ public class MenuUI {
 		tradingTextArea.setLineWrap(true);
 		tradingTextArea.setWrapStyleWord(true);
 		
+		
 		// Display current trade offer 
 		offer = trader.getTradeOffer();
 		this.updateTradingTextArea(tradingTextArea, "");
 		
+		
 		// Ask to Trade Button
     	JButton askTradeButton = new JButton("Ask around to Trade");
         askTradeButton.addActionListener(new ActionListener() {
-
-        	
             @Override
             public void actionPerformed(ActionEvent e) {
                 if ( location.hasTraders() ) {
@@ -168,10 +171,10 @@ public class MenuUI {
             }
         });
         
+        
         // Confirm Trade Button
         JButton tradeButton = new JButton("Confirm Trade");
         tradeButton.addActionListener(new ActionListener() {
-        	
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Try to Trade
@@ -201,6 +204,7 @@ public class MenuUI {
                 }                
             }
         });
+        
         
         // New Offer Button
         JButton newOfferButton = new JButton("Ask for another Offer");
@@ -237,12 +241,10 @@ public class MenuUI {
         tradingPanel.add(buttonPanel, BorderLayout.SOUTH);
 		
 		
-		return tradingPanel;
-		
-		
-		
+		return tradingPanel;		
 	}
-
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
