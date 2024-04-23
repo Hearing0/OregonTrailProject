@@ -3,6 +3,14 @@ package wagonLoadPackage;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * River.java
+ * Version 1.0 - 4/17/24
+ * Created by Cody Dusek
+ * 
+ * Creates the framework for rivers and river crossings
+ * Allows the user to either ford, ferry, or float across the river
+ */
 
 
 public class River extends Location {
@@ -51,31 +59,33 @@ public class River extends Location {
 	int bottomType = rand.nextInt(3);
 	
 	/**
-	public River toRiver(Location location)
-	{
-		name = location.getName();
-		desc = location.getDesc();
-		prompt = location.getPrompt();
-		disTillNext = location.getDistance();
-		hasActs = location.getActs();
-		isRiver = location.getIsRiver();
-		River newRiver = new River(name, desc, prompt, disTillNext, hasActs, isRiver);
-		return newRiver;
-	}
-	*/
-	
+	 * gets the depth of the river
+	 * @return the depth of the river
+	 */
 	public double getDepth() {
 		return depth; 
 	}
 	
+	/**
+	 * gets the width of the river
+	 * @return the width of the river
+	 */
 	public double getWidth() {
 		return width;
 	}
 	
+	/**
+	 * gets the swiftness, or speed of the river
+	 * @return the swiftness of the river
+	 */
 	public double getSwiftness() {
 		return swiftness;
 	}
 	
+	/**
+	 * returns a string based on the number for the river bottom generated in setConditions
+	 * @return the bottom type of the river
+	 */
 	public String getBottomType() {
 		if (bottomType == 0)
 			return "Rocky";
@@ -85,6 +95,11 @@ public class River extends Location {
 			return "Firm";
 	}
 	
+	/**
+	 * depending on which method of crossing the river was used, returns a string displaying what happened
+	 * @param input - determines which method of crossing the river was used
+	 * @return - a string that displays what happened on the crossing
+	 */
 	public String getPrompt(int input) {
 		int promptNum = -1;
 		if (input == 0)
@@ -104,22 +119,27 @@ public class River extends Location {
 		}
 		return riverPrompt;
 	}
-	
+	/**
+	 * determines whether or not the user hired a guide to cross; the guide will reduce the players chance of loosing supplies by half
+	 * @param isGuide - used to determine whether or not the user hired a guide
+	 */
 	public void crossWithGuide(boolean isGuide)
 	{
 		this.isGuide = isGuide;
 	}
 	
 	/***
-	 * 
-	 * @param current
+	 * sets the conditions for the river, and randomly varies the depth and swiftness of the river
+	 * initial numbers were obtained from "You Have Died of Dysentery" and geological data for each river
+	 * @param current - used to determine which river the user is currently at
 	 * TODO make a more realistic and in-depth model for river depth, width, etc.
 	 */
 	public void setConditions(Location current)
 	{
-		double variation = rand.nextDouble(4);
-		double swiftnessVary = rand.nextDouble(4);
-		int addOrSubtract = rand.nextInt(2);
+		double variation = rand.nextDouble(4); // used to vary the depth
+		double swiftnessVary = rand.nextDouble(4); // used to vary the swiftness
+		int addOrSubtract = rand.nextInt(2); // used to determine whether or not to add or subtract
+		
 		if (this.name == "Kansas River")
 		{
 			depth = 6.7;
@@ -189,7 +209,7 @@ public class River extends Location {
 		}
 	}
 	/**
-	 * 
+	 * if the player chooses to ford the river, determines how well they did
 	 * @return an array containing several values depending on the conditions
 	 * 		fordConditions[0] - determines if the wagon crossed, 0 if yes, 1 if no
 	 * 		fordConditions[1] - will choose which prompt to display
@@ -209,22 +229,22 @@ public class River extends Location {
 		fordConditions[0] = 0;
 		if (depth < 4.5)
 		{
-			if (bottomType == ROCKYBT)
+			if (bottomType == ROCKYBT) // determines the conditions if the bottom type is rocky
 			{
-				int rockRand = rand.nextInt(100);
+				int rockRand = rand.nextInt(100); // random number generator to determine if the player makes it across with no losses
 				int rockTurnCheck = 16;
-				if (isGuide)
+				if (isGuide) //
 						rockTurnCheck /= 2;
 				if (rockRand < rockTurnCheck)
 				{
-					int rockLost = rand.nextInt(30) + 10;
+					int rockLost = rand.nextInt(30) + 10; // random number generator to determine the percentage of supplies that the player loses
 					fordConditions[2] = rockLost;
 					for (int i = 4; i < 9; i++)
 					{
-						int isHealthLost = rand.nextInt(10);
+						int isHealthLost = rand.nextInt(10); // random number generator to determine if a party member will lose health
 						if (isHealthLost == 1)
 						{
-							fordConditions[i] = rand.nextInt(5) + 10;
+							fordConditions[i] = rand.nextInt(5) + 10; // random number generator to determine how much health a party member lost
 						}
 					}
 				}
@@ -233,9 +253,9 @@ public class River extends Location {
 					fordConditions[1] = 1;
 				}
 			}
-			else if (bottomType == MUDDYBT)
+			else if (bottomType == MUDDYBT) // determines the conditions if the bottom type is muddy
 			{
-				int mudStuck = rand.nextInt(10);
+				int mudStuck = rand.nextInt(10); // random number generator to determine whether or not the wagon gets stuck
 				int mudStuckCheck = 4;
 				if (isGuide)
 					mudStuckCheck /= 2;
@@ -249,34 +269,34 @@ public class River extends Location {
 					fordConditions[1] = 0;
 				}
 			}
-			else if (bottomType == FIRMBT)
+			else if (bottomType == FIRMBT) // determines the conditions if the bottom type is firm
 			{
 				for (int i = 0; i < FORDLENGTH; i++)
 					fordConditions[i] = 0;
 			}
 		}
 		
-		else if (depth > 4.5 && depth < 8)
+		else if (depth > 4.5 && depth < 8) // supplies will be lost in this scenario, but
 		{
 			fordConditions[1] = 4;
 			suppliesLost = rand.nextInt(40) + 50;
 			fordConditions[2] = suppliesLost;
 			for (int i = 0; i < OXENNUM; i++)
 			{
-				int isLost = rand.nextInt(10);
-				if (isLost < 3)
+				int isLost = rand.nextInt(10); // random number generator to determine if an oxen dies in the crossing attempt
+				if (isLost < 3) // 20% chance for an oxen to die
 					fordConditions[9]++;
 			}
 		}
 		
-		else if (depth > 8)
+		else if (depth > 8) // most dangerous scenario; almost everything will be lost if the player chooses this
 		{
 			fordConditions[1] = 5;
 			fordConditions[2] = 100;
 			for (int i = 4; i < 9; i++)
 			{
-				int didDrown = rand.nextInt(10);
-				if (didDrown < 3)
+				int didDrown = rand.nextInt(10); // random number generator to determine if each player died
+				if (didDrown < 3) // determines if the player died; 30% chance for each player to drown
 				{
 					fordConditions[i] = 100;
 				}
@@ -287,14 +307,17 @@ public class River extends Location {
 	}
 	
 	/**
+	 * returns an integer array with integers representing specific conditions
+	 * 		floatConditions[0] - represents if the wagon crossed successfully, 0 if it did, 1 if it didnt
+	 * 		floatConditions[1] - represents the percentage of supplies lost, if any
+	 * 		floatConditions[2] - determines which prompt to display, shown in the String arrays above
+	 * 		floatConditions[3] - determines the amount of days lost
 	 * 
-	 * @return
+	 * @return an integer array representing the various conditions described above
 	 */
 	public int[] floatRiver()
 	{
 		isFloat = true;
-		
-		
 		if (swiftness <= 3)
 		{
 			floatConditions[0] = 0;

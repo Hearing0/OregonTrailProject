@@ -339,6 +339,142 @@ public class MenuUI {
         tabbedPane.addTab("View Map", mapPane);
 		
 		
+        
+        JPanel riverPanel = new JPanel(new BorderLayout());
+        tabbedPane.addTab("River Options", riverPanel);
+        JTextArea riverText = new JTextArea("...");
+        riverText.setLineWrap(true);
+        riverText.setWrapStyleWord(true);
+        riverText.setEditable(false);
+        riverText.setText(location.getName() + "\n" + location.getDesc());
+        
+        riverPanel.add(riverText);
+        
+        if (Wagon.travel.getCurLocation().getIsRiver() == false)
+        {
+        	riverPanel.setVisible(false);
+        	tabbedPane.removeTabAt(5); // TODO: Find a better way to do this
+        }
+        
+        JButton btnNewButton = new JButton("See options");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		Location current = Wagon.travel.getCurLocation();
+        		River newRiver = current.toRiver();
+        		newRiver.setConditions(current);
+        		
+        		JFrame riverOptionsFrame = new JFrame();
+        		riverOptionsFrame.setBounds(100, 200, 400, 300);
+        		riverOptionsFrame.setVisible(true);
+        		riverOptionsFrame.setTitle(location.getName());
+        		
+        		JPanel riverOptionsPanel = new JPanel();
+        		
+        		JTextArea riverOptionsText = new JTextArea();
+        		riverOptionsText.setLineWrap(true);
+                riverOptionsText.setWrapStyleWord(true);
+                riverOptionsText.setEditable(false);
+               
+                String swiftness = String.format("%.2f", newRiver.getSwiftness());
+                String depth = String.format("%.2f", newRiver.getDepth());
+                String width = String.format("%.2f", newRiver.getWidth());
+                String bottomType = newRiver.getBottomType();
+                
+        		riverOptionsText.setText("Swiftness: " + swiftness + "\n" + "Depth: " + depth + 
+        				"\n" + "Width: " + width + "\n" + "Bottom type: " + bottomType);
+         		riverOptionsPanel.add(riverOptionsText);
+         		
+        		JButton fordButton = new JButton("Ford");
+        		JButton floatButton = new JButton("Float");
+        		JButton ferryButton = new JButton("Ferry");
+        		JButton guideButton = new JButton("Hire a Guide?");
+        		riverOptionsPanel.add(fordButton);
+        		riverOptionsPanel.add(floatButton);
+        		riverOptionsPanel.add(ferryButton);
+        		riverOptionsPanel.add(guideButton);
+        		
+        		JFrame riverResultsFrame = new JFrame();
+        		riverResultsFrame.setVisible(false);
+        		riverResultsFrame.setBounds(100, 200, 400, 300);
+        		
+        		JPanel riverResultsPanel = new JPanel();
+        		
+        		JTextArea riverResultsText = new JTextArea();
+        		riverResultsText.setLineWrap(true);
+        		riverResultsText.setWrapStyleWord(true);
+        		riverResultsText.setEditable(false);
+        		
+        		riverResultsPanel.add(riverResultsText);
+        		riverResultsFrame.add(riverResultsPanel);
+        		
+        		guideButton.addActionListener(new ActionListener() {
+        			public void actionPerformed(ActionEvent e) {
+        				newRiver.crossWithGuide(true);
+        			}
+        		});
+        	
+        		fordButton.addActionListener(new ActionListener(){
+        			public void actionPerformed(ActionEvent e) {
+        				int[] conditions = newRiver.fordRiver();
+        				String results = newRiver.getPrompt(0);
+        				String supplyResults = "", daysLost = "";
+        				if (conditions[2] != 0)
+        				{
+        					supplyResults = "You lost " + conditions[2] + "% of your supplies!";
+        				}
+        				if (conditions[3] != 0)
+        				{
+        					daysLost = "You lost " + conditions[3] + " days!";
+        				}
+        				riverResultsText.setText( results + "\n" + supplyResults + "\n" + daysLost);
+        				riverResultsFrame.setVisible(true);
+        			}
+        		});
+        		
+        		floatButton.addActionListener(new ActionListener() {
+        			public void actionPerformed(ActionEvent e) {
+        				int[] conditions = newRiver.floatRiver();
+        				String results = newRiver.getPrompt(1);
+        				String supplyResults = "", daysLost = "";
+        				if (conditions [1] != 0)
+        				{
+        					supplyResults = "You lost " + conditions[1] + "% of your supplies";
+        				}
+        				if (conditions[3] != 0)
+        				{
+        					daysLost = "You lost " + conditions[3] + " days!";
+        				}
+        				riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
+        				riverResultsFrame.setVisible(true);
+        			}
+        		});
+        		
+        		ferryButton.addActionListener(new ActionListener() {
+        			public void actionPerformed(ActionEvent e) {
+        				int[] conditions = newRiver.ferryRiver();
+        				String results = newRiver.getPrompt(2);
+        				String supplyResults = "", daysLost = "";
+        				if (conditions [1] != 0)
+        				{
+        					supplyResults = "You lost " + conditions[1] + "% of your supplies";
+        				}
+        				if (conditions[3] != 0)
+        				{
+        					daysLost = "You lost " + conditions[3] + " days!";
+        				}
+        				riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
+        				riverResultsFrame.setVisible(true);
+        				
+        			}
+        		});
+        		
+        		riverOptionsFrame.add(riverOptionsPanel);
+        	}
+        });
+        riverPanel.add(btnNewButton, BorderLayout.SOUTH);
+		
+		
 		// Prompt Field
 		promptField = new JTextField(location.getPrompt());
 		promptField.setBounds(213, 234, 215, 20);

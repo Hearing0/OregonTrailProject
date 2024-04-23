@@ -18,7 +18,8 @@ public class Wagon {
 	ArrayList<Item> itemList;
 	int maxWeight = 2400;
 	int wagonPeople = 4;
-	Travel travel = new Travel();
+	static Travel travel = new Travel();
+
 	//private int totalMoney = 0;
 	
 	
@@ -29,6 +30,7 @@ public class Wagon {
 	//public void setTotalMoney(int costChange) {
 	//	totalMoney -= costChange;
 	//}
+
 	
 	
 	
