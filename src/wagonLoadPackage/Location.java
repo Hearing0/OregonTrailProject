@@ -37,15 +37,12 @@ public class Location {
 	
 	/**
 	 * Initialize location 
-	 * @param name
-	 * @param desc
-	 * @param prompt
-	 * @param disTillNext
-	 * @param hasActs
+	 * @param name - Name of Location
+	 * @param desc - Description of Location
+	 * @param prompt - Special Prompt to the User
+	 * @param disTillNext - Distance till the next Location
+	 * @param hasActs - Whether the location has any special activities
 	 */
-	
-		
-
 	public Location(String name, String desc, String prompt, int disTillNext, boolean hasActs, boolean isRiver) {
 		this.name = name;
 		this.desc = desc;
@@ -60,6 +57,8 @@ public class Location {
 		}
 	}
 	
+	
+	//TODO: Add Comment
 	public River toRiver()
 	{
 		River newRiver = new River(name, desc, prompt, distanceTillNext, hasActivities, isRiver);
