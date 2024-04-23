@@ -204,7 +204,7 @@ public class WagonLoad {
         JButton storeButton = new JButton("Store");
         storeButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		Store store = new Store();
+        		Store store = new Store(wagon);
         		store.setVisible(true);
         	}
         });

@@ -133,7 +133,7 @@ public class MenuUI {
 		frmLocationName.getContentPane().add(promptLabel);
 		
 		
-		
+		/*
 		//Breanna Sproul - Store button in tab menu
 	    //If current location has activites, give option to enter store
 		//plans for later - add a picture of a store so store tab isnt empty
@@ -150,6 +150,7 @@ public class MenuUI {
 	        storeTextPanel.add(storeButton, BorderLayout.SOUTH);
 	        tabbedPane.addTab("Enter the store", storeTextPanel);
 	    }
+	    */
 	    
 	    
 	    

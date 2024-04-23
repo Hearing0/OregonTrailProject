@@ -27,6 +27,21 @@ public class Wagon {
 	//public void setTotalMoney(int costChange) {
 	//	totalMoney -= costChange;
 	//}
+
+
+	public int totalMoney = 1000;
+	
+	
+	//attempt to get totalMoney to update after buying from store
+	public int getTotalMoney() {
+		return totalMoney;
+	}
+	public int setTotalMoney(int costChange) {
+		totalMoney = totalMoney - costChange;
+		return totalMoney;
+	}
+
+
 	
 	
 	
