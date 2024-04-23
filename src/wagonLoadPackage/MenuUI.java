@@ -104,6 +104,31 @@ public class MenuUI {
         return localsTalkTextPanel;
 	}
 	
+	
+	/**
+	 * Creates a JPanel for store
+	 * @return - A populated JPanel with store button. //picture will be added later
+	 */
+	public JPanel storePanel() {
+		JPanel storeTextPanel = new JPanel(new BorderLayout());
+        JButton storeButton = new JButton("Enter the store");
+        storeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+        		Store store = new Store(wagon);
+        		store.setVisible(true);
+            }
+        });
+        storeTextPanel.add(storeButton, BorderLayout.SOUTH);
+        
+        return storeTextPanel;
+	}
+	
+	
+
+	
+	
+	
 	/**
 	 * Updates a text area to display the current trade offer.
 	 * Additionally, can display another line of text below the trade offer. 
@@ -266,6 +291,9 @@ public class MenuUI {
         descriptionTextArea.setEditable(false);
         descriptionPanel.add(new JScrollPane(descriptionTextArea), BorderLayout.CENTER);
         tabbedPane.addTab("Description", descriptionPanel);
+        
+        tabbedPane.addTab("Store", storePanel());
+        
 		
      
         /**
@@ -337,7 +365,7 @@ public class MenuUI {
         mapPanel.add(artLabel);
         mapPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.addTab("View Map", mapPane);
-		
+        		
 		
         
         JPanel riverPanel = new JPanel(new BorderLayout());
@@ -487,6 +515,10 @@ public class MenuUI {
 		promptLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		frmLocationName.getContentPane().add(promptLabel);
 	}
+	
+	
+	
+	
 	
 	/**
 	 * Sets the frame to visible.

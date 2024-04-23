@@ -20,16 +20,16 @@ public class Wagon {
 	int wagonPeople = 4;
 	static Travel travel = new Travel();
 
-	//private int totalMoney = 0;
+	 public int totalMoney = 1000;
 	
 	
 	//attempt to get totalMoney to update after buying from store
-	//public int getTotalMoney() {
-	//	return totalMoney;
-	//}
-	//public void setTotalMoney(int costChange) {
-	//	totalMoney -= costChange;
-	//}
+	public int getTotalMoney() {
+		return totalMoney;
+	}
+	public void setTotalMoney(int costChange) {
+		totalMoney -= costChange;
+	}
 
 	
 	
