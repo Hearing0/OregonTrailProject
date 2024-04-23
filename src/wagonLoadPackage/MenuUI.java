@@ -337,8 +337,7 @@ public class MenuUI {
         mapPanel.add(artLabel);
         mapPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.addTab("View Map", mapPane);
-		
-		
+
 		// Prompt Field
 		promptField = new JTextField(location.getPrompt());
 		promptField.setBounds(213, 234, 215, 20);
@@ -361,7 +360,9 @@ public class MenuUI {
 	        
 	        riverPanel.add(riverText);
 	        
-	        if (Wagon.travel.getCurLocation().getIsRiver() == false)
+	        Location current = wagon.travel.getCurLocation();
+	        
+	        if (current.getIsRiver() == false)
 	        {
 	        	riverPanel.setVisible(false);
 	        	tabbedPane.removeTabAt(5); // TODO: Find a better way to do this
@@ -371,7 +372,7 @@ public class MenuUI {
 	        btnNewButton.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        		
-	        		Location current = Wagon.travel.getCurLocation();
+	        		
 	        		River newRiver = current.toRiver();
 	        		newRiver.setConditions(current);
 	        		
