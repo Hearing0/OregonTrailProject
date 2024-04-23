@@ -17,15 +17,16 @@ public class Store extends Wagon{
 	private JTextField bulletBuyTextBox;
 	//private int totalMoney = 1000;
 	Wagon wagonS;
+	int moneyShown;
 	
 	/**
 	 * Create the application.
 	 */
 	public Store(Wagon wagon) {
-		initialize();
-		//totalMoney = 1000;
 		this.wagonS = wagon;
-		//int moneyShown = wagonS.getTotalMoney();
+		moneyShown = wagonS.getTotalMoney();
+		//System.out.println(wagonS.getTotalMoney());
+		initialize();
 	}
 	
 
@@ -36,6 +37,7 @@ public class Store extends Wagon{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		//System.out.println(wagonS.getTotalMoney());
 		//base frame 
 		Storeframe = new JFrame();
 		Storeframe.setBounds(100, 100, 450, 300);
@@ -64,7 +66,8 @@ public class Store extends Wagon{
 		totalMLabel.setBounds(31, 199, 115, 22);
 		Storeframe.getContentPane().add(totalMLabel);
 		
-		JLabel totalMoneyText = new JLabel("" + wagonS.getTotalMoney());
+		//JLabel totalMoneyText = new JLabel();
+		JLabel totalMoneyText = new JLabel("" + moneyShown);
 		totalMoneyText.setBounds(150, 203, 49, 14);
 		Storeframe.getContentPane().add(totalMoneyText);
 		
@@ -90,6 +93,7 @@ public class Store extends Wagon{
 		JButton buyButton = new JButton("Buy");
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//totalMoneyText.setText("" + wagonS.getTotalMoney());
 				//get the numbers from the text boxes and convert to int
 				String foodString = foodBuyTextBox.getText();
 				int buyFood = Integer.parseInt(foodString);
