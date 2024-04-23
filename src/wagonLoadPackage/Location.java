@@ -1,6 +1,6 @@
 package wagonLoadPackage;
 
-
+import java.util.Random;
 
 /**
  * Location.java 
@@ -22,6 +22,12 @@ public class Location {
 		
 	boolean hasActivities = false;
 	boolean isRiver = false;
+
+	// Generate number of available traders in locale
+	Random random = new Random();
+	int tradersRemaining;
+	Trader trader;
+	
 	int conditions[];
 	
 	String name = "";
@@ -31,16 +37,12 @@ public class Location {
 	
 	/**
 	 * Initialize location 
-	 * @param name
-	 * @param desc
-	 * @param prompt
-	 * @param disTillNext
-	 * @param hasActs
-	 * @param isRiver
+	 * @param name - Name of Location
+	 * @param desc - Description of Location
+	 * @param prompt - Special Prompt to the User
+	 * @param disTillNext - Distance till the next Location
+	 * @param hasActs - Whether the location has any special activities
 	 */
-	
-		
-
 	public Location(String name, String desc, String prompt, int disTillNext, boolean hasActs, boolean isRiver) {
 		this.name = name;
 		this.desc = desc;
@@ -48,15 +50,22 @@ public class Location {
 		this.distanceTillNext = disTillNext;
 		this.hasActivities = hasActs;
 		this.isRiver = isRiver;
-		// TODO Auto-generated constructor stub
+		
+		// If hasActivites, initialize tradersRemaining
+		if(this.hasActivities) {
+			tradersRemaining = 1 + random.nextInt(3);
+		}
 	}
 	
+	
+	//TODO: Add Comment
 	public River toRiver()
 	{
 		River newRiver = new River(name, desc, prompt, distanceTillNext, hasActivities, isRiver);
 		return newRiver;
 	}
 
+		
 	/**
 	 * Get the location name
 	 * @return - String of Location name
@@ -80,12 +89,50 @@ public class Location {
 	public String getPrompt() {
 		return prompt;
 	}
+	
 	/**
-	 * Get the distance until the next location
-	 * @return - integer of Location distance until next location
+	 * Gets the current distance till the next location.
+	 * @return - Integer of distance till the next location.
 	 */
 	public int getDistance() {
 		return distanceTillNext;
+	}
+	
+	/**
+	 * Gets whether or not the current location has activities.
+	 * @return - Boolean. If location has activities then returns true.
+	 */
+	public boolean getHasActivites() {
+		return hasActivities;
+	}
+	
+	/**
+	 * checks if the location has any traders remaining.
+	 * @return - True if tradersRemaining is above zero.
+	 */
+	public boolean hasTraders() {
+		boolean result = false;
+		
+		if (this.tradersRemaining > 0) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 
+	 */
+	public void decrementTradersRemaining() {
+		tradersRemaining--;
+	}
+	
+	/**
+	 * Gets the number of traders remaining
+	 * @return
+	 */
+	public int getTradersRemaining() {
+		return tradersRemaining;
 	}
 	
 	public boolean getActs() {

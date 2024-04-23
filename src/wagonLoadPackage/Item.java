@@ -36,11 +36,20 @@ public class Item {
     }
     
     /**
-     * Sets weight of item
+     * Sets weight of item. If new weight is greater than 0,
+     * sets isLoaded to true, otherwise false
      * @param newWeight - New weight of item instance.
      */
     public void setWeight( int newWeight ) {
-    	this.weight = newWeight;
+    	if (newWeight > 0) {
+    		this.weight = newWeight;
+    	}
+    	
+    	if (this.weight > 0 ) {
+    		this.isLoaded = true;
+    	} else {
+    		this.isLoaded = false;
+    	}
     }
     
     /**
@@ -59,6 +68,12 @@ public class Item {
     public boolean getIsLoaded() {
     	return this.isLoaded;
     }
-    
-    // TODO: Setter for name
+ 
+    /**
+     * Returns the item's name
+     * @return - Item name
+     */
+    public String getName() {
+    	return this.name;
+    }
 }

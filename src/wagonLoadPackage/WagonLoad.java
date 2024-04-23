@@ -9,6 +9,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+
+import wagonLoadPackage.Location;
+import wagonLoadPackage.MenuUI;
+
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -40,6 +44,7 @@ public class WagonLoad {
 	
 	// Initialize Wagon
 	private Wagon wagon = new Wagon();
+
 	private JCheckBox chckbxItem1_1;
 	private JCheckBox chckbxItem1_1_1;
 	private JCheckBox chckbxItem1_2;
@@ -59,8 +64,8 @@ public class WagonLoad {
 	private JLabel lblTotalWeight_1;
 	//private JTextField testField;
 	
-	// gets ArrayList from Travel Class for ease of use
-	ArrayList<Location> map = Wagon.travel.getMap();
+	
+	ArrayList<Location> map = wagon.travel.getMap();
 	int consumptionValue = 0;
 	int travelValue = 0;
 	int totalDist = 0;
@@ -88,6 +93,7 @@ public class WagonLoad {
 	 * Create the application.
 	 */
 	public WagonLoad() {
+		//System.out.println("Y");
 		initialize();
 		getTotalDistance();
 		
@@ -115,7 +121,6 @@ public class WagonLoad {
 	}
 	
 	/**
-	 * Cody Dusek
 	 * Calculates the total distance of the trip by adding the distance between each landmark together
 	 */
 	public void getTotalDistance() {
@@ -139,6 +144,7 @@ public class WagonLoad {
 		frmPackYourWagon.setBounds(100, 100, 839, 382);
 		frmPackYourWagon.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmPackYourWagon.getContentPane().setLayout(null);
+        
         
         
         // Debug: testable textField
@@ -191,13 +197,26 @@ public class WagonLoad {
         JButton locationButton = new JButton("MenuUI");
         locationButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		MenuUI menu = new MenuUI(wagon.travel.getCurLocation());
+        		MenuUI menu = new MenuUI(wagon.travel.getCurLocation(), wagon);
         		menu.setVisible(true);
         	}
         });
         locationButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
         locationButton.setBounds(226, 313, 89, 23);
         frmPackYourWagon.getContentPane().add(locationButton);
+        
+        //Breanna Sproul - Store button for easy testing
+        JButton storeButton = new JButton("Store");
+        storeButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Store store = new Store();
+        		store.setVisible(true);
+        	}
+        });
+        storeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        storeButton.setBounds(126, 313, 89, 23);
+        frmPackYourWagon.getContentPane().add(storeButton);
+        
         
         
         
@@ -624,7 +643,7 @@ public class WagonLoad {
         
         
         // Food Consumption Text Field
-        textField = new JTextField();
+        textField = new JTextField("1");
         textField.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		// Retrieve Text
@@ -669,7 +688,7 @@ public class WagonLoad {
         panel_1.add(lblTravelSpeed);
         
         // Travel Speed Text Field
-        textField_1 = new JTextField();
+        textField_1 = new JTextField("12");
         textField_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		// Retrieve Text 
@@ -687,7 +706,7 @@ public class WagonLoad {
 	        		} 
 	        		// Success: Update Travel Speed Flavor Text
 	        		else {
-	        			lblTravelFlavorText.setText("Set to: " + wagon.travel.travelSpeed + " miles/day");
+	        			lblTravelFlavorText.setText("Set to: " + wagon.travel.getTravelSpeed() + " miles/day");
 	        		}
         		} 
         		// Fail: Character entered
@@ -747,31 +766,32 @@ public class WagonLoad {
         		int foodWeight = wagon.getFoodWeight();
         		int totalWeight = wagon.getTotalWeight();
         		
-        		
         		lblTotalWeight_1.setText(totalWeight + " lbs");
         		
-        		// Cody Dusek
-        		// checks if there is enough food to travel for the day
+        		// If enough food, ...
+        		// TODO: Move to after isEnoughFoodToTravel check
         		if (wagon.travel.isEnoughFoodToTravel(foodWeight))
         		{
-        			days++; // increments days
-        			System.out.println("Days: " + days);
+        			// Keep track of date
+        			days++;
+        			
+        			// Update Distance till location
         			int distance = wagon.travel.getCurLocation().getDistance();
-        			distanceLbl.setText(distance + ""); // updates distance label
-        			if (wagon.travel.travelMap(foodWeight)) // opens the MenuUI if the player has made it to a named location
+        			distanceLbl.setText(distance + "");
+        			
+        			// Travel to next location on map
+        			// If wagon makes it to next location, pop-up location menu
+        			if (wagon.travel.travelMap(foodWeight))
         			{
-        				MenuUI menu = new MenuUI(wagon.travel.getCurLocation());
+        				MenuUI menu = new MenuUI(wagon.travel.getCurLocation(), wagon);
                 		menu.setVisible(true);
         			}
-        			
-        			
-        			
         		}
         		
         		
         		//Breanna Sproul
         		//FOR CONSUMPTION
-        		//wagon.travel.isEnoughFoodToTravel(foodWeight);
+        		// TODO: Move to after isEnoughFoodToTravel check
         		String textValue = textField.getText();
         		int value = Integer.valueOf(textValue);
         		wagon.travel.setFoodConsumption(value, wagon.wagonPeople);

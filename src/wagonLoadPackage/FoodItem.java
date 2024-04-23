@@ -10,7 +10,7 @@ package wagonLoadPackage;
  * , sets whether it is cookable, can be consumed,
  * and consumption is factored by the FoodItem's nutrientPerLbs.
  * 
- * Note that the nutrientPerLbs is disabled for MP3!!!
+ * Note that the nutrientPerLbs is disabled
  */
 public class FoodItem extends Item {
 	
@@ -72,6 +72,7 @@ public class FoodItem extends Item {
      * @param weightConsumed - Amount, in lbs, to subtract from weight
      * @return - True if weight was able to be adjusted by weightConsumed. 
      * Can return false if FoodItem is not edible.
+     * DEPRECIATED
      */
     /*
     public boolean eatFood( int weightConsumed) {
@@ -96,6 +97,7 @@ public class FoodItem extends Item {
     //uses previous method to check if its possible to eat
     //if true, then remove the foodWeight and return the new weight
     //if false, then return -1 to signal that no food is left
+    //DEPRECIATED
     public int dailyConsume(int weightConsumed, int consumeSelect, int people) {
     	if(eatFood(weightConsumed) == true) {
     		this.weight = weightConsumed - (consumeSelect * people);

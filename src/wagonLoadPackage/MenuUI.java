@@ -337,7 +337,7 @@ public class MenuUI {
         mapPanel.add(artLabel);
         mapPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.addTab("View Map", mapPane);
-
+        
 		// Prompt Field
 		promptField = new JTextField(location.getPrompt());
 		promptField.setBounds(213, 234, 215, 20);
