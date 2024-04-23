@@ -17,6 +17,18 @@ public class Wagon {
 	int maxWeight = 2400;
 	int wagonPeople = 4;
 	static Travel travel = new Travel();
+
+	//private int totalMoney = 0;
+	
+	
+	//attempt to get totalMoney to update after buying from store
+	//public int getTotalMoney() {
+	//	return totalMoney;
+	//}
+	//public void setTotalMoney(int costChange) {
+	//	totalMoney -= costChange;
+	//}
+
 	
 	
 	

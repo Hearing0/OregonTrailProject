@@ -1,9 +1,7 @@
 package wagonLoadPackage;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
@@ -19,6 +17,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+
+import wagonLoadPackage.Wagon;
+import wagonLoadPackage.WagonLoad;
+
 import javax.swing.JTextArea;
 
 /**
@@ -36,18 +38,209 @@ public class MenuUI {
 	// Initialize variables 
 	private JFrame frmLocationName;
 	private JTextField promptField;
-	Location location;
-	private JTabbedPane descPane;
-	private JTabbedPane tabbedPane_2;
+	private Location location;
 	private JTabbedPane mapPane;
+	private Wagon wagon;
+	private Travel travelspeed;
+
+	private Trader trader;
+	private ArrayList<String> offer;
 	
 	
 	/**
 	 * Create the application.
 	 */
-	public MenuUI(Location location) {
+	public MenuUI(Location location, Wagon wagon) {
 		this.location = location;
+		this.wagon = wagon;
+		this.travelspeed = travelspeed;
+		this.trader = new Trader(0, wagon);
 		initialize();
+	}
+	
+	
+	/**
+	 * Creates a JPanel for chatting with random passerbys. 
+	 * The panel is populated with a text box and button.
+	 * The "Chat with Passerbys" Button selects from a pool of text options,
+	 * then populates the text box with the text selected. 
+	 * @return - A populated JPanel with text box and button.
+	 */
+	public JPanel talkPanel() {
+		JPanel localsTalkTextPanel = new JPanel(new BorderLayout());
+        JTextArea localsTalkTextArea = new JTextArea("...");
+        localsTalkTextArea.setLineWrap(true);
+        localsTalkTextArea.setWrapStyleWord(true);
+        JButton talkButton = new JButton("Chat with Passerbys");
+        talkButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Select a random chat
+                String[] chats = 
+                	{"You chat with a local about the trail"
+                			+ "...\n\"Sometimes it feels like every step forward is "
+                			+ "met with two steps back, but we press on, "
+                			+ "determined to reach our destination.\"",
+                	"You chat with a local about family"
+                			+ "...\n\"It's a constant struggle balancing the needs of my family "
+                			+ "with the challenges of the unforgiving trail, but its worth it.\"", 
+                	"You chat with a local about past hardships"
+                			+ "...\n\"From sickness to dwindling supplies... it can miserable at times."
+                			+ "A thief snuck into our wagon and accidently lit a fire. Most of our "
+                			+ "spare wagon parts were burned and we lost seven oxen in the panic."
+                			+ "To think we even got this far after all that!\"", 
+                	"You try to yield a small group of travelers, but they ignore you and pass by. "
+                			+ "They seem to be in a exhausted daze from their travels. "
+                			+ "Perhaps its best to not bother them.", 
+                	"You look around and off into the distance, but no one is nearby to talk to."};
+                Random random = new Random();
+                int choice = random.nextInt(chats.length);
+                localsTalkTextArea.setText(chats[choice]);
+            }
+        });
+        localsTalkTextPanel.add(localsTalkTextArea, BorderLayout.CENTER);
+        localsTalkTextPanel.add(talkButton, BorderLayout.SOUTH);
+        
+        return localsTalkTextPanel;
+	}
+	
+	/**
+	 * Updates a text area to display the current trade offer.
+	 * Additionally, can display another line of text below the trade offer. 
+	 * @param area - The JTextArea that is updated with text.
+	 * @param displayText - Additional line displayed below the trade offer.
+	 */
+	private void updateTradingTextArea(JTextArea area, String displayText) {
+		area.setText(
+				"Offering	: " + offer.get(0) + " for " + offer.get(1) + " lbs" +
+				"\nWants	: "	+ offer.get(2) + " for " + offer.get(3) + " lbs" +
+				"\nTrades Remaining	: " + trader.tradesRemaining +
+				"\nOffers Remaining	: " + trader.offersRemaining + 
+				"\nTraders Remaining: " + location.getTradersRemaining() + 
+				"\n" + displayText
+			);
+	}
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public JPanel tradingPanel() {	
+		
+		JPanel tradingPanel = new JPanel(new BorderLayout());
+		JTextArea tradingTextArea = new JTextArea("...");
+		tradingTextArea.setLineWrap(true);
+		tradingTextArea.setWrapStyleWord(true);
+		
+		// Display current trade offer 
+		offer = trader.getTradeOffer();
+		this.updateTradingTextArea(tradingTextArea, "");
+		
+		// Ask to Trade Button
+    	JButton askTradeButton = new JButton("Ask around to Trade");
+        askTradeButton.addActionListener(new ActionListener() {
+
+        	
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if ( location.hasTraders() ) {
+                	// Decrease num of local traders
+					location.decrementTradersRemaining();
+                	
+					// Create random Trader (random, native, trapper, or traveler)
+					// TODO: Configure different trader types
+                	trader = new Trader(0, wagon);
+					
+					// Display current trade offer 
+					offer = trader.getTradeOffer();
+					updateTradingTextArea(tradingTextArea, "");
+				}
+                
+                // Fail: No more traders in local
+                else {
+                	// Display No more Traders Prompt
+                	tradingTextArea.setText("No one else want to trade or has left the area!");
+                	
+                	// Prevent player from trading
+                	trader.clearTrade();
+                }                
+            }
+        });
+        
+        // Confirm Trade Button
+        JButton tradeButton = new JButton("Confirm Trade");
+        tradeButton.addActionListener(new ActionListener() {
+        	
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Try to Trade
+            	if ( trader.conductTrade()) {
+            		// Display Success Prompt
+            		offer = trader.getTradeOffer();
+            		updateTradingTextArea(tradingTextArea, "\"Thanks for the trade!\"");
+				}
+            	
+            	// Fail: Player does not have Resources
+            	// TODO: Add check to see if user has resources to trade
+            	/*
+            	else if () {
+            		// Display Not able to trade Prompt
+            		offer = trader.getTradeOffer();
+					updateTradingTextArea(tradingTextArea, "\"It doesn't look like you have enough to trade\"");
+            	}
+            	*/
+            	
+                // Fail: No more trades left
+                else {
+                	// Display No more Trades Prompt
+            		tradingTextArea.setText("Hey thanks for the offer, but I think I've had enough for now.");
+                	
+                	// Clear Trade 
+                	trader.clearTrade();
+                }                
+            }
+        });
+        
+        // New Offer Button
+        JButton newOfferButton = new JButton("Ask for another Offer");
+        newOfferButton.addActionListener(new ActionListener() {
+        	
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Try to get another Trade Offer
+            	if ( trader.generateTradeOffer() ) {
+            		// Display Success Prompt
+            		offer = trader.getTradeOffer();
+            		updateTradingTextArea(tradingTextArea, "\n\n\"Hmmm... here's what I'll offer.\"" );
+				}
+                
+                // Fail: No more offers left
+                else {
+                	// Display No more Trades Prompt
+                	tradingTextArea.setText("\"Thanks, but I'm good. I'll trade with someone else.\"");
+                	
+                	// Clear Trade 
+                	trader.clearTrade();
+                }                
+            }
+        });
+        
+        // Add elements into Panel
+        JPanel buttonPanel = new JPanel(); // Create a panel to hold the buttons
+        buttonPanel.setLayout(new GridLayout(3, 1));
+        buttonPanel.add(askTradeButton);
+        buttonPanel.add(newOfferButton);
+        buttonPanel.add(tradeButton);
+        
+        tradingPanel.add(tradingTextArea, BorderLayout.CENTER);
+        tradingPanel.add(buttonPanel, BorderLayout.SOUTH);
+		
+		
+		return tradingPanel;
+		
+		
+		
 	}
 
 	/**
@@ -65,7 +258,7 @@ public class MenuUI {
 		tabbedPane.setBounds(10, 11, 418, 212);
 		frmLocationName.getContentPane().add(tabbedPane);
 				
-		// Description tab
+		// Description tab - David Flores
         JPanel descriptionPanel = new JPanel(new BorderLayout());
         JTextArea descriptionTextArea = new JTextArea(location.getDesc());
         descriptionTextArea.setLineWrap(true);
@@ -74,33 +267,60 @@ public class MenuUI {
         descriptionPanel.add(new JScrollPane(descriptionTextArea), BorderLayout.CENTER);
         tabbedPane.addTab("Description", descriptionPanel);
 		
-        // Talk to Locals Tab
-        JPanel localsTalkTextPanel = new JPanel(new BorderLayout());
-        JTextArea localsTalkTextArea = new JTextArea("...");
-        localsTalkTextArea.setLineWrap(true);
-        localsTalkTextArea.setWrapStyleWord(true);
-        JButton talkButton = new JButton("Talk to Passerbys");
-        talkButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Select a random chat
-                String[] chats = 
-                	{"Sometimes it feels like every step forward is "
-                			+ "met with two steps back, but we press on, "
-                			+ "determined to reach our destination.",
-                	"It's a constant struggle balancing the needs of my family "
-                	+ "with the challenges of the unforgiving terrain, but its worth it.", 
-                	"From sickness to dwindling supplies... it can miserable at times.", 
-                	"You try to yield some people, but they ignore you and pass by.", 
-                	"You look around and off into the distance, but no one is nearby to talk to."};
-                Random random = new Random();
-                int choice = random.nextInt(chats.length);
-                localsTalkTextArea.setText(chats[choice]);
-            }
-        });
-        localsTalkTextPanel.add(localsTalkTextArea, BorderLayout.CENTER);
-        localsTalkTextPanel.add(talkButton, BorderLayout.SOUTH);
-        tabbedPane.addTab("Talk to Passerbys", localsTalkTextPanel);
+     
+        /**
+    	 * Rod Piton Initializes the contents of the Wagon tab and Travel tab.
+    	 * Wagon tab will show Current party weight location and Food weight
+    	 * Travel will show Location Items and Travel speed
+    	 */
+        // Wagon tab
+        // TODO: show individual item loaded and their weight
+        JPanel WagonPanel = new JPanel(new BorderLayout());
+        JTextArea WagonTextArea = new JTextArea(
+        		
+        		"Current Distance: " + location.getDistance()+"\n"+
+        		"Current Location: " + location.getName() + "\n" +
+        		"Current wagon weight: "	+ wagon.getTotalWeight() + "\n" +
+        		"Current food weight: " + wagon.getFoodWeight()
+        		
+        		);
+        WagonTextArea.setLineWrap(true);
+        WagonTextArea.setWrapStyleWord(true);
+        WagonTextArea.setEditable(false);
+        WagonPanel.add(new JScrollPane(WagonTextArea), BorderLayout.CENTER);
+        tabbedPane.addTab("Wagon", WagonPanel);
+        
+        // Travel tab to be implemented
+        
+       // JPanel TravelPanel = new JPanel(new BorderLayout());
+        //JTextArea TravelTextArea = new JTextArea(
+        		
+        	//	"Current Travel Speed: " + travelspeed.getTravelSpeed()+"\n"+
+        	//	"Current Items: " + wagon + "\n" 
+        		
+        		
+        	//	);
+      //  TravelTextArea.setLineWrap(true);
+      //  TravelTextArea.setWrapStyleWord(true);
+      //  TravelTextArea.setEditable(false);
+    //    TravelPanel.add(new JScrollPane(TravelTextArea), BorderLayout.CENTER);
+        // tabbedPane.addTab("Wagon", TravelPanel);
+       
+        
+        // If current location has activites, create activities
+        if(this.location.getHasActivites()) {
+        	// Debug
+        	System.out.println("Location has Activities");
+        	
+	        // Talk to Locals Tab
+	        JPanel talkToLocalsPanel = this.talkPanel();
+	        tabbedPane.addTab("Chat", talkToLocalsPanel);
+	        
+	        // Trading Tab
+	        JPanel tradingPanel = this.tradingPanel();
+	        tabbedPane.addTab("Trade", tradingPanel);
+	        
+        }
 		
         // Map Tab
         // TODO: Fix png not showing on load
@@ -117,7 +337,7 @@ public class MenuUI {
         mapPanel.add(artLabel);
         mapPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.addTab("View Map", mapPane);
-		
+        
         JPanel riverPanel = new JPanel(new BorderLayout());
         tabbedPane.addTab("River Options", riverPanel);
         JTextArea riverText = new JTextArea("...");
@@ -131,7 +351,7 @@ public class MenuUI {
         if (Wagon.travel.getCurLocation().getIsRiver() == false)
         {
         	riverPanel.setVisible(false);
-        	tabbedPane.removeTabAt(3);
+        	tabbedPane.removeTabAt(5); // TODO: Find a better way to do this
         }
         
         JButton btnNewButton = new JButton("See options");
@@ -252,10 +472,7 @@ public class MenuUI {
         });
         riverPanel.add(btnNewButton, BorderLayout.SOUTH);
 		
-        
-        
-        
-        
+		
 		// Prompt Field
 		promptField = new JTextField(location.getPrompt());
 		promptField.setBounds(213, 234, 215, 20);
