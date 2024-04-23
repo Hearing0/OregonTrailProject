@@ -32,31 +32,16 @@ public class River extends Location {
 	
 	int disTillNext;
 
-	 double depth, width;
-	 double swiftness;
-	 double bottom; 
+	double depth, width;
+	double swiftness;
+	double bottom;
+	
 	final int ROCKYBT = 0;
 	final int MUDDYBT = 1;
 	final int FIRMBT = 2;
-	boolean isGuide = false;
-<<<<<<< Updated upstream
 	final int OXENNUM = 4;
-	boolean isFerry = false;
-	 boolean isFord = false;
-	 boolean isFloat = false;
 	
-	 String riverPrompt;
-	
-	 String[] fordPrompts = { "Muddy crossing, but you did not get stuck.", "Rough crossing, but you did not overturn.", "You got stuck; lose one day",
-			"You overturned!", "Wagon swamped!", "Wagon and oxen swept away!"};
-	
-	String[] floatPrompts = { "Some of your supplies got wet!", "Some of your supplies fell overboard!", "Most of your supplies fell overboard, and you got pushed downriver!",
-			"Your wagon overturned, and you lost most of your supplies and got pushed far downstream!", "You crossed successfully, but lost a day!", "You crossed successfully, but lost two days!",
-			"You crossed successfully!"};
-	
-	String[] ferryPrompts = { "Some of your supplies fell overboard!", "You crossed successfully!", "Some of your supplies fell overboard, and you lost a day!"};
-	
-=======
+	boolean isGuide = false;
 	boolean hasActs;
 
 	String riverPrompt;
@@ -74,7 +59,6 @@ public class River extends Location {
 	String[] ferryPrompts = { "Some of your supplies fell overboard!", "You crossed successfully!",
 			"Some of your supplies fell overboard, and you lost a day!" };
 
->>>>>>> Stashed changes
 	Random rand = new Random();
 	int bottomType = rand.nextInt(3);
 	
@@ -244,7 +228,6 @@ public class River extends Location {
 	 */
 	public int[] fordRiver()
 	{
-		isFord = true;
 		int suppliesLost;
 		fordConditions[0] = 0;
 		if (depth < 4.5)
@@ -337,7 +320,6 @@ public class River extends Location {
 	 */
 	public int[] floatRiver()
 	{
-		isFloat = true;
 		if (swiftness <= 3)
 		{
 			floatConditions[0] = 0;
@@ -406,25 +388,14 @@ public class River extends Location {
 		}
 		
 		return floatConditions;
-<<<<<<< Updated upstream
-		
 	}
-	
-	public int[] ferryRiver()
-	{
-		isFerry = true;
-		if (swiftness < 8)
-		{
-=======
-	}
-	
 	/**
 	 * 
 	 * @return
 	 */
 	public int[] ferryRiver() {
 		if (swiftness < 8) {
->>>>>>> Stashed changes
+
 			ferryConditions[0] = 0;
 			int slowRand = rand.nextInt(10);
 			int slowCheck = 2;
