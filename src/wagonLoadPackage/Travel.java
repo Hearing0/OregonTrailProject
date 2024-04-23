@@ -43,7 +43,8 @@ public class Travel {
 				"Select Option", 
 				200, 
 				true, false);
-		addRiver("Kansas River", "River description here", "Select Option", 50, true, true);
+		addRiver("Kansas River", "Also known as the Kaw,", "Select Option", 50, true, true);
+		addRiver("Big Blue River", "River description here", "Select Option", 30, true, true);
 		addLocation("Fort Kearney", 
 				"Fort Kearney was established in the 1840s to protect pioneers, traders, "
 				+ "and emigrants as they journeyed through the frontier. "
@@ -58,14 +59,22 @@ public class Travel {
 				"Select Option", 
 				75, 
 				true, false);
-		addRiver("Big Blue River", "River description here", "Select Option", 30, true, true);
+		// TODO add realistic distances
+		addLocation("Chimney Rock", "add description", "Select Option", 100, true, false);
+		addLocation("Fort Laramie", "add description", "Select Option", 100, true, false);
+		addLocation("Independence Rock", "add description", "Select Option", 100, true, false);
+		addLocation("South Pass", "add description", "Select Option", 100, true, false);
 		addRiver("Green River", "River description here", "Select Option", 20, true, true);
+		addLocation("Fort Bridger", "add description", "Select Option", 100, true, false);
+		addLocation("Soda Springs", "add description", "Select Option", 100, true, false);
+		addLocation("Fort Hall", "add description", "Select Option", 100, true, false);
 		addRiver("Snake River", "River description here", "Select Option", 50, true, true);
-		addLocation("The end!", 
-				"You made it!", 
-				"Select Option", 
-				10000, 
-				true, false);
+		addLocation("Fort Boise", "add description", "Select Option", 100, true, false);
+		addLocation("Blue Mountains", "add description", "Select Option", 100, true, false);
+		addLocation("Fort Walla Walla", "add description", "Select Option", 100, true, false);
+		addLocation("The Dalles", "add description", "Select Option", 100, true, false);
+		addRiver("Columbia River", "add description", "Select Option", 100, true, true);
+		addLocation("Willamette Valley, Oregon", "You made it!", "Select Option", 10000, true, false);
 	}
 		
 	public ArrayList<Location> getMap() {

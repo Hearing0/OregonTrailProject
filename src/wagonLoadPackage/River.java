@@ -29,8 +29,8 @@ public class River extends Location {
 	
 	final int FERRYLENGTH = 4;
 	int[] ferryConditions = new int[FERRYLENGTH];
+	
 	int disTillNext;
-	boolean hasActs;
 
 	 double depth, width;
 	 double swiftness;
@@ -39,6 +39,7 @@ public class River extends Location {
 	final int MUDDYBT = 1;
 	final int FIRMBT = 2;
 	boolean isGuide = false;
+<<<<<<< Updated upstream
 	final int OXENNUM = 4;
 	boolean isFerry = false;
 	 boolean isFord = false;
@@ -55,6 +56,25 @@ public class River extends Location {
 	
 	String[] ferryPrompts = { "Some of your supplies fell overboard!", "You crossed successfully!", "Some of your supplies fell overboard, and you lost a day!"};
 	
+=======
+	boolean hasActs;
+
+	String riverPrompt;
+
+	String[] fordPrompts = { "Muddy crossing, but you did not get stuck.", "Rough crossing, but you did not overturn.",
+			"You got stuck; lose one day",
+			"You overturned!", "Wagon swamped!", "Wagon and oxen swept away!" };
+
+	String[] floatPrompts = { "Some of your supplies got wet!", "Some of your supplies fell overboard!",
+			"Most of your supplies fell overboard, and you got pushed downriver!",
+			"Your wagon overturned, and you lost most of your supplies and got pushed far downstream!",
+			"You crossed successfully, but lost a day!", "You crossed successfully, but lost two days!",
+			"You crossed successfully!" };
+
+	String[] ferryPrompts = { "Some of your supplies fell overboard!", "You crossed successfully!",
+			"Some of your supplies fell overboard, and you lost a day!" };
+
+>>>>>>> Stashed changes
 	Random rand = new Random();
 	int bottomType = rand.nextInt(3);
 	
@@ -386,6 +406,7 @@ public class River extends Location {
 		}
 		
 		return floatConditions;
+<<<<<<< Updated upstream
 		
 	}
 	
@@ -394,6 +415,16 @@ public class River extends Location {
 		isFerry = true;
 		if (swiftness < 8)
 		{
+=======
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int[] ferryRiver() {
+		if (swiftness < 8) {
+>>>>>>> Stashed changes
 			ferryConditions[0] = 0;
 			int slowRand = rand.nextInt(10);
 			int slowCheck = 2;
