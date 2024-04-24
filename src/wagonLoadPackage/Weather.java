@@ -1,6 +1,7 @@
 package wagonLoadPackage;
 
-public class Weather {
+public class Weather extends Travel {
 	double temp;
-	String tempTag;
+	String tempTag = "";
+	int days = actualDays;
 }
