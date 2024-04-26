@@ -44,6 +44,7 @@ public class WagonLoad {
 	
 	// Initialize Wagon
 	private Wagon wagon = new Wagon();
+	private RandomEvent RanEvents = new RandomEvent();
 
 	private JCheckBox chckbxItem1_1;
 	private JCheckBox chckbxItem1_1_1;
@@ -778,6 +779,10 @@ public class WagonLoad {
         			// Update Distance till location
         			int distance = wagon.travel.getCurLocation().getDistance();
         			distanceLbl.setText(distance + "");
+        			//Breanna - checks for random event
+        			RanEvents.eventCheck(distance);
+        			
+        			
         			
         			// Travel to next location on map
         			// If wagon makes it to next location, pop-up location menu
