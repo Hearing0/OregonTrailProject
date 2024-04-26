@@ -23,9 +23,7 @@ public class Travel {
 	
 	// Map Variables
 	ArrayList<Location> map = new ArrayList<Location>(); 	// map of Oregon Trail
-
-	int wagonLocation = 0;			// coordinates for map
-	
+	int wagonLocation = 0;		// coordinates for map
 	
 	/**
 	 * Initialize Travel w/ a filled map
@@ -396,6 +394,22 @@ public class Travel {
     public int getTravelSpeed() {
     	return this.travelSpeed;
     }
+    
+    /**
+	 * Calculates the total distance of the trip by adding the distance between each landmark together
+	 * @return - Integer of the total distance till the final location.
+	 */
+	public int getTotalDistance() {
+		int totalDist = 0;
+		
+		for (int i = wagonLocation; i < map.size(); i++)
+		{
+			Location current = map.get(i);
+			totalDist = totalDist + current.getDistance();
+		}
+		
+		return totalDist;
+	}
     
     
 }

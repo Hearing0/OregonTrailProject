@@ -37,7 +37,7 @@ import java.awt.Font;
  */
 public class WagonLoad {
 
-	private JFrame frmPackYourWagon;
+	public JFrame frmPackYourWagon;
 	private JCheckBox chckbxItem1;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -72,10 +72,11 @@ public class WagonLoad {
 	int days = 0;
 
 
-
+	
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -88,6 +89,7 @@ public class WagonLoad {
 			}
 		});
 	}
+	*/
 
 	/**
 	 * Create the application.
@@ -95,7 +97,7 @@ public class WagonLoad {
 	public WagonLoad() {
 		//System.out.println("Y");
 		initialize();
-		getTotalDistance();
+		totalDist = wagon.travel.getTotalDistance();
 		
 		// Debug: Readout itemList
 		/*
@@ -120,20 +122,7 @@ public class WagonLoad {
 		lblTotalWeight_1.setText(totalWeight + " lbs");
 	}
 	
-	/**
-	 * Calculates the total distance of the trip by adding the distance between each landmark together
-	 */
-	public void getTotalDistance() {
-		totalDist = 0;
 		
-		for (int i = 0; i < map.size(); i++)
-		{
-			Location current = map.get(i);
-			totalDist = totalDist + current.getDistance();
-		}
-	}
-
-	
 	
 	/**
 	 * Initialize the contents of the frame.
@@ -193,8 +182,8 @@ public class WagonLoad {
         frmPackYourWagon.getContentPane().add(btnNewButton_1);
         */
         
-        // Travel Menu Button
-        JButton locationButton = new JButton("MenuUI");
+        // Location Menu Button
+        JButton locationButton = new JButton("Location Menu");
         locationButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		MenuUI menu = new MenuUI(wagon.travel.getCurLocation(), wagon);
@@ -235,6 +224,7 @@ public class WagonLoad {
         
         
         /// Item Panel
+        /*
         JPanel itemPanel = new JPanel();
         itemPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Items", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
         itemPanel.setBounds(16, 16, 265, 260);
@@ -623,7 +613,10 @@ public class WagonLoad {
         });
         chckbxItem1_1_10_1_1.setBounds(6, 172, 99, 23);
         foodPanel.add(chckbxItem1_1_10_1_1);
+        */
         
+        
+        ///
         JPanel panel_1 = new JPanel();
         panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Travel Options", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
         panel_1.setBounds(550, 170, 255, 100);
@@ -847,5 +840,14 @@ public class WagonLoad {
         updateTotalWeight();
         
         frmPackYourWagon.setVisible(true); // Exhibit the frame
-	}	
+	}
+	
+	/**
+	 * Sets the frame to visible.
+	 * @param visible - Boolean that when true 
+	 * allows the frame to be visible.
+	 */
+	public void setVisible(boolean visible) {
+		frmPackYourWagon.setVisible(visible);
+    }
 }
