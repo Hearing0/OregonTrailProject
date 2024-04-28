@@ -17,10 +17,21 @@ import javax.swing.border.TitledBorder;
 
 import wagonLoadPackage.WagonLoad;
 
+
+/**
+ * MainMenu.java 
+ * Created on 4/27/2024
+ * By David Flores
+ * 
+ * Creates a new UI Frame for the Main Menu UI. 
+ * Displays splash art.
+ * Allows user to select between Start, Continue, and Settings.
+ */
 public class MainMenu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	static MainMenu mainFrame;
 
 	/**
 	 * Launch the application.
@@ -29,8 +40,8 @@ public class MainMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainMenu frame = new MainMenu();
-					frame.setVisible(true);
+					mainFrame = new MainMenu();
+					mainFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,7 +53,7 @@ public class MainMenu extends JFrame {
 	 * Create the frame.
 	 */
 	public MainMenu() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -71,12 +82,32 @@ public class MainMenu extends JFrame {
 		
 		/// Buttons
 		
+		
+		// Start Game Button
 		JButton btnStartGame = new JButton("New Game");
 		btnStartGame.setBounds(0, 0, 150, 23);
+		btnStartGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					PreLoadingMenu frame = new PreLoadingMenu();
+					frame.setVisible(true);
+					mainFrame.dispose();					
+				} catch (Exception evt) {
+					evt.printStackTrace();
+				}
+			}
+		});
 		panel.add(btnStartGame);
 		
+		
+		// Continue Game Button
 		JButton btnContinueGame = new JButton("Continue Game");
 		btnContinueGame.setBounds(0, 34, 150, 23);
+		btnContinueGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		panel.add(btnContinueGame);
 		
 		
@@ -86,28 +117,13 @@ public class MainMenu extends JFrame {
 		panel.add(btnSettings);
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		// Continue Game Button
-		btnContinueGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 				
 			}
 		});
 		
-		// Start Game Button
-		btnStartGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					WagonLoad frame = new WagonLoad();
-					frame.setVisible(true);
-				} catch (Exception evt) {
-					evt.printStackTrace();
-				}
-			}
-		});
 		
+		
+				
 		JLabel lblTitle = new JLabel("The Oregon Trail");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setBounds(10, 45, 150, 23);

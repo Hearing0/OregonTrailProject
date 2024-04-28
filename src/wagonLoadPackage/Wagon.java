@@ -15,10 +15,10 @@ import wagonLoadPackage.Travel;
 public class Wagon {
 	
 	// Initialize Variables
-	ArrayList<Item> itemList;
-	int maxWeight = 2400;
-	int wagonPeople = 4;
-	static Travel travel = new Travel();
+	public ArrayList<Item> itemList;
+	public int maxWeight = 2400;
+	public int wagonPeople = 4;
+	public static Travel travel = new Travel();
 
 	//private int totalMoney = 0;
 	
@@ -45,39 +45,42 @@ public class Wagon {
         //totalMoney = 1000;
         
         // Add all 31 items
+        
+        // Add 13 items
         addFoodItem("ApleVingr", 25, false, false);
-        addFoodItem("Bacon", 400, true, true);
-        addFoodItem("Beans", 200, true, true);
+        addFoodItem("Bacon", 400, true, true, true); 		// pre-loaded
+        addFoodItem("Beans", 200, true, true, true); 		// pre-loaded
         addFoodItem("Coffee", 80, false, false);
-        addFoodItem("DryApples", 80, false, true);
-        addFoodItem("Flour", 500, true, false);
-        addFoodItem("Hardtack", 200, false, true);
-        addFoodItem("Lard", 200, true, true);
+        addFoodItem("DryApples", 80, false, true, true); 	// pre-loaded
+        addFoodItem("Flour", 500, true, false, true); 		// pre-loaded
+        addFoodItem("Hardtack", 200, false, true, true); 	// pre-loaded
+        addFoodItem("Lard", 200, true, true, true); 		// pre-loaded
         addFoodItem("Salt", 50, true, false);
         addFoodItem("Sugar", 40, true, false);
-        addFoodItem("Rice", 200, true, true);
-        addFoodItem("Water", 100, true, true);
+        addFoodItem("Rice", 200, true, true, true); 		// pre-loaded
+        addFoodItem("Water", 100, true, true, true); 		// pre-loaded
         addFoodItem("Whiskey", 80, true, true);
 
+        // ammo, clothes, etc.
         addItem("Bedroll", 15);
-        addItem("Smithing Tools", 200);
+        addItem("Smith Tools", 200);
         addItem("Books", 75);
         addItem("Medicine", 10);
-        addItem("CastStove", 300);
+        addItem("Stove", 300);
         addItem("Chair", 20);
-        addItem("Cookware & Utensils", 75);
-        addItem("Granny's Clock", 15);
+        addItem("Cookware", 75);
+        addItem("Old Clock", 15);
         addItem("GunTools", 200);
         addItem("Keepsakes", 40);
         addItem("Leadshot", 25);
         addItem("Mirror", 15);
         addItem("Gunpower", 80);
-        addItem("Tent & Gear", 150);
+        addItem("Tent Gear", 150);
         addItem("Tools", 50);
         addItem("Toys", 15);
-        addItem("Wagon Wheel",10);
-        addItem("Wagon Axle",10);
-        addItem("Wagon Tongue",10);
+        addItem("W Wheel",10);
+        addItem("W Axle",10);
+        addItem("W Tongue",10);
         
     }
     
@@ -92,7 +95,7 @@ public class Wagon {
     }
     
     /**
-     * Creates and adds new food item to the item HashMap
+     * Creates and adds new unloaded food item to the item HashMap
      * @param name - Name of the item
      * @param weight - Weight of the item
      * @param cookable - Whether the food item can be cooked.
@@ -100,6 +103,19 @@ public class Wagon {
      */
     public void addFoodItem(String name, int weight, boolean cookable, boolean edible) {
     	FoodItem item = new FoodItem(name, weight, cookable, edible);
+    	itemList.add(item);
+    }
+    
+    /**
+     * Creates and adds new loaded food item to the item HashMap
+     * @param name - Name of the item
+     * @param weight - Weight of the item
+     * @param cookable - Whether the food item can be cooked.
+     * @param edible - Whether the food item can be eaten.
+     * @param isLoaded - Whether the food item is loaded
+     */
+    public void addFoodItem(String name, int weight, boolean cookable, boolean edible, boolean isLoaded) {
+    	FoodItem item = new FoodItem(name, weight, cookable, edible, isLoaded);
     	itemList.add(item);
     }
     
