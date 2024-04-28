@@ -760,6 +760,10 @@ public class WagonLoad {
         distanceLbl.setBounds(407, 279, 60, 23);
         frmPackYourWagon.getContentPane().add(distanceLbl);
 
+        JLabel dateLabel = new JLabel("");
+        dateLabel.setBounds(26, 278, 189, 23);
+        frmPackYourWagon.getContentPane().add(dateLabel);
+
         // Travel Button
         JButton btnNewButton = new JButton("\"Travel\"");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -768,7 +772,6 @@ public class WagonLoad {
                 // Calculate foodWeight
                 int foodWeight = wagon.getFoodWeight();
                 int totalWeight = wagon.getTotalWeight();
-                wagon.travel.increaseDays(); // increases days
 
                 lblTotalWeight_1.setText(totalWeight + " lbs");
 
@@ -776,7 +779,8 @@ public class WagonLoad {
                 // TODO: Move to after isEnoughFoodToTravel check
                 if (wagon.travel.isEnoughFoodToTravel(foodWeight)) {
                     // Keep track of date
-                    days++;
+                    wagon.date.increaseDays(); // increases days
+                    dateLabel.setText(wagon.date.getDate());
 
                     // Update Distance till location
                     int distance = wagon.travel.getCurLocation().getDistance();

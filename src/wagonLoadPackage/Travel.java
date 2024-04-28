@@ -21,8 +21,6 @@ public class Travel {
 	int foodConsumeMod = consumeSelect * 4; // (1 to 3) * 4 people on wagon
 	double milesTillEnd = 2200;
 
-	int displayDays = 0, actualDays = 0;
-
 	// Map Variables
 	ArrayList<Location> map = new ArrayList<Location>(); // map of Oregon Trail
 
@@ -85,43 +83,6 @@ public class Travel {
 	 */
 	public ArrayList<Location> getMap() {
 		return map;
-	}
-
-	/**
-	 * increments the day value
-	 */
-	public void increaseDays() {
-		displayDays++;
-		actualDays++;
-	}
-
-	/**
-	 * determines an actual day value based on the month the user chose to start in,
-	 * and will allow for semi-accurate weather data once implemented
-	 * 
-	 * @param month - the month that the user starts in
-	 */
-	public void setDate(String month) {
-		if (month == "March") {
-			actualDays = 0;
-		} else if (month == "April") {
-			actualDays = 31;
-		} else if (month == "May") {
-			actualDays = 61;
-		} else if (month == "June") {
-			actualDays = 92;
-		} else if (month == "July") {
-			actualDays = 112;
-		}
-	}
-
-	/**
-	 * returns the number of days since start for display
-	 * 
-	 * @return an integer representing the number of days
-	 */
-	public int getDisplayDays() {
-		return displayDays;
 	}
 
 	/**
