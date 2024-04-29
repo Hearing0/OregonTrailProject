@@ -48,7 +48,7 @@ public class PreLoadingMenu extends JFrame {
 	private JPanel contentPane;
 	public JFrame frmPreLoad;
 	private JLabel lblTotalWeight_1;
-	private JTextField textFieldPrompt;
+	private JTextField textFieldWeightEditor;
 	private Map<String, JCheckBox> itemCheckBoxes = new HashMap<String, JCheckBox>();
 	
 	
@@ -370,14 +370,16 @@ public class PreLoadingMenu extends JFrame {
         lblStartPrompt.setBounds(316, 18, 223, 20);
         panel.add(lblStartPrompt);
         
-        textFieldPrompt = new JTextField();
-        textFieldPrompt.addActionListener(new ActionListener() {
+        
+        // Weight Editor - David Flores
+        textFieldWeightEditor = new JTextField();
+        textFieldWeightEditor.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		// TODO: test!!!
         		
         		try {
         			// Interpret Entered Text as Item and Weight
-        			String changeTxt = textFieldPrompt.getText();
+        			String changeTxt = textFieldWeightEditor.getText();
         			String[] arrTxt = changeTxt.split(" ");
         			
         			System.out.println( arrTxt[0] );
@@ -403,9 +405,9 @@ public class PreLoadingMenu extends JFrame {
         		}
         	}
         });
-        textFieldPrompt.setBounds(419, 267, 146, 20);
-        frmPreLoad.getContentPane().add(textFieldPrompt);
-        textFieldPrompt.setColumns(10);
+        textFieldWeightEditor.setBounds(419, 267, 146, 20);
+        frmPreLoad.getContentPane().add(textFieldWeightEditor);
+        textFieldWeightEditor.setColumns(10);
         
         JLabel lblPrompt = new JLabel("Change Item Weight:");
         lblPrompt.setHorizontalAlignment(SwingConstants.TRAILING);
