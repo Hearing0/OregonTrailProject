@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -21,6 +24,7 @@ import wagonLoadPackage.Wagon;
 import wagonLoadPackage.WagonLoad;
 
 import javax.swing.SwingConstants;
+import javax.swing.JTextField;
 
 
 /**
@@ -31,7 +35,6 @@ import javax.swing.SwingConstants;
  * Creates a new UI Frame for the Main Menu UI. 
  * Allows user to pre-select their wagon load before starting the game.
  * TODO: Adjust for singular foodItem class
- * TODO: Add weight editting
  */
 public class PreLoadingMenu extends JFrame {
 
@@ -45,6 +48,8 @@ public class PreLoadingMenu extends JFrame {
 	private JPanel contentPane;
 	public JFrame frmPreLoad;
 	private JLabel lblTotalWeight_1;
+	private JTextField textFieldPrompt;
+	private Map<String, JCheckBox> itemCheckBoxes = new HashMap<String, JCheckBox>();
 	
 	
 	
@@ -75,7 +80,7 @@ public class PreLoadingMenu extends JFrame {
 	
 	/**
 	 * Creates a JCheckBox with specified item name and weight using 
-	 * the index provided.
+	 * the index provided. Adds to current JCheckBox Map for UI updating.
 	 * - David Flores
 	 * @param index - Integer that specifies which item to fill out the 
 	 * JCheckBox.
@@ -83,10 +88,13 @@ public class PreLoadingMenu extends JFrame {
 	 */
 	public JCheckBox ItemCheckBox(Item item) {
 		
+		// Identify item and if its pre-loaded
 		String text = item.getName() + ": " + item.getWeight();
 		boolean selected = item.getIsLoaded();
 		
+		// Create and log JCheckBox
 		JCheckBox box = new JCheckBox(text, selected);
+		itemCheckBoxes.put(item.getName(), box);
 		
 		return box;
 	}
@@ -97,13 +105,64 @@ public class PreLoadingMenu extends JFrame {
 	 * Calculates the totalWeight, then updates UI label's text.
 	 * - David Flores
 	 */
-	public void updateTotalWeight() {
+	public void updateTotalWeightUI() {
 		// Calculate totalWeight
 		totalWeight = wagon.getTotalWeight();
 		
 		//Update lbl text
 		lblTotalWeight_1.setText(totalWeight + " lbs");
 	}
+	
+	/**
+	 * Updates the "Name"'s ItemCheckBox weight.
+	 * - David Flores
+	 * @param name - Name/Key of the element that needs its UI updated.
+	 */
+	public void updateItemWeightUI(String name) {
+		
+		// If name has an ItemCheckBox, update its label
+		if (itemCheckBoxes.containsKey(name)) {
+			// Get Item and JCheckBox
+			Item item = wagon.getItem(name);
+			JCheckBox itemBox = itemCheckBoxes.get(name);
+			
+			// Update JCheckBox label
+			String newLabel = item.getName() + ": " + item.getWeight();
+			itemBox.setText(newLabel);
+		}
+		// Fail: Display error to Dev
+		else
+		{
+			System.out.println("Error: Name is not recognized");
+		}
+	}
+	
+	/**
+	 * Updates the "Name"'s ItemCheckBox weight.
+	 * - David Flores
+	 * @param name - Name/Key of the element that needs its UI updated.
+	 */
+	public void updateItemWeightUI(Item item) {
+		
+		// If Item exists in itemList, update its label
+		if (wagon.itemList.contains(item)) {
+			// Get Item name and JCheckBox
+			String name = item.getName();
+			JCheckBox itemBox = itemCheckBoxes.get(name);
+			
+			// Update JCheckBox label
+			String newLabel = item.getName() + ": " + item.getWeight();
+			itemBox.setText(newLabel);
+			itemBox.setSelected(item.getIsLoaded());
+		}
+		
+		// Fail: Display error to Dev
+		else
+		{
+			System.out.println("Error: Item is not recognized");
+		}
+	}
+	
 	
 	/**
 	 * Initializes the frame.
@@ -132,13 +191,13 @@ public class PreLoadingMenu extends JFrame {
         
         lblTotalWeight_1 = new JLabel("____");
         lblTotalWeight_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
-        lblTotalWeight_1.setBounds(150, 18, 75, 14);
+        lblTotalWeight_1.setBounds(150, 18, 138, 14);
         panel.add(lblTotalWeight_1);
         
         JLabel lblWeightWarning = new JLabel("Max Weight is 2400 lbs!");
         lblWeightWarning.setHorizontalAlignment(SwingConstants.CENTER);
         lblWeightWarning.setFont(new Font("Tahoma", Font.PLAIN, 10));
-        lblWeightWarning.setBounds(79, 47, 125, 14);
+        lblWeightWarning.setBounds(75, 43, 125, 14);
         panel.add(lblWeightWarning);
                 
         // Menu Content Panel
@@ -147,9 +206,11 @@ public class PreLoadingMenu extends JFrame {
 				
         
         /// Food Panel
+		int foodRows = 8;
+		
         JPanel foodPanel = new JPanel();
         foodPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Food", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-        foodPanel.setBounds(300, 16, 265, 305);
+        foodPanel.setBounds(300, 16, 265, (32 + foodRows * 26));	// 
         frmPreLoad.getContentPane().add(foodPanel);
         foodPanel.setLayout(null);
 
@@ -175,20 +236,22 @@ public class PreLoadingMenu extends JFrame {
 	        	checkBox.addActionListener(new ActionListener() {
 		        	public void actionPerformed(ActionEvent e) {
 		        		item.setIsLoaded(checkBox.isSelected()); 
-		        		updateTotalWeight();
+		        		updateTotalWeightUI();
 		        	}
 		        });
-	        	checkBox.setBounds( (6 + j * 110) , (16 + ( row % 8 ) * 26) , 110, 35);
+	        	checkBox.setBounds( (6 + j * 110) , (16 + row * 26) , 110, 35);
 	        	foodPanel.add(checkBox);
 	        	
 	        	// Increment to next item and row
 	        	x++;
 	        	row++;
-	        } while ( row < 10 && x < 13 && x < wagon.getItemListSize());
+	        } while ( row < foodRows && x < 13 && x < wagon.getItemListSize());
         }
         
         
         /// Item Panel 
+        int itemRows = 10;
+        
 		JPanel itemPanel = new JPanel();
 	    itemPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Items", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 	    itemPanel.setBounds(16, 16, 265, 305);
@@ -217,16 +280,16 @@ public class PreLoadingMenu extends JFrame {
 	        	checkBox.addActionListener(new ActionListener() {
 		        	public void actionPerformed(ActionEvent e) {
 		        		item.setIsLoaded(checkBox.isSelected()); 
-		        		updateTotalWeight();
+		        		updateTotalWeightUI();
 		        	}
 		        });
-	        	checkBox.setBounds( (6 + j * 110) , (16 + ( row ) * 26) , 110, 35);
+	        	checkBox.setBounds( (6 + j * 110) , (16 + row * 26) , 110, 35);
 	        	itemPanel.add(checkBox);
 	        	
 	        	// Increment to next item in list
 	        	x++;
 	        	row++;
-	        } while ( row < 10 && x < wagon.getItemListSize());
+	        } while ( row < itemRows && x < wagon.getItemListSize());
         }
         
         
@@ -234,11 +297,11 @@ public class PreLoadingMenu extends JFrame {
         JLabel lblTravelResult = new JLabel("");
         lblTravelResult.setHorizontalAlignment(SwingConstants.CENTER);
         lblTravelResult.setFont(new Font("Tahoma", Font.PLAIN, 10));
-        lblTravelResult.setBounds(306, 47, 233, 14);
+        lblTravelResult.setBounds(173, 30, 175, 14);
         panel.add(lblTravelResult);
         
         // Travel Button - David Flores
-        JButton btnNewButton = new JButton("\"Travel\"");
+        JButton btnNewButton = new JButton("Start Traveling");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -299,12 +362,64 @@ public class PreLoadingMenu extends JFrame {
         		
         	}
         });
-        btnNewButton.setBounds(377, 18, 89, 23);
+        btnNewButton.setBounds(316, 41, 223, 21);
         panel.add(btnNewButton);
+        
+        JLabel lblStartPrompt = new JLabel("Once ready, click the button below!");
+        lblStartPrompt.setHorizontalAlignment(SwingConstants.CENTER);
+        lblStartPrompt.setBounds(316, 18, 223, 20);
+        panel.add(lblStartPrompt);
+        
+        textFieldPrompt = new JTextField();
+        textFieldPrompt.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		// TODO: test!!!
+        		
+        		try {
+        			// Interpret Entered Text as Item and Weight
+        			String changeTxt = textFieldPrompt.getText();
+        			String[] arrTxt = changeTxt.split(" ");
+        			
+        			System.out.println( arrTxt[0] );
+        			System.out.println( arrTxt[1] );
+        			
+        			Item item = wagon.getItem(arrTxt[0]);
+        			
+        			// Set Item weight 
+        			item.setWeight( Integer.parseInt(arrTxt[1] ) );
+        			
+        			// Update Weight labels
+        			updateTotalWeightUI();
+        			updateItemWeightUI(item);
+        			
+        		} catch (Exception evt) {
+        			JOptionPane.showMessageDialog(new JFrame(), 
+        					"Invalid Prompt entered!\n"
+        					+ "Please enter the prompt like the following :\n"
+        					+ "rice 42", 
+        					"Error",
+        					JOptionPane.ERROR_MESSAGE
+        				);        		
+        		}
+        	}
+        });
+        textFieldPrompt.setBounds(419, 267, 146, 20);
+        frmPreLoad.getContentPane().add(textFieldPrompt);
+        textFieldPrompt.setColumns(10);
+        
+        JLabel lblPrompt = new JLabel("Change Item Weight:");
+        lblPrompt.setHorizontalAlignment(SwingConstants.TRAILING);
+        lblPrompt.setBounds(286, 267, 123, 20);
+        frmPreLoad.getContentPane().add(lblPrompt);
+        
+        JLabel lblExamplerice = new JLabel("Example: \"rice 400\"");
+        lblExamplerice.setHorizontalAlignment(SwingConstants.CENTER);
+        lblExamplerice.setBounds(300, 301, 265, 20);
+        frmPreLoad.getContentPane().add(lblExamplerice);
         
 				
 		// Pre-Update UI Elements
-		updateTotalWeight();
+		updateTotalWeightUI();
 
 		
 		setContentPane(contentPane);

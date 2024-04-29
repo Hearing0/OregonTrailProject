@@ -184,7 +184,9 @@ public class Wagon {
     	for (Item item : itemList) {
     		
     		// If match found, return item
-    		if (item.getName() == name) {
+    		if (item.getName().equalsIgnoreCase(name)) {
+    			System.out.println( item.getName() + " the item has been found!");
+    			
     			result = item;
     			break;
     		}

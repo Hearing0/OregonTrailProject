@@ -124,7 +124,7 @@ public class WagonLoad {
 	 * Updates the UI element for total weight.
 	 * Calculates the totalWeight, then updates UI label's text.
 	 */
-	public void updateTotalWeight() {
+	public void updateTotalWeightUI() {
 		// Calculate totalWeight
 		int totalWeight = wagon.getTotalWeight();
 		
@@ -456,7 +456,7 @@ public class WagonLoad {
         
         
         // Pre-Update UI Elements
-        updateTotalWeight();
+        updateTotalWeightUI();
         
         frmPackYourWagon.setVisible(true); // Exhibit the frame
 	}
