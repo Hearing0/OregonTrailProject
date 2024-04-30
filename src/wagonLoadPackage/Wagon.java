@@ -15,10 +15,10 @@ import wagonLoadPackage.Travel;
 public class Wagon {
 	
 	// Initialize Variables
-	ArrayList<Item> itemList;
-	int maxWeight = 2400;
+	public ArrayList<Item> itemList;
+	public int maxWeight = 2400;
 	int wagonPeople = 4;
-	static Travel travel = new Travel();
+	public static Travel travel = new Travel();
     Date date = new Date();
 	public int totalMoney = 1000;
 	
