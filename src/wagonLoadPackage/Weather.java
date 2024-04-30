@@ -1,24 +1,39 @@
 package wagonLoadPackage;
 
 import java.util.Random;
+/**
+ * Weather.java
+ * Version 1.0 - April 30, 2024
+ * Author - Cody Dusek
+ * 
+ * 
+ */
 
 public class Weather extends Date {
-	double avgTemp;
-	double avgPrecip;
-	String tempTag = "";
-	Location current = getCurLocation();
-	Random rand = new Random();
-	String name = current.getName();
+	
+	boolean willSnow = false;
+	boolean willRain = false; 
+	boolean isDrought = false; //
+	boolean isSevere = false; //
+	boolean isHot = false;
+	boolean isCold = false;
+	boolean isRainy = false; //
+	boolean isVeryRainy = false; //
+	
+	double rainLevel = 0;
+	double snowLevel = 0;
+	double groundWaterLevel; //
+	double groundSnowLevel; //
+	
 	int wagonLocale = getWagonLocation();
 	int location = parseLocation();
-	boolean willSnow = false;
-	boolean willRain = false;
-	boolean isDrought = false;
-	boolean isSevere = false;
-	double rainLevel = 0;
-	double groundWaterLevel;
-	String rainResults;
-	String tempResults;
+	int daysConsistent = 0;
+	
+	String rainResults; //
+	String tempResults; //
+	
+	Random rand = new Random();
+	
 
 	// average temperature in Fahrenheit per month for each location zone
 	// first number is columns, second is rows
@@ -37,7 +52,7 @@ public class Weather extends Date {
 			{ 0.51, 0.57, 0.82, 1.29, 2.02, 1.61, 1.41, 0.85, 1.08, 1.11, 0.76, 0.49 }, // Casper, WY
 			{ 0.41, 0.58, 1.16, 1.87, 2.20, 1.27, 0.78, 0.61, 1.05, 1.29, 0.86, 0.58 }, // Lander, WY
 			{ 1.24, 0.99, 1.39, 1.23, 1.39, 0.69, 0.33, 0.24, 0.58, 0.75, 1.35, 1.55 }, // Boise, ID
-			{ 4.88, 3.66, 3.68, 2.73, 2.47, 1.70, 0.65, 0.67, 1.47, 3.00, 5.63, 5.49 } // Portland, OR
+			{ 4.88, 3.66, 3.68, 2.73, 2.47, 1.70, 0.65, 0.67, 1.47, 3.00, 5.63, 5.49 }  // Portland, OR
 	};
 
 	private int parseLocation() {
@@ -59,20 +74,31 @@ public class Weather extends Date {
 	}
 
 	private void tempCheck() {
+		isCold = false;
+		isHot = false;
 		int temp = averageTemps[location][month];
 		int tempVary = rand.nextInt(-20, 20);
 		int finalTemp = temp + tempVary;
 
-		if (finalTemp > 90)
+		if (finalTemp > 90) {
 			tempResults = "Very hot";
-		else if (finalTemp > 70)
+			isHot = true;
+		}
+		else if (finalTemp > 70) {
 			tempResults = "Hot";
-		else if (finalTemp > 50)
+			isHot = true;
+		}
+		else if (finalTemp > 50) {
 			tempResults = "Warm";
-		else if (finalTemp > 30)
+			isHot = true;
+		}
+		else if (finalTemp > 30) {
 			tempResults = "Cool";
+			isCold = true;
+		}
 		else if (finalTemp > 10) {
 			tempResults = "Cold";
+			isCold = true;
 			willSnow = true;
 		} else if (finalTemp < 10) {
 			tempResults = "Very Cold";
@@ -86,29 +112,52 @@ public class Weather extends Date {
 		double rainVary = rand.nextDouble(-0.5, 0.5);
 		double finalRain = avgRain + rainVary;
 		double rainRand = rand.nextDouble(8);
+		
+		isRainy = false;
+		isVeryRainy = false;
+		willRain = false;
+		willSnow = false;
 
 		if (rainRand < finalRain)
 			willRain = true;
 
-		if (willRain) {
-			int rainAmount = rand.nextInt(10);
-
-			if (rainAmount < 3)
+		int rainAmount = rand.nextInt(10);
+		if (willSnow) {
+			if (rainAmount < 3) {
+				snowLevel = 8;
+				isVeryRainy = true;
+			}
+			else {
+				snowLevel = 3;
+				isRainy = true;
+			}
+			groundSnowLevel += snowLevel;
+		} 
+		else if (willRain) {
+			if (rainAmount < 3) {
 				rainLevel = 0.8;
-			else
+				isVeryRainy = true;
+			}
+			else {
 				rainLevel = 0.2;
+				isRainy = true;
+			}
+			groundWaterLevel += rainLevel;
 		}
 		getRain();
 	}
 
 	private void getRain() {
 		if (willRain) {
-			if (willSnow) {
+			if (willSnow) 
+			{
 				if (rainLevel == 0.8)
 					rainResults = "Very snowy";
 				else if (rainLevel == 0.2)
 					rainResults = "Snowy";
-			} else {
+			} 
+			else 
+			{
 				if (rainLevel == 0.8)
 					rainResults = "Very rainy";
 				else if (rainLevel == 0.2)
@@ -120,13 +169,38 @@ public class Weather extends Date {
 
 	private void rainLevelCheck() {
 		if (willRain) {
-			groundWaterLevel *= 0.9;
+			groundWaterLevel -= (0.1 * groundWaterLevel);
 			groundWaterLevel += rainLevel;
+			if (groundWaterLevel < 0.2)
+				isDrought = true;
+			if (groundWaterLevel < 0.1)
+				isSevere = true;
 		}
-		if (groundWaterLevel < 0.2)
-			isDrought = true;
-		if (groundWaterLevel < 0.1)
-			isSevere = true;
+	}
+	
+	private void snowLevelCheck() {
+		if (willSnow) 
+		{
+			groundSnowLevel += snowLevel;
+			if (isCold)
+			{
+				if (isVeryRainy == false)
+				{
+					groundSnowLevel -= (0.03 * groundSnowLevel);
+				}
+			}
+			else if (isHot)
+			{
+				if (isRainy == false)
+				{
+					groundSnowLevel -= 5;
+					groundWaterLevel += 0.5;
+				}
+			}
+		}
+		
+		if (groundSnowLevel < 0)
+			groundSnowLevel = 0;
 	}
 
 	public void getNewWeather() {
@@ -135,6 +209,57 @@ public class Weather extends Date {
 			rainCheck();
 			tempCheck();
 			rainLevelCheck();
+			snowLevelCheck();
+			daysConsistent = 0;
 		}
+		else
+			daysConsistent++;
+	}
+	
+	//Getters
+	
+	public String getRainResults()
+	{
+		return rainResults;
+	}
+	
+	public String getTempResults()
+	{
+		return tempResults;
+	}
+	
+	public double getGroundWaterLevel()
+	{
+		return groundWaterLevel;
+	}
+	
+	public double getGroundSnowLevel()
+	{
+		return groundSnowLevel;
+	}
+	
+	public boolean getIsRainy()
+	{
+		return isRainy;
+	}
+	
+	public boolean getIsVeryRainy()
+	{
+		return isVeryRainy;
+	}
+	
+	public boolean getIsDrought()
+	{
+		return isDrought;
+	}
+	
+	public boolean getIsSevere()
+	{
+		return isSevere;
+	}
+	
+	public int getDaysConsistent()
+	{
+		return daysConsistent;
 	}
 }
