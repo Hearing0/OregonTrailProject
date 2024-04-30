@@ -41,6 +41,8 @@ public class WagonLoad {
 	private JTextField textField;
 	private JTextField textField_1;
 	
+	RandomEvent Events = new RandomEvent();
+	
 	// Initialize Wagon
 	private Wagon wagon;
 
@@ -394,6 +396,8 @@ public class WagonLoad {
                     // Update Distance till location
                     int distance = wagon.travel.getCurLocation().getDistance();
                     distanceLbl.setText(distance + "");
+                    //random event
+                    Events.eventCheck(distance);
 
                     // Travel to next location on map
                     // If wagon makes it to next location, pop-up location menu
