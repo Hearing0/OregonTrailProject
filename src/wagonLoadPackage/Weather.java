@@ -3,7 +3,7 @@ package wagonLoadPackage;
 public class Weather extends Date {
 	double temp;
 	String tempTag = "";
-	Location current = travel.getCurLocation();
+	//Location current = travel.getCurLocation();
 	
 	public void setWeather(int month)
 	{
