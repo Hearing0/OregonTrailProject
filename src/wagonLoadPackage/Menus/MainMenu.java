@@ -15,8 +15,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-import wagonLoadPackage.TravelMenu;
-
 
 /**
  * MainMenu.java 
