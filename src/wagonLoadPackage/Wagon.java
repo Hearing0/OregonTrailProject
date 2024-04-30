@@ -51,40 +51,43 @@ public class Wagon {
         // totalMoney = 1000;
 
         // Add all 31 items
+        
+        // Add 13 items
         addFoodItem("ApleVingr", 25, false, false);
-        addFoodItem("Bacon", 400, true, true);
-        addFoodItem("Beans", 200, true, true);
+        addFoodItem("Bacon", 400, true, true, true); 		// pre-loaded
+        addFoodItem("Beans", 200, true, true, true); 		// pre-loaded
         addFoodItem("Coffee", 80, false, false);
-        addFoodItem("DryApples", 80, false, true);
-        addFoodItem("Flour", 500, true, false);
-        addFoodItem("Hardtack", 200, false, true);
-        addFoodItem("Lard", 200, true, true);
+        addFoodItem("DryApples", 80, false, true, true); 	// pre-loaded
+        addFoodItem("Flour", 500, true, false, true); 		// pre-loaded
+        addFoodItem("Hardtack", 200, false, true, true); 	// pre-loaded
+        addFoodItem("Lard", 200, true, true, true); 		// pre-loaded
         addFoodItem("Salt", 50, true, false);
         addFoodItem("Sugar", 40, true, false);
-        addFoodItem("Rice", 200, true, true);
-        addFoodItem("Water", 100, true, true);
+        addFoodItem("Rice", 200, true, true, true); 		// pre-loaded
+        addFoodItem("Water", 100, true, true, true); 		// pre-loaded
         addFoodItem("Whiskey", 80, true, true);
 
+        // ammo, clothes, etc.
         addItem("Bedroll", 15);
-        addItem("Smithing Tools", 200);
+        addItem("Smith Tools", 200);
         addItem("Books", 75);
         addItem("Medicine", 10);
-        addItem("CastStove", 300);
+        addItem("Stove", 300);
         addItem("Chair", 20);
-        addItem("Cookware & Utensils", 75);
-        addItem("Granny's Clock", 15);
+        addItem("Cookware", 75);
+        addItem("Old Clock", 15);
         addItem("GunTools", 200);
         addItem("Keepsakes", 40);
         addItem("Leadshot", 25);
         addItem("Mirror", 15);
         addItem("Gunpower", 80);
-        addItem("Tent & Gear", 150);
+        addItem("Tent Gear", 150);
         addItem("Tools", 50);
         addItem("Toys", 15);
-        addItem("Wagon Wheel", 10);
-        addItem("Wagon Axle", 10);
-        addItem("Wagon Tongue", 10);
-
+        addItem("W Wheel",10);
+        addItem("W Axle",10);
+        addItem("W Tongue",10);
+        
     }
 
     /**
@@ -99,10 +102,9 @@ public class Wagon {
     }
 
     /**
-     * Creates and adds new food item to the item HashMap
-     * 
-     * @param name     - Name of the item
-     * @param weight   - Weight of the item
+     * Creates and adds new unloaded food item to the item HashMap
+     * @param name - Name of the item
+     * @param weight - Weight of the item
      * @param cookable - Whether the food item can be cooked.
      * @param edible   - Whether the food item can be eaten.
      */
@@ -110,7 +112,20 @@ public class Wagon {
         FoodItem item = new FoodItem(name, weight, cookable, edible);
         itemList.add(item);
     }
-
+    
+    /**
+     * Creates and adds new loaded food item to the item HashMap
+     * @param name - Name of the item
+     * @param weight - Weight of the item
+     * @param cookable - Whether the food item can be cooked.
+     * @param edible - Whether the food item can be eaten.
+     * @param isLoaded - Whether the food item is loaded
+     */
+    public void addFoodItem(String name, int weight, boolean cookable, boolean edible, boolean isLoaded) {
+    	FoodItem item = new FoodItem(name, weight, cookable, edible, isLoaded);
+    	itemList.add(item);
+    }
+    
     /**
      * Calculates the total weight of the loaded items on the wagon.
      * 
@@ -173,18 +188,20 @@ public class Wagon {
      * @return - Return Item instance w/ matching name. Returns null if non-existant
      */
     public Item getItem(String name) {
-        Item result = null;
-
-        // Search list for item w/ matching name
-        for (Item item : itemList) {
-
-            // If match found, return item
-            if (item.getName() == name) {
-                result = item;
-                break;
-            }
-        }
-
+    	Item result = null;
+    	
+    	// Search list for item w/ matching name
+    	for (Item item : itemList) {
+    		
+    		// If match found, return item
+    		if (item.getName().equalsIgnoreCase(name)) {
+    			System.out.println( item.getName() + " the item has been found!");
+    			
+    			result = item;
+    			break;
+    		}
+    	}
+    	
         return result;
     }
 
