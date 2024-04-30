@@ -356,10 +356,7 @@ public class PreLoadingMenu extends JFrame {
 				else {
 					// Prompt Try Again
 					lblTravelResult.setText("Not enough food! Try Again!");
-				}
-    			
-        		        		
-        		
+				}        		
         	}
         });
         btnNewButton.setBounds(316, 41, 223, 21);
@@ -374,9 +371,7 @@ public class PreLoadingMenu extends JFrame {
         // Weight Editor - David Flores
         textFieldWeightEditor = new JTextField();
         textFieldWeightEditor.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		// TODO: test!!!
-        		
+        	public void actionPerformed(ActionEvent e) {        		
         		try {
         			// Interpret Entered Text as Item and Weight
         			String changeTxt = textFieldWeightEditor.getText();
