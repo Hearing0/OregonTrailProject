@@ -43,7 +43,7 @@ public class WagonLoad {
 	
 	// Initialize Wagon
 	private Wagon wagon;
-	private RandomEvent RanEvents = new RandomEvent();
+	//private RandomEvent RanEvents = new RandomEvent();
 
     private JCheckBox chckbxItem1_1;
     private JCheckBox chckbxItem1_1_1;
@@ -205,7 +205,7 @@ public class WagonLoad {
         locationButton.setBounds(226, 313, 89, 23);
         frmPackYourWagon.getContentPane().add(locationButton);
 
-        // Breanna Sproul - Store button for easy testing
+        // Breanna Sproul - Store button for easy testing, can be removed later
         JButton storeButton = new JButton("Store");
         storeButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {

@@ -15,7 +15,6 @@ public class Store extends Wagon{
 	private JTextField foodBuyTextBox;
 	private JTextField wheelBuyTextBox;
 	private JTextField bulletBuyTextBox;
-	//private int totalMoney = 1000;
 	Wagon wagonS;
 	int moneyShown;
 	
@@ -25,7 +24,6 @@ public class Store extends Wagon{
 	public Store(Wagon wagon) {
 		this.wagonS = wagon;
 		moneyShown = wagonS.getTotalMoney();
-		//System.out.println(wagonS.getTotalMoney());
 		initialize();
 	}
 	
@@ -37,7 +35,6 @@ public class Store extends Wagon{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		//System.out.println(wagonS.getTotalMoney());
 		//base frame 
 		Storeframe = new JFrame();
 		Storeframe.setBounds(100, 100, 450, 300);
@@ -93,7 +90,6 @@ public class Store extends Wagon{
 		JButton buyButton = new JButton("Buy");
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//totalMoneyText.setText("" + wagonS.getTotalMoney());
 				//get the numbers from the text boxes and convert to int
 				String foodString = foodBuyTextBox.getText();
 				int buyFood = Integer.parseInt(foodString);
@@ -105,14 +101,12 @@ public class Store extends Wagon{
 				//determine the cost for the amount of items chosen to buy 
 				int totalCost = (buyFood * 50) + (buyWheel * 100) + (buyBullet * 10);
 				
-				//System.out.println(totalMoney);
 				//checks if an item is >0 and if the player has enough money to buy items
 				//if the player buys an item, then the cost is subtracted and item is added to wagon
-				if(totalCost == 0) {
+				if(totalCost == 0) { //nothing is selected
 					talkLabel.setText("Uh, you gonna buy anything?");
 				}
-				else if( wagonS.getTotalMoney() >= totalCost) {
-					//totalMoney -= totalCost;
+				else if( wagonS.getTotalMoney() >= totalCost) { //player has enough money to buy
 					wagonS.setTotalMoney(totalCost);
 
 					talkLabel.setText("Thanks for the sale!");
@@ -134,7 +128,7 @@ public class Store extends Wagon{
 					}
 				}
 				else {
-					talkLabel.setText("Hey you don't have enough for that!");
+					talkLabel.setText("Hey you don't have enough for that!"); //player doesnt have enough money
 				}
 				
 			}

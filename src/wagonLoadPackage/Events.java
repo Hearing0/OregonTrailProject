@@ -1,7 +1,5 @@
 package wagonLoadPackage;
 
-//this class is only here cause i couldnt get the arrayList in RandonEvents class to accept objects with mult attributes
-//
 
 public class Events {
 	String event;

@@ -23,10 +23,18 @@ public class Wagon {
 	public int totalMoney = 1000;
 	
 	
-	//attempt to get totalMoney to update after buying from store
+	/**
+	 * Gets the total amount of money in the player's wagon
+	 * @return totalMoney - money in wagon
+	 */
 	public int getTotalMoney() {
 		return totalMoney;
 	}
+	
+	/**
+	 * Sets the new total money in wagon after a cost is applied
+	 * @param costChange - by how much is the total money to be changed
+	 */
 	public void setTotalMoney(int costChange) {
 		totalMoney -= costChange;
 	}

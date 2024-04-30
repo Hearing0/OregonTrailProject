@@ -11,10 +11,14 @@ public class RandomEvent {
 	String name = "";
 	String locator = "";
 	
+	//STILL NEEDS DONE
+	//connect locationID in eventList to places found in location class
+	//get methods to affect systems such as health, travel, weather, and other wagon things once those system are fully set up and finalized
+	//make method(s) that incorporates the eventList
+
+	
 	public RandomEvent(){
 		eventList = new ArrayList<Events>();
-		//will need to adjust the health and other changes once the systems are set up and finalized
-		//should probably make list of locationID needed here and get knowledge from Location class
 		addEvent("Thunderstorm", "General", "", 0, "", 0, false, true);
 		addEvent("Blizzard", "Mountain", "", 0, "", 0, false, true);
 		addEvent("Lost Trail", "General", "", 0, "", 0, true, false);
@@ -28,16 +32,23 @@ public class RandomEvent {
 		
 	}
 	
+	/**
+	 * adds an event to arrayList so it can be easily used in later methods
+	 * @param name - description of event that pops up in dialog box
+	 * @param locationID - where must the event occur at, ex. blizzard cant occur in desert, use general if theres no specific need
+	 * @param whatItem - if an item is being changed, what is the item
+	 * @param itemChange - if an item is being changed, how much is it being changed by (use negative # if it is removing)
+	 * @param whoseHealth - if health is being changed, whose HP is changing
+	 * @param healthChange - if health is being changed, how much is it being changed by (use negative # if it is removing)
+	 * @param affectDate - does this event affect the travel date
+	 * @param increaseRisk - does this event increase risk, ex. if theres heavy fog then theres a greater chance to encounter more events due to low visibility
+	 */
     public void addEvent(String name, String locationID, String whatItem, int itemChange, 
     		String whoseHealth, int healthChange, boolean affectDate, boolean increaseRisk) {
     	Events entry = new Events(name, locationID, whatItem, itemChange, whoseHealth, 
     			healthChange, affectDate, increaseRisk);
         eventList.add(entry);
     }
-    //all attributes needed for event explained below
-    //Events(event name, location it occurs at, what item is being changed, 
-    //how much is item being changed, whose health is being changed, 
-	//how much is health being changed by, does it affect the date, does it increase risk)
 
 	
 	
@@ -45,6 +56,10 @@ public class RandomEvent {
 	//uses rng to randomly check for occurence of random event
 	//basic right now to prepare for weather and traveling changes
 	//may need to alter the odds to  make it similar to actual game, but its good for testing now
+    /**
+     * performs RNG to determine if an event occurs, and uses methods to select the event if event does occur
+     * @param distanceTraveled - distance given by travel button, may be removed later
+     */
 	public void eventCheck(int distanceTraveled) {
 		int die = rng.nextInt(10) + 1;
 		if(die == 1) {
@@ -93,7 +108,10 @@ public class RandomEvent {
 		}
 	}
 	
-	//brings up the dialog box that lists the event that occured
+	/**
+	 * brings up a dialog box that lists the event that occurred
+	 * @param event - grabs the description of the event to display
+	 */
 	public void eventPop(String event) {
 		String textF  = event;
 		String titleF = "An event has occured";

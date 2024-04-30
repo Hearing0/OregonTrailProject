@@ -294,6 +294,7 @@ public class MenuUI {
         descriptionPanel.add(new JScrollPane(descriptionTextArea), BorderLayout.CENTER);
         tabbedPane.addTab("Description", descriptionPanel);
         
+        //adds a store tab
         tabbedPane.addTab("Store", storePanel());
         
 		
