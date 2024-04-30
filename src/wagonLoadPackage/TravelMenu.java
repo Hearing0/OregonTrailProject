@@ -1,4 +1,4 @@
-package wagonLoadPackage.Menus;
+package wagonLoadPackage;
 
 import java.awt.EventQueue;
 
@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import wagonLoadPackage.Location;
-import wagonLoadPackage.Wagon;
+import wagonLoadPackage.Menus.LocationMenu;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;

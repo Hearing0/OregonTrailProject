@@ -23,6 +23,7 @@ import wagonLoadPackage.River;
 import wagonLoadPackage.Trader;
 import wagonLoadPackage.Travel;
 import wagonLoadPackage.Wagon;
+import wagonLoadPackage.TravelMenu;
 
 import javax.swing.JTextArea;
 

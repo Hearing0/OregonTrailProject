@@ -21,6 +21,7 @@ import javax.swing.border.TitledBorder;
 
 import wagonLoadPackage.Item;
 import wagonLoadPackage.Wagon;
+import wagonLoadPackage.TravelMenu;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
