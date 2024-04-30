@@ -20,17 +20,27 @@ public class FoodItem extends Item {
     //int nutrientPerLbs;
     
     
+    /**
+     * Initializes new pre-loaded food item to the item HashMap
+     * @param name - Name of the item
+     * @param weight - Weight of the item (in lbs)
+     * @param cookable - Whether the food item can be cooked.
+     * @param edible - Whether the food item can be eaten.
+     * @param isLoaded - Whether the food item is loaded in the wagon
+     */
+    public FoodItem(String name, int weight, boolean cookable, boolean edible, boolean isLoaded) {
+        super(name, weight, isLoaded);
+        this.cookable = cookable;
+        this.edible = edible;
+    }
     
+        
     /**
      * Initializes new food item to the item HashMap
      * @param name - Name of the item
      * @param weight - Weight of the item (in lbs)
      * @param cookable - Whether the food item can be cooked.
      * @param edible - Whether the food item can be eaten.
-     * 
-     * TODO: Add nutrientsPerLbs
-     * int nutrientPerLbs
-     * this.nutrientPerLbs = nutrientPerLbs;
      */
     public FoodItem(String name, int weight, boolean cookable, boolean edible) {
         super(name, weight);
