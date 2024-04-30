@@ -58,12 +58,11 @@ public class MainMenu extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		
-
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		// Art Label & Border
+		
+		// Art Label & Border - David Flores
         JPanel artPanel = new JPanel();
         artPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Chimmey Rock, John Estel CC NY-BY", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
         artPanel.setBounds(170, 0, 270, 152);
@@ -80,10 +79,11 @@ public class MainMenu extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
+		
+		
 		/// Buttons
 		
-		
-		// Start Game Button
+		// Start Game Button - David Flores
 		JButton btnStartGame = new JButton("New Game");
 		btnStartGame.setBounds(0, 0, 150, 23);
 		btnStartGame.addActionListener(new ActionListener() {

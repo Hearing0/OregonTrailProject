@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import wagonLoadPackage.Location;
-import wagonLoadPackage.MenuUI;
+import wagonLoadPackage.Menus.MenuUI;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -30,7 +30,7 @@ import java.awt.Font;
  * By David Flores
  * 
  * Creates the UI for the wagon worksheet. 
- * Allows user to manage loading, food consumption,
+ * Allows user to manage food consumption and
  * travel speed. Shows max weight and if there is enough
  * food to make the trip, along with some favor text
  * descriptors for food consumption and travel speed. 
@@ -193,7 +193,8 @@ public class WagonLoad {
         */
         
         
-        // Location Menu Button - David Flores
+        /*
+        // Debug: Location Menu Button - David Flores
         JButton locationButton = new JButton("Location Menu");
         locationButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -217,7 +218,7 @@ public class WagonLoad {
         storeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
         storeButton.setBounds(126, 313, 89, 23);
         frmPackYourWagon.getContentPane().add(storeButton);
-        
+        */
                
         
         // Art Label & Border - David Flores
@@ -253,7 +254,7 @@ public class WagonLoad {
         panel_1.add(lblTravelFlavorText);
         
         
-        // Food Consumption Text Field
+        // Food Consumption Text Field - David Flores
         textField = new JTextField("1");
         textField.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -298,7 +299,7 @@ public class WagonLoad {
         lblTravelSpeed.setBounds(135, 16, 100, 14);
         panel_1.add(lblTravelSpeed);
         
-        // Travel Speed Text Field
+        // Travel Speed Text Field - David Flores
         textField_1 = new JTextField("12");
         textField_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -463,6 +464,7 @@ public class WagonLoad {
 	
 	/**
 	 * Sets the frame to visible.
+	 * - David Flores
 	 * @param visible - Boolean that when true 
 	 * allows the frame to be visible.
 	 */

@@ -1,4 +1,4 @@
-package wagonLoadPackage;
+package wagonLoadPackage.Menus;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -18,6 +18,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import wagonLoadPackage.Location;
+import wagonLoadPackage.River;
+import wagonLoadPackage.Trader;
+import wagonLoadPackage.Travel;
 import wagonLoadPackage.Wagon;
 import wagonLoadPackage.WagonLoad;
 
@@ -66,6 +70,7 @@ public class MenuUI {
 	 * The panel is populated with a text box and button.
 	 * The "Chat with Passerbys" Button selects from a pool of text options,
 	 * then populates the text box with the text selected. 
+	 * - David Flores
 	 * @return - A populated JPanel with text box and button.
 	 */
 	public JPanel talkPanel() {
@@ -109,6 +114,7 @@ public class MenuUI {
 	/**
 	 * Updates a text area to display the current trade offer.
 	 * Additionally, can display another line of text below the trade offer. 
+	 * - David Flores
 	 * @param area - The JTextArea that is updated with text.
 	 * @param displayText - Additional line displayed below the trade offer.
 	 */
@@ -116,8 +122,8 @@ public class MenuUI {
 		area.setText(
 				"Offering	: " + offer.get(0) + " for " + offer.get(1) + " lbs" +
 				"\nWants	: "	+ offer.get(2) + " for " + offer.get(3) + " lbs" +
-				"\nTrades Remaining	: " + trader.tradesRemaining +
-				"\nOffers Remaining	: " + trader.offersRemaining + 
+				"\nTrades Remaining	: " + trader.getTradesRemaining() +
+				"\nOffers Remaining	: " + trader.getOffersRemaining() + 
 				"\nTraders Remaining: " + location.getTradersRemaining() + 
 				"\n" + displayText
 			);
@@ -127,6 +133,7 @@ public class MenuUI {
 	/**
 	 * Creates and populates the Trading Panel 
 	 * with its various functionality.
+	 * - David Flores
 	 * @return - Returns the Trading Panel
 	 */
 	public JPanel tradingPanel() {	
@@ -142,7 +149,7 @@ public class MenuUI {
 		this.updateTradingTextArea(tradingTextArea, "");
 		
 		
-		// Ask to Trade Button
+		// Ask to Trade Button - David Flores
     	JButton askTradeButton = new JButton("Ask around to Trade");
         askTradeButton.addActionListener(new ActionListener() {
             @Override
@@ -172,7 +179,7 @@ public class MenuUI {
         });
         
         
-        // Confirm Trade Button
+        // Confirm Trade Button - David Flores
         JButton tradeButton = new JButton("Confirm Trade");
         tradeButton.addActionListener(new ActionListener() {
             @Override
@@ -271,7 +278,7 @@ public class MenuUI {
 		
      
         /**
-    	 * Rod Piton Initializes the contents of the Wagon tab and Travel tab.
+    	 * Rod Piton - Initializes the contents of the Wagon tab and Travel tab.
     	 * Wagon tab will show Current party weight location and Food weight
     	 * Travel will show Location Items and Travel speed
     	 */
@@ -294,22 +301,23 @@ public class MenuUI {
         
         // Travel tab to be implemented
         
-       // JPanel TravelPanel = new JPanel(new BorderLayout());
+        // JPanel TravelPanel = new JPanel(new BorderLayout());
         //JTextArea TravelTextArea = new JTextArea(
         		
-        	//	"Current Travel Speed: " + travelspeed.getTravelSpeed()+"\n"+
-        	//	"Current Items: " + wagon + "\n" 
+        //	"Current Travel Speed: " + travelspeed.getTravelSpeed()+"\n"+
+        //	"Current Items: " + wagon + "\n" 
         		
         		
-        	//	);
-      //  TravelTextArea.setLineWrap(true);
-      //  TravelTextArea.setWrapStyleWord(true);
-      //  TravelTextArea.setEditable(false);
-    //    TravelPanel.add(new JScrollPane(TravelTextArea), BorderLayout.CENTER);
+        //	);
+        //  TravelTextArea.setLineWrap(true);
+	    //  TravelTextArea.setWrapStyleWord(true);
+        //  TravelTextArea.setEditable(false);
+        // TravelPanel.add(new JScrollPane(TravelTextArea), BorderLayout.CENTER);
         // tabbedPane.addTab("Wagon", TravelPanel);
        
         
         // If current location has activites, create activities
+        // - David Flores
         if(this.location.getHasActivites()) {
         	// Debug
         	System.out.println("Location has Activities");
@@ -324,9 +332,8 @@ public class MenuUI {
 	        
         }
 		
-        // Map Tab
+        // Map Tab - David Flores
         // TODO: Fix png not showing on load
-        // png is being sourced from bin (but is located in src??? check if is issue)
         JPanel mapPanel = new JPanel(new BorderLayout());
         JLabel artLabel = new JLabel();
         URL imageUrl = WagonLoad.class.getResource("/images/OreganTrailMap.png");
@@ -476,7 +483,7 @@ public class MenuUI {
         });
         riverPanel.add(btnNewButton, BorderLayout.SOUTH);
 		
-		
+		/*
 		// Prompt Field
 		promptField = new JTextField(location.getPrompt());
 		promptField.setBounds(213, 234, 215, 20);
@@ -488,6 +495,7 @@ public class MenuUI {
 		promptLabel.setBounds(10, 234, 193, 14);
 		promptLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		frmLocationName.getContentPane().add(promptLabel);
+		*/
 	}
 	
 	/**

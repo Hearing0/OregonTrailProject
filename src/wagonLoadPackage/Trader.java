@@ -145,9 +145,9 @@ public class Trader {
 		boolean result = false;
 		
 		// If trader has offersRemaining, generate offer
-		if (this.offersRemaining > 0) {
+		if (this.getOffersRemaining() > 0) {
 			// Update tracker and result
-			offersRemaining--;
+			offersRemaining = getOffersRemaining() - 1;
 			result = true;
 			
 			// Pick b/w traders
@@ -285,4 +285,19 @@ public class Trader {
 		this.itemRequest = null;
 	}
 	
+	/**
+	 * Gets trades remaining in the current location.
+	 * @return - Trades remaining in the current location
+	 */
+	public int getTradesRemaining() {
+		return tradesRemaining;
+	}
+
+	/**
+	 * Gets Trade Offers remaining with the current trader.
+	 * @return - Trade Offers remaining with the current trader
+	 */
+	public int getOffersRemaining() {
+		return offersRemaining;
+	}
 }
