@@ -23,13 +23,14 @@ import wagonLoadPackage.River;
 import wagonLoadPackage.Trader;
 import wagonLoadPackage.Travel;
 import wagonLoadPackage.Wagon;
-import wagonLoadPackage.WagonLoad;
+import wagonLoadPackage.TravelMenu;
 
 import javax.swing.JTextArea;
 
 
 /**
- * MenuUI.java 
+ * LocationMenu.java 
+ * Formerly known as MenuUI.java
  * Created on 4/8/2024
  * By David Flores
  * 
@@ -38,7 +39,7 @@ import javax.swing.JTextArea;
  * the current location, talk to passerbys,
  * and view the map.
  */
-public class MenuUI {
+public class LocationMenu {
 
 	// Initialize variables 
 	private JFrame frmLocationName;
@@ -56,7 +57,7 @@ public class MenuUI {
 	/**
 	 * Create the application.
 	 */
-	public MenuUI(Location location, Wagon wagon) {
+	public LocationMenu(Location location, Wagon wagon) {
 		this.location = location;
 		this.wagon = wagon;
 		this.travelspeed = travelspeed;
@@ -336,7 +337,7 @@ public class MenuUI {
         // TODO: Fix png not showing on load
         JPanel mapPanel = new JPanel(new BorderLayout());
         JLabel artLabel = new JLabel();
-        URL imageUrl = WagonLoad.class.getResource("/images/OreganTrailMap.png");
+        URL imageUrl = TravelMenu.class.getResource("/images/OreganTrailMap.png");
         if (imageUrl != null) {
             artLabel.setIcon(new ImageIcon(imageUrl));
             System.out.println("imageURL: " + imageUrl);

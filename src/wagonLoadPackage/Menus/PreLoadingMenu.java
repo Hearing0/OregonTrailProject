@@ -21,7 +21,7 @@ import javax.swing.border.TitledBorder;
 
 import wagonLoadPackage.Item;
 import wagonLoadPackage.Wagon;
-import wagonLoadPackage.WagonLoad;
+import wagonLoadPackage.TravelMenu;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -341,7 +341,7 @@ public class PreLoadingMenu extends JFrame {
 							System.out.println("\n\nNew Game Start!");
 	        				
 	        				// Open Travel Menu and dispose of current menu
-							WagonLoad frame = new WagonLoad(wagon);
+							TravelMenu frame = new TravelMenu(wagon);
 							frame.setVisible(true);
 							frmPreLoad.dispose();	
 						}
