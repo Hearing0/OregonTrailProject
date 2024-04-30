@@ -30,7 +30,7 @@ public class Weather extends Date {
 	double groundSnowLevel; // determines how much snow is actually on the ground
 
 	int wagonLocale = getWagonLocation(); // used to determine which weather zone the player is in
-	int location = parseLocation(); // determines which weather zone the player is in
+	int location; // determines which weather zone the player is in
 	int daysConsistent = 0; // determines how long the weather has stayed the same
 
 	String rainResults; // the descriptor for the rain conditions
@@ -64,8 +64,9 @@ public class Weather extends Date {
 	 * 
 	 * @return - an integer representing the weather zone that the player is in
 	 */
-	private int parseLocation() {
+	private void parseLocation() {
 		int locationNum = -1; // set to an unrealistic number for testing
+
 		if (wagonLocale >= 0 && wagonLocale < 3)
 			locationNum = 0;
 
@@ -84,127 +85,154 @@ public class Weather extends Date {
 		else if (wagonLocale >= 16 && wagonLocale <= 19)
 			locationNum = 5;
 
-		return locationNum;
+		location = locationNum;
 	}
 
 	/**
-	 * determines the temperature for a given zone and month, 
+	 * determines the temperature for a given zone and month, the corresponding
+	 * tag to go along with it, and determines that if there is any precipitation,
+	 * whether it will be snow or rain
 	 */
 	private void tempCheck() {
+		// resets isCold and isHot before determining them again
 		isCold = false;
 		isHot = false;
 		int finalTemp = 0;
-		int temp = averageTemps[location][month];
-		int tempVary = rand.nextInt(0, 21);
-		boolean addOrSubtract = rand.nextBoolean();
-		
-		if(addOrSubtract)
+		int temp = averageTemps[location][month]; // grabs the correct average temperature from the array above
+		int tempVary = rand.nextInt(0, 21); // generates a random number between 0 and 20, inclusive, that will be added
+											// or subtracted to the actual temperature value
+		boolean addOrSubtract = rand.nextBoolean(); // determines whether the random number will be added or subtracted
+		if (addOrSubtract)
 			finalTemp = temp + tempVary;
 		else
 			finalTemp = temp - tempVary;
 
-		if (finalTemp > 90) {
+		if (finalTemp > 90) { // sets the tag to Very Hot if the temperature is above 90F
 			tempResults = "Very hot";
 			isHot = true;
-		} else if (finalTemp > 70) {
+		} else if (finalTemp > 70) { // sets the tag to Hot if the temperature is above 70F but less than 90F
 			tempResults = "Hot";
 			isHot = true;
-		} else if (finalTemp > 50) {
+		} else if (finalTemp > 50) { // sets the tag to Warm if the temperative is above 50F but less than 70F
 			tempResults = "Warm";
 			isHot = true;
-		} else if (finalTemp > 30) {
+		} else if (finalTemp > 30) { // sets the tag to Cool if the temperature is above 30F but less than 50F
 			tempResults = "Cool";
 			isCold = true;
-		} else if (finalTemp > 10) {
+		} else if (finalTemp > 10) { // sets the tag to Cold if the temperature is above 10F but less than 30F
 			tempResults = "Cold";
 			isCold = true;
 			willSnow = true;
-		} else if (finalTemp < 10) {
+		} else if (finalTemp < 10) { // sets the tag to Very Cold if the temperature is less than 10F
 			tempResults = "Very Cold";
+			isCold = true;
 			willSnow = true;
-		} else
+		} else // displays an error in case all of the previous checks failed
 			tempResults = "error";
 	}
 
+	/**
+	 * determines if it will rain on a given day in a given month and weather zone
+	 * also checks if the precipitation will be rain or snow
+	 */
 	private void rainCheck() {
-		double avgRain = averageRain[location][month];
-		double rainVary = rand.nextDouble(0, 0.5);
+		double avgRain = averageRain[location][month]; // grabs the rain data for the current weather zone and month
+		double rainVary = rand.nextDouble(0, 0.51); // creates a random number to add or subtract to the rain level
 		double finalRain = 0;
-		boolean addOrSubtract = rand.nextBoolean();
-		
+		boolean addOrSubtract = rand.nextBoolean(); // determines whether to add or subtract the random number
+
 		if (addOrSubtract)
 			finalRain = avgRain + rainVary;
 		else
 			finalRain = avgRain - rainVary;
-		
-		double rainRand = rand.nextDouble(8);
 
+		double rainRand = rand.nextDouble(8); // generates a random number that will determine if it rains or not
+
+		// resets every boolean before reassignment
 		isRainy = false;
 		isVeryRainy = false;
 		willRain = false;
 		willSnow = false;
-
+		// if the random number generated is less than the average rain provided above,
+		// it will rain on that day
 		if (rainRand < finalRain)
 			willRain = true;
 
-		int rainAmount = rand.nextInt(10);
-		if (willSnow) {
-			if (rainAmount < 3) {
-				snowLevel = 8;
+		int rainAmount = rand.nextInt(10); // generates a random number to determine the amount of rain or snow that
+											// will fall
+		if (willSnow) { // conditions for snow
+			if (rainAmount < 3) { // provides a 30% chance for heavy snow to occur
+				snowLevel = 8; // adds 8 inches of snow to the ground
 				isVeryRainy = true;
-			} else {
-				snowLevel = 3;
+			} else { // provides a 70% chance for normal snow to occur
+				snowLevel = 2; // adds 2 inches of snow to the ground
 				isRainy = true;
 			}
-			groundSnowLevel += snowLevel;
-		} else if (willRain) {
-			if (rainAmount < 3) {
-				rainLevel = 0.8;
+
+		} else if (willRain) { // conditions for rain
+			if (rainAmount < 3) { // provies a 30% chance for heavy rain to occur
+				rainLevel = 0.8; // adds 0.8 inches of water to the ground
 				isVeryRainy = true;
-			} else {
-				rainLevel = 0.2;
+			} else { // provides a 70% chance for normal rain to occur
+				rainLevel = 0.2; // adds 0.2 inches of water to the ground
 				isRainy = true;
 			}
-			groundWaterLevel += rainLevel;
+
 		}
-		getRain();
+		getRain(); // generates the tags for the precipitation conditions
 	}
 
+	/**
+	 * generates the tag for the rain condition based on the rain level, and if it
+	 * is snow or rain
+	 */
 	private void getRain() {
 		if (willRain) {
-			if (willSnow) {
+			if (willSnow) { // tags for snow
+				if (snowLevel == 8)
+					rainResults = "Very snowy"; // sets the tag to Very Snowy if the snow level is 8 in
+				else if (snowLevel == 2)
+					rainResults = "Snowy"; // sets the tag to Snowy if the snow level is 2 in
+			} else { // tags for rain
 				if (rainLevel == 0.8)
-					rainResults = "Very snowy";
+					rainResults = "Very rainy"; // sets the tag to Very Rainy if the rain level is 0.8 in
 				else if (rainLevel == 0.2)
-					rainResults = "Snowy";
-			} else {
-				if (rainLevel == 0.8)
-					rainResults = "Very rainy";
-				else if (rainLevel == 0.2)
-					rainResults = "Rainy";
+					rainResults = "Rainy"; // sets the tag to Rainy if the rain level is 0.2 in
 			}
 		} else
 			rainResults = "";
 	}
 
+	/**
+	 * adds the rain level to the current level of water on the ground, and
+	 * determines if a drought is happening, and its severity
+	 */
 	private void rainLevelCheck() {
 		if (willRain) {
-			groundWaterLevel -= (0.1 * groundWaterLevel);
-			groundWaterLevel += rainLevel;
-			if (groundWaterLevel < 0.2)
+			groundWaterLevel -= (0.1 * groundWaterLevel); // removes 10% of the groundwater per day
+			groundWaterLevel += rainLevel; // adds the current amount of water to the overall level of water
+			if (groundWaterLevel < 0.2) // if the groundwater level is less than 0.2, there will be a drought
 				isDrought = true;
-			if (groundWaterLevel < 0.1)
+			if (groundWaterLevel < 0.1) // if the groundwater level is less than 0.1, the drought will be severe
 				isSevere = true;
 		}
 	}
 
+	/**
+	 * adds the current amount of snow to the level of snow already on the ground,
+	 * and determines how much snow is melted given the conditions
+	 */
 	private void snowLevelCheck() {
 		if (willSnow) {
-			groundSnowLevel += snowLevel;
+			groundSnowLevel += snowLevel; // adds current layer of snow to the ground snow level
+			// if the weather is cold, and it is not raining hard, 3% of the snow will melt
+			// per day
 			if (isCold) {
 				if (isVeryRainy == false) {
 					groundSnowLevel -= (0.03 * groundSnowLevel);
 				}
+				// if the weather is hot, and it is not raining, 5 inches of snow will melt per
+				// day
 			} else if (isHot) {
 				if (isRainy == false) {
 					groundSnowLevel -= 5;
@@ -213,15 +241,16 @@ public class Weather extends Date {
 			}
 		}
 
-		if (groundSnowLevel < 0)
+		if (groundSnowLevel < 0) // ensures that the level of snow is never negative
 			groundSnowLevel = 0;
 	}
 
 	public void getNewWeather() {
 		int getNew = rand.nextInt(2);
 		if (getNew == 1) {
-			rainCheck();
+			parseLocation();
 			tempCheck();
+			rainCheck();
 			rainLevelCheck();
 			snowLevelCheck();
 			daysConsistent = 0;
