@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-import wagonLoadPackage.TravelMenu;
+import wagonLoadPackage.WagonLoad;
 
 
 /**
@@ -72,7 +72,7 @@ public class MainMenu extends JFrame {
         JLabel artLabel = new JLabel();
         artLabel.setBounds(6, 16, 256, 128);
         artPanel.add(artLabel);
-        artLabel.setIcon(new ImageIcon(TravelMenu.class.getResource("/images/ChimneyRock1.pixel.WebSafe.2.png")));
+        artLabel.setIcon(new ImageIcon(WagonLoad.class.getResource("/images/ChimneyRock1.pixel.WebSafe.2.png")));
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 136, 150, 91);

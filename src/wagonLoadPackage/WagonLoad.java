@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import wagonLoadPackage.Location;
-import wagonLoadPackage.Menus.LocationMenu;
+import wagonLoadPackage.Menus.MenuUI;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -25,8 +25,7 @@ import java.awt.Font;
 
 
 /**
- * TravelMenu.java 
- * *Formerly known as WagonLoad.java
+ * WagonLoad.java 
  * Created on 3/23/2024
  * By David Flores
  * 
@@ -36,9 +35,9 @@ import java.awt.Font;
  * food to make the trip, along with some favor text
  * descriptors for food consumption and travel speed. 
  */
-public class TravelMenu {
+public class WagonLoad {
 
-	public JFrame frmTravelMenu;
+	public JFrame frmPackYourWagon;
 	private JCheckBox chckbxItem1;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -82,8 +81,8 @@ public class TravelMenu {
 			public void run() {
 				try {
 					Wagon emptyWagon = null;
-					TravelMenu window = new TravelMenu(emptyWagon);
-					window.frmTravelMenu.setVisible(true);
+					WagonLoad window = new WagonLoad(emptyWagon);
+					window.frmPackYourWagon.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -95,7 +94,7 @@ public class TravelMenu {
 	 * Create the application with the user's pre-configured wagon.
 	 * @param wagon - 
 	 */
-	public TravelMenu(Wagon wagon) {
+	public WagonLoad(Wagon wagon) {
 		// If pre-emptively launched (for testing), create a pre-loaded wagon
 		if (wagon == null) {
 			
@@ -139,11 +138,11 @@ public class TravelMenu {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmTravelMenu = new JFrame();
-		frmTravelMenu.setTitle("Travel Menu");
-		frmTravelMenu.setBounds(100, 100, 659, 382);
-		frmTravelMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frmTravelMenu.getContentPane().setLayout(null);
+		frmPackYourWagon = new JFrame();
+		frmPackYourWagon.setTitle("Pack Your Wagon");
+		frmPackYourWagon.setBounds(100, 100, 839, 382);
+		frmPackYourWagon.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frmPackYourWagon.getContentPane().setLayout(null);
         
         
         
@@ -225,22 +224,22 @@ public class TravelMenu {
         // Art Label & Border - David Flores
         JPanel artPanel = new JPanel();
         artPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Chimmey Rock, John Estel CC NY-BY", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-        artPanel.setBounds(172, 41, 271, 151);
-        frmTravelMenu.getContentPane().add(artPanel);
+        artPanel.setBounds(545, 16, 270, 152);
+        frmPackYourWagon.getContentPane().add(artPanel);
         artPanel.setLayout(null);
         
         JLabel artLabel = new JLabel();
         artLabel.setBounds(6, 16, 256, 128);
         artPanel.add(artLabel);
-        artLabel.setIcon(new ImageIcon(TravelMenu.class.getResource("/images/ChimneyRock1.pixel.WebSafe.2.png")));
+        artLabel.setIcon(new ImageIcon(WagonLoad.class.getResource("/images/ChimneyRock1.pixel.WebSafe.2.png")));
               
         
         
         /// Travel Options Panel
         JPanel panel_1 = new JPanel();
         panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Travel Options", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-        panel_1.setBounds(10, 236, 255, 100);
-        frmTravelMenu.getContentPane().add(panel_1);
+        panel_1.setBounds(550, 170, 255, 100);
+        frmPackYourWagon.getContentPane().add(panel_1);
         panel_1.setLayout(null);
         
 
@@ -333,47 +332,42 @@ public class TravelMenu {
         textField_1.setColumns(10);
         
         
+
+        
         /// Travel Results Panel
         JPanel panel = new JPanel();
         panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Travel Results", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-        panel.setBounds(282, 236, 355, 100);
-        frmTravelMenu.getContentPane().add(panel);
+        panel.setBounds(500, 270, 305, 69);
+        frmPackYourWagon.getContentPane().add(panel);
         panel.setLayout(null);
-        
-        // Distance till location Labels
-        JLabel distanceTestLabel = new JLabel("Distance Until Next Location:");
-        distanceTestLabel.setBounds(10, 21, 149, 14);
-        panel.add(distanceTestLabel);
-        distanceTestLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-        
-        JLabel distanceLbl = new JLabel("200");
-        distanceLbl.setHorizontalAlignment(SwingConstants.CENTER);
-        distanceLbl.setBounds(49, 35, 60, 23);
-        panel.add(distanceLbl);
 
         // Enough Food Labels
         JLabel lblEnoughFood = new JLabel("Enough Food?");
         lblEnoughFood.setFont(new Font("Tahoma", Font.PLAIN, 10));
         lblEnoughFood.setHorizontalAlignment(SwingConstants.CENTER);
-        lblEnoughFood.setBounds(156, 21, 96, 14);
+        lblEnoughFood.setBounds(108, 21, 96, 14);
         panel.add(lblEnoughFood);
         
         JLabel lblClicktravelTo = new JLabel("Click \"Travel\"!");
         lblClicktravelTo.setFont(new Font("Tahoma", Font.PLAIN, 10));
         lblClicktravelTo.setHorizontalAlignment(SwingConstants.CENTER);
-        lblClicktravelTo.setBounds(153, 35, 111, 23);
+        lblClicktravelTo.setBounds(105, 35, 111, 23);
         panel.add(lblClicktravelTo);
         
         // Total Weight Labels 
         JLabel lblTotalWeight = new JLabel("Total Weight:");
         lblTotalWeight.setFont(new Font("Tahoma", Font.PLAIN, 10));
-        lblTotalWeight.setBounds(270, 21, 75, 14);
+        lblTotalWeight.setBounds(222, 21, 75, 14);
         panel.add(lblTotalWeight);
         
         lblTotalWeight_1 = new JLabel("____");
         lblTotalWeight_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
-        lblTotalWeight_1.setBounds(270, 39, 75, 14);
+        lblTotalWeight_1.setBounds(222, 39, 75, 14);
         panel.add(lblTotalWeight_1);
+        
+        JLabel distanceLbl = new JLabel("");
+        distanceLbl.setBounds(407, 279, 60, 23);
+        frmPackYourWagon.getContentPane().add(distanceLbl);
    
         // Travel Button - David Flores and Breanna Sproul
         JButton btnNewButton = new JButton("\"Travel\"");
@@ -423,7 +417,7 @@ public class TravelMenu {
         				// If wagon makes it to next location, pop-up location menu
         				if (wagon.travel.travelMap(foodWeight))
         				{
-        					LocationMenu menu = new LocationMenu(wagon.travel.getCurLocation(), wagon);
+        					MenuUI menu = new MenuUI(wagon.travel.getCurLocation(), wagon);
         					menu.setVisible(true);
         				}
         			}
@@ -447,14 +441,25 @@ public class TravelMenu {
         		
         	}
         });
-        btnNewButton.setBounds(82, 66, 182, 23);
+        btnNewButton.setBounds(10, 35, 89, 23);
         panel.add(btnNewButton);
+        
+        JLabel lblWeightWarning = new JLabel("Max Weight is 2400 lbs!");
+        lblWeightWarning.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        lblWeightWarning.setBounds(336, 250, 125, 14);
+        frmPackYourWagon.getContentPane().add(lblWeightWarning);
+    
+        
+        JLabel distanceTestLabel = new JLabel("Distance Until Next Location:");
+        distanceTestLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        distanceTestLabel.setBounds(248, 288, 149, 14);
+        frmPackYourWagon.getContentPane().add(distanceTestLabel);
         
         
         // Pre-Update UI Elements
         updateTotalWeightUI();
         
-        frmTravelMenu.setVisible(true); // Exhibit the frame
+        frmPackYourWagon.setVisible(true); // Exhibit the frame
 	}
 	
 	/**
@@ -464,6 +469,6 @@ public class TravelMenu {
 	 * allows the frame to be visible.
 	 */
 	public void setVisible(boolean visible) {
-		frmTravelMenu.setVisible(visible);
+		frmPackYourWagon.setVisible(visible);
     }
 }
