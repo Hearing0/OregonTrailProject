@@ -43,7 +43,7 @@ public class WagonLoad {
 	private JTextField textField_1;
 	
 	// Initialize Wagon
-	private Wagon wagon = new Wagon();
+	private Wagon wagon;
 	private RandomEvent RanEvents = new RandomEvent();
 
 	private JCheckBox chckbxItem1_1;
@@ -95,6 +95,7 @@ public class WagonLoad {
 	 */
 	public WagonLoad() {
 		//System.out.println("Y");
+		wagon = new Wagon();
 		initialize();
 		getTotalDistance();
 		
@@ -210,7 +211,7 @@ public class WagonLoad {
         JButton storeButton = new JButton("Store");
         storeButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		Store store = new Store();
+        		Store store = new Store(wagon);
         		store.setVisible(true);
         	}
         });

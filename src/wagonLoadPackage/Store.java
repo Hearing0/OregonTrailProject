@@ -15,14 +15,18 @@ public class Store extends Wagon{
 	private JTextField foodBuyTextBox;
 	private JTextField wheelBuyTextBox;
 	private JTextField bulletBuyTextBox;
-	private int totalMoney = 1000;
+	//private int totalMoney = 1000;
+	Wagon wagonS;
+	int moneyShown;
 	
 	/**
 	 * Create the application.
 	 */
-	public Store() {
+	public Store(Wagon wagon) {
+		this.wagonS = wagon;
+		moneyShown = wagonS.getTotalMoney();
+		//System.out.println(wagonS.getTotalMoney());
 		initialize();
-		totalMoney = 1000;
 	}
 	
 
@@ -33,6 +37,7 @@ public class Store extends Wagon{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		//System.out.println(wagonS.getTotalMoney());
 		//base frame 
 		Storeframe = new JFrame();
 		Storeframe.setBounds(100, 100, 450, 300);
@@ -61,7 +66,8 @@ public class Store extends Wagon{
 		totalMLabel.setBounds(31, 199, 115, 22);
 		Storeframe.getContentPane().add(totalMLabel);
 		
-		JLabel totalMoneyText = new JLabel("" + totalMoney);
+		//JLabel totalMoneyText = new JLabel();
+		JLabel totalMoneyText = new JLabel("" + moneyShown);
 		totalMoneyText.setBounds(150, 203, 49, 14);
 		Storeframe.getContentPane().add(totalMoneyText);
 		
@@ -87,7 +93,8 @@ public class Store extends Wagon{
 		JButton buyButton = new JButton("Buy");
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//get the nuumbers from the text boxes and convert to int
+				//totalMoneyText.setText("" + wagonS.getTotalMoney());
+				//get the numbers from the text boxes and convert to int
 				String foodString = foodBuyTextBox.getText();
 				int buyFood = Integer.parseInt(foodString);
 				String wheelString = wheelBuyTextBox.getText();
@@ -104,12 +111,12 @@ public class Store extends Wagon{
 				if(totalCost == 0) {
 					talkLabel.setText("Uh, you gonna buy anything?");
 				}
-				else if( totalMoney >= totalCost) {
-					totalMoney -= totalCost;
-					//setTotalMoney(totalCost);
+				else if( wagonS.getTotalMoney() >= totalCost) {
+					//totalMoney -= totalCost;
+					wagonS.setTotalMoney(totalCost);
 
 					talkLabel.setText("Thanks for the sale!");
-					totalMoneyText.setText("" + totalMoney);
+					totalMoneyText.setText("" + wagonS.getTotalMoney());
 					if(buyFood > 0) {
 						for(int i = 0; i <= buyFood; i++) {
 							addFoodItem("Food", 100, true, true);
