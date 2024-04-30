@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 
 import wagonLoadPackage.Location;
 import wagonLoadPackage.River;
+import wagonLoadPackage.Store;
 import wagonLoadPackage.Trader;
 import wagonLoadPackage.Travel;
 import wagonLoadPackage.Wagon;
@@ -110,6 +111,28 @@ public class MenuUI {
         
         return localsTalkTextPanel;
 	}
+	
+	/**
+	 * Creates a JPanel for store
+	 * @return - A populated JPanel with store button. //picture will be added later
+	 */
+	public JPanel storePanel() {
+		JPanel storeTextPanel = new JPanel(new BorderLayout());
+        JButton storeButton = new JButton("Enter the store");
+        storeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+        		Store store = new Store(wagon);
+        		store.setVisible(true);
+            }
+        });
+        storeTextPanel.add(storeButton, BorderLayout.SOUTH);
+        
+        return storeTextPanel;
+	}
+	
+
+	
 	
 	/**
 	 * Updates a text area to display the current trade offer.
@@ -276,6 +299,9 @@ public class MenuUI {
         descriptionPanel.add(new JScrollPane(descriptionTextArea), BorderLayout.CENTER);
         tabbedPane.addTab("Description", descriptionPanel);
 		
+        //Breanna - adds store tab
+        //need to change it so it only appears in forts
+        tabbedPane.addTab("Store", storePanel());
      
         /**
     	 * Rod Piton - Initializes the contents of the Wagon tab and Travel tab.
