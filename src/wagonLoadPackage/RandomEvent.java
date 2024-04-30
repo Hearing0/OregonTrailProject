@@ -12,9 +12,9 @@ public class RandomEvent {
 	String locator = "";
 	
 	//STILL NEEDS DONE
-	//connect locationID in eventList to places found in location class
 	//get methods to affect systems such as health, travel, weather, and other wagon things once those system are fully set up and finalized
 	//make method(s) that incorporates the eventList
+	//connect locationID in eventList to places found in location class - could alter location() to include a parameter for this
 
 	
 	public RandomEvent(){
