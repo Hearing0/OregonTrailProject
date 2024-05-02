@@ -15,10 +15,9 @@ package wagonLoadPackage;
 public class FoodItem extends Item {
 	
 	// Initialize Variables
-    //boolean cookable;
-    //boolean edible;
-    //int uncookedFood = 0;
-    
+    boolean cookable;
+    boolean edible;
+    //int nutrientPerLbs;
     
     
     /**
@@ -29,10 +28,10 @@ public class FoodItem extends Item {
      * @param edible - Whether the food item can be eaten.
      * @param isLoaded - Whether the food item is loaded in the wagon
      */
-    public FoodItem(String name, int weight, boolean isLoaded) {
+    public FoodItem(String name, int weight, boolean cookable, boolean edible, boolean isLoaded) {
         super(name, weight, isLoaded);
-        //this.cookable = cookable;
-        //this.edible = edible;
+        this.cookable = cookable;
+        this.edible = edible;
     }
     
         
@@ -45,17 +44,15 @@ public class FoodItem extends Item {
      */
     public FoodItem(String name, int weight, boolean cookable, boolean edible) {
         super(name, weight);
-        //this.cookable = cookable;
-        //this.edible = edible;
+        this.cookable = cookable;
+        this.edible = edible;
     }
-    
     
     
     /**
      * Checks whether the FoodItem is cookable
      * @return - Returns boolean cookable. If true, the FoodItem is cookable. 
      */
-    /*
     public boolean getCookable() {
     	return cookable;
     }
@@ -65,20 +62,18 @@ public class FoodItem extends Item {
      * Checks whether the FoodItem is edible.
      * @return - True if nutrientPerLbs is greater than zero. False otherwise. 
      */
-   /*
     public boolean isEdible() {
-    	
+    	/*
     	boolean edible = false;
     	
     	if ( this.nutrientPerLbs > 0) {
     		edible = true;
     	}
-    	
+    	*/
     	
     	return this.edible;
     }
     
-    */
     
     /**
      * Consume FoodItem weight by subtracting from weight by nutrientPerLbs. 
@@ -89,20 +84,19 @@ public class FoodItem extends Item {
      * Can return false if FoodItem is not edible.
      * DEPRECIATED
      */
-    public boolean eatFood( int consumeSelect, int partyMembers) {
+    /*
+    public boolean eatFood( int weightConsumed) {
 		boolean result = false;
 		
 		// Check edible and edible amount
-		if ( this.weight >= consumeSelect ) {
-			
-			int consumeAmt = partyMembers * consumeSelect;
-			
+		if ( this.isEdible() == true && this.weight >= weightConsumed ) {
 			// Consume weight w/ nutrient scaling factor
-			this.weight =- this.weight - consumeAmt;
+			//this.weight =- weightConsumed / this.nutrientPerLbs; //wasnt sure about nutrientsPerLbs?
+			//this.weight =- weightConsumed / consumeSelect;
 			result = true;
 		} 
 		
-		// Fail: Cannot Eat
+		// Fail: Not possible to Eat (not edible or amount is too much)
 		else {
 			result = false;
 		}
@@ -110,10 +104,10 @@ public class FoodItem extends Item {
     	return result;
     }
     
-    /*
     //uses previous method to check if its possible to eat
     //if true, then remove the foodWeight and return the new weight
     //if false, then return -1 to signal that no food is left
+    //DEPRECIATED
     public int dailyConsume(int weightConsumed, int consumeSelect, int people) {
     	if(eatFood(weightConsumed) == true) {
     		this.weight = weightConsumed - (consumeSelect * people);

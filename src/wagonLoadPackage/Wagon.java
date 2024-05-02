@@ -47,27 +47,25 @@ public class Wagon {
      */
     public Wagon() {
         itemList = new ArrayList<Item>();
+        // System.out.println("X");
+        // totalMoney = 1000;
 
-        /// Add all 31 items
+        // Add all 31 items
 
-        /*
-         * // Add 13 foodItems
-         * addFoodItem("ApleVingr", 25, false, false);
-         * addFoodItem("Bacon", 400, true, true, true); // pre-loaded
-         * addFoodItem("Beans", 200, true, true, true); // pre-loaded
-         * addFoodItem("Coffee", 80, false, false);
-         * addFoodItem("DryApples", 80, false, true, true); // pre-loaded
-         * addFoodItem("Flour", 500, true, false, true); // pre-loaded
-         * addFoodItem("Hardtack", 200, false, true, true); // pre-loaded
-         * addFoodItem("Lard", 200, true, true, true); // pre-loaded
-         * addFoodItem("Salt", 50, true, false);
-         * addFoodItem("Sugar", 40, true, false);
-         * addFoodItem("Rice", 200, true, true, true); // pre-loaded
-         * addFoodItem("Water", 100, true, true, true); // pre-loaded
-         * addFoodItem("Whiskey", 80, true, true);
-         */
-
-        addItem("Food", 500, true);
+        // Add 13 items
+        addFoodItem("ApleVingr", 25, false, false);
+        addFoodItem("Bacon", 400, true, true, true); // pre-loaded
+        addFoodItem("Beans", 200, true, true, true); // pre-loaded
+        addFoodItem("Coffee", 80, false, false);
+        addFoodItem("DryApples", 80, false, true, true); // pre-loaded
+        addFoodItem("Flour", 500, true, false, true); // pre-loaded
+        addFoodItem("Hardtack", 200, false, true, true); // pre-loaded
+        addFoodItem("Lard", 200, true, true, true); // pre-loaded
+        addFoodItem("Salt", 50, true, false);
+        addFoodItem("Sugar", 40, true, false);
+        addFoodItem("Rice", 200, true, true, true); // pre-loaded
+        addFoodItem("Water", 100, true, true, true); // pre-loaded
+        addFoodItem("Whiskey", 80, true, true);
 
         // ammo, clothes, etc.
         addItem("Bedroll", 15);
@@ -79,7 +77,6 @@ public class Wagon {
         addItem("Cookware", 75);
         addItem("Old Clock", 15);
         addItem("GunTools", 200);
-        addItem("Bullets", 200);
         addItem("Keepsakes", 40);
         addItem("Leadshot", 25);
         addItem("Mirror", 15);
@@ -105,18 +102,6 @@ public class Wagon {
     }
 
     /**
-     * Creates and adds new pre-loaded item to the item HashMap
-     * 
-     * @param name     - Name of the item
-     * @param weight   - Weight of the item
-     * @param isLoaded - Whether the item is loaded into the wagon
-     */
-    public void addItem(String name, int weight, boolean isLoaded) {
-        Item item = new Item(name, weight, isLoaded);
-        itemList.add(item);
-    }
-
-    /**
      * Creates and adds new unloaded food item to the item HashMap
      * 
      * @param name     - Name of the item
@@ -138,13 +123,10 @@ public class Wagon {
      * @param edible   - Whether the food item can be eaten.
      * @param isLoaded - Whether the food item is loaded
      */
-    /*
-     * public void addFoodItem(String name, int weight, boolean cookable, boolean
-     * edible, boolean isLoaded) {
-     * FoodItem item = new FoodItem(name, weight, cookable, edible, isLoaded);
-     * itemList.add(item);
-     * }
-     */
+    public void addFoodItem(String name, int weight, boolean cookable, boolean edible, boolean isLoaded) {
+        FoodItem item = new FoodItem(name, weight, cookable, edible, isLoaded);
+        itemList.add(item);
+    }
 
     /**
      * Calculates the total weight of the loaded items on the wagon.
@@ -175,44 +157,29 @@ public class Wagon {
     }
 
     /**
-     * Gets the food weight in the wagon.
+     * Gets the total food weight in the wagon.
      * 
-     * @return - Total weight of edible food in the wagon
+     * @return
      */
     public int getFoodWeight() {
-        int foodWeight = itemList.get(0).getWeight();
+        int foodWeight = 0;
 
-        /*
-         * // For every item in list
-         * for (Item item : itemList) {
-         * // If isLoaded into wagon & is FoodItem...
-         * if (item.getIsLoaded() == true && item instanceof FoodItem) {
-         * // Cast Item as FoodItem
-         * FoodItem food = (FoodItem) item;
-         * 
-         * // If FoodItem is edible...
-         * if (food.isEdible() == true) {
-         * // Add weight to total
-         * foodWeight = foodWeight + item.getWeight();
-         * }
-         * }
-         * }
-         */
+        // For every item in list
+        for (Item item : itemList) {
+            // If isLoaded into wagon & is FoodItem...
+            if (item.getIsLoaded() == true && item instanceof FoodItem) {
+                // Cast Item as FoodItem
+                FoodItem food = (FoodItem) item;
+
+                // If FoodItem is edible...
+                if (food.isEdible() == true) {
+                    // Add weight to total
+                    foodWeight = foodWeight + item.getWeight();
+                }
+            }
+        }
 
         return foodWeight;
-    }
-
-    /**
-     * Sets the food weight for the "food" item
-     * 
-     * @param foodWeight - New food weight to be assigned
-     */
-    public void setFoodWeight(int foodWeight) {
-        System.out.println("Old food weight: " + itemList.get(0).getWeight());
-
-        itemList.get(0).setWeight(foodWeight);
-
-        System.out.println("New food weight: " + itemList.get(0).getWeight());
     }
 
     /**
