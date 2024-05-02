@@ -15,6 +15,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import wagonLoadPackage.Store;
+import wagonLoadPackage.Wagon;
 import wagonLoadPackage.WagonLoad;
 
 
@@ -117,6 +119,10 @@ public class MainMenu extends JFrame {
 		panel.add(btnSettings);
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//remove later was here to quickly make changes to store menu
+				Wagon wagon = new Wagon();
+        		Store store = new Store(wagon);
+        		store.setVisible(true);
 				
 			}
 		});
