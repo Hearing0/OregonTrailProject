@@ -266,7 +266,7 @@ public class Travel {
 	 * @return - True if daysOfFood is greater or equal to daysToTravel,
 	 *         otherwise, returns false.
 	 */
-	public boolean isEnoughFoodToTravel(int amtFood) {
+	public boolean isEnoughFoodToTravelTrip(int amtFood) {
 		boolean result = false;
 
 		double daysToTravel = this.milesTillEnd / this.travelSpeed;
@@ -277,6 +277,58 @@ public class Travel {
 
 		// Check that enough daysOfFood to sustain daysToTravel...
 		if (daysOfFood >= daysToTravel) {
+			// ... is enough food
+			result = true;
+		}
+
+		return result;
+	}
+	
+	/**
+	 * Checks if there is enough food for another 5 days of traveling. Determines
+	 * the days of food remaining. If days of food is more than 1, returns true.
+	 * 
+	 * @param amtFood - The amount of food on the wagon
+	 * @return - True if daysOfFood is greater or equal to daysToTravel,
+	 *         otherwise, returns false.
+	 */
+	public boolean isEnoughFoodToTravelFiveDays(int amtFood) {
+		boolean result = false;
+
+		double daysToTravel = 5;
+		double daysOfFood = amtFood / this.foodConsumeMod;
+
+		System.out.println("TravelDays: " + daysToTravel);
+		System.out.println("FoodDays: " + daysOfFood);
+
+		// Check that enough daysOfFood to sustain 5 more days of travel...
+		if (daysOfFood >= 5) {
+			// ... is enough food
+			result = true;
+		}
+
+		return result;
+	}
+	
+	/**
+	 * Checks if there is enough food for another day of traveling. Determines
+	 * the  days of food remaining. If days of food is more than 1, returns true.
+	 * 
+	 * @param amtFood - The amount of food on the wagon
+	 * @return - True if daysOfFood is greater or equal to daysToTravel,
+	 *         otherwise, returns false.
+	 */
+	public boolean isEnoughFoodToTravelOneDay(int amtFood) {
+		boolean result = false;
+
+		double daysToTravel = this.milesTillEnd / this.travelSpeed;
+		double daysOfFood = amtFood / this.foodConsumeMod;
+
+		System.out.println("TravelDays: " + daysToTravel);
+		System.out.println("FoodDays: " + daysOfFood);
+
+		// Check that enough daysOfFood to sustain 1 more day of travel...
+		if (daysOfFood >= 1) {
 			// ... is enough food
 			result = true;
 		}
@@ -298,7 +350,7 @@ public class Travel {
 		boolean result = false;
 
 		// if isEnoughFoodToTravel...
-		if (this.isEnoughFoodToTravel(amtFood) == true) {
+		if (this.isEnoughFoodToTravelOneDay(amtFood) == true) {
 
 			// Travel by calculated distance
 			// If location is fully traversed...

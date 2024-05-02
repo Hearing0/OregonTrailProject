@@ -378,7 +378,7 @@ public class WagonLoad {
                 int totalWeight = wagon.getTotalWeight();
 
                 // If enough food, ...
-                if (wagon.travel.isEnoughFoodToTravel(foodWeight)) {                	
+                if (wagon.travel.isEnoughFoodToTravelOneDay(foodWeight)) {                	
                 	                    
                     // Check if wagon is overweight...
                     if (totalWeight <= wagon.maxWeight) {
@@ -394,30 +394,44 @@ public class WagonLoad {
                         // Check for random event
                         Events.eventCheck(distance);
                         
-                        // Recalculate Weight and Display
-                        totalWeight = wagon.getTotalWeight();
-                    	lblTotalWeight_1.setText(totalWeight + " lbs");
-                    	
                         
                     	// Travel towards next location on map...
                         // If wagon makes it to next location, then pop-up location menu
-                        if (wagon.travel.travelMap(foodWeight)) {
+                        if (wagon.travel.travelMap(foodWeight)) {                        	
                             MenuUI menu = new MenuUI(wagon.travel.getCurLocation(), wagon);
                             menu.setVisible(true);
                         }
-                        
-                        
+                                                
                         // Consume Food
                         int foodConsumed = wagon.travel.getFoodConsumed();
-           
+                        foodWeight = wagon.getFoodWeight() - foodConsumed;
+                    	System.out.println("Food Consumed: "+ foodConsumed);
+                    	System.out.println("Food left: "+ foodWeight);
+                        
 						// Consume Food
-						wagon.setFoodWeight(foodWeight - foodConsumed);
+						wagon.setFoodWeight(foodWeight);
+						
+						// If less than 5 days of food, warn player
+						if (wagon.travel.isEnoughFoodToTravelFiveDays(foodWeight) != true) {
+                    		JOptionPane.showMessageDialog(null, "Wagon has less than 5 days of food!\nGet some quickly!!!");
+                    	}
+						
+						// Recalculate Total Weight and Display it
+                        totalWeight = wagon.getTotalWeight();
+                    	lblTotalWeight_1.setText(totalWeight + " lbs");
+                    	
                     }
 
                     // Fail: Wagon is overweight
                     else {
                         JOptionPane.showMessageDialog(null, "Wagon is overweight!");
                     }                    
+                }
+                // Fail: Ran out of food!
+                else {
+                    JOptionPane.showMessageDialog(null, "Wagon is out of food!\nGame over!!!");
+                    
+                    //TODO: Add game over loop
                 }
             }
         });

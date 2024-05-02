@@ -50,8 +50,12 @@ public class Item {
      * @param newWeight - New weight of item instance.
      */
     public void setWeight( int newWeight ) {
-    	if (newWeight > 0) {
+    	if (newWeight >= 0) {
     		this.weight = newWeight;
+    	} 
+    	// Special: New Weight less than zero
+    	else {
+    		this.weight = 0;
     	}
     	
     	if (this.weight > 0 ) {
