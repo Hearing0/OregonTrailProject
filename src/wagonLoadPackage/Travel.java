@@ -59,7 +59,7 @@ public class Travel {
 				256,
 				true, false); // 319 miles
 		addLocation("Chimney Rock", "add description", "Select Option", 75, true, false); // 575 miles
-		addLocation("Fort Laramie", "add description", "Select Option", 164, true, false);  // 650 miles
+		addLocation("Fort Laramie", "add description", "Select Option", 164, true, false); // 650 miles
 		addLocation("Independence Rock", "add description", "Select Option", 100, true, false); // 814 miles
 		addLocation("South Pass", "add description", "Select Option", 67, true, false); // 914 miles
 		addRiver("Green River", "River description here", "Select Option", 45, true, true); // 981 miles
@@ -396,6 +396,23 @@ public class Travel {
 	 */
 	public int getTravelSpeed() {
 		return this.travelSpeed;
+	}
+
+	/**
+	 * Calculates the total distance of the trip by adding the distance between each
+	 * landmark together
+	 * 
+	 * @return - Integer of the total distance till the final location.
+	 */
+	public int getTotalDistance() {
+		int totalDist = 0;
+
+		for (int i = wagonLocation; i < map.size(); i++) {
+			Location current = map.get(i);
+			totalDist = totalDist + current.getDistance();
+		}
+
+		return totalDist;
 	}
 
 	/**

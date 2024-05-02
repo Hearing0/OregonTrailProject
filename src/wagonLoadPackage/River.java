@@ -224,10 +224,11 @@ public class River extends Location {
 				depth -= depthVary;
 				swiftness -= swiftVary;
 				width -= widthVary;
+				swiftness += swiftVary;
 			}
 		}
 
-		else if (this.name == "Snake River") { // determines the conditions for the Snake River
+		else if (this.name == "Snake River") {
 			depth = 12.25;
 			width = 753;
 			swiftness = 8.5;

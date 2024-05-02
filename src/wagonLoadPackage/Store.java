@@ -15,14 +15,16 @@ public class Store extends Wagon{
 	private JTextField foodBuyTextBox;
 	private JTextField wheelBuyTextBox;
 	private JTextField bulletBuyTextBox;
-	private int totalMoney = 1000;
+	Wagon wagonS;
+	int moneyShown;
 	
 	/**
 	 * Create the application.
 	 */
-	public Store() {
+	public Store(Wagon wagon) {
+		this.wagonS = wagon;
+		moneyShown = wagonS.getTotalMoney();
 		initialize();
-		totalMoney = 1000;
 	}
 	
 
@@ -61,7 +63,8 @@ public class Store extends Wagon{
 		totalMLabel.setBounds(31, 199, 115, 22);
 		Storeframe.getContentPane().add(totalMLabel);
 		
-		JLabel totalMoneyText = new JLabel("" + totalMoney);
+		//JLabel totalMoneyText = new JLabel();
+		JLabel totalMoneyText = new JLabel("" + moneyShown);
 		totalMoneyText.setBounds(150, 203, 49, 14);
 		Storeframe.getContentPane().add(totalMoneyText);
 		
@@ -87,7 +90,7 @@ public class Store extends Wagon{
 		JButton buyButton = new JButton("Buy");
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//get the nuumbers from the text boxes and convert to int
+				//get the numbers from the text boxes and convert to int
 				String foodString = foodBuyTextBox.getText();
 				int buyFood = Integer.parseInt(foodString);
 				String wheelString = wheelBuyTextBox.getText();
@@ -98,18 +101,16 @@ public class Store extends Wagon{
 				//determine the cost for the amount of items chosen to buy 
 				int totalCost = (buyFood * 50) + (buyWheel * 100) + (buyBullet * 10);
 				
-				//System.out.println(totalMoney);
 				//checks if an item is >0 and if the player has enough money to buy items
 				//if the player buys an item, then the cost is subtracted and item is added to wagon
-				if(totalCost == 0) {
+				if(totalCost == 0) { //nothing is selected
 					talkLabel.setText("Uh, you gonna buy anything?");
 				}
-				else if( totalMoney >= totalCost) {
-					totalMoney -= totalCost;
-					//setTotalMoney(totalCost);
+				else if( wagonS.getTotalMoney() >= totalCost) { //player has enough money to buy
+					wagonS.setTotalMoney(totalCost);
 
 					talkLabel.setText("Thanks for the sale!");
-					totalMoneyText.setText("" + totalMoney);
+					totalMoneyText.setText("" + wagonS.getTotalMoney());
 					if(buyFood > 0) {
 						for(int i = 0; i <= buyFood; i++) {
 							addFoodItem("Food", 100, true, true);
@@ -127,7 +128,7 @@ public class Store extends Wagon{
 					}
 				}
 				else {
-					talkLabel.setText("Hey you don't have enough for that!");
+					talkLabel.setText("Hey you don't have enough for that!"); //player doesnt have enough money
 				}
 				
 			}

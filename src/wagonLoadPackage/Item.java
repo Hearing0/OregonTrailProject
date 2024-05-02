@@ -15,16 +15,25 @@ public class Item {
     int weight; // in lbs
     boolean isLoaded;
 
+    /**
+     * Creates an unloaded Item with specified name and weight.
+     * @param name - String of the Item's name
+     * @param weight - Integer of the Item's weight
+     */
+    public Item(String name, int weight) {
+        this(name, weight, false);
+    }
     
     /**
      * Initializes Item with its name and weight.
      * @param name - String of the Item's name
      * @param weight - Integer of the Item's weight
+     * @param isLoaded - Boolean of if Item is loaded in the wagon
      */
-    public Item(String name, int weight) {
+    public Item(String name, int weight, boolean isLoaded) {
         this.name = name;
         this.weight = weight;
-        this.isLoaded = false;
+        this.isLoaded = isLoaded;
     }
     
     /**

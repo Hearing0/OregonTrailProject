@@ -15,21 +15,30 @@ import wagonLoadPackage.Travel;
 public class Wagon {
 
     // Initialize Variables
-    ArrayList<Item> itemList;
-    int maxWeight = 2400;
+    public ArrayList<Item> itemList;
+    public int maxWeight = 2400;
     int wagonPeople = 4;
-    Travel travel = new Travel();
+    public static Travel travel = new Travel();
     Date date = new Date();
+    public int totalMoney = 1000;
 
-    // private int totalMoney = 0;
+    /**
+     * Gets the total amount of money in the player's wagon
+     * 
+     * @return totalMoney - money in wagon
+     */
+    public int getTotalMoney() {
+        return totalMoney;
+    }
 
-    // attempt to get totalMoney to update after buying from store
-    // public int getTotalMoney() {
-    // return totalMoney;
-    // }
-    // public void setTotalMoney(int costChange) {
-    // totalMoney -= costChange;
-    // }
+    /**
+     * Sets the new total money in wagon after a cost is applied
+     * 
+     * @param costChange - by how much is the total money to be changed
+     */
+    public void setTotalMoney(int costChange) {
+        totalMoney -= costChange;
+    }
 
     /**
      * Initializes wagon with ArrayList filled with all items.
@@ -38,43 +47,49 @@ public class Wagon {
      */
     public Wagon() {
         itemList = new ArrayList<Item>();
-        // System.out.println("X");
-        // totalMoney = 1000;
 
-        // Add all 31 items
-        addFoodItem("ApleVingr", 25, false, false);
-        addFoodItem("Bacon", 400, true, true);
-        addFoodItem("Beans", 200, true, true);
-        addFoodItem("Coffee", 80, false, false);
-        addFoodItem("DryApples", 80, false, true);
-        addFoodItem("Flour", 500, true, false);
-        addFoodItem("Hardtack", 200, false, true);
-        addFoodItem("Lard", 200, true, true);
-        addFoodItem("Salt", 50, true, false);
-        addFoodItem("Sugar", 40, true, false);
-        addFoodItem("Rice", 200, true, true);
-        addFoodItem("Water", 100, true, true);
-        addFoodItem("Whiskey", 80, true, true);
+        /// Add all 31 items
 
+        /*
+         * // Add 13 foodItems
+         * addFoodItem("ApleVingr", 25, false, false);
+         * addFoodItem("Bacon", 400, true, true, true); // pre-loaded
+         * addFoodItem("Beans", 200, true, true, true); // pre-loaded
+         * addFoodItem("Coffee", 80, false, false);
+         * addFoodItem("DryApples", 80, false, true, true); // pre-loaded
+         * addFoodItem("Flour", 500, true, false, true); // pre-loaded
+         * addFoodItem("Hardtack", 200, false, true, true); // pre-loaded
+         * addFoodItem("Lard", 200, true, true, true); // pre-loaded
+         * addFoodItem("Salt", 50, true, false);
+         * addFoodItem("Sugar", 40, true, false);
+         * addFoodItem("Rice", 200, true, true, true); // pre-loaded
+         * addFoodItem("Water", 100, true, true, true); // pre-loaded
+         * addFoodItem("Whiskey", 80, true, true);
+         */
+
+        addItem("Food", 500, true);
+
+        // ammo, clothes, etc.
         addItem("Bedroll", 15);
-        addItem("Smithing Tools", 200);
+        addItem("Smith Tools", 200);
         addItem("Books", 75);
         addItem("Medicine", 10);
-        addItem("CastStove", 300);
+        addItem("Stove", 300);
         addItem("Chair", 20);
-        addItem("Cookware & Utensils", 75);
-        addItem("Granny's Clock", 15);
+        addItem("Cookware", 75);
+        addItem("Old Clock", 15);
         addItem("GunTools", 200);
+        addItem("Bullets", 200);
         addItem("Keepsakes", 40);
         addItem("Leadshot", 25);
         addItem("Mirror", 15);
         addItem("Gunpower", 80);
-        addItem("Tent & Gear", 150);
+        addItem("Tent Gear", 150);
         addItem("Tools", 50);
         addItem("Toys", 15);
-        addItem("Wagon Wheel", 10);
-        addItem("Wagon Axle", 10);
-        addItem("Wagon Tongue", 10);
+        addItem("W Wheel", 10);
+        addItem("W Axle", 10);
+        addItem("W Tongue", 10);
 
     }
 
@@ -90,7 +105,19 @@ public class Wagon {
     }
 
     /**
-     * Creates and adds new food item to the item HashMap
+     * Creates and adds new pre-loaded item to the item HashMap
+     * 
+     * @param name     - Name of the item
+     * @param weight   - Weight of the item
+     * @param isLoaded - Whether the item is loaded into the wagon
+     */
+    public void addItem(String name, int weight, boolean isLoaded) {
+        Item item = new Item(name, weight, isLoaded);
+        itemList.add(item);
+    }
+
+    /**
+     * Creates and adds new unloaded food item to the item HashMap
      * 
      * @param name     - Name of the item
      * @param weight   - Weight of the item
@@ -101,6 +128,23 @@ public class Wagon {
         FoodItem item = new FoodItem(name, weight, cookable, edible);
         itemList.add(item);
     }
+
+    /**
+     * Creates and adds new loaded food item to the item HashMap
+     * 
+     * @param name     - Name of the item
+     * @param weight   - Weight of the item
+     * @param cookable - Whether the food item can be cooked.
+     * @param edible   - Whether the food item can be eaten.
+     * @param isLoaded - Whether the food item is loaded
+     */
+    /*
+     * public void addFoodItem(String name, int weight, boolean cookable, boolean
+     * edible, boolean isLoaded) {
+     * FoodItem item = new FoodItem(name, weight, cookable, edible, isLoaded);
+     * itemList.add(item);
+     * }
+     */
 
     /**
      * Calculates the total weight of the loaded items on the wagon.
@@ -131,29 +175,44 @@ public class Wagon {
     }
 
     /**
-     * Gets the total food weight in the wagon.
+     * Gets the food weight in the wagon.
      * 
-     * @return
+     * @return - Total weight of edible food in the wagon
      */
     public int getFoodWeight() {
-        int foodWeight = 0;
+        int foodWeight = itemList.get(0).getWeight();
 
-        // For every item in list
-        for (Item item : itemList) {
-            // If isLoaded into wagon & is FoodItem...
-            if (item.getIsLoaded() == true && item instanceof FoodItem) {
-                // Cast Item as FoodItem
-                FoodItem food = (FoodItem) item;
-
-                // If FoodItem is edible...
-                if (food.isEdible() == true) {
-                    // Add weight to total
-                    foodWeight = foodWeight + item.getWeight();
-                }
-            }
-        }
+        /*
+         * // For every item in list
+         * for (Item item : itemList) {
+         * // If isLoaded into wagon & is FoodItem...
+         * if (item.getIsLoaded() == true && item instanceof FoodItem) {
+         * // Cast Item as FoodItem
+         * FoodItem food = (FoodItem) item;
+         * 
+         * // If FoodItem is edible...
+         * if (food.isEdible() == true) {
+         * // Add weight to total
+         * foodWeight = foodWeight + item.getWeight();
+         * }
+         * }
+         * }
+         */
 
         return foodWeight;
+    }
+
+    /**
+     * Sets the food weight for the "food" item
+     * 
+     * @param foodWeight - New food weight to be assigned
+     */
+    public void setFoodWeight(int foodWeight) {
+        System.out.println("Old food weight: " + itemList.get(0).getWeight());
+
+        itemList.get(0).setWeight(foodWeight);
+
+        System.out.println("New food weight: " + itemList.get(0).getWeight());
     }
 
     /**
@@ -170,7 +229,9 @@ public class Wagon {
         for (Item item : itemList) {
 
             // If match found, return item
-            if (item.getName() == name) {
+            if (item.getName().equalsIgnoreCase(name)) {
+                System.out.println(item.getName() + " the item has been found!");
+
                 result = item;
                 break;
             }
