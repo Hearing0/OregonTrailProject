@@ -18,7 +18,7 @@ public class Wagon {
     public ArrayList<Item> itemList;
     public int maxWeight = 2400;
     int wagonPeople = 4;
-    public static Travel travel = new Travel();
+    public Travel travel = new Travel();
     Date date = new Date();
     public int totalMoney = 1000;
 

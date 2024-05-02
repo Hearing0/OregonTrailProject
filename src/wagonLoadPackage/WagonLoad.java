@@ -44,9 +44,6 @@ public class WagonLoad {
     RandomEvent Events = new RandomEvent();
 
     // Initialize Wagon
-    private Wagon wagon;
-
-    // Initialize Wagon
     private Wagon wagon = new Wagon();
     private RandomEvent RanEvents = new RandomEvent();
 

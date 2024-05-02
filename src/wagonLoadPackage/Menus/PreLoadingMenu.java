@@ -324,7 +324,7 @@ public class PreLoadingMenu extends JFrame {
         		
         		// If enough food to travel, ...
         		// TODO: Move to after isEnoughFoodToTravel check
-        		if (Wagon.travel.isEnoughFoodToTravel(foodWeight))
+        		if (wagon.travel.isEnoughFoodToTravel(foodWeight))
         		{
             		System.out.println("enough food");
 
