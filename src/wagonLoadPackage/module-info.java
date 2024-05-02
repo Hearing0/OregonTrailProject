@@ -1,4 +1,4 @@
 
-module WagonLoad {
+module OregonTrailProject {
 	requires java.desktop;
 }

@@ -91,8 +91,26 @@ public class Wagon {
         addItem("W Axle",10);
         addItem("W Tongue",10);
         
+        addHealth("Human", 1000, "Name1"); //will likely be placed in whatever class allows naming
+        addHealth("Wagon", 500, "");
+        addHealth("Ox", 300, "");
+        
+        
+        
     }
 
+    /**
+     * Creates and adds new health bar to the item HashMap
+     * @param String Type - what the health is for
+     * @param int HealthValue - amount of health left
+     * @param String PlayerName - name either given by user or auto-generated 
+     */
+    public void addHealth(String Type, int HealthValue, String PlayerName) {
+    	Health HP = new Health(Type, HealthValue, PlayerName);
+        itemList.add(HP);
+    }
+    
+    
     /**
      * Creates and adds new item to the item HashMap
      * 
