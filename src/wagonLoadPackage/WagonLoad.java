@@ -386,13 +386,9 @@ public class WagonLoad {
                     	// Keep track of date
                         wagon.date.increaseDays(); // increases days
                         dateLabel.setText(wagon.date.getDate());
-
-                        // Update Distance till location
-                        int distance = wagon.travel.getCurLocation().getDistance();
-                        distanceLbl.setText(distance + "");
                         
                         // Check for random event
-                        Events.eventCheck(distance);
+                        Events.eventCheck();
                         
                         
                     	// Travel towards next location on map...
@@ -401,6 +397,11 @@ public class WagonLoad {
                             MenuUI menu = new MenuUI(wagon.travel.getCurLocation(), wagon);
                             menu.setVisible(true);
                         }
+                        
+                        // Update Distance till location
+                        int distance = wagon.travel.getCurLocation().getDistance();
+                        distanceLbl.setText(distance + "");
+                        
                                                 
                         // Consume Food
                         int foodConsumed = wagon.travel.getFoodConsumed();

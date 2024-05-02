@@ -61,12 +61,24 @@ public class RandomEvent {
      * @param distanceTraveled - distance given by travel button, may be removed later
      */
 	public void eventCheck(int distanceTraveled) {
+		eventCheck();
+		
+		// For later use ?????
+	}
+	
+	//uses rng to randomly check for occurence of random event
+	//basic right now to prepare for weather and traveling changes
+	//may need to alter the odds to  make it similar to actual game, but its good for testing now
+    /**
+     * performs RNG to determine if an event occurs, and uses methods to select the event if event does occur
+     * NOTE: Same with distance
+     */
+	public void eventCheck() {
 		int die = rng.nextInt(10) + 1;
 		if(die == 1) {
 			//eventAlert();
 			eventPop(eventAlert());
 		}
-		
 	}
 	
 	//will be replaced by the arrayList

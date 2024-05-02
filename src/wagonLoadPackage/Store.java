@@ -165,27 +165,27 @@ public class Store extends Wagon{
 					//items are added to Wagon arrayList
 					if(buyFood > 0) {
 						for(int i = 0; i <= buyFood; i++) {
-							addFoodItem("Food", 100, true, true);
+							addToItem("Food", 100);
 						}
 					}
 					if(buyWheel > 0) {
 						for(int i = 0; i <= buyWheel; i++) {
-							addItem("Wheel", 100);
+							addToItem("Wheel", 1);
 						}
 					}
 					if(buyBullet > 0) {
 						for(int i = 0; i <= buyBullet; i++) {
-							addItem("Bullets", 100);
+							addToItem("Bullets", 20);
 						}
 					}
 					if(buyAxle > 0) {
 						for(int i = 0; i <= buyAxle; i++) {
-							addItem("Axle", 100);
+							addToItem("Axle", 1);
 						}
 					}
 					if(buyTongue > 0) {
 						for(int i = 0; i <= buyTongue; i++) {
-							addItem("Tongue", 100);
+							addToItem("Tongue", 1);
 						}
 					}
 					if(buyOxen > 0) {
@@ -195,7 +195,7 @@ public class Store extends Wagon{
 					}
 					if(buyClothes > 0) {
 						for(int i = 0; i <= buyClothes; i++) {
-							addItem("Clothes", 25);
+							addToItem("Clothes", 1);
 						}
 					}
 				}

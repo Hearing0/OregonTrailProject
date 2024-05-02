@@ -166,7 +166,7 @@ public class Location {
 		distanceTillNext = distanceTillNext - distance;
 
 		// Check if made it to next Location...
-		if (distanceTillNext < 0) {
+		if (distanceTillNext <= 0) {
 			result = true;
 
 			// Change coordinates to next location

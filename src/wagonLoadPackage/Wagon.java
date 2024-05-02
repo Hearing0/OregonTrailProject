@@ -67,7 +67,7 @@ public class Wagon {
         addFoodItem("Whiskey", 80, true, true);
 		*/
 
-        addItem("Food", 40, true);
+        addItem("Food", 300, true);
 
         // ammo, clothes, etc.
         addItem("Bedroll", 15);
@@ -86,10 +86,11 @@ public class Wagon {
         addItem("Gunpower", 80);
         addItem("Tent Gear", 150);
         addItem("Tools", 50);
+        addItem("Clothes", 8);
         addItem("Toys", 15);
-        addItem("W Wheel",10);
-        addItem("W Axle",10);
-        addItem("W Tongue",10);
+        addItem("Wheel", 10);
+        addItem("Axle", 10);
+        addItem("Tongue", 10);
         
         addHealth("Human", 1000, "Name1"); //will likely be placed in whatever class allows naming
         addHealth("Wagon", 500, "");
@@ -133,6 +134,22 @@ public class Wagon {
         Item item = new Item(name, weight, isLoaded);
         itemList.add(item);
     }
+    
+    /**
+     * Adds weight to a pre-existing item
+     * @param name - Name of pre-existing Item to be updated
+     * @param weightAdded - Weight to be added to Item.
+     */
+    public void addToItem(String name, int weightAdded) {
+    	Item item = this.getItem(name);
+    	
+    	System.out.println(item.getName() + " old weight: " + item.getWeight());
+    	
+    	item.setWeight(weightAdded +  item.getWeight() );
+    	
+    	System.out.println(item.getName() + " new weight: " + item.getWeight());
+    }
+    
     
     /**
      * Creates and adds new unloaded food item to the item HashMap
