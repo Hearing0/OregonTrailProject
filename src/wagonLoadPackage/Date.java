@@ -87,6 +87,6 @@ public class Date extends Travel {
 	 *              December being 11
 	 */
 	public void setMonth(int month) {
-		this.month = month;
+		Date.month = month;
 	}
 }

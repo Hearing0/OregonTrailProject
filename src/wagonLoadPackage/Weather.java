@@ -250,8 +250,8 @@ public class Weather extends Date {
 	 * previous day
 	 */
 	public void getNewWeather() {
-		int getNew = rand.nextInt(2);
-		if (getNew == 1) {
+		boolean getNew = rand.nextBoolean(); // determines whether or not the whether changes from the previous day
+		if (getNew) {
 			parseLocation();
 			tempCheck();
 			rainCheck();
@@ -262,12 +262,19 @@ public class Weather extends Date {
 			daysConsistent++;
 	}
 
-	// Getters
-
+	/**
+	 * returns the tag that represents the rain condititons
+	 * 
+	 * @return - a String representing the rain conditions
+	 */
 	public static String getRainResults() {
 		return rainResults;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static String getTempResults() {
 		return tempResults;
 	}
