@@ -153,6 +153,11 @@ public class Travel {
 		return result;
 	}
 
+	int getFoodConsumed() {
+		return foodConsumeMod;
+	}
+	
+	
 	// Breanna Sproul
 	// MOVED CONSUMPTION FROM FoodItem.java TO HERE DO TO MORE USEFUL VARIABLES
 	// PRESENT
