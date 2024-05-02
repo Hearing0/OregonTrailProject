@@ -205,15 +205,6 @@ public class PreLoadingMenu extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 				
         
-
-        
-        /// Food CheckBoxes - David Flores
-       
-        // Track current item in itemList
-        int x = 0;
-        
-        /*        
-        
         /// Food Panel
 		int foodRows = 8;
 		
@@ -222,7 +213,12 @@ public class PreLoadingMenu extends JFrame {
         foodPanel.setBounds(300, 16, 265, (32 + foodRows * 26));	// 
         frmPreLoad.getContentPane().add(foodPanel);
         foodPanel.setLayout(null);
+
         
+        /// Food CheckBoxes - David Flores
+       
+        // Track current item in itemList
+        int x = 0;
         
         // Create two columns of item checkBox...
         for (int j = 0; j < 2 ; j++ ) {
@@ -251,24 +247,22 @@ public class PreLoadingMenu extends JFrame {
 	        	row++;
 	        } while ( row < foodRows && x < 13 && x < wagon.getItemListSize());
         }
-        */
         
         
         /// Item Panel 
-        int itemRows = 8;
-        int itemColumns = 3;
+        int itemRows = 10;
         
 		JPanel itemPanel = new JPanel();
 	    itemPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Items", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-	    itemPanel.setBounds(16, 16, 115 * itemColumns, (32 + itemRows * 26));
+	    itemPanel.setBounds(16, 16, 265, 305);
 	    frmPreLoad.getContentPane().add(itemPanel);
 	    itemPanel.setLayout(null);
         
         
         /// Item CheckBoxes - David Flores
 	    
-        // Create three columns of item checkBox...
-        for (int j = 0; j < 3 ; j++ ) {
+        // Create two columns of item checkBox...
+        for (int j = 0; j < 2 ; j++ ) {
         	// Track Rows 
         	int row = 0;
         	
@@ -333,8 +327,9 @@ public class PreLoadingMenu extends JFrame {
         			if (totalWeight <= wagon.maxWeight) {
         				
         				System.out.println("not overweight");
-        				
-        				lblTravelResult.setText("");
+
+						// Prompt Success
+						lblTravelResult.setText("Yes! You're set to go!");
 						
 						// Confirm if User wants to proceed...
 						int input = JOptionPane.showConfirmDialog(null, 
@@ -359,14 +354,8 @@ public class PreLoadingMenu extends JFrame {
         		}
         		// Fail: Not enough food
 				else {
-    				lblTravelResult.setText("");
-
-    				JOptionPane.showMessageDialog(new JFrame(), 
-        					"Not enough food loaded!\n"
-        					+ "We recommend at least 500 lbs of food!",
-        					"Error",
-        					JOptionPane.ERROR_MESSAGE
-        				);  
+					// Prompt Try Again
+					lblTravelResult.setText("Not enough food! Try Again!");
 				}        		
         	}
         });
@@ -403,8 +392,8 @@ public class PreLoadingMenu extends JFrame {
         		} catch (Exception evt) {
         			JOptionPane.showMessageDialog(new JFrame(), 
         					"Invalid Prompt entered!\n"
-        					+ "Please enter the prompt like the following (without decimals!):\n"
-        					+ "Bullets 400", 
+        					+ "Please enter the prompt like the following :\n"
+        					+ "rice 42", 
         					"Error",
         					JOptionPane.ERROR_MESSAGE
         				);        		
@@ -420,7 +409,7 @@ public class PreLoadingMenu extends JFrame {
         lblPrompt.setBounds(286, 267, 123, 20);
         frmPreLoad.getContentPane().add(lblPrompt);
         
-        JLabel lblExamplerice = new JLabel("Example: \"Food 420\"");
+        JLabel lblExamplerice = new JLabel("Example: \"rice 400\"");
         lblExamplerice.setHorizontalAlignment(SwingConstants.CENTER);
         lblExamplerice.setBounds(300, 301, 265, 20);
         frmPreLoad.getContentPane().add(lblExamplerice);
