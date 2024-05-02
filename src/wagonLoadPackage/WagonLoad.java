@@ -409,11 +409,6 @@ public class WagonLoad {
                         
                         // Consume Food
                         int foodConsumed = wagon.travel.getFoodConsumed();
-						
-						// Debug: Food Calculations
-						//System.out.println("Check for correct subtraction: " + newFoodWeight);
-						System.out.println(foodWeight);
-						System.out.println(foodWeight - foodConsumed);
            
 						// Consume Food
 						wagon.setFoodWeight(foodWeight - foodConsumed);
