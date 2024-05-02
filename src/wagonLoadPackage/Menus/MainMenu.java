@@ -119,10 +119,7 @@ public class MainMenu extends JFrame {
 		panel.add(btnSettings);
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//remove later was here to quickly make changes to store menu
-				Wagon wagon = new Wagon();
-        		Store store = new Store(wagon);
-        		store.setVisible(true);
+
 				
 			}
 		});

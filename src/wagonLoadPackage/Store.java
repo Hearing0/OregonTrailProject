@@ -11,6 +11,12 @@ import java.awt.event.ActionEvent;
 
 public class Store extends Wagon{
 	
+	//STILL WAITING ON
+	//new food system to add bought food to
+	//health system merge to for adding bought oxen with health
+	//need to fix it so tab only appears in a fort, but not quite sure how to get hasActivities to work
+	//might need to edit prices and total money at start
+	
 	private JFrame Storeframe;
 	private JTextField foodBuyTextBox;
 	private JTextField wheelBuyTextBox;
@@ -74,7 +80,6 @@ public class Store extends Wagon{
 		Storeframe.getContentPane().add(wheelBuyTextBox);
 		wheelBuyTextBox.setColumns(10);
 		
-		//new items
 		JLabel axleLabel = new JLabel("Wagon Axle $100 ");
 		axleLabel.setBounds(31, 99, 123, 31);
 		Storeframe.getContentPane().add(axleLabel);
@@ -93,7 +98,7 @@ public class Store extends Wagon{
 		Storeframe.getContentPane().add(tongueBuyTextBox);
 		tongueBuyTextBox.setColumns(10);
 		
-		JLabel oxenLabel = new JLabel("Oxen $100 ");
+		JLabel oxenLabel = new JLabel("Oxen $50 ");
 		oxenLabel.setBounds(31, 142, 123, 31);
 		Storeframe.getContentPane().add(oxenLabel);
 		
@@ -110,8 +115,6 @@ public class Store extends Wagon{
 		clothesBuyTextBox.setBounds(153, 169, 96, 20);
 		Storeframe.getContentPane().add(clothesBuyTextBox);
 		clothesBuyTextBox.setColumns(10);
-		
-		//new item end
 		
 		JLabel totalMLabel = new JLabel("Total Money Left: $");
 		totalMLabel.setBounds(31, 199, 115, 22);
@@ -132,13 +135,22 @@ public class Store extends Wagon{
 				//get the numbers from the text boxes and convert to int
 				String foodString = foodBuyTextBox.getText();
 				int buyFood = Integer.parseInt(foodString);
-				String wheelString = wheelBuyTextBox.getText();
-				int buyWheel = Integer.parseInt(wheelString);
 				String bulletString = bulletBuyTextBox.getText();
 				int buyBullet = Integer.parseInt(bulletString);
+				String wheelString = wheelBuyTextBox.getText();
+				int buyWheel = Integer.parseInt(wheelString);
+				String axleString = axleBuyTextBox.getText();
+				int buyAxle = Integer.parseInt(axleString);
+				String tongueString = tongueBuyTextBox.getText();
+				int buyTongue = Integer.parseInt(tongueString);
+				String oxenString = oxenBuyTextBox.getText();
+				int buyOxen = Integer.parseInt(oxenString);
+				String clothesString = clothesBuyTextBox.getText();
+				int buyClothes = Integer.parseInt(clothesString);
 				
 				//determine the cost for the amount of items chosen to buy 
-				int totalCost = (buyFood * 50) + (buyWheel * 100) + (buyBullet * 10);
+				int totalCost = (buyFood * 50) + (buyWheel * 100) + (buyBullet * 10 
+						+ (buyAxle * 100)+ (buyTongue * 100)+ (buyOxen * 50)+ (buyClothes * 25));
 				
 				//checks if an item is >0 and if the player has enough money to buy items
 				//if the player buys an item, then the cost is subtracted and item is added to wagon
@@ -150,6 +162,7 @@ public class Store extends Wagon{
 
 					talkLabel.setText("Thanks for the sale!");
 					totalMoneyText.setText("" + wagonS.getTotalMoney());
+					//items are added to Wagon arrayList
 					if(buyFood > 0) {
 						for(int i = 0; i <= buyFood; i++) {
 							addFoodItem("Food", 100, true, true);
@@ -163,6 +176,26 @@ public class Store extends Wagon{
 					if(buyBullet > 0) {
 						for(int i = 0; i <= buyBullet; i++) {
 							addItem("Bullets", 100);
+						}
+					}
+					if(buyAxle > 0) {
+						for(int i = 0; i <= buyAxle; i++) {
+							addItem("Axle", 100);
+						}
+					}
+					if(buyTongue > 0) {
+						for(int i = 0; i <= buyTongue; i++) {
+							addItem("Tongue", 100);
+						}
+					}
+					if(buyOxen > 0) {
+						for(int i = 0; i <= buyOxen; i++) {
+							//addHealth("Oxen"...
+						}
+					}
+					if(buyClothes > 0) {
+						for(int i = 0; i <= buyClothes; i++) {
+							addItem("Clothes", 25);
 						}
 					}
 				}
