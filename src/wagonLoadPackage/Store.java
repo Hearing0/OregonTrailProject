@@ -11,6 +11,12 @@ import java.awt.event.ActionEvent;
 
 public class Store extends Wagon{
 	
+	//STILL WAITING ON
+	//new food system to add bought food to
+	//health system merge to for adding bought oxen with health
+	//need to fix it so tab only appears in a fort, but not quite sure how to get hasActivities to work
+	//might need to edit prices and total money at start
+	
 	private JFrame Storeframe;
 	private JTextField foodBuyTextBox;
 	private JTextField wheelBuyTextBox;
@@ -44,20 +50,71 @@ public class Store extends Wagon{
 		
 		JLabel storeLabel = new JLabel("STORE");
 		storeLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		storeLabel.setBounds(10, 11, 65, 31);
+		storeLabel.setBounds(10, 5, 65, 31);
 		Storeframe.getContentPane().add(storeLabel);
 		
 		JLabel foodLabel = new JLabel("Food $50 for 100 lbs");
-		foodLabel.setBounds(31, 53, 133, 22);
+		foodLabel.setBounds(31, 33, 133, 22);
 		Storeframe.getContentPane().add(foodLabel);
 		
+		foodBuyTextBox = new JTextField("0");
+		foodBuyTextBox.setBounds(153, 33, 96, 20);
+		Storeframe.getContentPane().add(foodBuyTextBox);
+		foodBuyTextBox.setColumns(10);
+
+		JLabel bulletLabel = new JLabel("Bullets $10 for 20");
+		bulletLabel.setBounds(31, 53, 123, 31);
+		Storeframe.getContentPane().add(bulletLabel);
+		
+		bulletBuyTextBox = new JTextField("0");
+		bulletBuyTextBox.setBounds(153, 56, 96, 20);
+		Storeframe.getContentPane().add(bulletBuyTextBox);
+		bulletBuyTextBox.setColumns(10);
+		
 		JLabel wheelLabel = new JLabel("Wagon Wheel $100");
-		wheelLabel.setBounds(31, 88, 133, 36);
+		wheelLabel.setBounds(31, 73, 133, 36);
 		Storeframe.getContentPane().add(wheelLabel);
 		
-		JLabel bulletLabel = new JLabel("Bullets $10 for 20");
-		bulletLabel.setBounds(31, 137, 123, 31);
-		Storeframe.getContentPane().add(bulletLabel);
+		wheelBuyTextBox = new JTextField("0");
+		wheelBuyTextBox.setBounds(153, 79, 96, 20);
+		Storeframe.getContentPane().add(wheelBuyTextBox);
+		wheelBuyTextBox.setColumns(10);
+		
+		JLabel axleLabel = new JLabel("Wagon Axle $100 ");
+		axleLabel.setBounds(31, 99, 123, 31);
+		Storeframe.getContentPane().add(axleLabel);
+		
+		JTextField axleBuyTextBox = new JTextField("0");
+		axleBuyTextBox.setBounds(153, 102, 96, 20);
+		Storeframe.getContentPane().add(axleBuyTextBox);
+		axleBuyTextBox.setColumns(10);
+		
+		JLabel tongueLabel = new JLabel("Wagon Tongue $100 ");
+		tongueLabel.setBounds(31, 120, 123, 31);
+		Storeframe.getContentPane().add(tongueLabel);
+		
+		JTextField tongueBuyTextBox = new JTextField("0");
+		tongueBuyTextBox.setBounds(153, 125, 96, 20);
+		Storeframe.getContentPane().add(tongueBuyTextBox);
+		tongueBuyTextBox.setColumns(10);
+		
+		JLabel oxenLabel = new JLabel("Oxen $50 ");
+		oxenLabel.setBounds(31, 142, 123, 31);
+		Storeframe.getContentPane().add(oxenLabel);
+		
+		JTextField oxenBuyTextBox = new JTextField("0");
+		oxenBuyTextBox.setBounds(153, 147, 96, 20);
+		Storeframe.getContentPane().add(oxenBuyTextBox);
+		oxenBuyTextBox.setColumns(10);
+		
+		JLabel clothesLabel = new JLabel("Clothes $25 ");
+		clothesLabel.setBounds(31, 163, 123, 31);
+		Storeframe.getContentPane().add(clothesLabel);
+		
+		JTextField clothesBuyTextBox = new JTextField("0");
+		clothesBuyTextBox.setBounds(153, 169, 96, 20);
+		Storeframe.getContentPane().add(clothesBuyTextBox);
+		clothesBuyTextBox.setColumns(10);
 		
 		JLabel totalMLabel = new JLabel("Total Money Left: $");
 		totalMLabel.setBounds(31, 199, 115, 22);
@@ -67,21 +124,6 @@ public class Store extends Wagon{
 		JLabel totalMoneyText = new JLabel("" + moneyShown);
 		totalMoneyText.setBounds(150, 203, 49, 14);
 		Storeframe.getContentPane().add(totalMoneyText);
-		
-		foodBuyTextBox = new JTextField("0");
-		foodBuyTextBox.setBounds(153, 54, 96, 20);
-		Storeframe.getContentPane().add(foodBuyTextBox);
-		foodBuyTextBox.setColumns(10);
-		
-		wheelBuyTextBox = new JTextField("0");
-		wheelBuyTextBox.setBounds(153, 96, 96, 20);
-		Storeframe.getContentPane().add(wheelBuyTextBox);
-		wheelBuyTextBox.setColumns(10);
-		
-		bulletBuyTextBox = new JTextField("0");
-		bulletBuyTextBox.setBounds(153, 142, 96, 20);
-		Storeframe.getContentPane().add(bulletBuyTextBox);
-		bulletBuyTextBox.setColumns(10);
 		
 		JLabel talkLabel = new JLabel("Hello Traveler");
 		talkLabel.setBounds(195, 188, 211, 44);
@@ -93,13 +135,22 @@ public class Store extends Wagon{
 				//get the numbers from the text boxes and convert to int
 				String foodString = foodBuyTextBox.getText();
 				int buyFood = Integer.parseInt(foodString);
-				String wheelString = wheelBuyTextBox.getText();
-				int buyWheel = Integer.parseInt(wheelString);
 				String bulletString = bulletBuyTextBox.getText();
 				int buyBullet = Integer.parseInt(bulletString);
+				String wheelString = wheelBuyTextBox.getText();
+				int buyWheel = Integer.parseInt(wheelString);
+				String axleString = axleBuyTextBox.getText();
+				int buyAxle = Integer.parseInt(axleString);
+				String tongueString = tongueBuyTextBox.getText();
+				int buyTongue = Integer.parseInt(tongueString);
+				String oxenString = oxenBuyTextBox.getText();
+				int buyOxen = Integer.parseInt(oxenString);
+				String clothesString = clothesBuyTextBox.getText();
+				int buyClothes = Integer.parseInt(clothesString);
 				
 				//determine the cost for the amount of items chosen to buy 
-				int totalCost = (buyFood * 50) + (buyWheel * 100) + (buyBullet * 10);
+				int totalCost = (buyFood * 50) + (buyWheel * 100) + (buyBullet * 10 
+						+ (buyAxle * 100)+ (buyTongue * 100)+ (buyOxen * 50)+ (buyClothes * 25));
 				
 				//checks if an item is >0 and if the player has enough money to buy items
 				//if the player buys an item, then the cost is subtracted and item is added to wagon
@@ -111,6 +162,7 @@ public class Store extends Wagon{
 
 					talkLabel.setText("Thanks for the sale!");
 					totalMoneyText.setText("" + wagonS.getTotalMoney());
+					//items are added to Wagon arrayList
 					if(buyFood > 0) {
 						for(int i = 0; i <= buyFood; i++) {
 							addFoodItem("Food", 100, true, true);
@@ -124,6 +176,26 @@ public class Store extends Wagon{
 					if(buyBullet > 0) {
 						for(int i = 0; i <= buyBullet; i++) {
 							addItem("Bullets", 100);
+						}
+					}
+					if(buyAxle > 0) {
+						for(int i = 0; i <= buyAxle; i++) {
+							addItem("Axle", 100);
+						}
+					}
+					if(buyTongue > 0) {
+						for(int i = 0; i <= buyTongue; i++) {
+							addItem("Tongue", 100);
+						}
+					}
+					if(buyOxen > 0) {
+						for(int i = 0; i <= buyOxen; i++) {
+							//addHealth("Oxen"...
+						}
+					}
+					if(buyClothes > 0) {
+						for(int i = 0; i <= buyClothes; i++) {
+							addItem("Clothes", 25);
 						}
 					}
 				}

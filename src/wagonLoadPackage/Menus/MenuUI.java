@@ -299,9 +299,7 @@ public class MenuUI {
         descriptionPanel.add(new JScrollPane(descriptionTextArea), BorderLayout.CENTER);
         tabbedPane.addTab("Description", descriptionPanel);
 		
-        //Breanna - adds store tab
-        //need to change it so it only appears in forts
-        tabbedPane.addTab("Store", storePanel());
+
      
         /**
     	 * Rod Piton - Initializes the contents of the Wagon tab and Travel tab.
@@ -355,6 +353,9 @@ public class MenuUI {
 	        // Trading Tab
 	        JPanel tradingPanel = this.tradingPanel();
 	        tabbedPane.addTab("Trade", tradingPanel);
+	        
+	        //Store Tab
+	        tabbedPane.addTab("Store", storePanel());
 	        
         }
 		
