@@ -32,6 +32,8 @@ public class River extends Location {
 	double depth, width;
 	double swiftness;
 	double bottom;
+	double widthRainVary, depthRainVary, swiftRainVary;
+	double waterLevel;
 
 	final int ROCKYBT = 0;
 	final int MUDDYBT = 1;
@@ -143,6 +145,17 @@ public class River extends Location {
 		this.isGuide = isGuide;
 	}
 
+	/**
+	 * determines the variation in the various river attributes according to the
+	 * weather system
+	 */
+	private void checkWeather() {
+		waterLevel = Weather.getGroundWaterLevel();
+		depthRainVary = (waterLevel * 1.25);
+		widthRainVary = (waterLevel * 12);
+		swiftRainVary = (waterLevel * 0.75);
+	}
+
 	/***
 	 * sets the conditions for the river, and randomly varies the depth and
 	 * swiftness of the river
@@ -150,15 +163,22 @@ public class River extends Location {
 	 * geological data for each river
 	 * 
 	 * @param current - used to determine which river the user is currently at
-	 *                TODO make a more realistic and in-depth model for river depth,
-	 *                width, etc.
-	 *                TODO add Columbia River
+	 *                TODO add Columbia River maybe
 	 * 
 	 */
 	public void setConditions(Location current) {
-		double variation = rand.nextDouble(4); // used to vary the depth
-		double swiftnessVary = rand.nextDouble(4); // used to vary the swiftness
+		checkWeather();
+
 		int addOrSubtract = rand.nextInt(2); // used to determine whether or not to add or subtract
+		double depthVary = rand.nextDouble(4); // used to vary the depth
+		double swiftVary = rand.nextDouble(4); // used to vary the swiftness
+		double widthVary = rand.nextDouble(10);
+
+		if (waterLevel != 0) {
+			depthVary += depthRainVary;
+			widthVary += depthRainVary;
+			swiftVary += swiftRainVary;
+		}
 
 		if (this.name == "Kansas River") { // determines the conditions for the Kansas River
 			depth = 6.7;
@@ -167,11 +187,13 @@ public class River extends Location {
 			// adds some variation in the river's depth and swiftness, will be based on
 			// weather models once that is finished
 			if (addOrSubtract == 1) {
-				depth += variation;
-				swiftness += swiftnessVary;
+				depth += depthVary;
+				swiftness += swiftVary;
+				width += widthVary;
 			} else {
-				depth -= variation;
-				swiftness -= swiftnessVary;
+				depth -= depthVary;
+				swiftness -= swiftVary;
+				width -= widthVary;
 			}
 		}
 
@@ -180,11 +202,13 @@ public class River extends Location {
 			width = 467;
 			swiftness = 6.7;
 			if (addOrSubtract == 1) {
-				depth += variation;
-				swiftness += swiftnessVary;
+				depth += depthVary;
+				swiftness += swiftVary;
+				width += widthVary;
 			} else {
-				depth -= variation;
-				swiftness -= swiftnessVary;
+				depth -= depthVary;
+				swiftness -= swiftVary;
+				width -= widthVary;
 			}
 		}
 
@@ -193,24 +217,29 @@ public class River extends Location {
 			width = 350;
 			swiftness = 5.4;
 			if (addOrSubtract == 1) {
-				depth += variation;
-				swiftness += swiftnessVary;
+				depth += depthVary;
+				swiftness += swiftVary;
+				width += widthVary;
 			} else {
-				depth -= variation;
-				swiftness -= swiftnessVary;
+				depth -= depthVary;
+				swiftness -= swiftVary;
+				width -= widthVary;
+				swiftness += swiftVary;
 			}
 		}
 
-		else if (this.name == "Snake River") { // determines the conditions for the Snake River
+		else if (this.name == "Snake River") {
 			depth = 12.25;
 			width = 753;
 			swiftness = 8.5;
 			if (addOrSubtract == 1) {
-				depth += variation;
-				swiftness += swiftnessVary;
+				depth += depthVary;
+				swiftness += swiftVary;
+				width += widthVary;
 			} else {
-				depth -= variation;
-				swiftness -= swiftnessVary;
+				depth -= depthVary;
+				swiftness -= swiftVary;
+				width -= widthVary;
 			}
 		}
 	}

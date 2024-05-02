@@ -13,32 +13,32 @@ import wagonLoadPackage.Travel;
  * edible food weight, and packing/unpacking items.
  */
 public class Wagon {
-	
-	// Initialize Variables
-	public ArrayList<Item> itemList;
-	public int maxWeight = 2400;
-	int wagonPeople = 4;
-	public static Travel travel = new Travel();
-    Date date = new Date();
-	public int totalMoney = 1000;
-	
-	
-	/**
-	 * Gets the total amount of money in the player's wagon
-	 * @return totalMoney - money in wagon
-	 */
-	public int getTotalMoney() {
-		return totalMoney;
-	}
-	
-	/**
-	 * Sets the new total money in wagon after a cost is applied
-	 * @param costChange - by how much is the total money to be changed
-	 */
-	public void setTotalMoney(int costChange) {
-		totalMoney -= costChange;
-	}
 
+    // Initialize Variables
+    public ArrayList<Item> itemList;
+    public int maxWeight = 2400;
+    int wagonPeople = 4;
+    public Travel travel = new Travel();
+    Date date = new Date();
+    public int totalMoney = 1000;
+
+    /**
+     * Gets the total amount of money in the player's wagon
+     * 
+     * @return totalMoney - money in wagon
+     */
+    public int getTotalMoney() {
+        return totalMoney;
+    }
+
+    /**
+     * Sets the new total money in wagon after a cost is applied
+     * 
+     * @param costChange - by how much is the total money to be changed
+     */
+    public void setTotalMoney(int costChange) {
+        totalMoney -= costChange;
+    }
 
     /**
      * Initializes wagon with ArrayList filled with all items.
@@ -53,17 +53,17 @@ public class Wagon {
         /*
         // Add 13 foodItems
         addFoodItem("ApleVingr", 25, false, false);
-        addFoodItem("Bacon", 400, true, true, true); 		// pre-loaded
-        addFoodItem("Beans", 200, true, true, true); 		// pre-loaded
+        addFoodItem("Bacon", 400, true, true, true); // pre-loaded
+        addFoodItem("Beans", 200, true, true, true); // pre-loaded
         addFoodItem("Coffee", 80, false, false);
-        addFoodItem("DryApples", 80, false, true, true); 	// pre-loaded
-        addFoodItem("Flour", 500, true, false, true); 		// pre-loaded
-        addFoodItem("Hardtack", 200, false, true, true); 	// pre-loaded
-        addFoodItem("Lard", 200, true, true, true); 		// pre-loaded
+        addFoodItem("DryApples", 80, false, true, true); // pre-loaded
+        addFoodItem("Flour", 500, true, false, true); // pre-loaded
+        addFoodItem("Hardtack", 200, false, true, true); // pre-loaded
+        addFoodItem("Lard", 200, true, true, true); // pre-loaded
         addFoodItem("Salt", 50, true, false);
         addFoodItem("Sugar", 40, true, false);
-        addFoodItem("Rice", 200, true, true, true); 		// pre-loaded
-        addFoodItem("Water", 100, true, true, true); 		// pre-loaded
+        addFoodItem("Rice", 200, true, true, true); // pre-loaded
+        addFoodItem("Water", 100, true, true, true); // pre-loaded
         addFoodItem("Whiskey", 80, true, true);
 		*/
 
@@ -153,8 +153,9 @@ public class Wagon {
     
     /**
      * Creates and adds new unloaded food item to the item HashMap
-     * @param name - Name of the item
-     * @param weight - Weight of the item
+     * 
+     * @param name     - Name of the item
+     * @param weight   - Weight of the item
      * @param cookable - Whether the food item can be cooked.
      * @param edible   - Whether the food item can be eaten.
      */
@@ -166,16 +167,17 @@ public class Wagon {
     
     /**
      * Creates and adds new loaded food item to the item HashMap
-     * @param name - Name of the item
-     * @param weight - Weight of the item
+     * 
+     * @param name     - Name of the item
+     * @param weight   - Weight of the item
      * @param cookable - Whether the food item can be cooked.
-     * @param edible - Whether the food item can be eaten.
+     * @param edible   - Whether the food item can be eaten.
      * @param isLoaded - Whether the food item is loaded
      */
     /*
     public void addFoodItem(String name, int weight, boolean cookable, boolean edible, boolean isLoaded) {
-    	FoodItem item = new FoodItem(name, weight, cookable, edible, isLoaded);
-    	itemList.add(item);
+        FoodItem item = new FoodItem(name, weight, cookable, edible, isLoaded);
+        itemList.add(item);
     }
     */
     
@@ -256,20 +258,20 @@ public class Wagon {
      * @return - Return Item instance w/ matching name. Returns null if non-existant
      */
     public Item getItem(String name) {
-    	Item result = null;
-    	
-    	// Search list for item w/ matching name
-    	for (Item item : itemList) {
-    		
-    		// If match found, return item
-    		if (item.getName().equalsIgnoreCase(name)) {
-    			System.out.println( item.getName() + " the item has been found!");
-    			
-    			result = item;
-    			break;
-    		}
-    	}
-    	
+        Item result = null;
+
+        // Search list for item w/ matching name
+        for (Item item : itemList) {
+
+            // If match found, return item
+            if (item.getName().equalsIgnoreCase(name)) {
+                System.out.println(item.getName() + " the item has been found!");
+
+                result = item;
+                break;
+            }
+        }
+
         return result;
     }
 

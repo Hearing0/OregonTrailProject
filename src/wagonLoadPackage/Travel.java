@@ -19,12 +19,13 @@ public class Travel {
 	double paceMod = 1; // 0.5x, 1x, 2x
 	int consumeSelect = 1;
 	int foodConsumeMod = consumeSelect * 4; // (1 to 3) * 4 people on wagon
-	double milesTillEnd = 2200;
+	double milesTillEnd = 1932;
 
 	// Map Variables
-	ArrayList<Location> map = new ArrayList<Location>(); 	// map of Oregon Trail
-	int wagonLocation = 0;		// coordinates for map
-	
+	ArrayList<Location> map = new ArrayList<Location>(); // map of Oregon Trail
+
+	int wagonLocation = 0; // coordinates for map
+
 	/**
 	 * Initialize Travel w/ a filled map
 	 */
@@ -39,10 +40,10 @@ public class Travel {
 						+ "starting point for thousands embarking on the arduous journey to the Pacific "
 						+ "Northwest, marking the beginning of their quest for a better life on the frontier.",
 				"Select Option",
-				200,
-				true, false);
-		addRiver("Kansas River", "Also known as the Kaw,", "Select Option", 50, true, true);
-		addRiver("Big Blue River", "River description here", "Select Option", 30, true, true);
+				106,
+				true, false); // 0 miles
+		addRiver("Kansas River", "Also known as the Kaw,", "Select Option", 59, true, true); // 106 miles
+		addRiver("Big Blue River", "River description here", "Select Option", 154, true, true); // 165 miles
 		addLocation("Fort Kearney",
 				"Fort Kearney was established in the 1840s to protect pioneers, traders, "
 						+ "and emigrants as they journeyed through the frontier. "
@@ -55,31 +56,24 @@ public class Travel {
 						+ "with wagons, settlers, soldiers, and traders, all flowing "
 						+ "through this point on their journey westward.",
 				"Select Option",
-				75,
-				true, false);
-		// TODO add realistic distances
-		addLocation("Chimney Rock", "add description", "Select Option", 100, true, false);
-		addLocation("Fort Laramie", "add description", "Select Option", 100, true, false);
-		addLocation("Independence Rock", "add description", "Select Option", 100, true, false);
-		addLocation("South Pass", "add description", "Select Option", 100, true, false);
-		addRiver("Green River", "River description here", "Select Option", 20, true, true);
-		addLocation("Fort Bridger", "add description", "Select Option", 100, true, false);
-		addLocation("Soda Springs", "add description", "Select Option", 100, true, false);
-		addLocation("Fort Hall", "add description", "Select Option", 100, true, false);
-		addRiver("Snake River", "River description here", "Select Option", 50, true, true);
-		addLocation("Fort Boise", "add description", "Select Option", 100, true, false);
-		addLocation("Blue Mountains", "add description", "Select Option", 100, true, false);
-		addLocation("Fort Walla Walla", "add description", "Select Option", 100, true, false);
-		addLocation("The Dalles", "add description", "Select Option", 100, true, false);
-		addRiver("Columbia River", "add description", "Select Option", 100, true, true);
-		addLocation("Willamette Valley, Oregon", "You made it!", "Select Option", 10000, true, false);
+				256,
+				true, false); // 319 miles
+		addLocation("Chimney Rock", "add description", "Select Option", 75, true, false); // 575 miles
+		addLocation("Fort Laramie", "add description", "Select Option", 164, true, false); // 650 miles
+		addLocation("Independence Rock", "add description", "Select Option", 100, true, false); // 814 miles
+		addLocation("South Pass", "add description", "Select Option", 67, true, false); // 914 miles
+		addRiver("Green River", "River description here", "Select Option", 45, true, true); // 981 miles
+		addLocation("Fort Bridger", "add description", "Select Option", 129, true, false); // 1026 miles
+		addLocation("Soda Springs", "add description", "Select Option", 62, true, false); // 1155 miles
+		addLocation("Fort Hall", "add description", "Select Option", 180, true, false); // 1217 miles
+		addRiver("Snake River", "River description here", "Select Option", 113, true, true); // 1397 miles
+		addLocation("Fort Boise", "add description", "Select Option", 158, true, false); // 1510 miles
+		addLocation("Blue Mountains", "add description", "Select Option", 62, true, false); // 1668 miles
+		addLocation("Fort Walla Walla", "add description", "Select Option", 89, true, false); // 1730 miles
+		addLocation("The Dalles", "add description", "Select Option", 113, true, false); // 1819 miles
+		addLocation("Willamette Valley, Oregon", "You made it!", "Select Option", 10000, true, false); // 1932 miles
 	}
 
-	/**
-	 * returns the map for ease of use
-	 * 
-	 * @return ArrayList of Location containing all points along the route
-	 */
 	public ArrayList<Location> getMap() {
 		return map;
 	}
@@ -395,38 +389,46 @@ public class Travel {
 		map.add(loc);
 	}
 
-    public void addRiver(String name, String desc, String prompt, int disTillNExt, boolean hasActs, boolean isRiver) {
-    	River river = new River(name, desc, prompt, disTillNExt, hasActs, isRiver);
-    	map.add(river);
-    }
-    
-    
-    /// Getter/Setters
-    
-    
-    /**
-     * Gets the travelSpeed of the wagon.
-     * @return - Integer of the wagon's travelSpeed 
-     */
-    public int getTravelSpeed() {
-    	return this.travelSpeed;
-    }
-    
-    /**
-	 * Calculates the total distance of the trip by adding the distance between each landmark together
+	public void addRiver(String name, String desc, String prompt, int disTillNExt, boolean hasActs, boolean isRiver) {
+		River river = new River(name, desc, prompt, disTillNExt, hasActs, isRiver);
+		map.add(river);
+	}
+
+	/// Getter/Setters
+
+	/**
+	 * Gets the travelSpeed of the wagon.
+	 * 
+	 * @return - Integer of the wagon's travelSpeed
+	 */
+	public int getTravelSpeed() {
+		return this.travelSpeed;
+	}
+
+	/**
+	 * Calculates the total distance of the trip by adding the distance between each
+	 * landmark together
+	 * 
 	 * @return - Integer of the total distance till the final location.
 	 */
 	public int getTotalDistance() {
 		int totalDist = 0;
-		
-		for (int i = wagonLocation; i < map.size(); i++)
-		{
+
+		for (int i = wagonLocation; i < map.size(); i++) {
 			Location current = map.get(i);
 			totalDist = totalDist + current.getDistance();
 		}
-		
+
 		return totalDist;
 	}
-    
-    
+
+	/**
+	 * gets the location of the wagon as an integer
+	 * 
+	 * @return - integer of the wagon's location
+	 */
+	public int getWagonLocation() {
+		return this.wagonLocation;
+	}
+
 }

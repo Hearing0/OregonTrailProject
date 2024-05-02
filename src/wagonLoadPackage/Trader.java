@@ -283,9 +283,10 @@ public class Trader {
 		this.itemOfferNum = 0;
 		this.itemRequest = null;
 	}
-	
+
 	/**
 	 * Gets trades remaining in the current location.
+	 * 
 	 * @return - Trades remaining in the current location
 	 */
 	public int getTradesRemaining() {
@@ -294,6 +295,7 @@ public class Trader {
 
 	/**
 	 * Gets Trade Offers remaining with the current trader.
+	 * 
 	 * @return - Trade Offers remaining with the current trader
 	 */
 	public int getOffersRemaining() {
