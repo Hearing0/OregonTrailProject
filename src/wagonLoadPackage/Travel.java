@@ -72,7 +72,7 @@ public class Travel {
 		addLocation("Blue Mountains", "add description", "Select Option", 100, true, false);
 		addLocation("Fort Walla Walla", "add description", "Select Option", 100, true, false);
 		addLocation("The Dalles", "add description", "Select Option", 100, true, false);
-		addRiver("Columbia River", "add description", "Select Option", 100, true, true);
+		//addRiver("Columbia River", "add description", "Select Option", 100, true, true);
 		addLocation("Willamette Valley, Oregon", "You made it!", "Select Option", 10000, true, false);
 	}
 

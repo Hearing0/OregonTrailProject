@@ -17,24 +17,24 @@ public class Weather extends Date {
 
 	boolean willSnow = false; // determines if any precipitation will be snow
 	boolean willRain = false; // determines if it will rain on a certain day
-	boolean isDrought = false; // determines if the conditions are correct for a drought
-	boolean isSevere = false; // determines if the drought is severe or not
+	static boolean isDrought = false; // determines if the conditions are correct for a drought
+	static boolean isSevere = false; // determines if the drought is severe or not
 	boolean isHot = false; // true if the temperature is "Very Hot", "Hot", or "Warm"
 	boolean isCold = false; // true if the temperature is "Very Cold", "Cold", or "Cool"
-	boolean isRainy = false; // true if the precipitation is 0.2in for rain, or 2in for snow
-	boolean isVeryRainy = false; // true if the precipitation is 0.8in for rain, or 8in for snow
+	static boolean isRainy = false; // true if the precipitation is 0.2in for rain, or 2in for snow
+	static boolean isVeryRainy = false; // true if the precipitation is 0.8in for rain, or 8in for snow
 
 	double rainLevel = 0; // determines the amount of rain that would fall on a given day
 	double snowLevel = 0; // determines the amount of snow that would fall on a given day
-	double groundWaterLevel; // determines how much water is actually on the ground
-	double groundSnowLevel; // determines how much snow is actually on the ground
+	static double groundWaterLevel; // determines how much water is actually on the ground
+	static double groundSnowLevel; // determines how much snow is actually on the ground
 
 	int wagonLocale = getWagonLocation(); // used to determine which weather zone the player is in
 	int location; // determines which weather zone the player is in
-	int daysConsistent = 0; // determines how long the weather has stayed the same
+	static int daysConsistent = 0; // determines how long the weather has stayed the same
 
-	String rainResults; // the descriptor for the rain conditions
-	String tempResults; // the descriptor for the temperature conditions
+	static String rainResults; // the descriptor for the rain conditions
+	static String tempResults; // the descriptor for the temperature conditions
 
 	Random rand = new Random();
 
@@ -245,6 +245,10 @@ public class Weather extends Date {
 			groundSnowLevel = 0;
 	}
 
+	/**
+	 * generates new weather for a day, with a 50% chance to not change from the
+	 * previous day
+	 */
 	public void getNewWeather() {
 		int getNew = rand.nextInt(2);
 		if (getNew == 1) {
@@ -260,39 +264,39 @@ public class Weather extends Date {
 
 	// Getters
 
-	public String getRainResults() {
+	public static String getRainResults() {
 		return rainResults;
 	}
 
-	public String getTempResults() {
+	public static String getTempResults() {
 		return tempResults;
 	}
 
-	public double getGroundWaterLevel() {
+	public static double getGroundWaterLevel() {
 		return groundWaterLevel;
 	}
 
-	public double getGroundSnowLevel() {
+	public static double getGroundSnowLevel() {
 		return groundSnowLevel;
 	}
 
-	public boolean getIsRainy() {
+	public static boolean getIsRainy() {
 		return isRainy;
 	}
 
-	public boolean getIsVeryRainy() {
+	public static boolean getIsVeryRainy() {
 		return isVeryRainy;
 	}
 
-	public boolean getIsDrought() {
+	public static boolean getIsDrought() {
 		return isDrought;
 	}
 
-	public boolean getIsSevere() {
+	public static boolean getIsSevere() {
 		return isSevere;
 	}
 
-	public int getDaysConsistent() {
+	public static int getDaysConsistent() {
 		return daysConsistent;
 	}
 }
