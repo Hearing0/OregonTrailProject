@@ -82,23 +82,28 @@ public class Travel {
 	 * Sets the pace of the wagon
 	 * 
 	 * @param paceSelect - From 1-3, sets
-	 *                   the pace of the wagon to 0.5x, 1x, or 2x
+	 *                   the pace of the wagon to 0.5x, 1x, or 1.5x
 	 *                   respectively.
-	 * 
-	 *                   TODO: Use in future
+	 * @return - True if the pace was successfully set.
 	 */
-	public void setPace(int paceSelect) {
+	public boolean setPace(int paceSelect) {
+		boolean result = true;
+		
 		switch (paceSelect) {
 			case 1:
-				this.paceMod = 0.5;
+				this.paceMod = 1.5;
 				break;
 			case 2:
 				this.paceMod = 1;
 				break;
 			case 3:
-				this.paceMod = 2;
+				this.paceMod = .6;
 				break;
+			default:
+				result = false;
 		}
+		
+		return result;
 	}
 
 	/**
@@ -179,6 +184,34 @@ public class Travel {
 
 		return result;
 	}
+	
+	
+	/**
+	 * Gets the flavor text for the travel pace option
+	 * selected.
+	 * 
+	 * @return - String that can be either "Steady pace",
+	 *         "Strenuous pace", or "Grueling pace" depending on the paceMod
+	 *         (1-3).
+	 */
+	public String getFlavorTxtPace() {
+		String result = "";
+		switch (this.consumeSelect) {
+			case 3:
+				result = "Steady pace";
+				break;
+			case 2:
+				result = "Strenuous pace";
+				break;
+			case 1:
+				result = "Grueling pace";
+				break;
+		}
+
+		return result;
+	}
+	
+	
 
 	/**
 	 * Sets travelSpeed to value if in between the bounds of
