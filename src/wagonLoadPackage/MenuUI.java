@@ -43,6 +43,8 @@ public class MenuUI {
 	private JTabbedPane mapPane;
 	private Wagon wagon;
 	private Travel travelspeed;
+	private WagonLoad load;
+	private Store store;
 	
 	// Trader Variables
 	private Trader trader;
@@ -56,6 +58,8 @@ public class MenuUI {
 		this.location = location;
 		this.wagon = wagon;
 		this.travelspeed = travelspeed;
+		this.load = load;
+		this.store = store;
 		this.trader = new Trader(0, wagon);
 		initialize();
 	}
@@ -283,7 +287,8 @@ public class MenuUI {
         		"Current Distance: " + location.getDistance()+"\n"+
         		"Current Location: " + location.getName() + "\n" +
         		"Current wagon weight: "	+ wagon.getTotalWeight() + "\n" +
-        		"Current food weight: " + wagon.getFoodWeight()
+        		"Current food weight: " + wagon.getFoodWeight()+"\n"+ 
+        		"Current Party: " + wagon.wagonPeople
         		
         		);
         WagonTextArea.setLineWrap(true);
@@ -292,21 +297,19 @@ public class MenuUI {
         WagonPanel.add(new JScrollPane(WagonTextArea), BorderLayout.CENTER);
         tabbedPane.addTab("Wagon", WagonPanel);
         
-        // Travel tab to be implemented
+        //Travel tab to be implemented
         
-       // JPanel TravelPanel = new JPanel(new BorderLayout());
-        //JTextArea TravelTextArea = new JTextArea(
+       JPanel TravelPanel = new JPanel(new BorderLayout());
+       JTextArea TravelTextArea = new JTextArea(
         		
-        	//	"Current Travel Speed: " + travelspeed.getTravelSpeed()+"\n"+
-        	//	"Current Items: " + wagon + "\n" 
+        "Item Amount: " +"\n" +"Items:" + "\n" 
         		
-        		
-        	//	);
-      //  TravelTextArea.setLineWrap(true);
-      //  TravelTextArea.setWrapStyleWord(true);
-      //  TravelTextArea.setEditable(false);
-    //    TravelPanel.add(new JScrollPane(TravelTextArea), BorderLayout.CENTER);
-        // tabbedPane.addTab("Wagon", TravelPanel);
+        	);
+       TravelTextArea.setLineWrap(true);
+       TravelTextArea.setWrapStyleWord(true);
+       TravelTextArea.setEditable(false);
+       TravelPanel.add(new JScrollPane(TravelTextArea), BorderLayout.CENTER);
+       tabbedPane.addTab("Inventory", TravelPanel);
        
         
         // If current location has activites, create activities
@@ -329,7 +332,7 @@ public class MenuUI {
         // png is being sourced from bin (but is located in src??? check if is issue)
         JPanel mapPanel = new JPanel(new BorderLayout());
         JLabel artLabel = new JLabel();
-        URL imageUrl = WagonLoad.class.getResource("/images/OreganTrailMap.png");
+        URL imageUrl = WagonLoad.class.getResource("images/OreganTrailMap.png");
         if (imageUrl != null) {
             artLabel.setIcon(new ImageIcon(imageUrl));
             System.out.println("imageURL: " + imageUrl);
@@ -338,7 +341,9 @@ public class MenuUI {
         }
         mapPanel.add(artLabel);
         mapPane = new JTabbedPane(JTabbedPane.TOP);
+        tabbedPane.addTab("View Map", mapPanel);
         tabbedPane.addTab("View Map", mapPane);
+        
 		
 		
         

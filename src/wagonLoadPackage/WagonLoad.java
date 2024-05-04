@@ -1,5 +1,6 @@
 package wagonLoadPackage;
 
+
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
@@ -16,6 +17,7 @@ import wagonLoadPackage.MenuUI;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -37,6 +39,8 @@ import java.awt.Font;
  */
 public class WagonLoad {
 
+	Sound sound = new Sound();
+	
 	private JFrame frmPackYourWagon;
 	private JCheckBox chckbxItem1;
 	private JTextField textField;
@@ -93,6 +97,11 @@ public class WagonLoad {
 	 * Create the application.
 	 */
 	public WagonLoad() {
+		
+		URL soundURL = getClass().getResource("/The Oregon Trail - Main Theme.wav");
+		
+		playMusic(soundURL);
+		
 		//System.out.println("Y");
 		initialize();
 		getTotalDistance();
@@ -844,8 +853,31 @@ public class WagonLoad {
         distanceTestLabel.setBounds(248, 288, 149, 14);
         frmPackYourWagon.getContentPane().add(distanceTestLabel);
         
+        JButton settingsBtn = new JButton("Settings");
+        settingsBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        settingsBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		SettingsMenu settings = new SettingsMenu();
+        		settings.setVisible(true);
+        	}
+        });
+        settingsBtn.setBounds(333, 313, 89, 23);
+        frmPackYourWagon.getContentPane().add(settingsBtn);
+        
         updateTotalWeight();
         
         frmPackYourWagon.setVisible(true); // Exhibit the frame
+	 
+        
+	
 	}	
+	
+	
+	public void playMusic(URL url){
+		
+		sound.setFile(url);
+		sound.play(url);
+		sound.loop(url);
+		
+	}
 }
