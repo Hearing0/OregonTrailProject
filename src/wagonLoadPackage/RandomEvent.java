@@ -103,7 +103,7 @@ public class RandomEvent {
 			event = "Injure Wagon!";
 			//System.out.println(event);
 			int wagonHP = wagonE.HPList.get(0).getHealth();
-			int newWHP = wagonHP - 5;
+			int newWHP = wagonHP - 25;
 			wagonE.HPList.get(0).setHealth(newWHP);
 			return event;
 		} else if (choice == 2) {
@@ -137,7 +137,7 @@ public class RandomEvent {
 			for(int i = 5; i < wagonE.HPList.size(); i++) {
 				if(wagonE.HPList.get(i).getAlive() == true) {
 					int oxHP = wagonE.HPList.get(i).getHealth();
-					int newOHP = oxHP - 5;
+					int newOHP = oxHP - 25;
 					wagonE.HPList.get(i).setHealth(newOHP);
 				}
 			}
@@ -145,10 +145,6 @@ public class RandomEvent {
 		}
 
 	}
-	
-	
-
-
 	
 	
 

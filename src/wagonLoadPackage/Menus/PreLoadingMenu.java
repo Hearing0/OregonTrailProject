@@ -330,7 +330,7 @@ public class PreLoadingMenu extends JFrame {
 
         			
         			// Check if wagon is overweight...
-        			if (totalWeight <= wagon.maxWeight) {
+        			if (totalWeight <= wagon.MAX_WEIGHT) {
         				
         				System.out.println("not overweight");
         				

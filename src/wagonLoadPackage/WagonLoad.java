@@ -350,11 +350,6 @@ public class WagonLoad {
         panelTravel.add(textFieldTravelSpeed);
         textFieldTravelSpeed.setColumns(10);
         
-        // Travel Button - David Flores and Breanna Sproul
-        JButton btnTravel = new JButton("\"Travel\"");
-        btnTravel.setBounds(86, 97, 89, 23);
-        panelTravel.add(btnTravel);
-        btnTravel.setFont(new Font("Tahoma", Font.PLAIN, 10));
         
         // Total Weight Labels
         JLabel lblTotalWeight = new JLabel("Total Weight:");
@@ -387,6 +382,11 @@ public class WagonLoad {
         distanceLbl.setBounds(169, 172, 60, 23);
         panelTravel.add(distanceLbl);
 
+        // Travel Button - David Flores and Breanna Sproul
+        JButton btnTravel = new JButton("\"Travel\"");
+        btnTravel.setBounds(86, 97, 89, 23);
+        panelTravel.add(btnTravel);
+        btnTravel.setFont(new Font("Tahoma", Font.PLAIN, 10));
         btnTravel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Calculate foodWeight
@@ -397,21 +397,27 @@ public class WagonLoad {
                 if (wagon.travel.isEnoughFoodToTravelOneDay(foodWeight)) {                	
                 	                    
                     // Check if wagon is overweight...
-                    if (totalWeight <= wagon.maxWeight) {
+                    if (totalWeight <= wagon.MAX_WEIGHT) {
                     		                                 
                     	// Keep track of date
                         wagon.date.increaseDays(); // increases days
                         dateLabel.setText(wagon.date.getDate());
+
                         
-                        // Check for random event
+                        // Check for Event
+                        Events.eventCheck(); //correct event activation
                         // Events.forceEvent(); //used during testing ONLY
-                        // Events.eventCheck(); //correct event activation
                         
+                        
+                        // Update Wagon Health
                         testUpdateWagonHP();
                         System.out.println("Wagon HP: " + wagon.HPList.get(0).getHealth());
                         
                         
+                        // Calculate Travel Speed: Placeholder(random event Speed Modifier)
+                        wagon.travel.calculateTravelSpeed(totalWeight, 1, wagon.HPList);
                         
+                                                
                     	// Travel towards next location on map...
                         // If wagon makes it to next location, then pop-up location menu
                         if (wagon.travel.travelMap(foodWeight)) {                        	

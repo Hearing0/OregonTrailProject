@@ -6,6 +6,7 @@ import java.util.Random;
 public class Health {
 	String HPType;
 	String playerName;
+	int baseHP;
 	int HP;
 	boolean alive;
 	private static Random ranName = new java.util.Random();
@@ -20,8 +21,34 @@ public class Health {
 	public Health(String HPType, int HP, String playerName, boolean alive) {
 		this.HPType = HPType;
 		this.HP = HP;
+		this.baseHP = HP;
 		this.playerName = playerName;
 		this.alive = alive;
+	}
+	
+	
+	/**
+	 * Checks if the party member's health status. 
+	 * 0 is Healthy
+	 * 1 is Sick
+	 * 2 is Near Death
+	 * 
+	 * @return - Health Status of party member
+	 */
+	public int isLowHealth() {
+		int result = 0;
+		
+		// If HP below 0.6 * baseHP, party member is "Mid" on HP
+		if ( this.baseHP * 0.6 >= this.HP ) {
+			result = 1;
+		} 
+		
+		// If HP below 0.25 * baseHP, party member is "Low" on HP
+		else if ( this.baseHP * 0.25 >= this.HP ) {
+			result = 2;
+		}
+		
+		return result;
 	}
 	
 

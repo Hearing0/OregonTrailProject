@@ -15,10 +15,11 @@ import java.util.ArrayList;
 public class Travel {
 
 	// Initialize Variables
+	int baseTravelSpeed = 10;
 	int travelSpeed = 20; // miles per day
 	double paceMod = 1; // 0.5x, 1x, 2x
 	int consumeSelect = 1;
-	int foodConsumeMod = consumeSelect * 4; // (1 to 3) * 4 people on wagon
+	int foodConsumeMod = consumeSelect * 4; // (1 to 3) * 4 people on wagon (updated via method)
 	double milesTillEnd = 1932;
 
 	// Map Variables
@@ -42,7 +43,7 @@ public class Travel {
 				"Select Option",
 				106,
 				true, false); // 0 miles
-		addRiver("Kansas River", "Also known as the Kaw,", "Select Option", 59, true, true); // 106 miles
+		addRiver("Kansas River", "Also known as the Kaw", "Select Option", 59, true, true); // 106 miles
 		addRiver("Big Blue River", "River description here", "Select Option", 154, true, true); // 165 miles
 		addLocation("Fort Kearney",
 				"Fort Kearney was established in the 1840s to protect pioneers, traders, "
@@ -85,6 +86,7 @@ public class Travel {
 	 *                   the pace of the wagon to 0.5x, 1x, or 1.5x
 	 *                   respectively.
 	 * @return - True if the pace was successfully set.
+	 * @author David F
 	 */
 	public boolean setPace(int paceSelect) {
 		boolean result = true;
@@ -97,7 +99,7 @@ public class Travel {
 				this.paceMod = 1;
 				break;
 			case 3:
-				this.paceMod = .6;
+				this.paceMod = .5;
 				break;
 			default:
 				result = false;
@@ -120,6 +122,7 @@ public class Travel {
 	 * 
 	 * @return - True if foodConsumeMod was set
 	 *         (where consumeSelect was b/w 1-3), otherwise, returns false.
+	 * @author David F
 	 */
 	public boolean setFoodConsumption(int consumeSelect, int people) {
 		boolean result = true;
@@ -167,6 +170,7 @@ public class Travel {
 	 * @return - String that can be either "Bare Bones",
 	 *         "Meager", or "Filling" depending on the consumeSelect
 	 *         (1-3).
+	 * @author David F
 	 */
 	public String getFlavorTxtFood() {
 		String result = "";
@@ -193,6 +197,7 @@ public class Travel {
 	 * @return - String that can be either "Steady pace",
 	 *         "Strenuous pace", or "Grueling pace" depending on the paceMod
 	 *         (1-3).
+	 * @author David F
 	 */
 	public String getFlavorTxtPace() {
 		String result = "";
@@ -217,12 +222,11 @@ public class Travel {
 	 * Sets travelSpeed to value if in between the bounds of
 	 * 12 <= Value <= 20.
 	 * 
-	 * TODO: Replace in future
-	 * 
 	 * @param value - Integer value to set travelSpeed to.
 	 *              Should be w/in 12 <= Value <= 20.
 	 * @return - True if travelSpeed was set correctly,
 	 *         otherwise, returns false.
+	 * @author David F
 	 */
 	public boolean setTravelSpeed(int value) {
 		boolean result = false;
@@ -243,42 +247,110 @@ public class Travel {
 	}
 
 	/**
-	 * Calculates the travelSpeed of the wagon using
-	 * paceMod & foodConsumeMod
+	 * Calculates the travelSpeed of the wagon using wagonWeight,
+	 * paceMod, eventSpeedMod, and general health of party
+	 * 
+	 * @param wagonWeight - Weight of wagon
+	 * @param eventSpeedMod - Speed Modifier from Event
+	 * @param partyHealth - Health of all party Members
 	 * 
 	 * @return - Returns the double travelSpeed post
 	 *         calculation.
-	 *         TODO: Finish implementation in future & replace setTravelSpeed
+	 *         
+	 * @author David F
 	 */
-	public int calculateTravelSpeed(int weight) {
-		int baseTravelSpeed = 20;
-
+	public int calculateTravelSpeed(int wagonWeight, int eventSpeedMod, ArrayList<Health> partyHealth) {
+		baseTravelSpeed = 20;
+		
+		
 		// Determine Event
+		//.eventCheck();
 
 		// Get eventSpeedModifier
 
 		// Determine location
 
 		// Get locationSpeedModifier
-
+		
+		
+		
+		/// Check # of Oxen speed, # of sick people, & wagon condition
+		int oxNum = 0;
+		int sickNum = 0;
+		
+		// Check condition of all party members
+		for (Health member : partyHealth) {
+			String memType = member.getType();
+			
+			// Count Ox
+			if (memType == "Ox") {
+				oxNum++;
+			}
+			
+			// Count Sick Humans
+			else if (memType == "Human") {
+				if (member.isLowHealth() != 0) {
+					sickNum++;
+				}
+			}
+			
+			// Change baseTravelSpeed depending on Wagon condition 
+			else {
+				switch (member.isLowHealth()) {
+				
+					// Faulty
+					case 1:
+						baseTravelSpeed = 15;
+						break;
+						
+					// Barely moves
+					case 2:
+						baseTravelSpeed = 10;
+						break;
+						
+					// Fine
+					default:
+						baseTravelSpeed = 20;
+						break;
+				}
+			}
+		}
+		
+		
+		
+		
 		/// Calculate weightMod
 		double weightMod;
-
+		int upperWeightLimit = 1850;
+		int lowerWeightLimit = 1000;
+		
+		
 		// Case: Underweight
-		if (weight <= 1000) {
-			weightMod = 1.2;
+		if (wagonWeight <= lowerWeightLimit) {
+			double interpolate = 0.5 * (wagonWeight / lowerWeightLimit);
+			weightMod = 1 + interpolate;
 		}
 		// Case: Normal weight
-		else if (weight <= 1750) {
+		else if (wagonWeight <= upperWeightLimit) {
 			weightMod = 1;
 		}
 		// Case: Overweight
 		else {
-			weightMod = .8;
-		}
-
+			// Decrease from 1 to 0.5 as weight increases from upperWeightLimit to MAX_WEIGHT
+			double interpolate = 0.5 * (wagonWeight - upperWeightLimit) / (Wagon.MAX_WEIGHT - upperWeightLimit);
+			weightMod = 1 - interpolate;
+		}		
+		
+		
+		System.out.println("baseTravelSpeed: " + this.travelSpeed);
+		System.out.println("Weight Modifier: " + weightMod);
+		System.out.println("Pace Modifier: " + this.paceMod);
+		
+		
 		// Calculate travelSpeed
-		this.travelSpeed = (int) (Math.round(baseTravelSpeed * paceMod * foodConsumeMod * weightMod));
+		this.travelSpeed = (int) (Math.round(baseTravelSpeed * paceMod * weightMod));
+		System.out.println("travelSpeed: " + this.travelSpeed);
+		
 
 		return this.travelSpeed;
 	}
@@ -292,6 +364,7 @@ public class Travel {
 	 * @param amtFood - The amount of food on the wagon
 	 * @return - True if daysOfFood is greater or equal to daysToTravel,
 	 *         otherwise, returns false.
+	 * @author David F
 	 */
 	public boolean isEnoughFoodToTravelTrip(int amtFood) {
 		boolean result = false;
@@ -318,6 +391,7 @@ public class Travel {
 	 * @param amtFood - The amount of food on the wagon
 	 * @return - True if daysOfFood is greater or equal to daysToTravel,
 	 *         otherwise, returns false.
+	 * @author David F
 	 */
 	public boolean isEnoughFoodToTravelFiveDays(int amtFood) {
 		boolean result = false;
@@ -344,6 +418,7 @@ public class Travel {
 	 * @param amtFood - The amount of food on the wagon
 	 * @return - True if daysOfFood is greater or equal to daysToTravel,
 	 *         otherwise, returns false.
+	 * @author David F
 	 */
 	public boolean isEnoughFoodToTravelOneDay(int amtFood) {
 		boolean result = false;
@@ -372,6 +447,7 @@ public class Travel {
 	 * @param amtFood - Amount of Food in lbs
 	 *                (used to check if enough food)
 	 * @return - Returns true if wagon has made it to a new location.
+	 * @author David F
 	 */
 	public boolean travelMap(int amtFood) {
 		boolean result = false;
@@ -399,6 +475,7 @@ public class Travel {
 	 * 
 	 * @return - Returns the Location instance that the wagon
 	 *         is has most recently arrived at.
+	 * @author David F
 	 */
 	public Location getCurLocation() {
 
@@ -415,13 +492,26 @@ public class Travel {
 	 * @param prompt      - Prompt for the location
 	 * @param disTillNext - distance till the next location
 	 * @param hasActs     - Whether or not the location has any activites
+	 * @param isRiver	  - Whether or not the location is a river
+	 * @author David F
 	 */
 	public void addLocation(String name, String desc, String prompt, int disTillNext, boolean hasActs,
 			boolean isRiver) {
 		Location loc = new Location(name, desc, prompt, disTillNext, hasActs, isRiver);
 		map.add(loc);
 	}
-
+	
+	/**
+	 * Adds River to map.
+	 * 
+	 * @param name        - Name of location
+	 * @param desc        - Description of location
+	 * @param prompt      - Prompt for the location
+	 * @param disTillNext - distance till the next location
+	 * @param hasActs     - Whether or not the location has any activites
+	 * @param isRiver	  - Whether or not the location is a river
+	 * @author Cody
+	 */
 	public void addRiver(String name, String desc, String prompt, int disTillNExt, boolean hasActs, boolean isRiver) {
 		River river = new River(name, desc, prompt, disTillNExt, hasActs, isRiver);
 		map.add(river);
