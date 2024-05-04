@@ -401,7 +401,7 @@ public class WagonLoad {
                         dateLabel.setText(wagon.date.getDate());
                         
                         // Check for random event
-                        Events.forceEvent(); //used during testing ONLY
+                       // Events.forceEvent(); //used during testing ONLY
                        // Events.eventCheck(); //correct event activation
                         testUpdateWagonHP();
                         System.out.println("Wagon HP: " + wagon.HPList.get(0).getHealth());
@@ -447,7 +447,16 @@ public class WagonLoad {
                 }
                 // Fail: Ran out of food!
                 else {
+<<<<<<< Updated upstream
                     JOptionPane.showMessageDialog(null, "Wagon is out of food!\nGame over!!!");
+=======
+                    EndMenu end = new EndMenu();
+                    end.setVisible(true);
+                    end.setBounds(100, 100, 460, 240);
+                   
+                    end.repaint();
+                    end.setLocationRelativeTo(null);
+>>>>>>> Stashed changes
                     
                     //TODO: Add game over loop
                 }

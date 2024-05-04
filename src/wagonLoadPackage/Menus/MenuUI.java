@@ -363,10 +363,13 @@ public class MenuUI {
         mapPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.addTab("View Map", mapPane);
 		
-		
+     // gets the current location
+     	Location current = wagon.travel.getCurLocation();
         
        // Cody Dusek
 		// Panel for River Options tab
+     	// makes sure that the river options do not appear unless the current location is a river
+        if (current.getIsRiver()) {
 		JPanel riverPanel = new JPanel(new BorderLayout());
 		tabbedPane.addTab("River Options", riverPanel);
 		JTextArea riverText = new JTextArea("...");
@@ -376,15 +379,6 @@ public class MenuUI {
 		riverText.setText(location.getName() + "\n" + location.getDesc());
 
 		riverPanel.add(riverText);
-
-		// gets the current location
-		Location current = wagon.travel.getCurLocation();
-
-		// hides the Rivers Option tab if the current location is not a river
-		if (current.getIsRiver() == false) {
-			riverPanel.setVisible(false);
-			tabbedPane.removeTabAt(5); // TODO: Find a better way to do this
-		}
 
 		JButton btnNewButton = new JButton("See options");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -512,6 +506,7 @@ public class MenuUI {
 			}
 		});
 		riverPanel.add(btnNewButton, BorderLayout.SOUTH);
+	}
 	}
 
 	/**
