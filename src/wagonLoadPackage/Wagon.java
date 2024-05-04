@@ -20,7 +20,7 @@ public class Wagon {
     int wagonPeople = 4;
     public Travel travel = new Travel();
     Date date = new Date();
-    public int totalMoney = 1000;
+    public int totalMoney = 1600;
 
     /**
      * Gets the total amount of money in the player's wagon

@@ -12,10 +12,8 @@ import java.awt.event.ActionEvent;
 public class Store extends Wagon{
 	
 	//STILL WAITING ON
-	//new food system to add bought food to
 	//health system merge to for adding bought oxen with health
 	//need to fix it so tab only appears in a fort, but not quite sure how to get hasActivities to work
-	//might need to edit prices and total money at start
 	
 	private JFrame Storeframe;
 	private JTextField foodBuyTextBox;
@@ -23,6 +21,7 @@ public class Store extends Wagon{
 	private JTextField bulletBuyTextBox;
 	Wagon wagonS;
 	int moneyShown;
+	int foodStoreEdit;
 	
 	/**
 	 * Create the application.
@@ -53,7 +52,7 @@ public class Store extends Wagon{
 		storeLabel.setBounds(10, 5, 65, 31);
 		Storeframe.getContentPane().add(storeLabel);
 		
-		JLabel foodLabel = new JLabel("Food $50 for 100 lbs");
+		JLabel foodLabel = new JLabel("Food $10 for 55 lbs"); //recommend 200 for each person
 		foodLabel.setBounds(31, 33, 133, 22);
 		Storeframe.getContentPane().add(foodLabel);
 		
@@ -62,7 +61,7 @@ public class Store extends Wagon{
 		Storeframe.getContentPane().add(foodBuyTextBox);
 		foodBuyTextBox.setColumns(10);
 
-		JLabel bulletLabel = new JLabel("Bullets $10 for 20");
+		JLabel bulletLabel = new JLabel("Bullets $2 for 20");
 		bulletLabel.setBounds(31, 53, 123, 31);
 		Storeframe.getContentPane().add(bulletLabel);
 		
@@ -71,7 +70,7 @@ public class Store extends Wagon{
 		Storeframe.getContentPane().add(bulletBuyTextBox);
 		bulletBuyTextBox.setColumns(10);
 		
-		JLabel wheelLabel = new JLabel("Wagon Wheel $100");
+		JLabel wheelLabel = new JLabel("Wagon Wheel $10");
 		wheelLabel.setBounds(31, 73, 133, 36);
 		Storeframe.getContentPane().add(wheelLabel);
 		
@@ -80,7 +79,7 @@ public class Store extends Wagon{
 		Storeframe.getContentPane().add(wheelBuyTextBox);
 		wheelBuyTextBox.setColumns(10);
 		
-		JLabel axleLabel = new JLabel("Wagon Axle $100 ");
+		JLabel axleLabel = new JLabel("Wagon Axle $10");
 		axleLabel.setBounds(31, 99, 123, 31);
 		Storeframe.getContentPane().add(axleLabel);
 		
@@ -89,7 +88,7 @@ public class Store extends Wagon{
 		Storeframe.getContentPane().add(axleBuyTextBox);
 		axleBuyTextBox.setColumns(10);
 		
-		JLabel tongueLabel = new JLabel("Wagon Tongue $100 ");
+		JLabel tongueLabel = new JLabel("Wagon Tongue $10");
 		tongueLabel.setBounds(31, 120, 123, 31);
 		Storeframe.getContentPane().add(tongueLabel);
 		
@@ -98,7 +97,7 @@ public class Store extends Wagon{
 		Storeframe.getContentPane().add(tongueBuyTextBox);
 		tongueBuyTextBox.setColumns(10);
 		
-		JLabel oxenLabel = new JLabel("Oxen $50 ");
+		JLabel oxenLabel = new JLabel("Oxen $20 "); //recommend 6 oxen
 		oxenLabel.setBounds(31, 142, 123, 31);
 		Storeframe.getContentPane().add(oxenLabel);
 		
@@ -107,7 +106,7 @@ public class Store extends Wagon{
 		Storeframe.getContentPane().add(oxenBuyTextBox);
 		oxenBuyTextBox.setColumns(10);
 		
-		JLabel clothesLabel = new JLabel("Clothes $25 ");
+		JLabel clothesLabel = new JLabel("Clothes $10"); //recommend 2 clothes per person
 		clothesLabel.setBounds(31, 163, 123, 31);
 		Storeframe.getContentPane().add(clothesLabel);
 		
@@ -149,8 +148,8 @@ public class Store extends Wagon{
 				int buyClothes = Integer.parseInt(clothesString);
 				
 				//determine the cost for the amount of items chosen to buy 
-				int totalCost = (buyFood * 50) + (buyWheel * 100) + (buyBullet * 10 
-						+ (buyAxle * 100)+ (buyTongue * 100)+ (buyOxen * 50)+ (buyClothes * 25));
+				int totalCost = (buyFood * 10) + (buyWheel * 10) + (buyBullet * 2 
+						+ (buyAxle * 10)+ (buyTongue * 10)+ (buyOxen * 20)+ (buyClothes * 10));
 				
 				//checks if an item is >0 and if the player has enough money to buy items
 				//if the player buys an item, then the cost is subtracted and item is added to wagon
@@ -165,7 +164,9 @@ public class Store extends Wagon{
 					//items are added to Wagon arrayList
 					if(buyFood > 0) {
 						for(int i = 0; i <= buyFood; i++) {
-							addToItem("Food", 100);
+							//add new food system
+							foodStoreEdit = getFoodWeight() + 55;
+							setFoodWeight(foodStoreEdit);
 						}
 					}
 					if(buyWheel > 0) {
