@@ -1,5 +1,6 @@
 package wagonLoadPackage;
 
+
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
@@ -16,6 +17,7 @@ import wagonLoadPackage.Menus.MenuUI;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -36,6 +38,8 @@ import java.awt.Font;
  */
 public class WagonLoad {
 
+	Sound sound = new Sound();
+	
     public JFrame frmPackYourWagon;
     private JCheckBox chckbxItem1;
     private JTextField textFieldFoodConsump;
@@ -96,6 +100,11 @@ public class WagonLoad {
 	 * @param wagon - 
 	 */
 	public WagonLoad(Wagon wagon) {
+		
+		URL soundURL = getClass().getResource("/The Oregon Trail - Main Theme.wav");
+		
+		playMusic(soundURL);
+		
 		// If pre-emptively launched (for testing), create a pre-loaded wagon
 		if (wagon == null) {
 			
@@ -453,7 +462,17 @@ public class WagonLoad {
                 }
             }
         });
-        
+
+        JButton settingsBtn = new JButton("Settings");
+        settingsBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        settingsBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		SettingsMenu settings = new SettingsMenu();
+        		settings.setVisible(true);
+        	}
+        });
+        settingsBtn.setBounds(333, 313, 89, 23);
+        frmPackYourWagon.getContentPane().add(settingsBtn);
         
         // Pre-Update UI Elements
         updateTotalWeightUI();
@@ -470,4 +489,12 @@ public class WagonLoad {
 	public void setVisible(boolean visible) {
 		frmPackYourWagon.setVisible(visible);
     }
+	
+	public void playMusic(URL url){
+		
+		sound.setFile(url);
+		sound.play(url);
+		sound.loop(url);
+		
+	}
 }
