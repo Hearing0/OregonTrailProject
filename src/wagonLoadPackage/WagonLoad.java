@@ -46,8 +46,8 @@ public class WagonLoad {
     private JTextField textFieldTravelSpeed;
 
     // Initialize Wagon
-    private Wagon wagon = new Wagon();
-    private RandomEvent Events = new RandomEvent(wagon);
+    private Wagon wagon;
+    private RandomEvent events;
 
 	private JCheckBox chckbxItem1_1;
 	private JCheckBox chckbxItem1_1_1;
@@ -118,6 +118,8 @@ public class WagonLoad {
 		// Initialize frame and its parameters
 		map = wagon.travel.getMap();
 		totalDist = wagon.travel.getTotalDistance();
+		events = new RandomEvent(wagon);
+		
 		initialize();
 		
 		// Debug: Readout itemList
@@ -131,11 +133,14 @@ public class WagonLoad {
 		*/
 	}
 
+	
 	//breanna sproul
 	//testing for health
     public void testUpdateWagonHP() {
     	//get value
         int totalHP = wagon.HPList.get(0).getHealth();
+       // System.out.println("Wagon Health: "+ wagon.HPList.get(0).getHealth());
+        
         //update label
         WagonHealthLabel.setText("wagon: " + totalHP);
     }
@@ -162,6 +167,8 @@ public class WagonLoad {
         frmPackYourWagon.setBounds(100, 100, 839, 382);
         frmPackYourWagon.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmPackYourWagon.getContentPane().setLayout(null);
+        
+        
 
         // Debug: testable textField
         /*
@@ -408,15 +415,8 @@ public class WagonLoad {
                     	// Keep track of date
                         wagon.date.increaseDays(); // increases days
                         dateLabel.setText(wagon.date.getDate());
-                        
-                        // Check for random event
-                        Events.forceEvent(); //used during testing ONLY
-                       // Events.eventCheck(); //correct event activation
-                        testUpdateWagonHP();
-                        System.out.println("Wagon HP: " + wagon.HPList.get(0).getHealth());
-                        
-                        
-                        
+                                              
+                                                
                     	// Travel towards next location on map...
                         // If wagon makes it to next location, then pop-up location menu
                         if (wagon.travel.travelMap(foodWeight)) {                        	
@@ -442,6 +442,13 @@ public class WagonLoad {
 						if (wagon.travel.isEnoughFoodToTravelFiveDays(foodWeight) != true) {
                     		JOptionPane.showMessageDialog(null, "Wagon has less than 5 days of food!\nGet some quickly!!!");
                     	}
+						
+                        // Check for random event
+                        events.forceEvent(); //used during testing ONLY
+                        //Events.eventCheck(); //correct event activation
+                        testUpdateWagonHP();
+                       // System.out.println("Wagon Health out: "+ wagon.HPList.get(0).getHealth());
+						
 						
 						// Recalculate Total Weight and Display it
                         totalWeight = wagon.getTotalWeight();

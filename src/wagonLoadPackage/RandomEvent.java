@@ -35,29 +35,22 @@ public class RandomEvent {
 		addEvent("Broken bone", "General", "", 0, "person", -50, false, false);
 
 	}
-
-
-	// uses rng to randomly check for occurence of random event
-	// basic right now to prepare for weather and traveling changes
-	// may need to alter the odds to make it similar to actual game, but its good
-	// for testing now
-	/**
-	 * performs RNG to determine if an event occurs, and uses methods to select the
-	 * event if event does occur
-	 * 
-	 * @param distanceTraveled - distance given by travel button, may be removed
-	 *                         later
-	 */
-	public void eventCheck(int distanceTraveled) {
-		eventCheck();
+	
+	//ARRAYLIST STUFF
+	//grabs a random event from eventList
+	public int pickFromList() {
+		int listNum = rng.nextInt(eventList.size()) + 1;
+		return listNum;
 	}
 	
+	//sets up boolean of the picked events
+	//WIP
+
+
+	
 	//uses rng to randomly check for occurence of random event
-	//basic right now to prepare for weather and traveling changes
-	//may need to alter the odds to  make it similar to actual game, but its good for testing now
     /**
      * performs RNG to determine if an event occurs, and uses methods to select the event if event does occur
-     * NOTE: Same with distance
      */
 	public void eventCheck() {
 		int die = rng.nextInt(10) + 1;
@@ -68,7 +61,6 @@ public class RandomEvent {
 	
 	/**
 	 * brings up a dialog box that lists the event that occurred
-	 * 
 	 * @param event - grabs the description of the event to display
 	 */
 	public void eventPop(String event) {
@@ -87,8 +79,11 @@ public class RandomEvent {
 		int wagonHP = wagonE.HPList.get(0).getHealth();
 		//int newWHP = wagonHP - 5;
 		wagonE.HPList.get(0).setHealth(wagonHP - 5);
+		System.out.println("Wagon Health: "+ wagonE.HPList.get(0).getHealth());
+		
 		eventPop(event);
 	}
+	
 	
 	// will be replaced by the arrayList
 	// determines which event is activated, will need to edit once location and
@@ -145,7 +140,7 @@ public class RandomEvent {
 		}
 
 	}
-	
+	 
 	
 
 
