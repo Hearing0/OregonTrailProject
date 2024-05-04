@@ -41,11 +41,9 @@ public class WagonLoad {
     private JTextField textFieldFoodConsump;
     private JTextField textFieldTravelSpeed;
 
-    RandomEvent Events = new RandomEvent();
-
     // Initialize Wagon
     private Wagon wagon = new Wagon();
-    private RandomEvent RanEvents = new RandomEvent();
+    private RandomEvent Events = new RandomEvent(wagon);
 
 	private JCheckBox chckbxItem1_1;
 	private JCheckBox chckbxItem1_1_1;
@@ -64,6 +62,7 @@ public class WagonLoad {
 	private JCheckBox chckbxItem1_8;
 	private JCheckBox chckbxItem1_1_3_1;
 	private JLabel lblTotalWeight_1;
+	private JLabel WagonHealthLabel;
 	//private JTextField testField;
 	
 	
@@ -123,6 +122,16 @@ public class WagonLoad {
 		*/
 	}
 
+	//breanna sproul
+	//testing for health
+    public void testUpdateWagonHP() {
+    	//get value
+        int totalHP = wagon.HPList.get(0).getHealth();
+        //update label
+        WagonHealthLabel.setText("wagon: " + totalHP);
+    }
+	
+	
     /**
      * Updates the UI element for total weight.
      * Calculates the totalWeight, then updates UI label's text.
@@ -355,6 +364,12 @@ public class WagonLoad {
         panelTravel.add(lblTotalWeight_1);
         lblTotalWeight_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
         
+        //health testing label - delete later
+        WagonHealthLabel = new JLabel("wagon: " + wagon.HPList.get(0).getHealth() );
+        WagonHealthLabel.setBounds(50, 220, 90, 14);
+        panelTravel.add(WagonHealthLabel);
+        WagonHealthLabel.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        
         JLabel lblWeightWarning = new JLabel("Max Weight is 2400 lbs!");
         lblWeightWarning.setBounds(72, 300, 125, 14);
         panelTravel.add(lblWeightWarning);
@@ -386,7 +401,11 @@ public class WagonLoad {
                         dateLabel.setText(wagon.date.getDate());
                         
                         // Check for random event
-                        Events.eventCheck();
+                        Events.forceEvent(); //used during testing ONLY
+                       // Events.eventCheck(); //correct event activation
+                        testUpdateWagonHP();
+                        System.out.println("Wagon HP: " + wagon.HPList.get(0).getHealth());
+                        
                         
                         
                     	// Travel towards next location on map...

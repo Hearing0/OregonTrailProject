@@ -10,15 +10,18 @@ public class RandomEvent {
 	ArrayList<Events> eventList;
 	String name = "";
 	String locator = "";
+	Wagon wagonE;
 
-	// STILL NEEDS DONE
+	//due to lack of time, im just going to limit events and hard code them
+	// STILL NEEDS DONE 
 	// get methods to affect systems such as health, travel, weather, and other
-	// wagon things once those system are fully set up and finalized
 	// make method(s) that incorporates the eventList
 	// connect locationID in eventList to places found in location class - could
 	// alter location() to include a parameter for this
 
-	public RandomEvent() {
+	public RandomEvent(Wagon wagon) {
+		this.wagonE = wagon;
+		
 		eventList = new ArrayList<Events>();
 		addEvent("Thunderstorm", "General", "", 0, "", 0, false, true);
 		addEvent("Blizzard", "Mountain", "", 0, "", 0, false, true);
@@ -32,6 +35,122 @@ public class RandomEvent {
 		addEvent("Broken bone", "General", "", 0, "person", -50, false, false);
 
 	}
+
+
+	// uses rng to randomly check for occurence of random event
+	// basic right now to prepare for weather and traveling changes
+	// may need to alter the odds to make it similar to actual game, but its good
+	// for testing now
+	/**
+	 * performs RNG to determine if an event occurs, and uses methods to select the
+	 * event if event does occur
+	 * 
+	 * @param distanceTraveled - distance given by travel button, may be removed
+	 *                         later
+	 */
+	public void eventCheck(int distanceTraveled) {
+		eventCheck();
+	}
+	
+	//uses rng to randomly check for occurence of random event
+	//basic right now to prepare for weather and traveling changes
+	//may need to alter the odds to  make it similar to actual game, but its good for testing now
+    /**
+     * performs RNG to determine if an event occurs, and uses methods to select the event if event does occur
+     * NOTE: Same with distance
+     */
+	public void eventCheck() {
+		int die = rng.nextInt(10) + 1;
+		if (die == 1) {
+			eventPop(eventAlert());
+		}
+	}
+	
+	/**
+	 * brings up a dialog box that lists the event that occurred
+	 * 
+	 * @param event - grabs the description of the event to display
+	 */
+	public void eventPop(String event) {
+		String textF = event;
+		String titleF = "An event has occured";
+		int typeF = JOptionPane.INFORMATION_MESSAGE;
+		JOptionPane.showMessageDialog(null, textF, titleF, typeF);
+
+	}
+
+	//used for testing purposes ONLY
+	//hard code this method to whatever event you are trying to test
+	public void forceEvent() {
+		String event = "Injure Wagon!";
+		//System.out.println(event);
+		int wagonHP = wagonE.HPList.get(0).getHealth();
+		//int newWHP = wagonHP - 5;
+		wagonE.HPList.get(0).setHealth(wagonHP - 5);
+		eventPop(event);
+	}
+	
+	// will be replaced by the arrayList
+	// determines which event is activated, will need to edit once location and
+	// event are relevant
+	// called by the activeEvent method which also does the decrease of miles
+	// displays to console right now, but should probably be put on GUI/pop-box
+	// later
+	private String eventAlert() {
+		int choice = rng.nextInt(3) + 1;
+		String event;
+		if (choice == 1) {
+			event = "Injure Wagon!";
+			//System.out.println(event);
+			int wagonHP = wagonE.HPList.get(0).getHealth();
+			int newWHP = wagonHP - 5;
+			wagonE.HPList.get(0).setHealth(newWHP);
+			return event;
+		} else if (choice == 2) {
+			event = "Injure Human";
+			//System.out.println(event);
+			int pickHuman = rng.nextInt(4) + 1;
+			if(pickHuman == 1 ) { //human1
+				int humanHP = wagonE.HPList.get(1).getHealth();
+				int newHHP = humanHP - 5;
+				wagonE.HPList.get(1).setHealth(newHHP);
+			}
+			else if(pickHuman == 2) { //human2
+				int humanHP = wagonE.HPList.get(2).getHealth();
+				int newHHP = humanHP - 5;
+				wagonE.HPList.get(2).setHealth(newHHP);
+			}
+			else if(pickHuman == 3) { //human3
+				int humanHP = wagonE.HPList.get(3).getHealth();
+				int newHHP = humanHP - 5;
+				wagonE.HPList.get(3).setHealth(newHHP);
+			}
+			else if(pickHuman == 4) { //human4
+				int humanHP = wagonE.HPList.get(4).getHealth();
+				int newHHP = humanHP - 5;
+				wagonE.HPList.get(4).setHealth(newHHP);
+			}
+			return event;
+		} else {
+			event = "Injure Ox";
+			//System.out.println(event);
+			for(int i = 5; i < wagonE.HPList.size(); i++) {
+				if(wagonE.HPList.get(i).getAlive() == true) {
+					int oxHP = wagonE.HPList.get(i).getHealth();
+					int newOHP = oxHP - 5;
+					wagonE.HPList.get(i).setHealth(newOHP);
+				}
+			}
+			return event;
+		}
+
+	}
+	
+	
+
+
+	
+	
 
 	/**
 	 * adds an event to arrayList so it can be easily used in later methods
@@ -56,86 +175,7 @@ public class RandomEvent {
 				healthChange, affectDate, increaseRisk);
 		eventList.add(entry);
 	}
-
-	// uses rng to randomly check for occurence of random event
-	// basic right now to prepare for weather and traveling changes
-	// may need to alter the odds to make it similar to actual game, but its good
-	// for testing now
-	/**
-	 * performs RNG to determine if an event occurs, and uses methods to select the
-	 * event if event does occur
-	 * 
-	 * @param distanceTraveled - distance given by travel button, may be removed
-	 *                         later
-	 */
-	public void eventCheck(int distanceTraveled) {
-		eventCheck();
-		
-		// For later use ?????
-	}
 	
-	//uses rng to randomly check for occurence of random event
-	//basic right now to prepare for weather and traveling changes
-	//may need to alter the odds to  make it similar to actual game, but its good for testing now
-    /**
-     * performs RNG to determine if an event occurs, and uses methods to select the event if event does occur
-     * NOTE: Same with distance
-     */
-	public void eventCheck() {
-		int die = rng.nextInt(10) + 1;
-		if (die == 1) {
-			// eventAlert();
-			eventPop(eventAlert());
-		}
-	}
-
-	// will be replaced by the arrayList
-	// determines which event is activated, will need to edit once location and
-	// event are relevant
-	// called by the activeEvent method which also does the decrease of miles
-	// displays to console right now, but should probably be put on GUI/pop-box
-	// later
-	private String eventAlert() {
-		int choice = rng.nextInt(6) + 1;
-		String event;
-		if (choice == 1) {
-			event = "Snakebite!";
-			System.out.println(event);
-			return event;
-		} else if (choice == 2) {
-			event = "Bad Water";
-			System.out.println(event);
-			return event;
-		} else if (choice == 3) {
-			event = "Injured Ox";
-			System.out.println(event);
-			return event;
-		} else if (choice == 4) {
-			event = "Fever";
-			System.out.println(event);
-			return event;
-		} else if (choice == 5) {
-			event = "Bad Grass";
-			System.out.println(event);
-			return event;
-		} else {
-			event = "Rough Trail";
-			System.out.println(event);
-			return event;
-		}
-	}
-
-	/**
-	 * brings up a dialog box that lists the event that occurred
-	 * 
-	 * @param event - grabs the description of the event to display
-	 */
-	public void eventPop(String event) {
-		String textF = event;
-		String titleF = "An event has occured";
-		int typeF = JOptionPane.INFORMATION_MESSAGE;
-		JOptionPane.showMessageDialog(null, textF, titleF, typeF);
-
-	}
+	
 
 }

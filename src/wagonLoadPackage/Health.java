@@ -1,34 +1,36 @@
 package wagonLoadPackage;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-public class Health extends Item {
-	
-	//STILL NEEDS DONE
-	//incorporate player naming system and addHealth for them once menus are available
-	//put ox addition in store and make an addHealth for it
-	//remove addHealth human and ox from Wagon class once above are done
-	//might be some problems with the super() variables. - fix by moving anything with them to Item class??
-	
-	
-	
-	
-	String type; //Human, Wagon, or Ox
-	int healthValue; // Human = 1000, Wagon = 500, Ox = 300. Probably need to see if official HP is available for game
-	String playerName; // "" if not a player
+public class Health {
+	String HPType;
+	String playerName;
+	int HP;
+	boolean alive;
 	private static Random ranName = new java.util.Random();
 	
 	
     /**
      * Initializes Health for Human, Wagon, or Ox
-     * @param String Type - what the health is for
-     * @param int HealthValue - amount of health left
-     * @param String PlayerName - name either given by user or auto-generated 
+     * @param String HPType - what the health is for
+     * @param int HP - amount of health left
+     * @param String playerName - name either given by user or auto-generated 
      */
-	public Health(String type, int healthValue, String playerName) {
-		super(type, healthValue); //not sure if this works with Item class or if it needs to be changed to name and weight to fit methods
+	public Health(String HPType, int HP, String playerName, boolean alive) {
+		this.HPType = HPType;
+		this.HP = HP;
 		this.playerName = playerName;
-		
+		this.alive = alive;
+	}
+	
+
+	/**
+	 * Gets whether chosen is still alive or not
+	 * @return boolean alive - true if the HP > 0
+	 */
+	public boolean getAlive() {
+		return alive;
 	}
 	
 	
@@ -37,7 +39,7 @@ public class Health extends Item {
 	 * @return String type - what the health is for
 	 */
 	public String getType() {
-		return this.type;
+		return HPType;
 	}
 	
 	
@@ -46,7 +48,7 @@ public class Health extends Item {
 	 * @return int healthValue - amount of health left
 	 */
 	public int getHealth() {
-		return this.healthValue;
+		return HP;
 	}
 	
 	/**
@@ -54,7 +56,7 @@ public class Health extends Item {
 	 * @param healthChange - how much is health being changed by, is added cause all events should be either positive to add or negative to subtract
 	 */
 	public void setHealth(int healthChange) {
-		this.healthValue += healthChange;
+		HP = healthChange;
 	}
 	
 	
@@ -63,7 +65,16 @@ public class Health extends Item {
 	 * @return String playerName - name either given by user or auto-generated 
 	 */
 	public String getName() {
-		return this.playerName;
+		return playerName;
+	}
+	
+	
+	/**
+	 * sets the given name
+	 * @param String newName - given new name to override placeholder text
+	 */
+	public void setName(String newName) {
+		playerName = newName;
 	}
 	
 	/**
@@ -73,72 +84,72 @@ public class Health extends Item {
 	public void setRandomName() {
 		int die = ranName.nextInt(21) + 1;
 		if (die == 1) {
-			this.playerName = "Sally";
+			playerName = "Sally";
 		}
 		else if(die == 2) {
-			this.playerName = "Robert";
+			playerName = "Robert";
 		}
 		else if(die == 3) {
-			this.playerName = "Alex";
+			playerName = "Alex";
 		}
 		else if(die == 4) {
-			this.playerName = "Mary";
+			playerName = "Mary";
 		}
 		else if(die == 5) {
-			this.playerName = "Bob";
+			playerName = "Bob";
 		}
 		else if(die == 6) {
-			this.playerName = "Taylor";
+			playerName = "Taylor";
 		}
 		else if(die == 7) {
-			this.playerName = "George";
+			playerName = "George";
 		}
 		else if(die == 8) {
-			this.playerName = "Tamsen";
+			playerName = "Tamsen";
 		}
 		else if(die == 9) {
-			this.playerName = "Eliza";
+			playerName = "Eliza";
 		}
 		else if(die == 10) {
-			this.playerName = "Frances";
+			playerName = "Frances";
 		}
 		else if(die == 11) {
-			this.playerName = "Jacob";
+			playerName = "Jacob";
 		}
 		else if(die == 12) {
-			this.playerName = "Elizabeth";
+			playerName = "Elizabeth";
 		}
 		else if(die == 13) {
-			this.playerName = "William";
+			playerName = "William";
 		}
 		else if(die == 14) {
-			this.playerName = "Caleb";
+			playerName = "Caleb";
 		}
 		else if(die == 15) {
-			this.playerName = "Isaac";
+			playerName = "Isaac";
 		}
 		else if(die == 16) {
-			this.playerName = "Lewis";
+			playerName = "Lewis";
 		}
 		else if(die == 17) {
-			this.playerName = "Samuel";
+			playerName = "Samuel";
 		}
 		else if(die == 18) {
-			this.playerName = "James";
+			playerName = "James";
 		}
 		else if(die == 19) {
-			this.playerName = "Margret";
+			playerName = "Margret";
 		}
 		else if(die == 20) {
-			this.playerName = "Martha";
+			playerName = "Martha";
 		}
 		else if(die == 21) {
-			this.playerName = "Thomas";
+			playerName = "Thomas";
 		}
 		
 	}
 	
-	
+
 	
 	
 

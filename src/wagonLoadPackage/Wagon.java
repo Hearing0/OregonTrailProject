@@ -16,6 +16,7 @@ public class Wagon {
 
     // Initialize Variables
     public ArrayList<Item> itemList;
+    public ArrayList<Health> HPList; //maybe make new array will work?
     public int maxWeight = 2400;
     int wagonPeople = 4;
     public Travel travel = new Travel();
@@ -92,9 +93,22 @@ public class Wagon {
         addItem("Axle", 10);
         addItem("Tongue", 10);
         
-        addHealth("Human", 1000, "Name1"); //will likely be placed in whatever class allows naming
-        addHealth("Wagon", 500, "");
-        addHealth("Ox", 300, "");
+        
+        HPList = new ArrayList<Health>(); //separated health objects from items
+        addHealth("Wagon", 500, "", true); //index 0 = wagon
+        // 4 people for team
+        addHealth("Human", 1000, "Name1", true); //index 1 = human1
+        addHealth("Human", 1000, "Name2", true);
+        addHealth("Human", 1000, "Name3", true);
+        addHealth("Human", 1000, "Name4", true); // index 4 = human4
+        //start with recommended 6 oxen
+        addHealth("Ox", 400, "", true); //index 5 and down = ox
+        addHealth("Ox", 400, "", true);
+        addHealth("Ox", 400, "", true);
+        addHealth("Ox", 400, "", true);
+        addHealth("Ox", 400, "", true);
+        addHealth("Ox", 400, "", true);
+       
         
         
         
@@ -106,9 +120,9 @@ public class Wagon {
      * @param int HealthValue - amount of health left
      * @param String PlayerName - name either given by user or auto-generated 
      */
-    public void addHealth(String Type, int HealthValue, String PlayerName) {
-    	Health HP = new Health(Type, HealthValue, PlayerName);
-        itemList.add(HP);
+    public void addHealth(String HPType, int HP, String playerName, boolean alive) {
+    	Health healthValue = new Health(HPType, HP, playerName, alive);
+        HPList.add(healthValue);
     }
     
     
