@@ -1,8 +1,17 @@
 package wagonLoadPackage;
 
+/**
+ * Health.java
+ * 
+ * Creates health storing what the health is for, amount of health left, name of player(if player), 
+ * and if health is >0 or not. This is used in Wagon to make arrayList of events with 
+ * easy parameters for the methods. 
+ */
+
 import java.util.Random;
 
 public class Health {
+	//variables
 	String HPType;
 	String playerName;
 	int HP;
@@ -12,9 +21,10 @@ public class Health {
 	
     /**
      * Initializes Health for Human, Wagon, or Ox
-     * @param String HPType - what the health is for
+     * @param String HPType - what the health is for (human, wagon, or ox only)
      * @param int HP - amount of health left
      * @param String playerName - name either given by user or auto-generated 
+     * @param boolean alive - true if the health is > 0, false if health is < 0
      */
 	public Health(String HPType, int HP, String playerName, boolean alive) {
 		this.HPType = HPType;

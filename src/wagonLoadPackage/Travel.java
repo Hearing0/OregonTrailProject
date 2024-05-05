@@ -42,8 +42,8 @@ public class Travel {
 				"Select Option",
 				106,
 				true, false, "Common"); // 0 miles
-		addRiver("Kansas River", "Also known as the Kaw,", "Select Option", 59, true, true, "Water"); // 106 miles
-		addRiver("Big Blue River", "River description here", "Select Option", 154, true, true, "Water"); // 165 miles
+		addRiver("Kansas River", "Also known as the Kaw,", "Select Option", 59, true, true, "Common"); // 106 miles
+		addRiver("Big Blue River", "River description here", "Select Option", 154, true, true, "Common"); // 165 miles
 		addLocation("Fort Kearney",
 				"Fort Kearney was established in the 1840s to protect pioneers, traders, "
 						+ "and emigrants as they journeyed through the frontier. "
@@ -62,15 +62,15 @@ public class Travel {
 		addLocation("Fort Laramie", "add description", "Select Option", 164, true, false, "Common"); // 650 miles
 		addLocation("Independence Rock", "add description", "Select Option", 100, true, false, "Rocky"); // 814 miles
 		addLocation("South Pass", "add description", "Select Option", 67, true, false, "Desert"); // 914 miles
-		addRiver("Green River", "River description here", "Select Option", 45, true, true, "Water"); // 981 miles
+		addRiver("Green River", "River description here", "Select Option", 45, true, true, "Common"); // 981 miles
 		addLocation("Fort Bridger", "add description", "Select Option", 129, true, false, "Common"); // 1026 miles
 		addLocation("Soda Springs", "add description", "Select Option", 62, true, false, "Common"); // 1155 miles
 		addLocation("Fort Hall", "add description", "Select Option", 180, true, false, "Common"); // 1217 miles
-		addRiver("Snake River", "River description here", "Select Option", 113, true, true, "Water"); // 1397 miles
+		addRiver("Snake River", "River description here", "Select Option", 113, true, true, "Common"); // 1397 miles
 		addLocation("Fort Boise", "add description", "Select Option", 158, true, false, "Common"); // 1510 miles
 		addLocation("Blue Mountains", "add description", "Select Option", 62, true, false, "Snow"); // 1668 miles
 		addLocation("Fort Walla Walla", "add description", "Select Option", 89, true, false, "Common"); // 1730 miles
-		addLocation("The Dalles", "add description", "Select Option", 113, true, false, "Water"); // 1819 miles
+		addLocation("The Dalles", "add description", "Select Option", 113, true, false, "Common"); // 1819 miles
 		addLocation("Willamette Valley, Oregon", "You made it!", "Select Option", 10000, true, false, "Common"); // 1932 miles
 	}
 
