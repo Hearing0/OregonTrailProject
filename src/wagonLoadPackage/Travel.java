@@ -41,9 +41,9 @@ public class Travel {
 						+ "Northwest, marking the beginning of their quest for a better life on the frontier.",
 				"Select Option",
 				106,
-				true, false); // 0 miles
-		addRiver("Kansas River", "Also known as the Kaw,", "Select Option", 59, true, true); // 106 miles
-		addRiver("Big Blue River", "River description here", "Select Option", 154, true, true); // 165 miles
+				true, false, "Common"); // 0 miles
+		addRiver("Kansas River", "Also known as the Kaw,", "Select Option", 59, true, true, "Water"); // 106 miles
+		addRiver("Big Blue River", "River description here", "Select Option", 154, true, true, "Water"); // 165 miles
 		addLocation("Fort Kearney",
 				"Fort Kearney was established in the 1840s to protect pioneers, traders, "
 						+ "and emigrants as they journeyed through the frontier. "
@@ -57,21 +57,21 @@ public class Travel {
 						+ "through this point on their journey westward.",
 				"Select Option",
 				256,
-				true, false); // 319 miles
-		addLocation("Chimney Rock", "add description", "Select Option", 75, true, false); // 575 miles
-		addLocation("Fort Laramie", "add description", "Select Option", 164, true, false); // 650 miles
-		addLocation("Independence Rock", "add description", "Select Option", 100, true, false); // 814 miles
-		addLocation("South Pass", "add description", "Select Option", 67, true, false); // 914 miles
-		addRiver("Green River", "River description here", "Select Option", 45, true, true); // 981 miles
-		addLocation("Fort Bridger", "add description", "Select Option", 129, true, false); // 1026 miles
-		addLocation("Soda Springs", "add description", "Select Option", 62, true, false); // 1155 miles
-		addLocation("Fort Hall", "add description", "Select Option", 180, true, false); // 1217 miles
-		addRiver("Snake River", "River description here", "Select Option", 113, true, true); // 1397 miles
-		addLocation("Fort Boise", "add description", "Select Option", 158, true, false); // 1510 miles
-		addLocation("Blue Mountains", "add description", "Select Option", 62, true, false); // 1668 miles
-		addLocation("Fort Walla Walla", "add description", "Select Option", 89, true, false); // 1730 miles
-		addLocation("The Dalles", "add description", "Select Option", 113, true, false); // 1819 miles
-		addLocation("Willamette Valley, Oregon", "You made it!", "Select Option", 10000, true, false); // 1932 miles
+				true, false, "Common"); // 319 miles
+		addLocation("Chimney Rock", "add description", "Select Option", 75, true, false, "Rocky"); // 575 miles
+		addLocation("Fort Laramie", "add description", "Select Option", 164, true, false, "Common"); // 650 miles
+		addLocation("Independence Rock", "add description", "Select Option", 100, true, false, "Rocky"); // 814 miles
+		addLocation("South Pass", "add description", "Select Option", 67, true, false, "Desert"); // 914 miles
+		addRiver("Green River", "River description here", "Select Option", 45, true, true, "Water"); // 981 miles
+		addLocation("Fort Bridger", "add description", "Select Option", 129, true, false, "Common"); // 1026 miles
+		addLocation("Soda Springs", "add description", "Select Option", 62, true, false, "Common"); // 1155 miles
+		addLocation("Fort Hall", "add description", "Select Option", 180, true, false, "Common"); // 1217 miles
+		addRiver("Snake River", "River description here", "Select Option", 113, true, true, "Water"); // 1397 miles
+		addLocation("Fort Boise", "add description", "Select Option", 158, true, false, "Common"); // 1510 miles
+		addLocation("Blue Mountains", "add description", "Select Option", 62, true, false, "Snow"); // 1668 miles
+		addLocation("Fort Walla Walla", "add description", "Select Option", 89, true, false, "Common"); // 1730 miles
+		addLocation("The Dalles", "add description", "Select Option", 113, true, false, "Water"); // 1819 miles
+		addLocation("Willamette Valley, Oregon", "You made it!", "Select Option", 10000, true, false, "Common"); // 1932 miles
 	}
 
 	public ArrayList<Location> getMap() {
@@ -384,13 +384,13 @@ public class Travel {
 	 * @param hasActs     - Whether or not the location has any activites
 	 */
 	public void addLocation(String name, String desc, String prompt, int disTillNext, boolean hasActs,
-			boolean isRiver) {
-		Location loc = new Location(name, desc, prompt, disTillNext, hasActs, isRiver);
+			boolean isRiver, String geotype) {
+		Location loc = new Location(name, desc, prompt, disTillNext, hasActs, isRiver, geotype);
 		map.add(loc);
 	}
 
-	public void addRiver(String name, String desc, String prompt, int disTillNExt, boolean hasActs, boolean isRiver) {
-		River river = new River(name, desc, prompt, disTillNExt, hasActs, isRiver);
+	public void addRiver(String name, String desc, String prompt, int disTillNExt, boolean hasActs, boolean isRiver, String geotype) {
+		River river = new River(name, desc, prompt, disTillNExt, hasActs, isRiver, geotype);
 		map.add(river);
 	}
 

@@ -15,7 +15,6 @@ public class RandomEvent {
 
 	String name;
 	String event;
-	String locationID = "";
 	String whatItem;
 	int itemChange;
 	String whoseHealth;
@@ -23,21 +22,26 @@ public class RandomEvent {
 	boolean affectDate;
 	boolean increaseRisk;
 	boolean isRiskActive;
+	String locationID = "";
+	//locationID/geotype tags used: Common, Rocky, Desert, Snow, Water 
 
 	public RandomEvent(Wagon wagon) {
 		this.wagonE = wagon;
 		
 		eventList = new ArrayList<Events>();
-		addEvent("Thunderstorm", "General", "", 0, "", 0, false, true);
-		addEvent("Blizzard", "Mountain", "", 0, "", 0, false, true);
-		addEvent("Lost Trail", "General", "", 0, "", 0, true, false);
-		addEvent("Thunderstorm", "General", "", 0, "", 0, false, true);
-		addEvent("A Thief stole from you", "General", "food", -50, "", 0, false, false);
-		addEvent("Wild fruit", "General", "food", 50, "", 0, false, false);
-		addEvent("Injured ox", "General", "", 0, "ox", -50, false, true);
-		addEvent("Bad grass", "General", "", 0, "", 0, false, true);
-		addEvent("Snakebite", "snakeRiver", "", 0, "person", 50, false, false);
-		addEvent("Broken bone", "General", "", 0, "person", -50, false, false);
+		addEvent("Thunderstorm", "Common", "", 0, "", 0, false, true);
+		addEvent("Blizzard", "Snow", "", 0, "", 0, false, true);
+		addEvent("Dust Storm", "Desert", "", 0, "", 0, false, true);
+		addEvent("Wagon stuck in mud", "Water", "", 0, "", 0, true, false);
+		addEvent("Rockslide", "Rocky", "", 0, "", 0, true, false);
+		addEvent("Lost Trail", "Common", "", 0, "", 0, true, false);
+		addEvent("Thunderstorm", "Common", "", 0, "", 0, false, true);
+		addEvent("A Thief stole from you", "Common", "food", -50, "", 0, false, false);
+		addEvent("Wild fruit", "Common", "food", 50, "", 0, false, false);
+		addEvent("Injured ox", "Common", "", 0, "ox", -50, false, true);
+		addEvent("Bad grass", "Common", "", 0, "", 0, false, true);
+		addEvent("Snakebite", "Common", "", 0, "person", 50, false, false);
+		addEvent("Broken bone", "Common", "", 0, "person", -50, false, false);
 
 	}
 	
@@ -77,9 +81,17 @@ public class RandomEvent {
 	//grabs a random event from eventList and gets its index
 	public int pickFromList() {
 		int listNum = rng.nextInt(eventList.size()) + 1;
-		//add an if correct location here??
-		//if correct location then continue
-		//it not correct then re-run this method until a correct location is found
+		//checks if the event can happen at this location
+		//prevents blizzard from occurring in desert
+		//static problems??
+		/*
+		if(eventList.get(listNum).locationID != Location.getGeotype()) {
+			pickFromList();
+		}
+		else {
+			return listNum;
+		}
+		*/
 		return listNum;
 	}
 	

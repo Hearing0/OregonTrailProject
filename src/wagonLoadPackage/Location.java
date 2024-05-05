@@ -33,6 +33,7 @@ public class Location {
 	String name = "";
 	String desc = "";
 	String prompt = "";
+	String geotype = "";
 
 	/**
 	 * Initialize location
@@ -43,13 +44,14 @@ public class Location {
 	 * @param disTillNext - Distance till the next Location
 	 * @param hasActs     - Whether the location has any special activities
 	 */
-	public Location(String name, String desc, String prompt, int disTillNext, boolean hasActs, boolean isRiver) {
+	public Location(String name, String desc, String prompt, int disTillNext, boolean hasActs, boolean isRiver, String geotype) {
 		this.name = name;
 		this.desc = desc;
 		this.prompt = prompt;
 		this.distanceTillNext = disTillNext;
 		this.hasActivities = hasActs;
 		this.isRiver = isRiver;
+		this.geotype = geotype;
 
 		// If hasActivites, initialize tradersRemaining
 		if (this.hasActivities) {
@@ -63,7 +65,7 @@ public class Location {
 	 * @return - the Location as a River
 	 */
 	public River toRiver() {
-		River newRiver = new River(name, desc, prompt, distanceTillNext, hasActivities, isRiver);
+		River newRiver = new River(name, desc, prompt, distanceTillNext, hasActivities, isRiver, geotype);
 		return newRiver;
 	}
 
@@ -110,6 +112,15 @@ public class Location {
 	 */
 	public boolean getHasActivites() {
 		return hasActivities;
+	}
+	
+	/**
+	 * Gets the geotype for current location
+	 * 
+	 * @return - String. returns the geotype of that area
+	 */
+	public String getGeotype() {
+		return geotype;
 	}
 
 	/**
