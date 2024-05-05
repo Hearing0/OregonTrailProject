@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Image;
 
 /**
  * WagonLoad.java
@@ -72,12 +73,8 @@ public class WagonLoad {
 	//private JTextField testField;
 	
 	
-	ArrayList<Location> map;
-	int consumptionValue = 0;
-	int travelValue = 0;
-	int totalDist = 0;
-	int days = 0;
-
+	private ArrayList<Location> map;
+	private int totalDist = 0;
 
 	
 	/**
@@ -99,7 +96,7 @@ public class WagonLoad {
 
 	/**
 	 * Create the application with the user's pre-configured wagon.
-	 * @param wagon - 
+	 * @param wagon - The player's wagon
 	 */
 	public WagonLoad(Wagon wagon) {
 		
@@ -138,7 +135,7 @@ public class WagonLoad {
 	
 	//breanna sproul
 	//testing for health
-    public void testUpdateWagonHP() {
+    private void testUpdateWagonHP() {
     	//get value
         int totalHP = wagon.HPList.get(0).getHealth();
        // System.out.println("Wagon Health: "+ wagon.HPList.get(0).getHealth());
@@ -152,7 +149,7 @@ public class WagonLoad {
      * Updates the UI element for total weight.
      * Calculates the totalWeight, then updates UI label's text.
      */
-    public void updateTotalWeightUI() {
+    private void updateTotalWeightUI() {
         // Calculate totalWeight
         int totalWeight = wagon.getTotalWeight();
 
@@ -253,15 +250,19 @@ public class WagonLoad {
         JPanel artPanel = new JPanel();
         artPanel.setBorder(new TitledBorder(
                 new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
-                "Chimmey Rock, John Estel CC NY-BY", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-        artPanel.setBounds(10, 11, 270, 152);
+                "North Platte River 2, John Estel CC NY-BY", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+        artPanel.setBounds(10, 11, 517, 290);
         frmPackYourWagon.getContentPane().add(artPanel);
         artPanel.setLayout(null);
 
         JLabel artLabel = new JLabel();
-        artLabel.setBounds(6, 16, 256, 128);
+        artLabel.setBounds(6, 16, 501, 263);
         artPanel.add(artLabel);
-        artLabel.setIcon(new ImageIcon(WagonLoad.class.getResource("/images/ChimneyRock1.pixel.WebSafe.2.png")));
+        ImageIcon imageIcon = new ImageIcon(WagonLoad.class.getResource("/images/NorthPlatteRiver2.pixel.websafe.png"));
+        Image image = imageIcon.getImage(); // transform it 
+        Image newimg = image.getScaledInstance( 501 , 263,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        imageIcon = new ImageIcon(newimg);
+        artLabel.setIcon(imageIcon);
               
         
         
@@ -274,12 +275,12 @@ public class WagonLoad {
         frmPackYourWagon.getContentPane().add(panelTravel);
         panelTravel.setLayout(null);
 
-        JLabel lblFoodFlavorTxt = new JLabel("Set to: Filling");
+        JLabel lblFoodFlavorTxt = new JLabel("Rations: " + wagon.travel.getFlavorTxtFood());
         lblFoodFlavorTxt.setFont(new Font("Tahoma", Font.PLAIN, 10));
         lblFoodFlavorTxt.setBounds(10, 72, 115, 14);
         panelTravel.add(lblFoodFlavorTxt);
 
-        JLabel lblTravelFlavorText = new JLabel("Set to: 20 miles/day");
+        JLabel lblTravelFlavorText = new JLabel("Traveling: " + wagon.travel.getFlavorTxtPace());
         lblTravelFlavorText.setFont(new Font("Tahoma", Font.PLAIN, 10));
         lblTravelFlavorText.setBounds(135, 72, 110, 14);
         panelTravel.add(lblTravelFlavorText);
@@ -308,7 +309,7 @@ public class WagonLoad {
                     }
                     // Success: Update Food Flavor Text
                     else {
-                        lblFoodFlavorTxt.setText("Set to: " + wagon.travel.getFlavorTxtFood());
+                        lblFoodFlavorTxt.setText("Rations: " + wagon.travel.getFlavorTxtFood());
                     }
                 }
                 // Fail: Character entered
@@ -322,19 +323,19 @@ public class WagonLoad {
         textFieldFoodConsump.setColumns(10);
 
         // Food Consumption Label
-        JLabel lblNewLabel = new JLabel("Food Consumption: 1-3");
+        JLabel lblNewLabel = new JLabel("Food Rationing: 1-3");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 10));
         lblNewLabel.setBounds(10, 16, 115, 14);
         panelTravel.add(lblNewLabel);
 
-        // Travel Speed Label
-        JLabel lblTravelSpeed = new JLabel("Travel Speed: 12-20");
+        // Travel Pace Label
+        JLabel lblTravelSpeed = new JLabel("Travel Pace: 1-3");
         lblTravelSpeed.setFont(new Font("Tahoma", Font.PLAIN, 10));
         lblTravelSpeed.setBounds(135, 16, 100, 14);
         panelTravel.add(lblTravelSpeed);
         
-        // Travel Speed Text Field - David Flores
-        textFieldTravelSpeed = new JTextField("20");
+        // Travel Pace Text Field - David Flores
+        textFieldTravelSpeed = new JTextField("1");
         textFieldTravelSpeed.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Retrieve Text
@@ -345,19 +346,22 @@ public class WagonLoad {
                     int value = Integer.parseInt(textValue);
 
                     // Try to setTravelSpeed...
-                    if (wagon.travel.setTravelSpeed(value) != true) {
+                    if (wagon.travel.setPace(value) != true) {
                         // If Out of Bounds, prompt user
                         JOptionPane.showMessageDialog(null,
-                                "Value entered is Out of Bounds.\n Should be an integer from 12-20." + "\nhuh...wuh?");
+                                "Value entered is Out of Bounds.\n Should be an integer from 1-3." + "\nhuh...wuh?");
                     }
+                    
                     // Success: Update Travel Speed Flavor Text
                     else {
-                        lblTravelFlavorText.setText("Set to: " + wagon.travel.getTravelSpeed() + " miles/day");
+                        lblTravelFlavorText.setText("Traveling: " + wagon.travel.getFlavorTxtPace());
                     }
+                    
                 }
+                
                 // Fail: Character entered
                 catch (Exception evt) {
-                    JOptionPane.showMessageDialog(null, "Please enter an integer from 12-20" + "\nhuh...wuh?");
+                    JOptionPane.showMessageDialog(null, "Please enter an integer from 1-3" + "\nhuh...wuh?");
                 }
             }
         });
@@ -365,11 +369,6 @@ public class WagonLoad {
         panelTravel.add(textFieldTravelSpeed);
         textFieldTravelSpeed.setColumns(10);
         
-        // Travel Button - David Flores and Breanna Sproul
-        JButton btnTravel = new JButton("\"Travel\"");
-        btnTravel.setBounds(86, 131, 89, 23);
-        panelTravel.add(btnTravel);
-        btnTravel.setFont(new Font("Tahoma", Font.PLAIN, 10));
         
         // Total Weight Labels
         JLabel lblTotalWeight = new JLabel("Total Weight:");
@@ -402,6 +401,11 @@ public class WagonLoad {
         distanceLbl.setBounds(169, 172, 60, 23);
         panelTravel.add(distanceLbl);
 
+        // Travel Button - David Flores and Breanna Sproul
+        JButton btnTravel = new JButton("\"Travel\"");
+        btnTravel.setBounds(86, 97, 89, 23);
+        panelTravel.add(btnTravel);
+        btnTravel.setFont(new Font("Tahoma", Font.PLAIN, 10));
         btnTravel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Calculate foodWeight
@@ -412,12 +416,26 @@ public class WagonLoad {
                 if (wagon.travel.isEnoughFoodToTravelOneDay(foodWeight)) {                	
                 	                    
                     // Check if wagon is overweight...
-                    if (totalWeight <= wagon.maxWeight) {
+                    if (totalWeight <= wagon.MAX_WEIGHT) {
                     		                                 
                     	// Keep track of date
                         wagon.date.increaseDays(); // increases days
                         dateLabel.setText(wagon.date.getDate());
-                                              
+
+                        
+                        // Check for Event
+                        Events.eventCheck(); //correct event activation
+                        // Events.forceEvent(); //used during testing ONLY
+                        
+                        
+                        // Update Wagon Health
+                        testUpdateWagonHP();
+                        System.out.println("Wagon HP: " + wagon.HPList.get(0).getHealth());
+                        
+                        
+                        // Calculate Travel Speed: Placeholder(random event Speed Modifier)
+                        wagon.travel.calculateTravelSpeed(totalWeight, 1, wagon.HPList);
+                        
                                                 
                     	// Travel towards next location on map...
                         // If wagon makes it to next location, then pop-up location menu

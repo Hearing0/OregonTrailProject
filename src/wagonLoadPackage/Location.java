@@ -16,23 +16,20 @@ import java.util.Random;
 public class Location {
 
 	// Initialize Variables
-	int distanceTillNext = 0;
+	private int distanceTillNext = 0;
 	// var imageBackgnd;
 	// var imageForegnd;
 
-	boolean hasActivities = false;
-	boolean isRiver = false;
+	private boolean hasActivities = false;
+	private boolean isRiver = false;
 
 	// Generate number of available traders in locale
-	Random random = new Random();
-	int tradersRemaining;
-	Trader trader;
+	private Random random = new Random();
+	private int tradersRemaining;
+	public Trader trader;
 
-	int conditions[];
-
-	String name = "";
-	String desc = "";
-	String prompt = "";
+	public String name = "";
+	private String desc = "";
 
 	/**
 	 * Initialize location
@@ -43,10 +40,9 @@ public class Location {
 	 * @param disTillNext - Distance till the next Location
 	 * @param hasActs     - Whether the location has any special activities
 	 */
-	public Location(String name, String desc, String prompt, int disTillNext, boolean hasActs, boolean isRiver) {
+	public Location(String name, String desc, int disTillNext, boolean hasActs, boolean isRiver) {
 		this.name = name;
 		this.desc = desc;
-		this.prompt = prompt;
 		this.distanceTillNext = disTillNext;
 		this.hasActivities = hasActs;
 		this.isRiver = isRiver;
@@ -63,7 +59,7 @@ public class Location {
 	 * @return - the Location as a River
 	 */
 	public River toRiver() {
-		River newRiver = new River(name, desc, prompt, distanceTillNext, hasActivities, isRiver);
+		River newRiver = new River(name, desc, distanceTillNext, hasActivities, isRiver);
 		return newRiver;
 	}
 
@@ -84,16 +80,7 @@ public class Location {
 	public String getDesc() {
 		return desc;
 	}
-
-	/**
-	 * Get the location prompt
-	 * 
-	 * @return - String of Location prompt
-	 */
-	public String getPrompt() {
-		return prompt;
-	}
-
+	
 	/**
 	 * Gets the current distance till the next location.
 	 * 
@@ -128,7 +115,7 @@ public class Location {
 	}
 
 	/**
-	 * 
+	 * Decreases number of traders at the current location
 	 */
 	public void decrementTradersRemaining() {
 		tradersRemaining--;
@@ -137,16 +124,16 @@ public class Location {
 	/**
 	 * Gets the number of traders remaining
 	 * 
-	 * @return
+	 * @return - Number of traders left at the location
 	 */
 	public int getTradersRemaining() {
 		return tradersRemaining;
 	}
 
-	public boolean getActs() {
-		return hasActivities;
-	}
-
+	/**
+	 * Get whether the location is a river.
+	 * @return - True if the location is a river.
+	 */
 	public boolean getIsRiver() {
 		return isRiver;
 	}
@@ -174,37 +161,4 @@ public class Location {
 
 		return result;
 	}
-
-	/*
-	 * Not currently implemented nor planned to use (keeping in case tho)
-	 * //TODO: move to travelMenu or other menu, and implement locMenu w/ activities
-	 * public String chooseOption(int n) {
-	 * String result = "";
-	 * 
-	 * switch (n) {
-	 * case 1:
-	 * // Talk w/ locals
-	 * result = "A local says, 'Hey, crazy story but...'";
-	 * break;
-	 * case 2:
-	 * // Look at map
-	 * result = "Looking at a map!";
-	 * break;
-	 * case 3:
-	 * // Check out Store
-	 * result = "Visiting the store...";
-	 * break;
-	 * case 4:
-	 * // Checking supplies
-	 * result = "Checking supplies...";
-	 * break;
-	 * case 5:
-	 * // Continue travel
-	 * result = "Continuing to travel...";
-	 * break;
-	 * }
-	 * 
-	 * return result;
-	 * }
-	 */
 }

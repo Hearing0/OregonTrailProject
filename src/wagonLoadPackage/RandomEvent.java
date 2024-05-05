@@ -253,7 +253,7 @@ public class RandomEvent {
 			event = "Injure Wagon!";
 			//System.out.println(event);
 			int wagonHP = wagonE.HPList.get(0).getHealth();
-			int newWHP = wagonHP - 5;
+			int newWHP = wagonHP - 25;
 			wagonE.HPList.get(0).setHealth(newWHP);
 			return event;
 		} else if (choice == 2) {
@@ -287,7 +287,7 @@ public class RandomEvent {
 			for(int i = 5; i < wagonE.HPList.size(); i++) {
 				if(wagonE.HPList.get(i).getAlive() == true) {
 					int oxHP = wagonE.HPList.get(i).getHealth();
-					int newOHP = oxHP - 5;
+					int newOHP = oxHP - 25;
 					wagonE.HPList.get(i).setHealth(newOHP);
 				}
 			}
@@ -295,7 +295,32 @@ public class RandomEvent {
 		}
 
 	}
+	
+	
+
+	/**
+	 * adds an event to arrayList so it can be easily used in later methods
+	 * 
+	 * @param name         - description of event that pops up in dialog box
+	 * @param locationID   - where must the event occur at, ex. blizzard cant occur
+	 *                     in desert, use general if theres no specific need
+	 * @param whatItem     - if an item is being changed, what is the item
+	 * @param itemChange   - if an item is being changed, how much is it being
+	 *                     changed by (use negative # if it is removing)
+	 * @param whoseHealth  - if health is being changed, whose HP is changing
+	 * @param healthChange - if health is being changed, how much is it being
+	 *                     changed by (use negative # if it is removing)
+	 * @param affectDate   - does this event affect the travel date
+	 * @param increaseRisk - does this event increase risk, ex. if theres heavy fog
+	 *                     then theres a greater chance to encounter more events due
+	 *                     to low visibility
 	 */
+	public void addEvent(String name, String locationID, String whatItem, int itemChange,
+			String whoseHealth, int healthChange, boolean affectDate, boolean increaseRisk) {
+		Events entry = new Events(name, locationID, whatItem, itemChange, whoseHealth,
+				healthChange, affectDate, increaseRisk);
+		eventList.add(entry);
+	}
 	
 	
 

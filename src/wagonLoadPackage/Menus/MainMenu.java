@@ -34,7 +34,7 @@ public class MainMenu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	static MainMenu mainFrame;
+	public static MainMenu mainFrame;
 
 	/**
 	 * Launch the application.
@@ -102,7 +102,7 @@ public class MainMenu extends JFrame {
 		});
 		panel.add(btnStartGame);
 		
-		
+		/*
 		// Continue Game Button
 		JButton btnContinueGame = new JButton("Continue Game");
 		btnContinueGame.setBounds(0, 34, 150, 23);
@@ -112,7 +112,7 @@ public class MainMenu extends JFrame {
 			}
 		});
 		panel.add(btnContinueGame);
-		
+		*/
 		
 		// Settings Button
 		JButton btnSettings = new JButton("Settings");

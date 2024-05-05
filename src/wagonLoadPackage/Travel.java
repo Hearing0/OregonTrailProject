@@ -15,16 +15,17 @@ import java.util.ArrayList;
 public class Travel {
 
 	// Initialize Variables
-	int travelSpeed = 20; // miles per day
-	double paceMod = 1; // 0.5x, 1x, 2x
-	int consumeSelect = 1;
-	int foodConsumeMod = consumeSelect * 4; // (1 to 3) * 4 people on wagon
-	double milesTillEnd = 1932;
+	private int baseTravelSpeed = 10;
+	private int travelSpeed = 20; // miles per day
+	private double paceMod = 1; // 0.5x, 1x, 2x
+	private int consumeSelect = 1;
+	private int foodConsumeMod = consumeSelect * 4; // (1 to 3) * 4 people on wagon (updated via method)
+	private double milesTillEnd = 1932;
 
 	// Map Variables
-	ArrayList<Location> map = new ArrayList<Location>(); // map of Oregon Trail
+	public ArrayList<Location> map = new ArrayList<Location>(); // map of Oregon Trail
 
-	int wagonLocation = 0; // coordinates for map
+	public int wagonLocation = 0; // coordinates for map
 
 	/**
 	 * Initialize Travel w/ a filled map
@@ -39,7 +40,6 @@ public class Travel {
 						+ "atmosphere filled with anticipation and adventure. Independence is a crucial "
 						+ "starting point for thousands embarking on the arduous journey to the Pacific "
 						+ "Northwest, marking the beginning of their quest for a better life on the frontier.",
-				"Select Option",
 				106,
 				true, false); // 0 miles
 		addRiver("Kansas River", 
@@ -47,7 +47,6 @@ public class Travel {
 						+ "heading westward. The river’s course causes it to often run close to the trail, providing " 
 						+ "relief and a chance to refill traveler’s water barrels. It’s not all sunshine and rainbows though, "
 						+ "as crossing it can be perilous, especially after long periods of rain. Good luck!", 
-					"Select Option", 
 					59, 
 					true, true); // 106 miles
 		addRiver("Big Blue River", 
@@ -55,7 +54,6 @@ public class Travel {
 						+ "Its course often intersects the trail, which provides many a weary traveler with either danger or opportunity. "
 						+ "When dry, it can be as small as a mere trickle, but in times of heavy rain, it can transform into an unpredictable "
 						+ "torrent of water. Be careful, and good luck!", 
-					"Select Option", 
 					154, 
 					true, true); // 165 miles
 		addLocation("Fort Kearney",
@@ -69,86 +67,75 @@ public class Travel {
 						+ "Fort Kearney buzzed with activity during its heyday, bustling "
 						+ "with wagons, settlers, soldiers, and traders, all flowing "
 						+ "through this point on their journey westward.",
-				"Select Option",
 				256,
 				true, false); // 319 miles
 		addLocation("Chimney Rock", 
 					"The towering grandiosity of Chimney Rock fills many a fatigued traveler with courage and determination. "
 					+ "It can be seen for miles in any direction, proving a vital landmark to those on the Trail, and an inspiration for pioneers "
 					+ "of the wonders to come along the trail. Take heart, and good luck!",
-				"Select Option", 
 				75, 
 				true, false); // 575 miles
 		addLocation("Fort Laramie",
 					"Originally established as a fur trading post, Fort Laramie is now an important military outpost and trading hub"
 					+ "for pioneers on the trail. You can restock your supplies, repair your wagon, and much more! Take a rest, but be sure to "
 					+ "get back on the road! Good luck!",
-					"Select Option", 
 					164, true, false); // 650 miles
 		addLocation("Independence Rock", 
 					"Independence Rock stands as a monumental landmark over vast prairies. Named so after the many previous "
 					+ "pioneers who reached this granite outcrop around Independence Day, it serves as a tangible sign that "
 					+ "you are making your way across the country. Good luck!", 
-					"Select Option", 
 					100, true, false); // 814 miles
 		addLocation("South Pass", 
 				"The South Pass plays a pivotal role in helping pioneers such as yourself cross the Rocky Mountains. "
 				+ "It offers a much more pleasant crossing than other passes to the north or south. "
 				+ "While this crossing may seem easy, the hardest leg of your journey is yet to come. "
 				+ "Take a brief respite, and good luck!", 
-				"Select Option", 
 				67, true, false); // 914 miles
 		addRiver("Green River", "The Green River cuts through Wyoming and Utah, and serves as a vital lifeline for pioneers such as yourself. "
 				+ "While it might offer a brief respite from the hardships of the Trail, watch out for its rocky rapids "
-				+ "and swift currents. Good luck!",
-				"Select Option", 45, true, true); // 981 miles
+				+ "and swift currents. Good luck!", 45, true, true); // 981 miles
 		addLocation("Fort Bridger", "Established in the 1840s, Fort Bridger serves as a vital waypoint for pioneers on their way to Oregon."
 				+ " Here you can restock your supplies, repair your wagon, and take a rest from the challenges of the Trail. Good luck!", 
-				"Select Option", 
 				129, true, false); // 1026 miles
 		addLocation("Soda Springs", "The natural wonder of Soda Springs provides travelers with a small reprieve from the Oregon Trail. "
 				+ "Its cool, naturally carbonated waters serve as a place where travelers can quench their thirst, "
 				+ "before getting back on the road. Good luck!", 
-				"Select Option", 
 				62, true, false); // 1155 miles
 		addLocation("Fort Hall", "Established in 1834 as a fur trading post, Fort Hall now serves as one of the most important posts for "
 				+ "travelers on their journey to Oregon. Here you can restock your supplies and repair your wagon, "
 				+ "and prepare for the last stretch of your journey. Good luck!", 
-				"Select Option", 
 				180, true, false); // 1217 miles
 		addRiver("Snake River", "Snake River functions as an important waterway for those undertaking the Oregon Trail. "
 				+ "Despite its rapids and swift currents, many a pioneer have used it to their advantage, setting up "
 				+ "homesteads and settlements. While its crossing may be perilous, you’re almost there. Good luck!", 
-				"Select Option", 
 				113, true, true); // 1397 miles
 		addLocation("Fort Boise", "Fort Boise, established in 1834, serves as one of the final forts along the path to the Willamette Valley."
 				+ " Here weary explorers can take a rest and restock their supplies. You’re so close, don’t give up now! Good luck!", 
-				"Select Option", 
 				158, true, false); // 1510 miles
 		addLocation("Blue Mountains", "As one of the last major obstacles on the path to Oregon, crossing the Blue Mountains serves as a rite "
 				+ "of passage for many pioneers. With its towering pine trees, and sharp ascents and descents, it presents a true challenge "
 				+ "to those wishing to get to Oregon. Good luck with this one, pioneer!",
-				"Select Option", 
 				62, true, false); // 1668 miles
 		addLocation("Fort Walla Walla", "As the last fort on your journey, make sure to stock up and be ready for the final leg of the journey. "
 				+ "Fort Walla Walla is one of the last stops for many travelers seeking passage to the Willamette Valley. "
 				+ "Get as many supplies as you can carry, and good luck of the final stretch!", 
-				"Select Option", 
 				89, true, false); // 1730 miles
 		addLocation("The Dalles", "The Dalles serves as the last obstacle that many travelers face on the Oregon Trail. "
 				+ "It marks the transition from the rugged Rocky Mountains to the lush, temperate climate of Oregon, and "
 				+ "above all the Willamette Valley. Take a short rest here, but your adventure is almost over. Good luck!", 
-				"Select Option", 
 				113, true, false); // 1819 miles
 		addLocation("Willamette Valley, Oregon", "You’ve made it! You’ve crossed almost half the country to get here, "
 				+ "and the riches that the land provides are yours for the taking. Through all of the hardship that "
 				+ "you and your party have endured, you have persevered through it all and made it here. "
 				+ "While your journey on the Oregon Trail ends here, the rest of your adventure has just begun. "
 				+ "Congratulations, and thanks for playing!", 
-				"Select Option", 
 				10000, true, false); // 1932 miles
 	}
 
+	/**
+	 * Gets the map of Locations
+	 * @return - ArrayList of Location
+	 */
 	public ArrayList<Location> getMap() {
 		return map;
 	}
@@ -157,23 +144,29 @@ public class Travel {
 	 * Sets the pace of the wagon
 	 * 
 	 * @param paceSelect - From 1-3, sets
-	 *                   the pace of the wagon to 0.5x, 1x, or 2x
+	 *                   the pace of the wagon to 0.5x, 1x, or 1.5x
 	 *                   respectively.
-	 * 
-	 *                   TODO: Use in future
+	 * @return - True if the pace was successfully set.
+	 * @author David F
 	 */
-	public void setPace(int paceSelect) {
+	public boolean setPace(int paceSelect) {
+		boolean result = true;
+		
 		switch (paceSelect) {
 			case 1:
-				this.paceMod = 0.5;
+				this.paceMod = 1.5;
 				break;
 			case 2:
 				this.paceMod = 1;
 				break;
 			case 3:
-				this.paceMod = 2;
+				this.paceMod = .5;
 				break;
+			default:
+				result = false;
 		}
+		
+		return result;
 	}
 
 	/**
@@ -190,6 +183,7 @@ public class Travel {
 	 * 
 	 * @return - True if foodConsumeMod was set
 	 *         (where consumeSelect was b/w 1-3), otherwise, returns false.
+	 * @author David F
 	 */
 	public boolean setFoodConsumption(int consumeSelect, int people) {
 		boolean result = true;
@@ -237,6 +231,7 @@ public class Travel {
 	 * @return - String that can be either "Bare Bones",
 	 *         "Meager", or "Filling" depending on the consumeSelect
 	 *         (1-3).
+	 * @author David F
 	 */
 	public String getFlavorTxtFood() {
 		String result = "";
@@ -254,17 +249,45 @@ public class Travel {
 
 		return result;
 	}
+	
+	
+	/**
+	 * Gets the flavor text for the travel pace option
+	 * selected.
+	 * 
+	 * @return - String that can be either "Steady pace",
+	 *         "Strenuous pace", or "Grueling pace" depending on the paceMod
+	 *         (1-3).
+	 * @author David F
+	 */
+	public String getFlavorTxtPace() {
+		String result = "";
+		switch (this.consumeSelect) {
+			case 3:
+				result = "Steady pace";
+				break;
+			case 2:
+				result = "Strenuous pace";
+				break;
+			case 1:
+				result = "Grueling pace";
+				break;
+		}
+
+		return result;
+	}
+	
+	
 
 	/**
 	 * Sets travelSpeed to value if in between the bounds of
 	 * 12 <= Value <= 20.
 	 * 
-	 * TODO: Replace in future
-	 * 
 	 * @param value - Integer value to set travelSpeed to.
 	 *              Should be w/in 12 <= Value <= 20.
 	 * @return - True if travelSpeed was set correctly,
 	 *         otherwise, returns false.
+	 * @author David F
 	 */
 	public boolean setTravelSpeed(int value) {
 		boolean result = false;
@@ -285,42 +308,115 @@ public class Travel {
 	}
 
 	/**
-	 * Calculates the travelSpeed of the wagon using
-	 * paceMod & foodConsumeMod
+	 * Calculates the travelSpeed of the wagon using wagonWeight,
+	 * paceMod, eventSpeedMod, and general health of party
+	 * 
+	 * @param wagonWeight - Weight of wagon
+	 * @param eventSpeedMod - Speed Modifier from Event
+	 * @param partyHealth - Health of all party Members
 	 * 
 	 * @return - Returns the double travelSpeed post
 	 *         calculation.
-	 *         TODO: Finish implementation in future & replace setTravelSpeed
+	 *         
+	 * @author David F
 	 */
-	public int calculateTravelSpeed(int weight) {
-		int baseTravelSpeed = 20;
-
+	public int calculateTravelSpeed(int wagonWeight, int eventSpeedMod, ArrayList<Health> partyHealth) {
+		baseTravelSpeed = 20;
+		System.out.println("--Travel Speed--");
+		
 		// Determine Event
+		//.eventCheck();
 
 		// Get eventSpeedModifier
 
 		// Determine location
 
 		// Get locationSpeedModifier
-
-		/// Calculate weightMod
+		
+		
+		
+		/// Check # of Oxen speed, # of sick people, & wagon condition ***
+		int oxNum = 0;
+		int sickNum = 0;
+		
+		System.out.println("-Party Condition-");
+		// Check condition of all party members ***
+		for (Health member : partyHealth) {
+			String memType = member.getType();
+			
+			// Count Ox
+			if (memType == "Ox") {
+				oxNum++;
+			}
+			
+			// Count Sick Humans
+			else if (memType == "Human") {
+				if (member.isLowHealth() != 0) {
+					sickNum++;
+				}
+			}
+			
+			// Change baseTravelSpeed depending on Wagon condition  ***
+			else if (memType == "Wagon") {
+				switch (member.isLowHealth()) {
+				
+					// Faulty
+					case 1:
+						baseTravelSpeed = 15;
+						break;
+						
+					// Barely moves
+					case 2:
+						baseTravelSpeed = 10;
+						break;
+						
+					// Fine
+					default:
+						baseTravelSpeed = 20;
+						break;
+				}
+			}
+		}
+		double oxMod = oxNum/4;
+		double sickMod = 1 - sickNum/10;
+		
+		System.out.println("-oxMod: " + oxNum);
+		System.out.println("-sickMod: " + sickMod);
+		System.out.println("-baseTravelSpeed: " + this.baseTravelSpeed);
+		
+		/// Calculate weightMod ***
 		double weightMod;
-
-		// Case: Underweight
-		if (weight <= 1000) {
-			weightMod = 1.2;
+		int upperWeightLimit = 1850;
+		int lowerWeightLimit = 1000;
+		
+		System.out.println("-Weight Modifier-");
+		// Case: Under weight
+		if (wagonWeight <= lowerWeightLimit) {
+			System.out.print("-> under");
+			double interpolate = 0.5 * (wagonWeight / lowerWeightLimit);
+			weightMod = 1 + interpolate;
 		}
 		// Case: Normal weight
-		else if (weight <= 1750) {
+		else if (wagonWeight <= upperWeightLimit) {
+			System.out.print("-> normal");
 			weightMod = 1;
 		}
-		// Case: Overweight
+		// Case: Over weight
 		else {
-			weightMod = .8;
-		}
-
+			System.out.print("-> over");
+			// Decrease from 1 to 0.5 as weight increases from upperWeightLimit to MAX_WEIGHT
+			double interpolate = 0.5 * (wagonWeight - upperWeightLimit) / (Wagon.MAX_WEIGHT - upperWeightLimit);
+			weightMod = 1 - interpolate;
+		}		
+		
+		System.out.println("Weight Modifier: " + weightMod);
+		System.out.println("Pace Modifier: " + this.paceMod);
+		
+		
 		// Calculate travelSpeed
-		this.travelSpeed = (int) (Math.round(baseTravelSpeed * paceMod * foodConsumeMod * weightMod));
+		this.travelSpeed = (int) (Math.round(baseTravelSpeed * paceMod * weightMod));
+		System.out.println("travelSpeed: " + this.travelSpeed);
+		
 
 		return this.travelSpeed;
 	}
@@ -334,6 +430,7 @@ public class Travel {
 	 * @param amtFood - The amount of food on the wagon
 	 * @return - True if daysOfFood is greater or equal to daysToTravel,
 	 *         otherwise, returns false.
+	 * @author David F
 	 */
 	public boolean isEnoughFoodToTravelTrip(int amtFood) {
 		boolean result = false;
@@ -360,6 +457,7 @@ public class Travel {
 	 * @param amtFood - The amount of food on the wagon
 	 * @return - True if daysOfFood is greater or equal to daysToTravel,
 	 *         otherwise, returns false.
+	 * @author David F
 	 */
 	public boolean isEnoughFoodToTravelFiveDays(int amtFood) {
 		boolean result = false;
@@ -386,6 +484,7 @@ public class Travel {
 	 * @param amtFood - The amount of food on the wagon
 	 * @return - True if daysOfFood is greater or equal to daysToTravel,
 	 *         otherwise, returns false.
+	 * @author David F
 	 */
 	public boolean isEnoughFoodToTravelOneDay(int amtFood) {
 		boolean result = false;
@@ -414,6 +513,7 @@ public class Travel {
 	 * @param amtFood - Amount of Food in lbs
 	 *                (used to check if enough food)
 	 * @return - Returns true if wagon has made it to a new location.
+	 * @author David F
 	 */
 	public boolean travelMap(int amtFood) {
 		boolean result = false;
@@ -441,6 +541,7 @@ public class Travel {
 	 * 
 	 * @return - Returns the Location instance that the wagon
 	 *         is has most recently arrived at.
+	 * @author David F
 	 */
 	public Location getCurLocation() {
 
@@ -454,18 +555,29 @@ public class Travel {
 	 * 
 	 * @param name        - Name of location
 	 * @param desc        - Description of location
-	 * @param prompt      - Prompt for the location
 	 * @param disTillNext - distance till the next location
 	 * @param hasActs     - Whether or not the location has any activites
+	 * @param isRiver	  - Whether or not the location is a river
+	 * @author David F
 	 */
-	public void addLocation(String name, String desc, String prompt, int disTillNext, boolean hasActs,
+	private void addLocation(String name, String desc,  int disTillNext, boolean hasActs,
 			boolean isRiver) {
-		Location loc = new Location(name, desc, prompt, disTillNext, hasActs, isRiver);
+		Location loc = new Location(name, desc, disTillNext, hasActs, isRiver);
 		map.add(loc);
 	}
-
-	public void addRiver(String name, String desc, String prompt, int disTillNExt, boolean hasActs, boolean isRiver) {
-		River river = new River(name, desc, prompt, disTillNExt, hasActs, isRiver);
+	
+	/**
+	 * Adds River to map.
+	 * 
+	 * @param name        - Name of location
+	 * @param desc        - Description of location
+	 * @param disTillNext - distance till the next location
+	 * @param hasActs     - Whether or not the location has any activites
+	 * @param isRiver	  - Whether or not the location is a river
+	 * @author Cody
+	 */
+	private void addRiver(String name, String desc,  int disTillNExt, boolean hasActs, boolean isRiver) {
+		River river = new River(name, desc, disTillNExt, hasActs, isRiver);
 		map.add(river);
 	}
 
