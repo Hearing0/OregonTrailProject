@@ -444,9 +444,9 @@ public class WagonLoad {
                     	}
 						
                         // Check for random event
-                        events.forceEvent(); //used during testing ONLY
-                        //Events.eventCheck(); //correct event activation
-                        testUpdateWagonHP();
+						events.doesEventHappen();
+                        //events.forceEvent(); //used during testing ONLY
+                       //testUpdateWagonHP();
                        // System.out.println("Wagon Health out: "+ wagon.HPList.get(0).getHealth());
 						
 						
