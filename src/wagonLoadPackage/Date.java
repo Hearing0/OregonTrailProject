@@ -78,6 +78,15 @@ public class Date extends Travel {
 		day++;
 		setDate();
 	}
+	
+	/**
+	 * increases the day number by an chosen amount
+	 * @param input
+	 */
+	public void increaseDays(int input) {
+		day += input;
+		setDate();
+	}
 
 	/**
 	 * sets the month value, planning to be used mainly for when the player begins

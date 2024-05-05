@@ -51,6 +51,9 @@ public class MenuUI {
 	// Trader Variables
 	private Trader trader;
 	private ArrayList<String> offer;
+	private ArrayList<JLabel> inventory;
+
+	public static boolean hasCrossed = false;
 
 	/**
 	 * Create the application.
@@ -271,242 +274,248 @@ public class MenuUI {
 	private void initialize() {
 		frmLocationName = new JFrame();
 		frmLocationName.setTitle(location.getName());
-		frmLocationName.setBounds(100, 100, 450, 300);
+		frmLocationName.setBounds(100, 100, 600, 300);
 		frmLocationName.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmLocationName.getContentPane().setLayout(null);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(10, 11, 418, 212);
+		tabbedPane.setBounds(10, 11, 568, 212);
 		frmLocationName.getContentPane().add(tabbedPane);
 
 		// Description tab - David Flores
-        JPanel descriptionPanel = new JPanel(new BorderLayout());
-        JTextArea descriptionTextArea = new JTextArea(location.getDesc());
-        descriptionTextArea.setLineWrap(true);
-        descriptionTextArea.setWrapStyleWord(true);
-        descriptionTextArea.setEditable(false);
-        descriptionPanel.add(new JScrollPane(descriptionTextArea), BorderLayout.CENTER);
-        tabbedPane.addTab("Description", descriptionPanel);
-		
+		JPanel descriptionPanel = new JPanel(new BorderLayout());
+		JTextArea descriptionTextArea = new JTextArea(location.getDesc());
+		descriptionTextArea.setLineWrap(true);
+		descriptionTextArea.setWrapStyleWord(true);
+		descriptionTextArea.setEditable(false);
+		descriptionPanel.add(new JScrollPane(descriptionTextArea), BorderLayout.CENTER);
+		tabbedPane.addTab("Description", descriptionPanel);
 
-     
-        /**
-    	 * Rod Piton - Initializes the contents of the Wagon tab and Travel tab.
-    	 * Wagon tab will show Current party weight location and Food weight
-    	 * Travel will show Location Items and Travel speed
-    	 */
-        // Wagon tab
-        // TODO: show individual item loaded and their weight
-        JPanel WagonPanel = new JPanel(new BorderLayout());
-        JTextArea WagonTextArea = new JTextArea(
-        		
-        		"Current Distance: " + location.getDistance()+"\n"+
-        		"Current Location: " + location.getName() + "\n" +
-        		"Current wagon weight: "	+ wagon.getTotalWeight() + "\n" +
-        		"Current food weight: " + wagon.getFoodWeight()
-        		
-        		);
-        WagonTextArea.setLineWrap(true);
-        WagonTextArea.setWrapStyleWord(true);
-        WagonTextArea.setEditable(false);
-        WagonPanel.add(new JScrollPane(WagonTextArea), BorderLayout.CENTER);
-        tabbedPane.addTab("Wagon", WagonPanel);
-        
-        // Travel tab to be implemented
-        
-        // JPanel TravelPanel = new JPanel(new BorderLayout());
-        //JTextArea TravelTextArea = new JTextArea(
-        		
-        //	"Current Travel Speed: " + travelspeed.getTravelSpeed()+"\n"+
-        //	"Current Items: " + wagon + "\n" 
-        		
-        		
-        //	);
-        //  TravelTextArea.setLineWrap(true);
-	    //  TravelTextArea.setWrapStyleWord(true);
-        //  TravelTextArea.setEditable(false);
-        // TravelPanel.add(new JScrollPane(TravelTextArea), BorderLayout.CENTER);
-        // tabbedPane.addTab("Wagon", TravelPanel);
-       
-        
-        // If current location has activites, create activities
-        // - David Flores
-        if(this.location.getHasActivites()) {
-        	// Debug
-        	System.out.println("Location has Activities");
-        	
-	        // Talk to Locals Tab
-	        JPanel talkToLocalsPanel = this.talkPanel();
-	        tabbedPane.addTab("Chat", talkToLocalsPanel);
-	        
-	        // Trading Tab
-	        JPanel tradingPanel = this.tradingPanel();
-	        tabbedPane.addTab("Trade", tradingPanel);
-	        
-	        //Store Tab
-	        tabbedPane.addTab("Store", storePanel());
-	        
-        }
-		
-        // Map Tab - David Flores
-        // TODO: Fix png not showing on load
-        JPanel mapPanel = new JPanel(new BorderLayout());
-        JLabel artLabel = new JLabel();
-        URL imageUrl = WagonLoad.class.getResource("/images/OreganTrailMap.png");
-        if (imageUrl != null) {
-            artLabel.setIcon(new ImageIcon(imageUrl));
-            System.out.println("imageURL: " + imageUrl);
-        } else {
-            System.out.println("Image not found");
-        }
-        mapPanel.add(artLabel);
-        mapPane = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPane.addTab("View Map", mapPane);
-		
-     // gets the current location
-     	Location current = wagon.travel.getCurLocation();
-        
-       // Cody Dusek
+		/**
+		 * Rod Piton - Initializes the contents of the Wagon tab and Travel tab.
+		 * Wagon tab will show Current party weight location and Food weight
+		 * Travel will show Location Items and Travel speed
+		 */
+		// Wagon tab
+		// TODO: show individual item loaded and their weight
+		JPanel WagonPanel = new JPanel(new BorderLayout());
+		JTextArea WagonTextArea = new JTextArea(
+
+				"Current Distance: " + location.getDistance() + "\n" +
+						"Current Location: " + location.getName() + "\n" +
+						"Current wagon weight: " + wagon.getTotalWeight() + "\n" +
+						"Current food weight: " + wagon.getFoodWeight()
+
+		);
+		WagonTextArea.setLineWrap(true);
+		WagonTextArea.setWrapStyleWord(true);
+		WagonTextArea.setEditable(false);
+		WagonPanel.add(new JScrollPane(WagonTextArea), BorderLayout.CENTER);
+		tabbedPane.addTab("Wagon", WagonPanel);
+
+		// Travel tab to be implemented
+
+		// JPanel TravelPanel = new JPanel(new BorderLayout());
+		// JTextArea TravelTextArea = new JTextArea(
+
+		// "Current Travel Speed: " + travelspeed.getTravelSpeed()+"\n"+
+		// "Current Items: " + wagon + "\n"
+
+		// );
+		// TravelTextArea.setLineWrap(true);
+		// TravelTextArea.setWrapStyleWord(true);
+		// TravelTextArea.setEditable(false);
+		// TravelPanel.add(new JScrollPane(TravelTextArea), BorderLayout.CENTER);
+		// tabbedPane.addTab("Wagon", TravelPanel);
+
+		// If current location has activites, create activities
+		// - David Flores
+		if (this.location.getHasActivites()) {
+			// Debug
+			System.out.println("Location has Activities");
+
+			// Talk to Locals Tab
+			JPanel talkToLocalsPanel = this.talkPanel();
+			tabbedPane.addTab("Chat", talkToLocalsPanel);
+
+			// Trading Tab
+			JPanel tradingPanel = this.tradingPanel();
+			tabbedPane.addTab("Trade", tradingPanel);
+
+			// Store Tab
+			tabbedPane.addTab("Store", storePanel());
+
+		}
+
+		// Map Tab - David Flores
+		// TODO: Fix png not showing on load
+		JPanel mapPanel = new JPanel(new BorderLayout());
+		JLabel artLabel = new JLabel();
+		URL imageUrl = WagonLoad.class.getResource("/images/OreganTrailMap.png");
+		if (imageUrl != null) {
+			artLabel.setIcon(new ImageIcon(imageUrl));
+			System.out.println("imageURL: " + imageUrl);
+		} else {
+			System.out.println("Image not found");
+		}
+		mapPanel.add(artLabel);
+		mapPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.addTab("View Map", mapPane);
+
+		// Cody Dusek
 		// Panel for River Options tab
-     	// makes sure that the river options do not appear unless the current location is a river
-        if (current.getIsRiver()) {
-		JPanel riverPanel = new JPanel(new BorderLayout());
-		tabbedPane.addTab("River Options", riverPanel);
-		JTextArea riverText = new JTextArea("...");
-		riverText.setLineWrap(true);
-		riverText.setWrapStyleWord(true);
-		riverText.setEditable(false);
-		riverText.setText(location.getName() + "\n" + location.getDesc());
+		// makes sure that the river options do not appear unless the current location
+		// is a river
+		if (current.getIsRiver()) {
+			JPanel riverPanel = new JPanel(new BorderLayout());
+			tabbedPane.addTab("River Options", riverPanel);
+			JTextArea riverText = new JTextArea("...");
+			riverText.setLineWrap(true);
+			riverText.setWrapStyleWord(true);
+			riverText.setEditable(false);
+			riverText.setText(location.getName() + "\n" + location.getDesc());
 
-		riverPanel.add(riverText);
+			riverPanel.add(riverText);
 
-		JButton btnNewButton = new JButton("See options");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// converts the current location into a river
-				River newRiver = current.toRiver();
-				newRiver.setConditions(current); // sets the conditions based on each individual river
+			// gets the current location
+			Location current = wagon.travel.getCurLocation();
+			if (current.getIsRiver() == true)
+				hasCrossed = false;
 
-				JFrame riverOptionsFrame = new JFrame();
-				riverOptionsFrame.setBounds(100, 200, 400, 300);
-				riverOptionsFrame.setVisible(true);
-				riverOptionsFrame.setTitle(location.getName());
+			JButton btnNewButton = new JButton("See options");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					// converts the current location into a river
+					River newRiver = current.toRiver();
+					newRiver.setConditions(current); // sets the conditions based on each individual river
 
-				JPanel riverOptionsPanel = new JPanel();
+					JFrame riverOptionsFrame = new JFrame();
+					riverOptionsFrame.setBounds(100, 200, 400, 300);
+					riverOptionsFrame.setVisible(true);
+					riverOptionsFrame.setTitle(location.getName());
 
-				JTextArea riverOptionsText = new JTextArea();
-				riverOptionsText.setLineWrap(true);
-				riverOptionsText.setWrapStyleWord(true);
-				riverOptionsText.setEditable(false);
+					JPanel riverOptionsPanel = new JPanel();
 
-				String swiftness = String.format("%.2f", newRiver.getSwiftness()); // converts the swiftness value to a
-																					// string
-				String depth = String.format("%.2f", newRiver.getDepth()); // converts the depth value to a string
-				String width = String.format("%.2f", newRiver.getWidth()); // converts the width value to a string
-				String bottomType = newRiver.getBottomType(); // gets the bottom type
+					JTextArea riverOptionsText = new JTextArea();
+					riverOptionsText.setLineWrap(true);
+					riverOptionsText.setWrapStyleWord(true);
+					riverOptionsText.setEditable(false);
 
-				riverOptionsText.setText("Swiftness: " + swiftness + "\n" + "Depth: " + depth +
-						"\n" + "Width: " + width + "\n" + "Bottom type: " + bottomType); // displays the swiftness,
-																							// depth, width, and bottom
-																							// type
-				riverOptionsPanel.add(riverOptionsText);
+					String swiftness = String.format("%.2f", newRiver.getSwiftness()); // converts the swiftness value
+																						// to a
+																						// string
+					String depth = String.format("%.2f", newRiver.getDepth()); // converts the depth value to a string
+					String width = String.format("%.2f", newRiver.getWidth()); // converts the width value to a string
+					String bottomType = newRiver.getBottomType(); // gets the bottom type
 
-				// creates the four buttons for the options to cross the river
-				JButton fordButton = new JButton("Ford");
-				JButton floatButton = new JButton("Float");
-				JButton ferryButton = new JButton("Ferry");
-				JButton guideButton = new JButton("Hire a Guide?");
-				riverOptionsPanel.add(fordButton);
-				riverOptionsPanel.add(floatButton);
-				riverOptionsPanel.add(ferryButton);
-				riverOptionsPanel.add(guideButton);
+					riverOptionsText.setText("Swiftness: " + swiftness + "\n" + "Depth: " + depth +
+							"\n" + "Width: " + width + "\n" + "Bottom type: " + bottomType); // displays the swiftness,
+																								// depth, width, and
+																								// bottom
+																								// type
+					riverOptionsPanel.add(riverOptionsText);
 
-				JFrame riverResultsFrame = new JFrame();
-				riverResultsFrame.setVisible(false);
-				riverResultsFrame.setBounds(100, 200, 400, 300);
+					// creates the four buttons for the options to cross the river
+					JButton fordButton = new JButton("Ford");
+					JButton floatButton = new JButton("Float");
+					JButton ferryButton = new JButton("Ferry");
+					JButton guideButton = new JButton("Hire a Guide?");
+					riverOptionsPanel.add(fordButton);
+					riverOptionsPanel.add(floatButton);
+					riverOptionsPanel.add(ferryButton);
+					riverOptionsPanel.add(guideButton);
 
-				JPanel riverResultsPanel = new JPanel();
+					JFrame riverResultsFrame = new JFrame();
+					riverResultsFrame.setVisible(false);
+					riverResultsFrame.setBounds(100, 200, 400, 300);
 
-				JTextArea riverResultsText = new JTextArea();
-				riverResultsText.setLineWrap(true);
-				riverResultsText.setWrapStyleWord(true);
-				riverResultsText.setEditable(false);
+					JPanel riverResultsPanel = new JPanel();
 
-				riverResultsPanel.add(riverResultsText);
-				riverResultsFrame.add(riverResultsPanel);
+					JTextArea riverResultsText = new JTextArea();
+					riverResultsText.setLineWrap(true);
+					riverResultsText.setWrapStyleWord(true);
+					riverResultsText.setEditable(false);
 
-				guideButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						newRiver.crossWithGuide(true);
-					}
-				});
+					riverResultsPanel.add(riverResultsText);
+					riverResultsFrame.add(riverResultsPanel);
 
-				// gets the results from fording the river, and displays the corresponding
-				// results
-				fordButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-
-						int[] conditions = newRiver.fordRiver();
-						String results = newRiver.getPrompt(0);
-						String supplyResults = "", daysLost = "";
-						if (conditions[2] != 0) {
-							supplyResults = "You lost " + conditions[2] + "% of your supplies!"; // displays the amount
-																									// of supplies lost
-																									// based on the
-																									// conditions
+					guideButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							newRiver.crossWithGuide(true);
 						}
-						if (conditions[3] != 0) {
-							daysLost = "You lost " + conditions[3] + " days!"; // displays the amount of days lost
+					});
+
+					// gets the results from fording the river, and displays the corresponding
+					// results
+					fordButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+
+							int[] conditions = newRiver.fordRiver();
+							String results = newRiver.getPrompt(0);
+							String supplyResults = "", daysLost = "";
+							if (conditions[2] != 0) {
+								supplyResults = "You lost " + conditions[2] + "% of your supplies!"; // displays the
+																										// amount
+																										// of supplies
+																										// lost
+																										// based on the
+																										// conditions
+							}
+							if (conditions[3] != 0) {
+								daysLost = "You lost " + conditions[3] + " days!"; // displays the amount of days lost
+							}
+							riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
+							riverResultsFrame.setVisible(true);
+							hasCrossed = true;
 						}
-						riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
-						riverResultsFrame.setVisible(true);
-					}
-				});
+					});
 
-				// gets the results from floating across the river, and displays the
-				// corresponding results
-				floatButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+					// gets the results from floating across the river, and displays the
+					// corresponding results
+					floatButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
 
-						int[] conditions = newRiver.floatRiver();
-						String results = newRiver.getPrompt(1);
-						String supplyResults = "", daysLost = "";
-						if (conditions[1] != 0) {
-							supplyResults = "You lost " + conditions[1] + "% of your supplies";
+							int[] conditions = newRiver.floatRiver();
+							String results = newRiver.getPrompt(1);
+							String supplyResults = "", daysLost = "";
+							if (conditions[1] != 0) {
+								supplyResults = "You lost " + conditions[1] + "% of your supplies";
+							}
+							if (conditions[3] != 0) {
+								daysLost = "You lost " + conditions[3] + " days!";
+							}
+							riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
+							riverResultsFrame.setVisible(true);
+							hasCrossed = true;
 						}
-						if (conditions[3] != 0) {
-							daysLost = "You lost " + conditions[3] + " days!";
+					});
+
+					// gets the results from ferrying across the river, and displays the
+					// corresponding results
+					ferryButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+
+							int[] conditions = newRiver.ferryRiver();
+							String results = newRiver.getPrompt(2);
+							String supplyResults = "", daysLost = "";
+							if (conditions[1] != 0) {
+								supplyResults = "You lost " + conditions[1] + "% of your supplies";
+							}
+							if (conditions[3] != 0) {
+								daysLost = "You lost " + conditions[3] + " days!";
+							}
+							riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
+							riverResultsFrame.setVisible(true);
+							hasCrossed = true;
+
 						}
-						riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
-						riverResultsFrame.setVisible(true);
-					}
-				});
+					});
 
-				// gets the results from ferrying across the river, and displays the
-				// corresponding results
-				ferryButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-
-						int[] conditions = newRiver.ferryRiver();
-						String results = newRiver.getPrompt(2);
-						String supplyResults = "", daysLost = "";
-						if (conditions[1] != 0) {
-							supplyResults = "You lost " + conditions[1] + "% of your supplies";
-						}
-						if (conditions[3] != 0) {
-							daysLost = "You lost " + conditions[3] + " days!";
-						}
-						riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
-						riverResultsFrame.setVisible(true);
-
-					}
-				});
-
-				riverOptionsFrame.add(riverOptionsPanel);
-			}
-		});
-		riverPanel.add(btnNewButton, BorderLayout.SOUTH);
-	}
+					riverOptionsFrame.add(riverOptionsPanel);
+				}
+			});
+			riverPanel.add(btnNewButton, BorderLayout.SOUTH);
+		}
 	}
 
 	/**

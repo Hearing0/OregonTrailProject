@@ -13,6 +13,7 @@ import javax.swing.border.TitledBorder;
 import wagonLoadPackage.Location;
 import wagonLoadPackage.Menus.EndMenu;
 import wagonLoadPackage.Menus.MenuUI;
+import wagonLoadPackage.Scavenging;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -66,11 +67,8 @@ public class WagonLoad {
     private JLabel WagonHealthLabel;
     // private JTextField testField;
 
-    ArrayList<Location> map;
-    int consumptionValue = 0;
-    int travelValue = 0;
-    int totalDist = 0;
-    int days = 0;
+    boolean hasScavenged = false;
+    Scavenging scavenge = new Scavenging();
 
     /**
      * Launch the application.
@@ -370,16 +368,44 @@ public class WagonLoad {
         lblWeightWarning.setFont(new Font("Tahoma", Font.PLAIN, 10));
 
         JLabel distanceTestLabel = new JLabel("Distance Until Next Location:");
-        distanceTestLabel.setBounds(10, 181, 149, 14);
+        distanceTestLabel.setBounds(10, 192, 149, 14);
         panelTravel.add(distanceTestLabel);
         distanceTestLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
         JLabel distanceLbl = new JLabel("");
-        distanceLbl.setBounds(169, 172, 60, 23);
+        distanceLbl.setBounds(175, 192, 60, 14);
         panelTravel.add(distanceLbl);
+
+        // Cody Dusek
+        JButton scavengeButton = new JButton("Scavenge");
+        scavengeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (hasScavenged == false) {
+                    int foodgained = scavenge.scavengeFood();
+                    hasScavenged = true;
+                    String scavengePrompt = scavenge.getFoodPrompt();
+                    JOptionPane.showMessageDialog(null, scavengePrompt);
+                } else {
+                    JOptionPane.showMessageDialog(null, "You already scavenged everything here!");
+                }
+
+            }
+        });
+        scavengeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        scavengeButton.setBounds(86, 165, 89, 23);
+        panelTravel.add(scavengeButton);
 
         btnTravel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                // Checks if the current location is a river, and doesn't allow the player to
+                // continue until they cross it
+                if (wagon.travel.getCurLocation().getIsRiver()) {
+                    if (MenuUI.hasCrossed == false) {
+                        JOptionPane.showMessageDialog(null, "You must cross the river first!");
+                        return;
+                    }
+                }
+                hasScavenged = false;
                 // Calculate foodWeight
                 int foodWeight = wagon.getFoodWeight();
                 int totalWeight = wagon.getTotalWeight();
@@ -426,6 +452,12 @@ public class WagonLoad {
                                     "Wagon has less than 5 days of food!\nGet some quickly!!!");
                         }
 
+                        // Check for random event
+                        // events.doesEventHappen();
+                        // events.forceEvent(); //used during testing ONLY
+                        // testUpdateWagonHP();
+                        // System.out.println("Wagon Health out: "+ wagon.HPList.get(0).getHealth());
+
                         // Recalculate Total Weight and Display it
                         totalWeight = wagon.getTotalWeight();
                         lblTotalWeight_1.setText(totalWeight + " lbs");
@@ -439,15 +471,15 @@ public class WagonLoad {
                 }
                 // Fail: Ran out of food!
                 else {
-                	EndMenu endMenu = new EndMenu();
+                    EndMenu endMenu = new EndMenu();
                     JFrame end = endMenu.getEndMenu();
                     end.setVisible(true);
                     frmPackYourWagon.dispose();
                     /**
-                    end.setBounds(100, 100, 460, 240);
-                    end.repaint();
-                    end.setLocationRelativeTo(null);
-                    */
+                     * end.setBounds(100, 100, 460, 240);
+                     * end.repaint();
+                     * end.setLocationRelativeTo(null);
+                     */
 
                     // TODO: Add game over loop
                 }

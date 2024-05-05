@@ -113,7 +113,7 @@ public class Weather extends Date {
 		} else if (finalTemp > 70) { // sets the tag to Hot if the temperature is above 70F but less than 90F
 			tempResults = "Hot";
 			isHot = true;
-		} else if (finalTemp > 50) { // sets the tag to Warm if the temperative is above 50F but less than 70F
+		} else if (finalTemp > 50) { // sets the tag to Warm if the temperature is above 50F but less than 70F
 			tempResults = "Warm";
 			isHot = true;
 		} else if (finalTemp > 30) { // sets the tag to Cool if the temperature is above 30F but less than 50F
