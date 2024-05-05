@@ -38,6 +38,8 @@ import java.awt.Font;
  */
 public class WagonLoad {
 
+	//Grabs sound from the sound class so I can use it in other classes and Jframes
+	
 	Sound sound = new Sound();
 	
     public JFrame frmPackYourWagon;
@@ -474,7 +476,10 @@ public class WagonLoad {
         settingsBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
         settingsBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		SettingsMenu settings = new SettingsMenu();
+        		
+        		//Rod Piton passed through sound and WagonLoad JFrame to settings menu so it can have access and change them
+        		
+        		SettingsMenu settings = new SettingsMenu(sound, frmPackYourWagon);
         		settings.setVisible(true);
         	}
         });
@@ -496,6 +501,9 @@ public class WagonLoad {
 	public void setVisible(boolean visible) {
 		frmPackYourWagon.setVisible(visible);
     }
+	
+	
+	//Sets the music file plays it and loops it
 	
 	public void playMusic(URL url){
 		

@@ -10,6 +10,7 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -18,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import wagonLoadPackage.Item;
 import wagonLoadPackage.Location;
 import wagonLoadPackage.River;
 import wagonLoadPackage.Store;
@@ -51,6 +53,7 @@ public class MenuUI {
 	// Trader Variables
 	private Trader trader;
 	private ArrayList<String> offer;
+	private ArrayList<JLabel> inventory;
 
 	/**
 	 * Create the application.
@@ -60,7 +63,20 @@ public class MenuUI {
 		this.wagon = wagon;
 		this.travelspeed = travelspeed;
 		this.trader = new Trader(0, wagon);
+		this.inventory = new ArrayList<JLabel>();
 		initialize();
+	}
+	
+	public JLabel ItemLabel(Item item) {
+		
+		// Identify item and if its pre-loaded
+		String text = item.getName() + ": " + item.getWeight();
+		
+		// Create and log JCheckBox
+		JLabel box = new JLabel(text);
+		inventory.add(box);
+		
+		return box;
 	}
 
 	/**

@@ -7,12 +7,26 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+
+/**
+ * Sound.java
+ * Created on 5/01/2024
+ * By Rod Piton
+ * 
+ * Creates the Sound and sets a volume for it. 
+ * Grabs the file and creates a volumeUp and volumeDown so it can be adjusted
+ * uses clip to know when to start playing the audio file
+ * Creates a mute void to know what value to silence the audio
+ * uses current and previous volume to adjust
+ */
+
+
 public class Sound {
 
 	Clip clip;
 	
 	float previousVolume = 0;
-	float currentVolume = 0;
+	float currentVolume = -17;
 	
 	FloatControl fc;
 	
@@ -56,7 +70,7 @@ public class Sound {
     public void volumeDown() {
     	 currentVolume -= 1.0f;
 		 if  (currentVolume < -80.0f) {
-			 currentVolume = - 80.0f;
+			 currentVolume = -80.0f;
 		 }
 		 fc.setValue(currentVolume);
 	}
@@ -64,7 +78,7 @@ public class Sound {
     public void volumeMute() {
     	if(mute == false) {
     		previousVolume = currentVolume;
-    		currentVolume = 80.0f;
+    		currentVolume = -80.0f;
     		fc.setValue(currentVolume);
     		mute = true;
     				
