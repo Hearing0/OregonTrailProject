@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import wagonLoadPackage.PlayerName;
 import wagonLoadPackage.Store;
 import wagonLoadPackage.Wagon;
 import wagonLoadPackage.WagonLoad;
@@ -119,11 +120,26 @@ public class MainMenu extends JFrame {
 		panel.add(btnSettings);
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				
+				//next 2 lines of code are for PlayerName testing cause new button wouldnt show
+				//PlayerName playerName = new PlayerName();
+				//playerName.setVisible(true);
 			}
 		});
 		
+		
+		//not showing??
+		// Testing PlayerName Button
+		/*
+		JButton btnPlayerName = new JButton("Test Name");
+		btnPlayerName.setBounds(100, 100, 150, 23);
+		btnPlayerName.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		panel.add(btnPlayerName);
+		*/
 		
 		
 				

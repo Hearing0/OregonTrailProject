@@ -97,10 +97,10 @@ public class Wagon {
         HPList = new ArrayList<Health>(); //separated health objects from items
         addHealth("Wagon", 500, "", true); //index 0 = wagon
         // 4 people for team
-        addHealth("Human", 1000, "Name1", true); //index 1 = human1
-        addHealth("Human", 1000, "Name2", true);
-        addHealth("Human", 1000, "Name3", true);
-        addHealth("Human", 1000, "Name4", true); // index 4 = human4
+        addHealth("Human", 1000, Health.getName1(), true); //index 1 = human1
+        addHealth("Human", 1000, Health.getName2(), true);
+        addHealth("Human", 1000, Health.getName3(), true);
+        addHealth("Human", 1000, Health.getName4(), true); // index 4 = human4
         //start with recommended 6 oxen
         addHealth("Ox", 400, "", true); //index 5 and down = ox
         addHealth("Ox", 400, "", true);

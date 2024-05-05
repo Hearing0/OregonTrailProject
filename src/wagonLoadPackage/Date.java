@@ -86,7 +86,9 @@ public class Date extends Travel {
 	 * @param month - the month value as a integer, with January being 0 and
 	 *              December being 11
 	 */
-	public void setMonth(int month) {
+	public static void setMonth(int month) {
 		Date.month = month;
 	}
+	
+	
 }
