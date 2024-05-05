@@ -15,17 +15,17 @@ import java.util.ArrayList;
 public class Travel {
 
 	// Initialize Variables
-	int baseTravelSpeed = 10;
-	int travelSpeed = 20; // miles per day
-	double paceMod = 1; // 0.5x, 1x, 2x
-	int consumeSelect = 1;
-	int foodConsumeMod = consumeSelect * 4; // (1 to 3) * 4 people on wagon (updated via method)
-	double milesTillEnd = 1932;
+	private int baseTravelSpeed = 10;
+	private int travelSpeed = 20; // miles per day
+	private double paceMod = 1; // 0.5x, 1x, 2x
+	private int consumeSelect = 1;
+	private int foodConsumeMod = consumeSelect * 4; // (1 to 3) * 4 people on wagon (updated via method)
+	private double milesTillEnd = 1932;
 
 	// Map Variables
-	ArrayList<Location> map = new ArrayList<Location>(); // map of Oregon Trail
+	public ArrayList<Location> map = new ArrayList<Location>(); // map of Oregon Trail
 
-	int wagonLocation = 0; // coordinates for map
+	public int wagonLocation = 0; // coordinates for map
 
 	/**
 	 * Initialize Travel w/ a filled map
@@ -40,11 +40,10 @@ public class Travel {
 						+ "atmosphere filled with anticipation and adventure. Independence is a crucial "
 						+ "starting point for thousands embarking on the arduous journey to the Pacific "
 						+ "Northwest, marking the beginning of their quest for a better life on the frontier.",
-				"Select Option",
 				106,
 				true, false); // 0 miles
-		addRiver("Kansas River", "Also known as the Kaw", "Select Option", 59, true, true); // 106 miles
-		addRiver("Big Blue River", "River description here", "Select Option", 154, true, true); // 165 miles
+		addRiver("Kansas River", "Also known as the Kaw", 59, true, true); // 106 miles
+		addRiver("Big Blue River", "River description here", 154, true, true); // 165 miles
 		addLocation("Fort Kearney",
 				"Fort Kearney was established in the 1840s to protect pioneers, traders, "
 						+ "and emigrants as they journeyed through the frontier. "
@@ -56,25 +55,28 @@ public class Travel {
 						+ "Fort Kearney buzzed with activity during its heyday, bustling "
 						+ "with wagons, settlers, soldiers, and traders, all flowing "
 						+ "through this point on their journey westward.",
-				"Select Option",
 				256,
 				true, false); // 319 miles
-		addLocation("Chimney Rock", "add description", "Select Option", 75, true, false); // 575 miles
-		addLocation("Fort Laramie", "add description", "Select Option", 164, true, false); // 650 miles
-		addLocation("Independence Rock", "add description", "Select Option", 100, true, false); // 814 miles
-		addLocation("South Pass", "add description", "Select Option", 67, true, false); // 914 miles
-		addRiver("Green River", "River description here", "Select Option", 45, true, true); // 981 miles
-		addLocation("Fort Bridger", "add description", "Select Option", 129, true, false); // 1026 miles
-		addLocation("Soda Springs", "add description", "Select Option", 62, true, false); // 1155 miles
-		addLocation("Fort Hall", "add description", "Select Option", 180, true, false); // 1217 miles
-		addRiver("Snake River", "River description here", "Select Option", 113, true, true); // 1397 miles
-		addLocation("Fort Boise", "add description", "Select Option", 158, true, false); // 1510 miles
-		addLocation("Blue Mountains", "add description", "Select Option", 62, true, false); // 1668 miles
-		addLocation("Fort Walla Walla", "add description", "Select Option", 89, true, false); // 1730 miles
-		addLocation("The Dalles", "add description", "Select Option", 113, true, false); // 1819 miles
-		addLocation("Willamette Valley, Oregon", "You made it!", "Select Option", 10000, true, false); // 1932 miles
+		addLocation("Chimney Rock", "add description",75, true, false); // 575 miles
+		addLocation("Fort Laramie", "add description", 164, true, false); // 650 miles
+		addLocation("Independence Rock", "add description", 100, true, false); // 814 miles
+		addLocation("South Pass", "add description",  67, true, false); // 914 miles
+		addRiver("Green River", "River description here",  45, true, true); // 981 miles
+		addLocation("Fort Bridger", "add description",  129, true, false); // 1026 miles
+		addLocation("Soda Springs", "add description", 62, true, false); // 1155 miles
+		addLocation("Fort Hall", "add description", 180, true, false); // 1217 miles
+		addRiver("Snake River", "River description here", 113, true, true); // 1397 miles
+		addLocation("Fort Boise", "add description", 158, true, false); // 1510 miles
+		addLocation("Blue Mountains", "add description", 62, true, false); // 1668 miles
+		addLocation("Fort Walla Walla", "add description", 89, true, false); // 1730 miles
+		addLocation("The Dalles", "add description", 113, true, false); // 1819 miles
+		addLocation("Willamette Valley, Oregon", "You made it!", 10000, true, false); // 1932 miles
 	}
 
+	/**
+	 * Gets the map of Locations
+	 * @return - ArrayList of Location
+	 */
 	public ArrayList<Location> getMap() {
 		return map;
 	}
@@ -261,7 +263,7 @@ public class Travel {
 	 */
 	public int calculateTravelSpeed(int wagonWeight, int eventSpeedMod, ArrayList<Health> partyHealth) {
 		baseTravelSpeed = 20;
-		
+		System.out.println("--Travel Speed--");
 		
 		// Determine Event
 		//.eventCheck();
@@ -274,11 +276,12 @@ public class Travel {
 		
 		
 		
-		/// Check # of Oxen speed, # of sick people, & wagon condition
+		/// Check # of Oxen speed, # of sick people, & wagon condition ***
 		int oxNum = 0;
 		int sickNum = 0;
 		
-		// Check condition of all party members
+		System.out.println("-Party Condition-");
+		// Check condition of all party members ***
 		for (Health member : partyHealth) {
 			String memType = member.getType();
 			
@@ -294,8 +297,8 @@ public class Travel {
 				}
 			}
 			
-			// Change baseTravelSpeed depending on Wagon condition 
-			else {
+			// Change baseTravelSpeed depending on Wagon condition  ***
+			else if (memType == "Wagon") {
 				switch (member.isLowHealth()) {
 				
 					// Faulty
@@ -315,34 +318,38 @@ public class Travel {
 				}
 			}
 		}
+		double oxMod = oxNum/4;
+		double sickMod = 1 - sickNum/10;
 		
+		System.out.println("-oxMod: " + oxNum);
+		System.out.println("-sickMod: " + sickMod);
+		System.out.println("-baseTravelSpeed: " + this.baseTravelSpeed);
 		
-		
-		
-		/// Calculate weightMod
+		/// Calculate weightMod ***
 		double weightMod;
 		int upperWeightLimit = 1850;
 		int lowerWeightLimit = 1000;
 		
-		
-		// Case: Underweight
+		System.out.println("-Weight Modifier-");
+		// Case: Under weight
 		if (wagonWeight <= lowerWeightLimit) {
+			System.out.print("-> under");
 			double interpolate = 0.5 * (wagonWeight / lowerWeightLimit);
 			weightMod = 1 + interpolate;
 		}
 		// Case: Normal weight
 		else if (wagonWeight <= upperWeightLimit) {
+			System.out.print("-> normal");
 			weightMod = 1;
 		}
-		// Case: Overweight
+		// Case: Over weight
 		else {
+			System.out.print("-> over");
 			// Decrease from 1 to 0.5 as weight increases from upperWeightLimit to MAX_WEIGHT
 			double interpolate = 0.5 * (wagonWeight - upperWeightLimit) / (Wagon.MAX_WEIGHT - upperWeightLimit);
 			weightMod = 1 - interpolate;
 		}		
 		
-		
-		System.out.println("baseTravelSpeed: " + this.travelSpeed);
 		System.out.println("Weight Modifier: " + weightMod);
 		System.out.println("Pace Modifier: " + this.paceMod);
 		
@@ -489,15 +496,14 @@ public class Travel {
 	 * 
 	 * @param name        - Name of location
 	 * @param desc        - Description of location
-	 * @param prompt      - Prompt for the location
 	 * @param disTillNext - distance till the next location
 	 * @param hasActs     - Whether or not the location has any activites
 	 * @param isRiver	  - Whether or not the location is a river
 	 * @author David F
 	 */
-	public void addLocation(String name, String desc, String prompt, int disTillNext, boolean hasActs,
+	private void addLocation(String name, String desc,  int disTillNext, boolean hasActs,
 			boolean isRiver) {
-		Location loc = new Location(name, desc, prompt, disTillNext, hasActs, isRiver);
+		Location loc = new Location(name, desc, disTillNext, hasActs, isRiver);
 		map.add(loc);
 	}
 	
@@ -506,14 +512,13 @@ public class Travel {
 	 * 
 	 * @param name        - Name of location
 	 * @param desc        - Description of location
-	 * @param prompt      - Prompt for the location
 	 * @param disTillNext - distance till the next location
 	 * @param hasActs     - Whether or not the location has any activites
 	 * @param isRiver	  - Whether or not the location is a river
 	 * @author Cody
 	 */
-	public void addRiver(String name, String desc, String prompt, int disTillNExt, boolean hasActs, boolean isRiver) {
-		River river = new River(name, desc, prompt, disTillNExt, hasActs, isRiver);
+	private void addRiver(String name, String desc,  int disTillNExt, boolean hasActs, boolean isRiver) {
+		River river = new River(name, desc, disTillNExt, hasActs, isRiver);
 		map.add(river);
 	}
 

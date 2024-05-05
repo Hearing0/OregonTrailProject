@@ -68,7 +68,7 @@ public class Wagon {
         addFoodItem("Whiskey", 80, true, true);
 		*/
 
-        addItem("Food", 300, true);
+        addItem("Food", 600, true);
 
         // ammo, clothes, etc.
         addItem("Bedroll", 15);

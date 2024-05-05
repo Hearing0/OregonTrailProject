@@ -41,7 +41,7 @@ public class PreLoadingMenu extends JFrame {
 	// Class Variables
 	private static final long serialVersionUID = 1L;
 	private Wagon wagon = new Wagon();
-	int totalWeight = 0;
+	private int totalWeight = 0;
 
 	
 	// JComponents
@@ -86,7 +86,7 @@ public class PreLoadingMenu extends JFrame {
 	 * JCheckBox.
 	 * @return - JCheckBox with item name and weight
 	 */
-	public JCheckBox ItemCheckBox(Item item) {
+	private JCheckBox ItemCheckBox(Item item) {
 		
 		// Identify item and if its pre-loaded
 		String text = item.getName() + ": " + item.getWeight();
@@ -105,7 +105,7 @@ public class PreLoadingMenu extends JFrame {
 	 * Calculates the totalWeight, then updates UI label's text.
 	 * - David Flores
 	 */
-	public void updateTotalWeightUI() {
+	private void updateTotalWeightUI() {
 		// Calculate totalWeight
 		totalWeight = wagon.getTotalWeight();
 		

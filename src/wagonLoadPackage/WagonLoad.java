@@ -66,12 +66,8 @@ public class WagonLoad {
 	//private JTextField testField;
 	
 	
-	ArrayList<Location> map;
-	int consumptionValue = 0;
-	int travelValue = 0;
-	int totalDist = 0;
-	int days = 0;
-
+	private ArrayList<Location> map;
+	private int totalDist = 0;
 
 	
 	/**
@@ -93,7 +89,7 @@ public class WagonLoad {
 
 	/**
 	 * Create the application with the user's pre-configured wagon.
-	 * @param wagon - 
+	 * @param wagon - The player's wagon
 	 */
 	public WagonLoad(Wagon wagon) {
 		// If pre-emptively launched (for testing), create a pre-loaded wagon
@@ -124,7 +120,7 @@ public class WagonLoad {
 
 	//breanna sproul
 	//testing for health
-    public void testUpdateWagonHP() {
+    private void testUpdateWagonHP() {
     	//get value
         int totalHP = wagon.HPList.get(0).getHealth();
         //update label
@@ -136,7 +132,7 @@ public class WagonLoad {
      * Updates the UI element for total weight.
      * Calculates the totalWeight, then updates UI label's text.
      */
-    public void updateTotalWeightUI() {
+    private void updateTotalWeightUI() {
         // Calculate totalWeight
         int totalWeight = wagon.getTotalWeight();
 

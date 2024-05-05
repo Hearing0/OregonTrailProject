@@ -16,23 +16,20 @@ import java.util.Random;
 public class Location {
 
 	// Initialize Variables
-	int distanceTillNext = 0;
+	private int distanceTillNext = 0;
 	// var imageBackgnd;
 	// var imageForegnd;
 
-	boolean hasActivities = false;
-	boolean isRiver = false;
+	private boolean hasActivities = false;
+	private boolean isRiver = false;
 
 	// Generate number of available traders in locale
 	Random random = new Random();
 	int tradersRemaining;
 	Trader trader;
 
-	int conditions[];
-
 	String name = "";
 	String desc = "";
-	String prompt = "";
 
 	/**
 	 * Initialize location
@@ -43,10 +40,9 @@ public class Location {
 	 * @param disTillNext - Distance till the next Location
 	 * @param hasActs     - Whether the location has any special activities
 	 */
-	public Location(String name, String desc, String prompt, int disTillNext, boolean hasActs, boolean isRiver) {
+	public Location(String name, String desc, int disTillNext, boolean hasActs, boolean isRiver) {
 		this.name = name;
 		this.desc = desc;
-		this.prompt = prompt;
 		this.distanceTillNext = disTillNext;
 		this.hasActivities = hasActs;
 		this.isRiver = isRiver;
@@ -63,7 +59,7 @@ public class Location {
 	 * @return - the Location as a River
 	 */
 	public River toRiver() {
-		River newRiver = new River(name, desc, prompt, distanceTillNext, hasActivities, isRiver);
+		River newRiver = new River(name, desc, distanceTillNext, hasActivities, isRiver);
 		return newRiver;
 	}
 
@@ -84,16 +80,7 @@ public class Location {
 	public String getDesc() {
 		return desc;
 	}
-
-	/**
-	 * Get the location prompt
-	 * 
-	 * @return - String of Location prompt
-	 */
-	public String getPrompt() {
-		return prompt;
-	}
-
+	
 	/**
 	 * Gets the current distance till the next location.
 	 * 
