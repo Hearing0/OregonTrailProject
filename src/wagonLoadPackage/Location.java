@@ -42,6 +42,7 @@ public class Location {
 	 * @param prompt      - Special Prompt to the User
 	 * @param disTillNext - Distance till the next Location
 	 * @param hasActs     - Whether the location has any special activities
+	 * @param isRiver 	  - Whether or not the location is a river
 	 */
 	public Location(String name, String desc, String prompt, int disTillNext, boolean hasActs, boolean isRiver) {
 		this.name = name;

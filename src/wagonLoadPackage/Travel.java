@@ -22,7 +22,7 @@ public class Travel {
 	double milesTillEnd = 1932;
 
 	// Map Variables
-	ArrayList<Location> map = new ArrayList<Location>(); // map of Oregon Trail
+	public ArrayList<Location> map = new ArrayList<Location>(); // map of Oregon Trail
 
 	int wagonLocation = 0; // coordinates for map
 

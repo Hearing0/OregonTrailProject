@@ -72,8 +72,11 @@ public class WagonLoad {
     private JLabel WagonHealthLabel;
     // private JTextField testField;
 
+    Weather weather = new Weather();
     boolean hasScavenged = false;
     Scavenging scavenge = new Scavenging();
+    ArrayList<Location> map;
+    int totalDist;
 
     /**
      * Launch the application.
@@ -84,6 +87,7 @@ public class WagonLoad {
                 try {
                     Wagon emptyWagon = new Wagon();
                     WagonLoad window = new WagonLoad(emptyWagon);
+                  
                     window.frmPackYourWagon.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -91,44 +95,11 @@ public class WagonLoad {
             }
         });
     }
-
-    <<<<<<<HEAD
-
-    /**
-     * Create the application with the user's pre-configured wagon.
-     * 
-     * @param wagon -
-     */
-    public WagonLoad(Wagon wagon) {
-        // If pre-emptively launched (for testing), create a pre-loaded wagon
-        if (wagon == null) {
-
-            this.wagon = new Wagon();
-        }
-        // Otherwise, pass and store user's wagon
-        else {
-            this.wagon = wagon;
-        }
-
-        // Initialize frame and its parameters
-        map = wagon.travel.getMap();
-        totalDist = wagon.travel.getTotalDistance();
-        initialize();
-
-        // Debug: Readout itemList
-        /*
-         * int i = 0;
-         * for ( Item item : wagon.itemList ) {
-         * System.out.println("itemList [" + i + "]: ");
-         * System.out.println(item.name);
-         * i++;
-         * }
-         */
-    }
+    
 
     // breanna sproul
     // testing for health
-    =======
+    
 
     /**
      * Create the application with the user's pre-configured wagon.
@@ -316,6 +287,7 @@ public class WagonLoad {
         panelTravel.add(lblTravelFlavorText);
 
         JLabel dateLabel = new JLabel("");
+        dateLabel.setBackground(new Color(0, 0, 0));
         dateLabel.setBounds(26, 278, 189, 23);
         frmPackYourWagon.getContentPane().add(dateLabel);
 
@@ -433,6 +405,7 @@ public class WagonLoad {
         panelTravel.add(distanceLbl);
 
         // Cody Dusek
+        // adds a scavenging button that can add food to the wagon
         JButton scavengeButton = new JButton("Scavenge");
         scavengeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -440,7 +413,9 @@ public class WagonLoad {
                     int foodgained = scavenge.scavengeFood();
                     hasScavenged = true;
                     String scavengePrompt = scavenge.getFoodPrompt();
+                    wagon.addToItem("Food", foodgained);
                     JOptionPane.showMessageDialog(null, scavengePrompt);
+                    updateTotalWeightUI();
                 } else {
                     JOptionPane.showMessageDialog(null, "You already scavenged everything here!");
                 }
@@ -450,6 +425,11 @@ public class WagonLoad {
         scavengeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
         scavengeButton.setBounds(86, 165, 89, 23);
         panelTravel.add(scavengeButton);
+        
+        JLabel tempLabel = new JLabel("");
+        tempLabel.setBackground(Color.BLACK);
+        tempLabel.setBounds(26, 309, 189, 23);
+        frmPackYourWagon.getContentPane().add(tempLabel);
 
         btnTravel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -462,9 +442,13 @@ public class WagonLoad {
                     }
                 }
                 hasScavenged = false;
+                weather.getNewWeather();
+                String tempText = "Temperature: " + weather.getTempResults();
+                tempLabel.setText(tempText);
                 // Calculate foodWeight
                 int foodWeight = wagon.getFoodWeight();
                 int totalWeight = wagon.getTotalWeight();
+                
 
                 // If enough food, ...
                 if (wagon.travel.isEnoughFoodToTravelOneDay(foodWeight)) {

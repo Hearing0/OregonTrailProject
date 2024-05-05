@@ -1,3 +1,4 @@
+
 package wagonLoadPackage;
 
 import java.awt.EventQueue;
@@ -24,39 +25,41 @@ import wagonLoadPackage.Menus.PreLoadingMenu;
 
 import javax.swing.event.ChangeEvent;
 
-/** * SettingsMenu.java
- * Created on 05/01/2024
- * By Rd Pito
 
+/**
+ * SettingsMenu.java
+ * Created on 05/01/2024
+ * By Rod Piton
  * 
  * Creates the UI for the settings menu. 
  * Allows user to change volume and start a new game
  * uses slider to adjust volume
- * 
- *  */
+ * User can also mute volume
+ */
 
- * public class SettingsMenu extends JFrame {
+public class SettingsMenu extends JFrame {
 
- * 	
+	
 	Sound sound = new Sound();
 	JSlider slider;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	
-
-		 * Crete t	 */
-
-			setDe
-	aultCl 	setBounds(0, 100, 450, 300);
+	/**
+	 * Create the frame.
+	 */
+	public SettingsMenu(Sound sound, JFrame travelMenu) {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-
-			contetPan		
-
-			btnNeButton
-
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnNewButton_1 = new JButton("New game");
+		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				JFrame f1 =(JFrame) SwingUtilities.getWindowAncestor(contentPane);

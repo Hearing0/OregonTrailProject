@@ -34,7 +34,7 @@ public class Weather extends Date {
 	static int daysConsistent = 0; // determines how long the weather has stayed the same
 
 	static String rainResults; // the descriptor for the rain conditions
-	static String tempResults; // the descriptor for the temperature conditions
+	static String tempResults = ""; // the descriptor for the temperature conditions
 
 	Random rand = new Random();
 
@@ -275,7 +275,7 @@ public class Weather extends Date {
 	 * 
 	 * @return
 	 */
-	public static String getTempResults() {
+	public String getTempResults() {
 		return tempResults;
 	}
 
