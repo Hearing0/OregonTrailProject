@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Image;
 
 /**
  * WagonLoad.java
@@ -231,15 +232,19 @@ public class WagonLoad {
         JPanel artPanel = new JPanel();
         artPanel.setBorder(new TitledBorder(
                 new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
-                "Chimmey Rock, John Estel CC NY-BY", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-        artPanel.setBounds(10, 11, 270, 152);
+                "North Platte River 2, John Estel CC NY-BY", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+        artPanel.setBounds(10, 11, 517, 290);
         frmPackYourWagon.getContentPane().add(artPanel);
         artPanel.setLayout(null);
 
         JLabel artLabel = new JLabel();
-        artLabel.setBounds(6, 16, 256, 128);
+        artLabel.setBounds(6, 16, 501, 263);
         artPanel.add(artLabel);
-        artLabel.setIcon(new ImageIcon(WagonLoad.class.getResource("/images/ChimneyRock1.pixel.WebSafe.2.png")));
+        ImageIcon imageIcon = new ImageIcon(WagonLoad.class.getResource("/images/NorthPlatteRiver2.pixel.websafe.png"));
+        Image image = imageIcon.getImage(); // transform it 
+        Image newimg = image.getScaledInstance( 501 , 263,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        imageIcon = new ImageIcon(newimg);
+        artLabel.setIcon(imageIcon);
               
         
         
