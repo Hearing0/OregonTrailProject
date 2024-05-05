@@ -424,7 +424,7 @@ public class WagonLoad {
 
                         
                         // Check for Event
-                        Events.eventCheck(); //correct event activation
+                        events.doesEventHappen();//correct event activation
                         // Events.forceEvent(); //used during testing ONLY
                         
                         

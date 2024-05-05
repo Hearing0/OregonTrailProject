@@ -296,7 +296,7 @@ public class RandomEvent {
 
 	}
 	
-	
+	 */
 
 	/**
 	 * adds an event to arrayList so it can be easily used in later methods
@@ -315,13 +315,14 @@ public class RandomEvent {
 	 *                     then theres a greater chance to encounter more events due
 	 *                     to low visibility
 	 */
+	/*
 	public void addEvent(String name, String locationID, String whatItem, int itemChange,
 			String whoseHealth, int healthChange, boolean affectDate, boolean increaseRisk) {
 		Events entry = new Events(name, locationID, whatItem, itemChange, whoseHealth,
 				healthChange, affectDate, increaseRisk);
 		eventList.add(entry);
 	}
-	
+	*/
 	
 
 }
