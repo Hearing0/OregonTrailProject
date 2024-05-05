@@ -42,8 +42,22 @@ public class Travel {
 				"Select Option",
 				106,
 				true, false); // 0 miles
-		addRiver("Kansas River", "Also known as the Kaw,", "Select Option", 59, true, true); // 106 miles
-		addRiver("Big Blue River", "River description here", "Select Option", 154, true, true); // 165 miles
+		addRiver("Kansas River", 
+						"Also known as the Kaw, the Kansas River serves a vital lifeline for pioneers " 
+						+ "heading westward. The river’s course causes it to often run close to the trail, providing " 
+						+ "relief and a chance to refill traveler’s water barrels. It’s not all sunshine and rainbows though, "
+						+ "as crossing it can be perilous, especially after long periods of rain. Good luck!", 
+					"Select Option", 
+					59, 
+					true, true); // 106 miles
+		addRiver("Big Blue River", 
+						"The Blue River is a formidable natural obstacle for pioneers on the Oregon Trail. " 
+						+ "Its course often intersects the trail, which provides many a weary traveler with either danger or opportunity. "
+						+ "When dry, it can be as small as a mere trickle, but in times of heavy rain, it can transform into an unpredictable "
+						+ "torrent of water. Be careful, and good luck!", 
+					"Select Option", 
+					154, 
+					true, true); // 165 miles
 		addLocation("Fort Kearney",
 				"Fort Kearney was established in the 1840s to protect pioneers, traders, "
 						+ "and emigrants as they journeyed through the frontier. "
@@ -58,20 +72,81 @@ public class Travel {
 				"Select Option",
 				256,
 				true, false); // 319 miles
-		addLocation("Chimney Rock", "add description", "Select Option", 75, true, false); // 575 miles
-		addLocation("Fort Laramie", "add description", "Select Option", 164, true, false); // 650 miles
-		addLocation("Independence Rock", "add description", "Select Option", 100, true, false); // 814 miles
-		addLocation("South Pass", "add description", "Select Option", 67, true, false); // 914 miles
-		addRiver("Green River", "River description here", "Select Option", 45, true, true); // 981 miles
-		addLocation("Fort Bridger", "add description", "Select Option", 129, true, false); // 1026 miles
-		addLocation("Soda Springs", "add description", "Select Option", 62, true, false); // 1155 miles
-		addLocation("Fort Hall", "add description", "Select Option", 180, true, false); // 1217 miles
-		addRiver("Snake River", "River description here", "Select Option", 113, true, true); // 1397 miles
-		addLocation("Fort Boise", "add description", "Select Option", 158, true, false); // 1510 miles
-		addLocation("Blue Mountains", "add description", "Select Option", 62, true, false); // 1668 miles
-		addLocation("Fort Walla Walla", "add description", "Select Option", 89, true, false); // 1730 miles
-		addLocation("The Dalles", "add description", "Select Option", 113, true, false); // 1819 miles
-		addLocation("Willamette Valley, Oregon", "You made it!", "Select Option", 10000, true, false); // 1932 miles
+		addLocation("Chimney Rock", 
+					"The towering grandiosity of Chimney Rock fills many a fatigued traveler with courage and determination. "
+					+ "It can be seen for miles in any direction, proving a vital landmark to those on the Trail, and an inspiration for pioneers "
+					+ "of the wonders to come along the trail. Take heart, and good luck!",
+				"Select Option", 
+				75, 
+				true, false); // 575 miles
+		addLocation("Fort Laramie",
+					"Originally established as a fur trading post, Fort Laramie is now an important military outpost and trading hub"
+					+ "for pioneers on the trail. You can restock your supplies, repair your wagon, and much more! Take a rest, but be sure to "
+					+ "get back on the road! Good luck!",
+					"Select Option", 
+					164, true, false); // 650 miles
+		addLocation("Independence Rock", 
+					"Independence Rock stands as a monumental landmark over vast prairies. Named so after the many previous "
+					+ "pioneers who reached this granite outcrop around Independence Day, it serves as a tangible sign that "
+					+ "you are making your way across the country. Good luck!", 
+					"Select Option", 
+					100, true, false); // 814 miles
+		addLocation("South Pass", 
+				"The South Pass plays a pivotal role in helping pioneers such as yourself cross the Rocky Mountains. "
+				+ "It offers a much more pleasant crossing than other passes to the north or south. "
+				+ "While this crossing may seem easy, the hardest leg of your journey is yet to come. "
+				+ "Take a brief respite, and good luck!", 
+				"Select Option", 
+				67, true, false); // 914 miles
+		addRiver("Green River", "The Green River cuts through Wyoming and Utah, and serves as a vital lifeline for pioneers such as yourself. "
+				+ "While it might offer a brief respite from the hardships of the Trail, watch out for its rocky rapids "
+				+ "and swift currents. Good luck!",
+				"Select Option", 45, true, true); // 981 miles
+		addLocation("Fort Bridger", "Established in the 1840s, Fort Bridger serves as a vital waypoint for pioneers on their way to Oregon."
+				+ " Here you can restock your supplies, repair your wagon, and take a rest from the challenges of the Trail. Good luck!", 
+				"Select Option", 
+				129, true, false); // 1026 miles
+		addLocation("Soda Springs", "The natural wonder of Soda Springs provides travelers with a small reprieve from the Oregon Trail. "
+				+ "Its cool, naturally carbonated waters serve as a place where travelers can quench their thirst, "
+				+ "before getting back on the road. Good luck!", 
+				"Select Option", 
+				62, true, false); // 1155 miles
+		addLocation("Fort Hall", "Established in 1834 as a fur trading post, Fort Hall now serves as one of the most important posts for "
+				+ "travelers on their journey to Oregon. Here you can restock your supplies and repair your wagon, "
+				+ "and prepare for the last stretch of your journey. Good luck!", 
+				"Select Option", 
+				180, true, false); // 1217 miles
+		addRiver("Snake River", "Snake River functions as an important waterway for those undertaking the Oregon Trail. "
+				+ "Despite its rapids and swift currents, many a pioneer have used it to their advantage, setting up "
+				+ "homesteads and settlements. While its crossing may be perilous, you’re almost there. Good luck!", 
+				"Select Option", 
+				113, true, true); // 1397 miles
+		addLocation("Fort Boise", "Fort Boise, established in 1834, serves as one of the final forts along the path to the Willamette Valley."
+				+ " Here weary explorers can take a rest and restock their supplies. You’re so close, don’t give up now! Good luck!", 
+				"Select Option", 
+				158, true, false); // 1510 miles
+		addLocation("Blue Mountains", "As one of the last major obstacles on the path to Oregon, crossing the Blue Mountains serves as a rite "
+				+ "of passage for many pioneers. With its towering pine trees, and sharp ascents and descents, it presents a true challenge "
+				+ "to those wishing to get to Oregon. Good luck with this one, pioneer!",
+				"Select Option", 
+				62, true, false); // 1668 miles
+		addLocation("Fort Walla Walla", "As the last fort on your journey, make sure to stock up and be ready for the final leg of the journey. "
+				+ "Fort Walla Walla is one of the last stops for many travelers seeking passage to the Willamette Valley. "
+				+ "Get as many supplies as you can carry, and good luck of the final stretch!", 
+				"Select Option", 
+				89, true, false); // 1730 miles
+		addLocation("The Dalles", "The Dalles serves as the last obstacle that many travelers face on the Oregon Trail. "
+				+ "It marks the transition from the rugged Rocky Mountains to the lush, temperate climate of Oregon, and "
+				+ "above all the Willamette Valley. Take a short rest here, but your adventure is almost over. Good luck!", 
+				"Select Option", 
+				113, true, false); // 1819 miles
+		addLocation("Willamette Valley, Oregon", "You’ve made it! You’ve crossed almost half the country to get here, "
+				+ "and the riches that the land provides are yours for the taking. Through all of the hardship that "
+				+ "you and your party have endured, you have persevered through it all and made it here. "
+				+ "While your journey on the Oregon Trail ends here, the rest of your adventure has just begun. "
+				+ "Congratulations, and thanks for playing!", 
+				"Select Option", 
+				10000, true, false); // 1932 miles
 	}
 
 	public ArrayList<Location> getMap() {
