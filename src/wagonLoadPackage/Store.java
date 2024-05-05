@@ -16,9 +16,9 @@ public class Store extends Wagon{
 	//need to fix it so tab only appears in a fort, but not quite sure how to get hasActivities to work
 	
 	private JFrame Storeframe;
-	private JTextField foodBuyTextBox;
-	private JTextField wheelBuyTextBox;
-	private JTextField bulletBuyTextBox;
+	//private JTextField foodBuyTextBox;
+	//private JTextField wheelBuyTextBox;
+	//private JTextField bulletBuyTextBox;
 	Wagon wagonS;
 	int moneyShown;
 	int foodStoreEdit;
@@ -56,7 +56,7 @@ public class Store extends Wagon{
 		foodLabel.setBounds(31, 33, 133, 22);
 		Storeframe.getContentPane().add(foodLabel);
 		
-		foodBuyTextBox = new JTextField("0");
+		JTextField foodBuyTextBox = new JTextField("0");
 		foodBuyTextBox.setBounds(153, 33, 96, 20);
 		Storeframe.getContentPane().add(foodBuyTextBox);
 		foodBuyTextBox.setColumns(10);
@@ -65,7 +65,7 @@ public class Store extends Wagon{
 		bulletLabel.setBounds(31, 53, 123, 31);
 		Storeframe.getContentPane().add(bulletLabel);
 		
-		bulletBuyTextBox = new JTextField("0");
+		JTextField bulletBuyTextBox = new JTextField("0");
 		bulletBuyTextBox.setBounds(153, 56, 96, 20);
 		Storeframe.getContentPane().add(bulletBuyTextBox);
 		bulletBuyTextBox.setColumns(10);
@@ -74,7 +74,7 @@ public class Store extends Wagon{
 		wheelLabel.setBounds(31, 73, 133, 36);
 		Storeframe.getContentPane().add(wheelLabel);
 		
-		wheelBuyTextBox = new JTextField("0");
+		JTextField wheelBuyTextBox = new JTextField("0");
 		wheelBuyTextBox.setBounds(153, 79, 96, 20);
 		Storeframe.getContentPane().add(wheelBuyTextBox);
 		wheelBuyTextBox.setColumns(10);
@@ -164,7 +164,6 @@ public class Store extends Wagon{
 					//items are added to Wagon arrayList
 					if(buyFood > 0) {
 						for(int i = 0; i <= buyFood; i++) {
-							//add new food system
 							foodStoreEdit = getFoodWeight() + 55;
 							setFoodWeight(foodStoreEdit);
 						}
@@ -191,7 +190,7 @@ public class Store extends Wagon{
 					}
 					if(buyOxen > 0) {
 						for(int i = 0; i <= buyOxen; i++) {
-							//addHealth("Oxen"...
+							addHealth("Ox", 400, "", true);
 						}
 					}
 					if(buyClothes > 0) {

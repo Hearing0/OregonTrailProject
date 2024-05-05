@@ -42,8 +42,22 @@ public class Travel {
 				"Select Option",
 				106,
 				true, false); // 0 miles
-		addRiver("Kansas River", "Also known as the Kaw,", "Select Option", 59, true, true); // 106 miles
-		addRiver("Big Blue River", "River description here", "Select Option", 154, true, true); // 165 miles
+		addRiver("Kansas River",
+				"Also known as the Kaw, the Kansas River serves a vital lifeline for pioneers "
+						+ "heading westward. The river’s course causes it to often run close to the trail, providing "
+						+ "relief and a chance to refill traveler’s water barrels. It’s not all sunshine and rainbows though, "
+						+ "as crossing it can be perilous, especially after long periods of rain. Good luck!",
+				"Select Option",
+				59,
+				true, true); // 106 miles
+		addRiver("Big Blue River",
+				"The Blue River is a formidable natural obstacle for pioneers on the Oregon Trail. "
+						+ "Its course often intersects the trail, which provides many a weary traveler with either danger or opportunity. "
+						+ "When dry, it can be as small as a mere trickle, but in times of heavy rain, it can transform into an unpredictable "
+						+ "torrent of water. Be careful, and good luck!",
+				"Select Option",
+				154,
+				true, true); // 165 miles
 		addLocation("Fort Kearney",
 				"Fort Kearney was established in the 1840s to protect pioneers, traders, "
 						+ "and emigrants as they journeyed through the frontier. "

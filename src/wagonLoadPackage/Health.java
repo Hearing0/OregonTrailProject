@@ -1,6 +1,5 @@
 package wagonLoadPackage;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Health {
@@ -9,6 +8,11 @@ public class Health {
 	int HP;
 	boolean alive;
 	private static Random ranName = new java.util.Random();
+	
+	static String player1Name = "";
+	static String player2Name = "";
+	static String player3Name = "";
+	static String player4Name = "";
 	
 	
     /**
@@ -59,14 +63,46 @@ public class Health {
 		HP = healthChange;
 	}
 	
-	
 	/**
-	 * Gets the name of the player if available
+	 * Gets the name of the player
 	 * @return String playerName - name either given by user or auto-generated 
 	 */
 	public String getName() {
 		return playerName;
 	}
+	
+	/**
+	 * Gets the name of the first player
+	 * @return String player1Name - name either given by user or auto-generated 
+	 */
+	public static String getName1() {
+		return player1Name;
+	}
+	
+	/**
+	 * Gets the name of the second player
+	 * @return String player2Name - name either given by user or auto-generated 
+	 */
+	public static String getName2() {
+		return player2Name;
+	}
+	
+	/**
+	 * Gets the name of the third player
+	 * @return String player3Name - name either given by user or auto-generated 
+	 */
+	public static String getName3() {
+		return player3Name;
+	}
+	
+	/**
+	 * Gets the name of the fourth player
+	 * @return String player4Name - name either given by user or auto-generated 
+	 */
+	public static String getName4() {
+		return player4Name;
+	}
+	
 	
 	
 	/**
@@ -77,11 +113,12 @@ public class Health {
 		playerName = newName;
 	}
 	
+	
 	/**
 	 * after checking if the user wants to name the people, fills in any empty names with random choice from pre-written names
 	 * @return playerName - selects a name for unnamed person
 	 */
-	public void setRandomName() {
+	public String setRandomName() {
 		int die = ranName.nextInt(21) + 1;
 		if (die == 1) {
 			playerName = "Sally";
@@ -146,11 +183,25 @@ public class Health {
 		else if(die == 21) {
 			playerName = "Thomas";
 		}
+		return playerName;
 		
 	}
 	
 
-	
+	public void setPlayerName(String first, String second , String third, String fourth) {
+		if(first != "") {
+			player1Name = first;
+		}
+		if(second != "") {
+			player2Name = second;
+		}
+		if(third != "") {
+			player3Name = third;
+		}
+		if(fourth != "") {
+			player4Name = fourth;
+		}
+	}
 	
 
 }

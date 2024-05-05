@@ -38,7 +38,7 @@ public class River extends Location {
 	final int ROCKYBT = 0;
 	final int MUDDYBT = 1;
 	final int FIRMBT = 2;
-	final int OXENNUM = 4;
+	final int OXENNUM = 6;
 
 	boolean isGuide = false;
 	boolean hasActs;

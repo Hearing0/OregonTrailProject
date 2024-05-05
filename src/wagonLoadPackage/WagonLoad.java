@@ -18,6 +18,7 @@ import wagonLoadPackage.Scavenging;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -38,14 +39,18 @@ import java.awt.Font;
  */
 public class WagonLoad {
 
+    // Grabs sound from the sound class so I can use it in other classes and Jframes
+
+    Sound sound = new Sound();
+
     public JFrame frmPackYourWagon;
     private JCheckBox chckbxItem1;
     private JTextField textFieldFoodConsump;
     private JTextField textFieldTravelSpeed;
 
     // Initialize Wagon
-    private Wagon wagon = new Wagon();
-    private RandomEvent Events = new RandomEvent(wagon);
+    private Wagon wagon;
+    private RandomEvent events;
 
     private JCheckBox chckbxItem1_1;
     private JCheckBox chckbxItem1_1_1;
@@ -87,6 +92,8 @@ public class WagonLoad {
         });
     }
 
+    <<<<<<<HEAD
+
     /**
      * Create the application with the user's pre-configured wagon.
      * 
@@ -121,10 +128,57 @@ public class WagonLoad {
 
     // breanna sproul
     // testing for health
+    =======
+
+    /**
+     * Create the application with the user's pre-configured wagon.
+     * 
+     * @param wagon -
+     */
+    public WagonLoad(Wagon wagon) {
+
+        URL soundURL = getClass().getResource("/The Oregon Trail - Main Theme.wav");
+
+        playMusic(soundURL);
+
+        // If pre-emptively launched (for testing), create a pre-loaded wagon
+        if (wagon == null) {
+
+            this.wagon = new Wagon();
+        }
+        // Otherwise, pass and store user's wagon
+        else {
+            this.wagon = wagon;
+        }
+
+        // Initialize frame and its parameters
+        map = wagon.travel.getMap();
+        totalDist = wagon.travel.getTotalDistance();
+        events = new RandomEvent(wagon);
+
+        initialize();
+
+        // Debug: Readout itemList
+        /*
+         * int i = 0;
+         * for ( Item item : wagon.itemList ) {
+         * System.out.println("itemList [" + i + "]: ");
+         * System.out.println(item.name);
+         * i++;
+         * }
+         */
+    }
+
+    // breanna sproul
+    // testing for health
+    
+
     public void testUpdateWagonHP() {
         // get value
         int totalHP = wagon.HPList.get(0).getHealth();
-        // update label
+       // System.out.println("Wagon Health: "+ wagon.HPList.get(0).getHealth());
+        
+        //update label
         WagonHealthLabel.setText("wagon: " + totalHP);
     }
 
@@ -149,6 +203,8 @@ public class WagonLoad {
         frmPackYourWagon.setBounds(100, 100, 839, 382);
         frmPackYourWagon.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmPackYourWagon.getContentPane().setLayout(null);
+        
+        
 
         // Debug: testable textField
         /*
@@ -440,25 +496,25 @@ public class WagonLoad {
                         // Consume Food
                         int foodConsumed = wagon.travel.getFoodConsumed();
                         foodWeight = wagon.getFoodWeight() - foodConsumed;
-                        System.out.println("Food Consumed: " + foodConsumed);
-                        System.out.println("Food left: " + foodWeight);
-
-                        // Consume Food
-                        wagon.setFoodWeight(foodWeight);
-
-                        // If less than 5 days of food, warn player
-                        if (wagon.travel.isEnoughFoodToTravelFiveDays(foodWeight) != true) {
-                            JOptionPane.showMessageDialog(null,
-                                    "Wagon has less than 5 days of food!\nGet some quickly!!!");
-                        }
-
+                    	System.out.println("Food Consumed: "+ foodConsumed);
+                    	System.out.println("Food left: "+ foodWeight);
+                        
+						// Consume Food
+						wagon.setFoodWeight(foodWeight);
+						
+						// If less than 5 days of food, warn player
+						if (wagon.travel.isEnoughFoodToTravelFiveDays(foodWeight) != true) {
+                    		JOptionPane.showMessageDialog(null, "Wagon has less than 5 days of food!\nGet some quickly!!!");
+                    	}
+						
                         // Check for random event
-                        // events.doesEventHappen();
-                        // events.forceEvent(); //used during testing ONLY
-                        // testUpdateWagonHP();
-                        // System.out.println("Wagon Health out: "+ wagon.HPList.get(0).getHealth());
-
-                        // Recalculate Total Weight and Display it
+						events.doesEventHappen();
+                        //events.forceEvent(); //used during testing ONLY
+                       //testUpdateWagonHP();
+                       // System.out.println("Wagon Health out: "+ wagon.HPList.get(0).getHealth());
+						
+						
+						// Recalculate Total Weight and Display it
                         totalWeight = wagon.getTotalWeight();
                         lblTotalWeight_1.setText(totalWeight + " lbs");
 
@@ -486,6 +542,20 @@ public class WagonLoad {
             }
         });
 
+        JButton settingsBtn = new JButton("Settings");
+        settingsBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        settingsBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		//Rod Piton passed through sound and WagonLoad JFrame to settings menu so it can have access and change them
+        		
+        		SettingsMenu settings = new SettingsMenu(sound, frmPackYourWagon);
+        		settings.setVisible(true);
+        	}
+        });
+        settingsBtn.setBounds(333, 313, 89, 23);
+        frmPackYourWagon.getContentPane().add(settingsBtn);
+        
         // Pre-Update UI Elements
         updateTotalWeightUI();
 
@@ -501,5 +571,15 @@ public class WagonLoad {
      */
     public void setVisible(boolean visible) {
         frmPackYourWagon.setVisible(visible);
+    }
+
+    // Sets the music file plays it and loops it
+
+    public void playMusic(URL url) {
+
+        sound.setFile(url);
+        sound.play(url);
+        sound.loop(url);
+
     }
 }
