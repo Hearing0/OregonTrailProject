@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class Store extends Wagon{
+public class Store {
 	
 	//STILL WAITING ON
 	//health system merge to for adding bought oxen with health
@@ -164,38 +164,38 @@ public class Store extends Wagon{
 					//items are added to Wagon arrayList
 					if(buyFood > 0) {
 						for(int i = 0; i <= buyFood; i++) {
-							foodStoreEdit = getFoodWeight() + 55;
-							setFoodWeight(foodStoreEdit);
+							foodStoreEdit = wagonS.getFoodWeight() + 55;
+							wagonS.setFoodWeight(foodStoreEdit);
 						}
 					}
 					if(buyWheel > 0) {
 						for(int i = 0; i <= buyWheel; i++) {
-							addToItem("Wheel", 1);
+							wagonS.addToItem("Wheel", 1);
 						}
 					}
 					if(buyBullet > 0) {
 						for(int i = 0; i <= buyBullet; i++) {
-							addToItem("Bullets", 20);
+							wagonS.addToItem("Bullets", 20);
 						}
 					}
 					if(buyAxle > 0) {
 						for(int i = 0; i <= buyAxle; i++) {
-							addToItem("Axle", 1);
+							wagonS.addToItem("Axle", 1);
 						}
 					}
 					if(buyTongue > 0) {
 						for(int i = 0; i <= buyTongue; i++) {
-							addToItem("Tongue", 1);
+							wagonS.addToItem("Tongue", 1);
 						}
 					}
 					if(buyOxen > 0) {
 						for(int i = 0; i <= buyOxen; i++) {
-							addHealth("Ox", 400, "", true);
+							wagonS.addHealth("Ox", 400, "", true);
 						}
 					}
 					if(buyClothes > 0) {
 						for(int i = 0; i <= buyClothes; i++) {
-							addToItem("Clothes", 1);
+							wagonS.addToItem("Clothes", 1);
 						}
 					}
 				}
