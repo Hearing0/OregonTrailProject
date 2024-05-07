@@ -1,6 +1,7 @@
 package wagonLoadPackage.Menus;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -409,7 +411,7 @@ public class MenuUI {
 				newRiver.setConditions(current); // sets the conditions based on each individual river
 
 				JFrame riverOptionsFrame = new JFrame();
-				riverOptionsFrame.setBounds(100, 200, 400, 300);
+				riverOptionsFrame.setBounds(100, 200, 400, 200);
 				riverOptionsFrame.setVisible(true);
 				riverOptionsFrame.setTitle(location.getName());
 
@@ -419,6 +421,7 @@ public class MenuUI {
 				riverOptionsText.setLineWrap(true);
 				riverOptionsText.setWrapStyleWord(true);
 				riverOptionsText.setEditable(false);
+				riverOptionsPanel.setBackground(Color.WHITE);
 
 				String swiftness = String.format("%.2f", newRiver.getSwiftness()); // converts the swiftness value to a
 																					// string
@@ -443,20 +446,6 @@ public class MenuUI {
 				riverOptionsPanel.add(ferryButton);
 				riverOptionsPanel.add(guideButton);
 
-				JFrame riverResultsFrame = new JFrame();
-				riverResultsFrame.setVisible(false);
-				riverResultsFrame.setBounds(100, 200, 400, 300);
-
-				JPanel riverResultsPanel = new JPanel();
-
-				JTextArea riverResultsText = new JTextArea();
-				riverResultsText.setLineWrap(true);
-				riverResultsText.setWrapStyleWord(true);
-				riverResultsText.setEditable(false);
-
-				riverResultsPanel.add(riverResultsText);
-				riverResultsFrame.add(riverResultsPanel);
-
 				guideButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						newRiver.crossWithGuide(true);
@@ -472,17 +461,19 @@ public class MenuUI {
 						String results = newRiver.getPrompt(0);
 						String supplyResults = "", daysLost = "";
 						if (conditions[2] != 0) {
-							supplyResults = "You lost " + conditions[2] + "% of your food!";	// displays the amount
+							results += "\nYou lost " + conditions[2] + "% of your food!";	// displays the amount
 							int foodAmount = wagon.getFoodWeight();									// of supplies lost
-							int foodLost = conditions[2] * foodAmount;								// based on the
-							wagon.setFoodWeight(foodAmount - foodLost);																		// conditions
+							int foodLost = (int) (((double)conditions[2]/100) * foodAmount);								// based on the
+							wagon.setFoodWeight(foodAmount - foodLost);	
+							//wagon.addToItem("Food", -foodLost);									// conditions
 						}
 						if (conditions[3] != 0) {
-							daysLost = "You lost " + conditions[3] + " days!"; // displays the amount of days lost
+							results += "\nYou lost " + conditions[3] + " days!"; // displays the amount of days lost
 							Date.increaseDays(conditions[3]);
 						}
-						riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
-						riverResultsFrame.setVisible(true);
+						JOptionPane.showMessageDialog(null, results);
+						//riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
+						//riverResultsFrame.setVisible(true);
 						hasCrossed = true;
 					}
 				});
@@ -496,17 +487,19 @@ public class MenuUI {
 						String results = newRiver.getPrompt(1);
 						String supplyResults = "", daysLost = "";
 						if (conditions[1] != 0) {
-							supplyResults = "You lost " + conditions[1] + "% of your food!";
+							results += "\nYou lost " + conditions[1] + "% of your food!";
 							int foodAmount = wagon.getFoodWeight();									// of supplies lost
-							int foodLost = conditions[1] * foodAmount;								// based on the
+							int foodLost = (int) (((double)conditions[1]/100) * foodAmount);								// based on the
 							wagon.setFoodWeight(foodAmount - foodLost);	
+							//wagon.addToItem("Food", -foodLost);
 						}
 						if (conditions[3] != 0) {
-							daysLost = "You lost " + conditions[3] + " days!";
+							results += "\nYou lost " + conditions[3] + " days!";
 							Date.increaseDays(conditions[3]);
 						}
-						riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
-						riverResultsFrame.setVisible(true);
+						//riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
+						//riverResultsFrame.setVisible(true);
+						JOptionPane.showMessageDialog(null, results);
 						hasCrossed = true;
 					}
 				});
@@ -520,17 +513,19 @@ public class MenuUI {
 						String results = newRiver.getPrompt(2);
 						String supplyResults = "", daysLost = "";
 						if (conditions[1] != 0) {
-							supplyResults = "You lost " + conditions[1] + "% of your food!";
+							results += "You lost " + conditions[1] + "% of your food!";
 							int foodAmount = wagon.getFoodWeight();									// of supplies lost
-							int foodLost = conditions[1] * foodAmount;								// based on the
+							int foodLost = (int) (((double)conditions[1]/100) * foodAmount);								// based on the
 							wagon.setFoodWeight(foodAmount - foodLost);
+							//wagon.addToItem("Food", -foodLost);
 						}
 						if (conditions[3] != 0) {
-							daysLost = "You lost " + conditions[3] + " days!";
+							results += "You lost " + conditions[3] + " days!";
 							Date.increaseDays(conditions[3]);
 						}
-						riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
-						riverResultsFrame.setVisible(true);
+						//riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
+						//riverResultsFrame.setVisible(true);
+						JOptionPane.showMessageDialog(null, results);
 						hasCrossed = true;
 
 					}
