@@ -20,6 +20,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import wagonLoadPackage.Item;
+import wagonLoadPackage.PlayerName;
 import wagonLoadPackage.Wagon;
 import wagonLoadPackage.WagonLoad;
 
@@ -346,8 +347,10 @@ public class PreLoadingMenu extends JFrame {
 							System.out.println("\n\nNew Game Start!");
 	        				
 	        				// Open Travel Menu and dispose of current menu
-							WagonLoad frame = new WagonLoad(wagon);
-							frame.setVisible(true);
+							//WagonLoad frame = new WagonLoad(wagon);
+							//frame.setVisible(true);
+							PlayerName playerName = new PlayerName(wagon);
+							playerName.setVisible(true);
 							frmPreLoad.dispose();	
 						}
 					 			
