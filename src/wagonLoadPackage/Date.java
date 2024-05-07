@@ -14,19 +14,19 @@ public class Date extends Travel {
 			"June", "July", "August", "September", "October", "November", "December" };
 
 	// array to list the number of days in each month in order
-	int[] numOfDays = { 30, 27, 30, 29, 30, 29, 30, 30, 29, 30, 30, 30 };
+	static int[] numOfDays = { 30, 27, 30, 29, 30, 29, 30, 30, 29, 30, 30, 30 };
 
 	// date variables for month, day, and year - can be preset if necessary
 	static int month = 0;
-	int day = 0;
-	int year = 1848;
+	static int day = 0;
+	static int year = 1848;
 
 	/**
 	 * checks if the day value is higher than the actual number of days in a month,
 	 * and increments month and resets day if 0
 	 * also does a similar function for the relationship between months and years
 	 */
-	private void setDate() {
+	private static void setDate() {
 		if (day > numOfDays[month]) {
 			month++;
 			day = 0;
@@ -83,7 +83,7 @@ public class Date extends Travel {
 	 * increases the day number by an chosen amount
 	 * @param input
 	 */
-	public void increaseDays(int input) {
+	public static void increaseDays(int input) {
 		day += input;
 		setDate();
 	}

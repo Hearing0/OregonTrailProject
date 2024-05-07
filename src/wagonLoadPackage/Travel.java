@@ -28,6 +28,7 @@ public class Travel {
 
 	/**
 	 * Initialize Travel w/ a filled map
+	 * Descriptions by David Flores and Cody Dusek
 	 */
 	public Travel() {
 		addLocation("Independence",

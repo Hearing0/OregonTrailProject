@@ -27,6 +27,7 @@ import wagonLoadPackage.Trader;
 import wagonLoadPackage.Travel;
 import wagonLoadPackage.Wagon;
 import wagonLoadPackage.WagonLoad;
+import wagonLoadPackage.Date;
 
 import javax.swing.JTextArea;
 
@@ -471,13 +472,14 @@ public class MenuUI {
 						String results = newRiver.getPrompt(0);
 						String supplyResults = "", daysLost = "";
 						if (conditions[2] != 0) {
-							supplyResults = "You lost " + conditions[2] + "% of your supplies!"; // displays the amount
-																									// of supplies lost
-																									// based on the
-																									// conditions
+							supplyResults = "You lost " + conditions[2] + "% of your food!";	// displays the amount
+							int foodAmount = wagon.getFoodWeight();									// of supplies lost
+							int foodLost = conditions[2] * foodAmount;								// based on the
+							wagon.setFoodWeight(foodAmount - foodLost);																		// conditions
 						}
 						if (conditions[3] != 0) {
 							daysLost = "You lost " + conditions[3] + " days!"; // displays the amount of days lost
+							Date.increaseDays(conditions[3]);
 						}
 						riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
 						riverResultsFrame.setVisible(true);
@@ -494,10 +496,14 @@ public class MenuUI {
 						String results = newRiver.getPrompt(1);
 						String supplyResults = "", daysLost = "";
 						if (conditions[1] != 0) {
-							supplyResults = "You lost " + conditions[1] + "% of your supplies";
+							supplyResults = "You lost " + conditions[1] + "% of your food!";
+							int foodAmount = wagon.getFoodWeight();									// of supplies lost
+							int foodLost = conditions[1] * foodAmount;								// based on the
+							wagon.setFoodWeight(foodAmount - foodLost);	
 						}
 						if (conditions[3] != 0) {
 							daysLost = "You lost " + conditions[3] + " days!";
+							Date.increaseDays(conditions[3]);
 						}
 						riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
 						riverResultsFrame.setVisible(true);
@@ -514,10 +520,14 @@ public class MenuUI {
 						String results = newRiver.getPrompt(2);
 						String supplyResults = "", daysLost = "";
 						if (conditions[1] != 0) {
-							supplyResults = "You lost " + conditions[1] + "% of your supplies";
+							supplyResults = "You lost " + conditions[1] + "% of your food!";
+							int foodAmount = wagon.getFoodWeight();									// of supplies lost
+							int foodLost = conditions[1] * foodAmount;								// based on the
+							wagon.setFoodWeight(foodAmount - foodLost);
 						}
 						if (conditions[3] != 0) {
 							daysLost = "You lost " + conditions[3] + " days!";
+							Date.increaseDays(conditions[3]);
 						}
 						riverResultsText.setText(results + "\n" + supplyResults + "\n" + daysLost);
 						riverResultsFrame.setVisible(true);
