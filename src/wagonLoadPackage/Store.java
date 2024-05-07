@@ -1,5 +1,12 @@
 package wagonLoadPackage;
 
+/**
+ * Store.java
+ * 
+ * creates a store frame that allows the user to buy from a selection of items
+ * performs the calculations for total money and items bought
+ */
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -8,20 +15,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
 public class Store extends Wagon{
-	
-	//STILL WAITING ON
-	//health system merge to for adding bought oxen with health
-	//need to fix it so tab only appears in a fort, but not quite sure how to get hasActivities to work
-	
+	//variables
 	private JFrame Storeframe;
-	//private JTextField foodBuyTextBox;
-	//private JTextField wheelBuyTextBox;
-	//private JTextField bulletBuyTextBox;
 	Wagon wagonS;
 	int moneyShown;
 	int foodStoreEdit;
+	
 	
 	/**
 	 * Create the application.
@@ -119,7 +119,6 @@ public class Store extends Wagon{
 		totalMLabel.setBounds(31, 199, 115, 22);
 		Storeframe.getContentPane().add(totalMLabel);
 		
-		//JLabel totalMoneyText = new JLabel();
 		JLabel totalMoneyText = new JLabel("" + moneyShown);
 		totalMoneyText.setBounds(150, 203, 49, 14);
 		Storeframe.getContentPane().add(totalMoneyText);
@@ -190,7 +189,7 @@ public class Store extends Wagon{
 					}
 					if(buyOxen > 0) {
 						for(int i = 0; i <= buyOxen; i++) {
-							addHealth("Ox", 400, "", true);
+							addHealth("Ox", 100, "", true);
 						}
 					}
 					if(buyClothes > 0) {

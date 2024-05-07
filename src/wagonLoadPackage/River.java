@@ -13,8 +13,8 @@ import java.util.Random;
 
 public class River extends Location {
 
-	public River(String name, String desc, int disTillNext, boolean hasActs, boolean isRiver) {
-		super(name, desc, disTillNext, hasActs, isRiver);
+	public River(String name, String desc, int disTillNext, boolean hasActs, boolean isRiver, String geotype) {
+		super(name, desc, disTillNext, hasActs, isRiver, geotype);
 	}
 
 	// creates the necessary arrays for each crossing choice

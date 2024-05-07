@@ -41,21 +41,21 @@ public class Travel {
 						+ "starting point for thousands embarking on the arduous journey to the Pacific "
 						+ "Northwest, marking the beginning of their quest for a better life on the frontier.",
 				106,
-				true, false); // 0 miles
+				true, false, "Common"); // 0 miles
 		addRiver("Kansas River", 
 						"Also known as the Kaw, the Kansas River serves a vital lifeline for pioneers " 
 						+ "heading westward. The river’s course causes it to often run close to the trail, providing " 
 						+ "relief and a chance to refill traveler’s water barrels. It’s not all sunshine and rainbows though, "
 						+ "as crossing it can be perilous, especially after long periods of rain. Good luck!", 
 					59, 
-					true, true); // 106 miles
+					true, true, "Common"); // 106 miles
 		addRiver("Big Blue River", 
 						"The Blue River is a formidable natural obstacle for pioneers on the Oregon Trail. " 
 						+ "Its course often intersects the trail, which provides many a weary traveler with either danger or opportunity. "
 						+ "When dry, it can be as small as a mere trickle, but in times of heavy rain, it can transform into an unpredictable "
 						+ "torrent of water. Be careful, and good luck!", 
 					154, 
-					true, true); // 165 miles
+					true, true, "Common"); // 165 miles
 		addLocation("Fort Kearney",
 				"Fort Kearney was established in the 1840s to protect pioneers, traders, "
 						+ "and emigrants as they journeyed through the frontier. "
@@ -68,68 +68,68 @@ public class Travel {
 						+ "with wagons, settlers, soldiers, and traders, all flowing "
 						+ "through this point on their journey westward.",
 				256,
-				true, false); // 319 miles
+				true, false, "Common"); // 319 miles
 		addLocation("Chimney Rock", 
 					"The towering grandiosity of Chimney Rock fills many a fatigued traveler with courage and determination. "
 					+ "It can be seen for miles in any direction, proving a vital landmark to those on the Trail, and an inspiration for pioneers "
 					+ "of the wonders to come along the trail. Take heart, and good luck!",
 				75, 
-				true, false); // 575 miles
+				true, false, "Rocky"); // 575 miles
 		addLocation("Fort Laramie",
 					"Originally established as a fur trading post, Fort Laramie is now an important military outpost and trading hub"
 					+ "for pioneers on the trail. You can restock your supplies, repair your wagon, and much more! Take a rest, but be sure to "
 					+ "get back on the road! Good luck!",
-					164, true, false); // 650 miles
+					164, true, false, "Common"); // 650 miles
 		addLocation("Independence Rock", 
 					"Independence Rock stands as a monumental landmark over vast prairies. Named so after the many previous "
 					+ "pioneers who reached this granite outcrop around Independence Day, it serves as a tangible sign that "
 					+ "you are making your way across the country. Good luck!", 
-					100, true, false); // 814 miles
+					100, true, false, "Rocky"); // 814 miles
 		addLocation("South Pass", 
 				"The South Pass plays a pivotal role in helping pioneers such as yourself cross the Rocky Mountains. "
 				+ "It offers a much more pleasant crossing than other passes to the north or south. "
 				+ "While this crossing may seem easy, the hardest leg of your journey is yet to come. "
 				+ "Take a brief respite, and good luck!", 
-				67, true, false); // 914 miles
+				67, true, false, "Desert"); // 914 miles
 		addRiver("Green River", "The Green River cuts through Wyoming and Utah, and serves as a vital lifeline for pioneers such as yourself. "
 				+ "While it might offer a brief respite from the hardships of the Trail, watch out for its rocky rapids "
-				+ "and swift currents. Good luck!", 45, true, true); // 981 miles
+				+ "and swift currents. Good luck!", 45, true, true, "Common"); // 981 miles
 		addLocation("Fort Bridger", "Established in the 1840s, Fort Bridger serves as a vital waypoint for pioneers on their way to Oregon."
 				+ " Here you can restock your supplies, repair your wagon, and take a rest from the challenges of the Trail. Good luck!", 
-				129, true, false); // 1026 miles
+				129, true, false, "Common"); // 1026 miles
 		addLocation("Soda Springs", "The natural wonder of Soda Springs provides travelers with a small reprieve from the Oregon Trail. "
 				+ "Its cool, naturally carbonated waters serve as a place where travelers can quench their thirst, "
 				+ "before getting back on the road. Good luck!", 
-				62, true, false); // 1155 miles
+				62, true, false, "Common"); // 1155 miles
 		addLocation("Fort Hall", "Established in 1834 as a fur trading post, Fort Hall now serves as one of the most important posts for "
 				+ "travelers on their journey to Oregon. Here you can restock your supplies and repair your wagon, "
 				+ "and prepare for the last stretch of your journey. Good luck!", 
-				180, true, false); // 1217 miles
+				180, true, false, "Common"); // 1217 miles
 		addRiver("Snake River", "Snake River functions as an important waterway for those undertaking the Oregon Trail. "
 				+ "Despite its rapids and swift currents, many a pioneer have used it to their advantage, setting up "
 				+ "homesteads and settlements. While its crossing may be perilous, you’re almost there. Good luck!", 
-				113, true, true); // 1397 miles
+				113, true, true, "Common"); // 1397 miles
 		addLocation("Fort Boise", "Fort Boise, established in 1834, serves as one of the final forts along the path to the Willamette Valley."
 				+ " Here weary explorers can take a rest and restock their supplies. You’re so close, don’t give up now! Good luck!", 
-				158, true, false); // 1510 miles
+				158, true, false, "Common"); // 1510 miles
 		addLocation("Blue Mountains", "As one of the last major obstacles on the path to Oregon, crossing the Blue Mountains serves as a rite "
 				+ "of passage for many pioneers. With its towering pine trees, and sharp ascents and descents, it presents a true challenge "
 				+ "to those wishing to get to Oregon. Good luck with this one, pioneer!",
-				62, true, false); // 1668 miles
+				62, true, false, "Snow"); // 1668 miles
 		addLocation("Fort Walla Walla", "As the last fort on your journey, make sure to stock up and be ready for the final leg of the journey. "
 				+ "Fort Walla Walla is one of the last stops for many travelers seeking passage to the Willamette Valley. "
 				+ "Get as many supplies as you can carry, and good luck of the final stretch!", 
-				89, true, false); // 1730 miles
+				89, true, false, "Common"); // 1730 miles
 		addLocation("The Dalles", "The Dalles serves as the last obstacle that many travelers face on the Oregon Trail. "
 				+ "It marks the transition from the rugged Rocky Mountains to the lush, temperate climate of Oregon, and "
 				+ "above all the Willamette Valley. Take a short rest here, but your adventure is almost over. Good luck!", 
-				113, true, false); // 1819 miles
+				113, true, false, "Common"); // 1819 miles
 		addLocation("Willamette Valley, Oregon", "You’ve made it! You’ve crossed almost half the country to get here, "
 				+ "and the riches that the land provides are yours for the taking. Through all of the hardship that "
 				+ "you and your party have endured, you have persevered through it all and made it here. "
 				+ "While your journey on the Oregon Trail ends here, the rest of your adventure has just begun. "
 				+ "Congratulations, and thanks for playing!", 
-				10000, true, false); // 1932 miles
+				10000, true, false, "Common"); // 1932 miles
 	}
 
 	/**
@@ -561,8 +561,8 @@ public class Travel {
 	 * @author David F
 	 */
 	private void addLocation(String name, String desc,  int disTillNext, boolean hasActs,
-			boolean isRiver) {
-		Location loc = new Location(name, desc, disTillNext, hasActs, isRiver);
+			boolean isRiver, String geotype) {
+		Location loc = new Location(name, desc, disTillNext, hasActs, isRiver, geotype);
 		map.add(loc);
 	}
 	
@@ -576,8 +576,8 @@ public class Travel {
 	 * @param isRiver	  - Whether or not the location is a river
 	 * @author Cody
 	 */
-	private void addRiver(String name, String desc,  int disTillNExt, boolean hasActs, boolean isRiver) {
-		River river = new River(name, desc, disTillNExt, hasActs, isRiver);
+	private void addRiver(String name, String desc,  int disTillNExt, boolean hasActs, boolean isRiver, String geotype) {
+		River river = new River(name, desc, disTillNExt, hasActs, isRiver, geotype);
 		map.add(river);
 	}
 
