@@ -20,9 +20,12 @@ public class PlayerName {
 	private JTextField member2TextField;
 	private JTextField member3TextField;
 	private JTextField member4TextField;
+	Wagon wagon;
 	
-	public PlayerName() {
+	public PlayerName(Wagon wagon) {
+		this.wagon = wagon;
 		initialize();
+		
 	}
 	
 	
@@ -115,6 +118,8 @@ public class PlayerName {
 						member3TextField.getText() != "" && member4TextField.getText() != "") {
 					health.setPlayerName(member1TextField.getText(), member2TextField.getText(), 
 							member3TextField.getText(), member4TextField.getText());
+					WagonLoad frame = new WagonLoad(wagon);
+					frame.setVisible(true);
 				}
 				else { //occurs if there is no text to grab
 					String textF = "Please input names or click randomize.";
