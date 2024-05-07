@@ -16,6 +16,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import wagonLoadPackage.PlayerName;
+import wagonLoadPackage.SettingsMenu;
 import wagonLoadPackage.Store;
 import wagonLoadPackage.Wagon;
 import wagonLoadPackage.WagonLoad;
@@ -34,7 +35,7 @@ public class MainMenu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	static MainMenu mainFrame;
+	public static MainMenu mainFrame;
 
 	/**
 	 * Launch the application.
@@ -57,7 +58,7 @@ public class MainMenu extends JFrame {
 	 */
 	public MainMenu() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
@@ -77,32 +78,7 @@ public class MainMenu extends JFrame {
         artPanel.add(artLabel);
         artLabel.setIcon(new ImageIcon(WagonLoad.class.getResource("/images/ChimneyRock1.pixel.WebSafe.2.png")));
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 136, 150, 91);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		
-		
-		/// Buttons
-		
-		// Start Game Button - David Flores
-		JButton btnStartGame = new JButton("New Game");
-		btnStartGame.setBounds(0, 0, 150, 23);
-		btnStartGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					PreLoadingMenu frame = new PreLoadingMenu();
-					frame.setVisible(true);
-					mainFrame.dispose();					
-				} catch (Exception evt) {
-					evt.printStackTrace();
-				}
-			}
-		});
-		panel.add(btnStartGame);
-		
-		
+		/*
 		// Continue Game Button
 		JButton btnContinueGame = new JButton("Continue Game");
 		btnContinueGame.setBounds(0, 34, 150, 23);
@@ -112,21 +88,20 @@ public class MainMenu extends JFrame {
 			}
 		});
 		panel.add(btnContinueGame);
-		
+		*/
 		
 		// Settings Button
+		/*
 		JButton btnSettings = new JButton("Settings");
-		btnSettings.setBounds(0, 68, 150, 23);
+		btnSettings.setBounds(0, 34, 150, 23);
 		panel.add(btnSettings);
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				//next 2 lines of code are for PlayerName testing cause new button wouldnt show
-				//PlayerName playerName = new PlayerName();
-				//playerName.setVisible(true);
+        		SettingsMenu settings = new SettingsMenu(sound, frmPackYourWagon);
+        		settings.setVisible(true);
 			}
 		});
-		
+		*/
 		
 		//not showing??
 		// Testing PlayerName Button
@@ -147,5 +122,25 @@ public class MainMenu extends JFrame {
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setBounds(10, 45, 150, 23);
 		contentPane.add(lblTitle);
+		
+		
+		
+		/// Buttons
+		
+		// Start Game Button - David Flores
+		JButton btnStartGame = new JButton("New Game");
+		btnStartGame.setBounds(10, 102, 150, 23);
+		contentPane.add(btnStartGame);
+		btnStartGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					PreLoadingMenu frame = new PreLoadingMenu();
+					frame.setVisible(true);
+					mainFrame.dispose();					
+				} catch (Exception evt) {
+					evt.printStackTrace();
+				}
+			}
+		});
 	}
 }

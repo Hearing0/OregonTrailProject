@@ -15,12 +15,12 @@ import wagonLoadPackage.Travel;
 public class Wagon {
 
     // Initialize Variables
+	public static int MAX_WEIGHT = 2400;
     public ArrayList<Item> itemList;
     public ArrayList<Health> HPList; //maybe make new array will work?
-    public int maxWeight = 2400;
-    int wagonPeople = 4;
+    public int wagonPeople = 4;
     public Travel travel = new Travel();
-    Date date = new Date();
+    public Date date = new Date();
     public int totalMoney = 1000;
 
     /**
@@ -68,7 +68,7 @@ public class Wagon {
         addFoodItem("Whiskey", 80, true, true);
 		*/
 
-        addItem("Food", 300, true);
+        addItem("Food", 600, true);
 
         // ammo, clothes, etc.
         addItem("Bedroll", 15);

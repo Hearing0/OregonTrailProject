@@ -44,7 +44,7 @@ public class Trader {
 	 * 
 	 * @return - An random Item.
 	 */
-	public Item randomItem() {
+	private Item randomItem() {
 		int choice = rand.nextInt(wagon.getItemListSize());
 
 		Item result = wagon.getItem(choice);
@@ -65,7 +65,7 @@ public class Trader {
 	 * @param itemCheck - Item that will be compared with.
 	 * @return - Item that is not the same as itemCheck.
 	 */
-	public Item randomUniqueItem(Item itemCheck) {
+	private Item randomUniqueItem(Item itemCheck) {
 		Item result = this.randomItem();
 
 		// Fail: Duplicate found, recursive call
@@ -74,65 +74,6 @@ public class Trader {
 		}
 
 		return result;
-	}
-
-	/**
-	 * Sets the Trader's preferred items to exchange.
-	 */
-	public void setTraderPreferences() {
-		// Pick b/w traders' preference lists
-		switch (traderType) {
-
-			/*
-			 * // Native
-			 * case 1:
-			 * String[] items = {
-			 * "Water",
-			 * "Bedroll",
-			 * "Lard",
-			 * "Salt",
-			 * "Flour",
-			 * "DryApples",
-			 * "Beans",
-			 * "Rice",
-			 * "Bacon",
-			 * };
-			 * Stream.of(items).forEach(preferredItems::add);
-			 * break;
-			 * 
-			 * // Fur Trader
-			 * case 2:
-			 * String[] items = {
-			 * "Water",
-			 * "Bedroll",
-			 * "Lard",
-			 * "Whiskey",
-			 * "Salt",
-			 * "Flour",
-			 * "DryApples",
-			 * "Beans",
-			 * "Rice",
-			 * "Bacon",
-			 * };
-			 * Stream.of(items).forEach(preferredItems::add);
-			 * break;
-			 * 
-			 * // Traveler
-			 * case 3:
-			 * 
-			 * break;
-			 */
-			// Default: No Preferences
-		}
-
-		// Debug: Display Trader Preferences
-		/*
-		 * System.out.println("--------Trader Preferences--------\n");
-		 * for( int i = 0; i < preferredItems.size(); i++) {
-		 * System.out.println("preference[" + i +"]:" + preferredItems.get(i));
-		 * }
-		 * System.out.println("\n--------Trader Preferences--------");
-		 */
 	}
 
 	/**

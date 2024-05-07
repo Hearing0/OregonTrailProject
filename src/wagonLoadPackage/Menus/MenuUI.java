@@ -354,7 +354,7 @@ public class MenuUI {
         // - David Flores
         if(this.location.getHasActivites()) {
         	// Debug
-        	System.out.println("Location has Activities");
+        	System.out.println("\nLocation has Activities");
         	
 	        // Talk to Locals Tab
 	        JPanel talkToLocalsPanel = this.talkPanel();

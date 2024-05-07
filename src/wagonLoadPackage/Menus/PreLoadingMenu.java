@@ -20,6 +20,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import wagonLoadPackage.Item;
+import wagonLoadPackage.PlayerName;
 import wagonLoadPackage.Wagon;
 import wagonLoadPackage.WagonLoad;
 
@@ -41,7 +42,7 @@ public class PreLoadingMenu extends JFrame {
 	// Class Variables
 	private static final long serialVersionUID = 1L;
 	private Wagon wagon = new Wagon();
-	int totalWeight = 0;
+	private int totalWeight = 0;
 
 	
 	// JComponents
@@ -86,7 +87,7 @@ public class PreLoadingMenu extends JFrame {
 	 * JCheckBox.
 	 * @return - JCheckBox with item name and weight
 	 */
-	public JCheckBox ItemCheckBox(Item item) {
+	private JCheckBox ItemCheckBox(Item item) {
 		
 		// Identify item and if its pre-loaded
 		String text = item.getName() + ": " + item.getWeight();
@@ -105,7 +106,7 @@ public class PreLoadingMenu extends JFrame {
 	 * Calculates the totalWeight, then updates UI label's text.
 	 * - David Flores
 	 */
-	public void updateTotalWeightUI() {
+	private void updateTotalWeightUI() {
 		// Calculate totalWeight
 		totalWeight = wagon.getTotalWeight();
 		
@@ -330,7 +331,7 @@ public class PreLoadingMenu extends JFrame {
 
         			
         			// Check if wagon is overweight...
-        			if (totalWeight <= wagon.maxWeight) {
+        			if (totalWeight <= wagon.MAX_WEIGHT) {
         				
         				System.out.println("not overweight");
         				
@@ -346,8 +347,10 @@ public class PreLoadingMenu extends JFrame {
 							System.out.println("\n\nNew Game Start!");
 	        				
 	        				// Open Travel Menu and dispose of current menu
-							WagonLoad frame = new WagonLoad(wagon);
-							frame.setVisible(true);
+							//WagonLoad frame = new WagonLoad(wagon);
+							//frame.setVisible(true);
+							PlayerName playerName = new PlayerName(wagon);
+							playerName.setVisible(true);
 							frmPreLoad.dispose();	
 						}
 					 			
