@@ -165,7 +165,7 @@ public class WagonLoad {
     private void initialize() {
         frmPackYourWagon = new JFrame();
         frmPackYourWagon.setTitle("Pack Your Wagon");
-        frmPackYourWagon.setBounds(100, 100, 839, 382);
+        frmPackYourWagon.setBounds(100, 100, 839, 393);
         frmPackYourWagon.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmPackYourWagon.getContentPane().setLayout(null);
 
@@ -285,7 +285,7 @@ public class WagonLoad {
 
         JLabel dateLabel = new JLabel("");
         dateLabel.setBackground(new Color(0, 0, 0));
-        dateLabel.setBounds(26, 278, 189, 23);
+        dateLabel.setBounds(20, 300, 189, 23);
         frmPackYourWagon.getContentPane().add(dateLabel);
 
         // Food Consumption Text Field - David Flores
@@ -422,7 +422,7 @@ public class WagonLoad {
 
         JLabel tempLabel = new JLabel("");
         tempLabel.setBackground(Color.BLACK);
-        tempLabel.setBounds(26, 309, 189, 23);
+        tempLabel.setBounds(20, 320, 189, 23);
         frmPackYourWagon.getContentPane().add(tempLabel);
 
         // Travel Button - David Flores and Breanna Sproul
