@@ -2,6 +2,8 @@ package wagonLoadPackage;
 
 /**
  * Events.java
+ * Created: April 2024
+ * Author - Breanna Sproul
  * 
  * Creates an event that stores the event's name, location, if its affecting an item, how much is it
  * affecting item, if its affecting health, how much is it affecting health, if it affects the date,

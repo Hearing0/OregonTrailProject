@@ -2,6 +2,8 @@ package wagonLoadPackage;
 
 /**
  * Store.java
+ * Created: March 2024
+ * Author - Breanna Sproul
  * 
  * creates a store frame that allows the user to buy from a selection of items
  * performs the calculations for total money and items bought
