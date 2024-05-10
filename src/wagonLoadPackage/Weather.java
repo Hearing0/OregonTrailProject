@@ -272,37 +272,74 @@ public class Weather extends Date {
 	}
 
 	/**
+	 * returns the temperature on a specific day
 	 * 
-	 * @return
+	 * @return - a String representing the temperature
 	 */
 	public String getTempResults() {
 		return tempResults;
 	}
 
+	/**
+	 * returns the water level on the ground
+	 * 
+	 * @return - a double representing the amount of water on the ground in inches
+	 */
 	public static double getGroundWaterLevel() {
 		return groundWaterLevel;
 	}
 
+	/**
+	 * returns the snow level on the ground
+	 * 
+	 * @return - a double representing the amuount of snow on the ground in inches
+	 */
 	public static double getGroundSnowLevel() {
 		return groundSnowLevel;
 	}
 
+	/**
+	 * returns whether or not it rained
+	 * 
+	 * @return - a boolean that represents whether or not it rained
+	 */
 	public static boolean getIsRainy() {
 		return isRainy;
 	}
 
+	/**
+	 * returns whether or not it rained heavily
+	 * 
+	 * @return - a boolean representing whether or not it rained heavily
+	 */
 	public static boolean getIsVeryRainy() {
 		return isVeryRainy;
 	}
 
+	/**
+	 * returns whether or not the current weather is a drought
+	 * 
+	 * @return - a boolean representing the current drought conditions
+	 */
 	public static boolean getIsDrought() {
 		return isDrought;
 	}
 
+	/**
+	 * returns whether or not the drought is severe
+	 * 
+	 * @return - a boolean representing the severity of the drought
+	 */
 	public static boolean getIsSevere() {
 		return isSevere;
 	}
 
+	/**
+	 * returns the days that the weather has stayed consistent
+	 * 
+	 * @return - an integer representing the amount of days the weather has been the
+	 *         same
+	 */
 	public static int getDaysConsistent() {
 		return daysConsistent;
 	}
