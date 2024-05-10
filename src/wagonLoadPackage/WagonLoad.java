@@ -11,7 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import wagonLoadPackage.Location;
+<<<<<<< Updated upstream
 import wagonLoadPackage.Menus.EndMenu;
+=======
+import wagonLoadPackage.Menus.InventoryMenu;
+>>>>>>> Stashed changes
 import wagonLoadPackage.Menus.MenuUI;
 import wagonLoadPackage.Scavenging;
 
@@ -543,7 +547,24 @@ public class WagonLoad {
         });
         settingsBtn.setBounds(333, 313, 89, 23);
         frmPackYourWagon.getContentPane().add(settingsBtn);
+<<<<<<< Updated upstream
 
+=======
+        
+        JButton inventoryButton = new JButton("Inventory");
+        inventoryButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        inventoryButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		InventoryMenu inventory = new InventoryMenu(wagon);
+        		inventory.setVisible(true);
+        		
+        	}
+        });
+        inventoryButton.setBounds(212, 313, 89, 23);
+        frmPackYourWagon.getContentPane().add(inventoryButton);
+        
+>>>>>>> Stashed changes
         // Pre-Update UI Elements
         updateTotalWeightUI();
 

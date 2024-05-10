@@ -58,8 +58,8 @@ public class SettingsMenu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton_1 = new JButton("New game");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton newGamebtn = new JButton("New game");
+		newGamebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				JFrame f1 =(JFrame) SwingUtilities.getWindowAncestor(contentPane);
@@ -73,8 +73,8 @@ public class SettingsMenu extends JFrame {
 				
 			}
 		});
-		btnNewButton_1.setBounds(151, 208, 114, 23);
-		contentPane.add(btnNewButton_1);
+		newGamebtn.setBounds(151, 208, 114, 23);
+		contentPane.add(newGamebtn);
 		
 		JLabel lblNewLabel = new JLabel("Settings Menu");
 		lblNewLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 26));

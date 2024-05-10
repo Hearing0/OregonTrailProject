@@ -56,9 +56,13 @@ public class MenuUI {
 	// Trader Variables
 	private Trader trader;
 	private ArrayList<String> offer;
+<<<<<<< Updated upstream
 	private ArrayList<JLabel> inventory;
 	
 	public static boolean hasCrossed = false;
+=======
+	
+>>>>>>> Stashed changes
 
 	/**
 	 * Create the application.
@@ -66,24 +70,13 @@ public class MenuUI {
 	public MenuUI(Location location, Wagon wagon) {
 		this.location = location;
 		this.wagon = wagon;
-		this.travelspeed = travelspeed;
+		
 		this.trader = new Trader(0, wagon);
-		this.inventory = new ArrayList<JLabel>();
+		
 		initialize();
 	}
 	
-	public JLabel ItemLabel(Item item) {
-		
-		// Identify item and if its pre-loaded
-		String text = item.getName() + ": " + item.getWeight();
-		
-		// Create and log JCheckBox
-		JLabel box = new JLabel(text);
-		inventory.add(box);
-		
-		return box;
-	}
-
+	
 	/**
 	 * Creates a JPanel for chatting with random passerbys.
 	 * The panel is populated with a text box and button.

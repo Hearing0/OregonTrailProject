@@ -69,6 +69,7 @@ public class Sound {
 	public void loop(URL url) {
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
+<<<<<<< Updated upstream
 
 	/**
 	 * stops the music from playing when called
@@ -76,6 +77,10 @@ public class Sound {
 	 * @param url - location of the sound file
 	 */
 	public void Stop(URL url) {
+=======
+	
+	public void stop(URL url) {
+>>>>>>> Stashed changes
 		clip.stop();
 	}
 
