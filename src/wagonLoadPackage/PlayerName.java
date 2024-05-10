@@ -1,5 +1,14 @@
 package wagonLoadPackage;
 
+/**
+ * PlayerName.java
+ * Created: April 2024
+ * Author - Breanna Sproul
+ * 
+ * Creates the menu that allows the user to set the name of the 4 people in the wagon and which month to start in.
+ * Appears after the wagon has been loaded
+ */
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +23,7 @@ import wagonLoadPackage.Wagon;
 
 public class PlayerName {
 	
+	//variables
 	Health health = new Health(null, 0, null, false);
 	private JFrame frame;
 	private JTextField member1TextField;
@@ -22,6 +32,9 @@ public class PlayerName {
 	private JTextField member4TextField;
 	Wagon wagon;
 	
+	/**
+	 * Create the application.
+	 */
 	public PlayerName(Wagon wagon) {
 		this.wagon = wagon;
 		initialize();
@@ -33,8 +46,10 @@ public class PlayerName {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		//array for the month combo button
 		String[] Months = {"January", "Feburary", "March", "April", "May", "June", "July", "August", 
 				"September", "October", "November", "December"};
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -100,6 +115,7 @@ public class PlayerName {
 		monthComboBox.setBounds(249, 116, 86, 22);
 		frame.getContentPane().add(monthComboBox);
 		//monthComboBox.removeAllItems();
+		//supplies the combo box using Month array
 		for(int i = 0; i < 12; i++) {
 			monthComboBox.addItem(Months[i]);
 		}

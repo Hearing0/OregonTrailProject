@@ -23,6 +23,7 @@ import javax.sound.sampled.FloatControl;
 
 public class Sound {
 
+	//variables
 	Clip clip;
 	
 	float previousVolume = 0;
@@ -32,6 +33,10 @@ public class Sound {
 	
 	boolean mute = false;
 	
+	/**
+	 * grabs the music file and throws exception if not found
+	 * @param url - location of the sound file
+	 */
 	public void setFile(URL url) {
 		
 		try {
@@ -47,19 +52,34 @@ public class Sound {
 		
 	}
 	
+	/**
+	 * plays the music file when called
+	 * @param url - location of the sound file
+	 */
 	public void play(URL url) {
 		clip.setFramePosition(0);
 		clip.start();
 	}
 	
+	/**
+	 * loops the music file to ensure it is heard throughout the whole game
+	 * @param url - location of the sound file
+	 */
 	public void loop(URL url) {
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	
+	/**
+	 * stops the music from playing when called
+	 * @param url - location of the sound file
+	 */
 	public void Stop(URL url) {
 		clip.stop();
 	}
 	
+	/**
+	 * allows the volume of the music to be increased
+	 */
 	public void volumeUp() {
 		 currentVolume += 1.0f;
 		 if  (currentVolume > 6.0f) {
@@ -67,6 +87,10 @@ public class Sound {
 		 }
 		 fc.setValue(currentVolume);
 	}
+	
+	/**
+	 * allows the volume of the music to be decreased
+	 */
     public void volumeDown() {
     	 currentVolume -= 1.0f;
 		 if  (currentVolume < -80.0f) {
@@ -75,6 +99,9 @@ public class Sound {
 		 fc.setValue(currentVolume);
 	}
 	
+    /**
+     * allows the music to be muted
+     */
     public void volumeMute() {
     	if(mute == false) {
     		previousVolume = currentVolume;

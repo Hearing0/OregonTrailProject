@@ -1,5 +1,13 @@
 package wagonLoadPackage;
 
+/**
+ * Trader.java
+ * 
+ * Creates trade offers that select a random item from ItemList for offer and wants
+ * performs the action of moving items between the trader and the user's wagon
+ * limits the amount of trades to prevent user from continuously re-rolling 
+ */
+
 import java.util.ArrayList;
 import java.util.Random;
 

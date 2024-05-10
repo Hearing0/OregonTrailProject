@@ -2,6 +2,8 @@ package wagonLoadPackage;
 
 /**
  * RandomEvent.java
+ * Created: April 2024
+ * Author - Breanna Sproul
  * 
  * determines if a random event from eventList is triggered, and if it is, then performs the necessary
  * calculations and changes that the chosen event performs.

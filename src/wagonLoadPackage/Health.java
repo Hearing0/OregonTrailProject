@@ -2,6 +2,8 @@ package wagonLoadPackage;
 
 /**
  * Health.java
+ * Created: April 2024
+ * Author - Breanna Sproul
  * 
  * Creates health storing what the health is for, amount of health left, name of player(if player), 
  * and if health is >0 or not. This is used in Wagon to make arrayList of events with 
@@ -11,6 +13,7 @@ package wagonLoadPackage;
 import java.util.Random;
 
 public class Health {
+	
 	//variables
 	String HPType;
 	String playerName;
@@ -18,7 +21,6 @@ public class Health {
 	int HP;
 	boolean alive;
 	private static Random ranName = new java.util.Random();
-	
 	static String player1Name = "";
 	static String player2Name = "";
 	static String player3Name = "";
@@ -225,6 +227,13 @@ public class Health {
 	}
 	
 
+	/**
+	 * Uses the randomize button in PlayerName menu to set all 4 player names
+	 * @param first - name for 1st player
+	 * @param second - name for 2nd player
+	 * @param third - name for 3rd player
+	 * @param fourth - name for 4th player
+	 */
 	public void setPlayerName(String first, String second , String third, String fourth) {
 		if(first != "") {
 			player1Name = first;
