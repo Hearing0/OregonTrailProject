@@ -159,31 +159,31 @@ public class MenuUI {
 								+ "ride if you hire me or another from my tribe to cross any upcoming rivers. \"",
 						"You chat with a young boy who's feeding his family's oxen"
 								+"...\n\" My mama said we can have a happier life over in Oregon and papa agrees. "
-								+ " I miss our old farm, but at least I could bring my books with me."
+								+ " I miss our old farm, but at least I could bring my books with me. "
 								+ " Mama says there's a better farm in Oregon next to my uncle's farm, "
 								+ "we just have to travel to Oregon first. \"",
 						"You wave to a woman foraging near the camp"
-								+ "...\n\" Sorry stranger, I can't talk right now. My husband and youngest"
-								+ "son have fallen ill, so I'm hoping I can find some medical herbs close by"
+								+ "...\n\" Sorry stranger, I can't talk right now. My husband and youngest "
+								+ "son have fallen ill, so I'm hoping I can find some medical herbs close by "
 								+ "instead of paying for them. We were saving our money for a safe river guide, "
 								+ "but I fear we may have to cross the river ourselves. "
 								+ "Perhaps there's some untouched herbs deeper in the woods. \"",
 						"You approach a man and his daughter fishing nearby."
-								+"...\n\" Hello, there traveler. Are you here to fish too?"
+								+"...\n\" Hello, there traveler. Are you here to fish too? "
 								+ "The fish are plentyiful enough that we might not have to buy food at the next fort. "
 								+ "I'm sure the others will be glad to have extra money for any future problems. "
 								+ "Although now that I'm thinking about it, maybe we should consider getting some "
 								+ "spare parts for our wagon. \"",
 						"You overhear the loud conversations from the group walking near you. "
-								+"...\n\" Now that's some real bad luck. A bite from a snake is bad enough, but having"
-								+ "an accident that leads to an injured ox and broken wheel right after is just unfortunate."
+								+"...\n\" Now that's some real bad luck. A bite from a snake is bad enough, but having "
+								+ "an accident that leads to an injured ox and broken wheel right after is just unfortunate. "
 								+ "Yeah, I don't know how much further the Smith family will make it with that kind of luck. \""
 								+ "... They walk far enough away that you can't make out what they're saying anymore. ",
 						"You talk with a local from this area."
-								+"...\n\" We see more and more wagons everyday. I honestly thought my uncle was exaggerating in his letters."
+								+"...\n\" We see more and more wagons everyday. I honestly thought my uncle was exaggerating in his letters. "
 								+ "My sister seems happy to have the extra business for her shop though.  \"",
 						"You see a rancher approach you"
-								+"...\n\" Hey there traveler, have you seen any wayward oxen around here?"
+								+"...\n\" Hey there traveler, have you seen any wayward oxen around here? "
 								+ "Some of ours escaped last night due to a faulty rope. Our group should be fine without them "
 								+ "cause they were spares, but I would rather have them just in case. \""
 								};
